@@ -747,7 +747,15 @@ fun Controller.setItemAnimatorForAppBar(recycler: RecyclerView) {
 }
 
 val Controller.mainRecyclerView: RecyclerView?
-    get() = (this as? SettingsLegacyController)?.listView ?: (this as? BaseLegacyController<*>)?.mainRecycler
+    get() {
+        (this as? SettingsLegacyController)?.let { return it.listView }
+        val legacy = this as? BaseLegacyController<*> ?: return null
+        // Conductor's onChangeStarted can fire before the incoming controller's onCreateView,
+        // so subclass overrides that touch `binding.recycler` would NPE on a lateinit field.
+        // Skip until the view is wired up; the caller's null-safe usage handles that case.
+        if (!legacy.isBindingInitialized) return null
+        return legacy.mainRecycler
+    }
 
 fun Controller.moveRecyclerViewUp(allTheWayUp: Boolean = false, scrollUpAnyway: Boolean = false) {
     if (activityBinding?.bigToolbar?.isVisible == false) return
