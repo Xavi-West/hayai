@@ -120,6 +120,10 @@ class LibraryPagerAdapter(
         val items = controller.presenter.libraryToDisplay[category]
             .orEmpty()
             .filter { it !is LibraryHeaderItem }
+        // Seed the filter BEFORE setItems so its internal launchFilter picks it up — without
+        // this, a page created (or recreated by the ViewPager when swiped past the offscreen
+        // limit) while a search is active would render unfiltered.
+        adapter.setFilter(controller.currentQuery.takeIf { it.isNotEmpty() })
         adapter.setItems(items)
         controller.applySelectionStateTo(adapter)
     }

@@ -335,6 +335,35 @@ class ExpandedAppBarLayout@JvmOverloads constructor(context: Context, attrs: Att
         useTabsInPreLayout = false
     }
 
+    /**
+     * Defensive reset to a known-clean baseline. Idempotent. Called by the activity on
+     * every controller-change before the incoming controller's chrome wiring runs, so
+     * any slots the previous controller left populated (tabs row, search pill, lifted
+     * menu, scroll-offset state) are vacated. This is the single invariant enforcement
+     * point — controllers no longer have to clean up after themselves.
+     */
+    fun resetToBaseline() {
+        clearTabs()
+        cardFrame?.isVisible = false
+        cardFrame?.alpha = 0f
+        dropLiftedPillMenu()
+        searchToolbar?.searchItem?.collapseActionView()
+        // mainToolbar may have been made invisible / gone by a SEARCH_ONLY or scroll-
+        // collapsed previous controller — restore to fully-visible so the next
+        // controller's chrome renders correctly even if it doesn't call scrollViewWith.
+        mainToolbar?.isGone = false
+        mainToolbar?.isInvisible = false
+        mainToolbar?.alpha = 1f
+        mainToolbar?.translationY = 0f
+        lockYPos = false
+        translationY = 0f
+        y = 0f
+        alpha = 1f
+        isInvisible = false
+        useTabsInPreLayout = false
+        compactSearchMode = false
+    }
+
     fun setTitle(title: CharSequence?, setBigTitle: Boolean) {
         if (setBigTitle) {
             bigTitleView?.text = title
@@ -635,7 +664,7 @@ class ExpandedAppBarLayout@JvmOverloads constructor(context: Context, attrs: Att
      * they don't double-up with the now-visible [mainToolbar] in expanded mode.
      * Leaves [R.id.action_search] in place (intrinsic to the pill).
      */
-    private fun dropLiftedPillMenu() {
+    internal fun dropLiftedPillMenu() {
         val menu = searchToolbar?.menu ?: return
         val toRemove = mutableListOf<Int>()
         var i = 0

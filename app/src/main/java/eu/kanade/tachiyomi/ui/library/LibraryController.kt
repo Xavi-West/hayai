@@ -335,6 +335,9 @@ open class LibraryController(
      */
     private var query = ""
 
+    /** Read-only accessor for the per-tab page adapters to seed their filter on bind. */
+    val currentQuery: String get() = query
+
     val isSubClass: Boolean
         get() = this is FilteredLibraryController
 
@@ -2004,11 +2007,12 @@ open class LibraryController(
             presenter.updateLibrary()
         }
 
-        // Set the filter BEFORE any code path that can launch a filter coroutine
-        // (applyTabbedSearchVisibility → setItems → adapter.launchFilter). Otherwise the
-        // setItems-launched filter reads the stale empty filter and the visible result
-        // races with the explicit requestFilter() below.
-        adapter.setFilter(q)
+        // Set the filter on every live adapter BEFORE any code path that can launch a
+        // filter coroutine (applyTabbedSearchVisibility → setItems → adapter.launchFilter).
+        // In tabbed mode without flatten the visible adapters are the per-tab page adapters
+        // (pagerAdapter), not mAdapter — only writing to mAdapter would leave the visible
+        // tabs unfiltered and make search appear to do nothing.
+        forEachLibraryAdapter { a, _ -> a.setFilter(q) }
         if (q.isNotBlank()) {
             searchItem.string = q
             if (adapter.scrollableHeaders.isEmpty() && !isSubClass) {
@@ -2031,7 +2035,9 @@ open class LibraryController(
         // could land an updateDataSet mid-layout → RecyclerView "Inconsistency detected".
         if (isTabbedMode) view?.post { applyTabbedSearchVisibility() }
 
-        if (presenter.currentLibraryItems.isNotEmpty()) adapter.requestFilter()
+        if (presenter.currentLibraryItems.isNotEmpty()) {
+            forEachLibraryAdapter { a, _ -> a.requestFilter() }
+        }
         return true
     }
 

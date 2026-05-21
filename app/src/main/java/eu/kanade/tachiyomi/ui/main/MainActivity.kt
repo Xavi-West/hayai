@@ -1589,6 +1589,12 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
     fun syncActivityAppBarVisibility(active: Controller?) {
         val hostsOwn = (active as? BaseController)?.hostsOwnAppBar == true
         val composeRoute = active is eu.kanade.tachiyomi.ui.base.controller.BaseComposeController
+        // Defensive reset of the shared activity-global appBar before the incoming
+        // controller configures it. Without this, slots the outgoing controller left
+        // populated (search pill, secondary tabs row, lifted menu, scroll offset) bleed
+        // through to the next screen — manifesting as a floating search pill or phantom
+        // tab-strip padding on manga details / settings / any deep-nested screen.
+        binding.appBar.resetToBaseline()
         binding.appBar.isVisible = !(hostsOwn || composeRoute)
     }
 

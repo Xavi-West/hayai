@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.ContextThemeWrapper
-import android.view.View
 import androidx.preference.PreferenceScreen
 import androidx.preference.R as preferenceR
 import com.bluelinelabs.conductor.ControllerChangeHandler
@@ -20,11 +19,9 @@ import eu.kanade.tachiyomi.ui.setting.titleMRes as titleRes
 /**
  * Reader settings hub. Delegates its preference screen to either
  * [SettingsMangaReaderController] or [SettingsNovelReaderController] based on
- * [selectedTab]. Preference keys are preserved across switches — no migration.
- *
- * The Manga/Novel tab strip is rendered on the activity-global appBar (this
- * controller doesn't host its own appBar, so we drive [activityBinding.appBar]
- * directly). Tabs are applied on entry and cleared on exit so they don't leak.
+ * [selectedTab]. The Manga/Novel tab strip is applied to the activity-global appBar
+ * on enter; cleanup on exit is handled by [eu.kanade.tachiyomi.ui.main.MainActivity.syncActivityAppBarVisibility],
+ * which resets the shared appBar on every controller transition.
  */
 class SettingsReaderHubController : SettingsLegacyController() {
 
@@ -56,16 +53,9 @@ class SettingsReaderHubController : SettingsLegacyController() {
 
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
         super.onChangeStarted(handler, type)
-        when (type) {
-            ControllerChangeType.PUSH_ENTER, ControllerChangeType.POP_ENTER -> applyTabs()
-            ControllerChangeType.PUSH_EXIT, ControllerChangeType.POP_EXIT -> activityBinding?.appBar?.clearTabs()
-            else -> Unit
+        if (type == ControllerChangeType.PUSH_ENTER || type == ControllerChangeType.POP_ENTER) {
+            applyTabs()
         }
-    }
-
-    override fun onDestroyView(view: View) {
-        activityBinding?.appBar?.clearTabs()
-        super.onDestroyView(view)
     }
 
     private fun applyTabs() {

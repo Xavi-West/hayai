@@ -905,7 +905,11 @@ val Controller.activityBinding: MainActivityBinding?
  * correct in both cases.
  */
 fun Controller.appBar(): ExpandedAppBarLayout? =
-    (this as? LocalAppBarOwner)?.localAppBar() ?: activityBinding?.appBar
+    // A LocalAppBarOwner must NEVER silently land on the activity-global appBar — that's
+    // the channel by which chrome mutations (applyTabs, cardFrame.isVisible, scroll-y)
+    // intended for the local appBar leak onto the shared global one during view-creation
+    // / destruction races and bleed through to the next screen.
+    if (this is LocalAppBarOwner) localAppBar() else activityBinding?.appBar
 
 /**
  * The [FloatingToolbar] pill search owned by this controller's [appBar]. Same routing
