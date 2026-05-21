@@ -232,6 +232,10 @@ class MangaDetailsController :
     var returningFromReader = false
     private var floatingActionMode: android.view.ActionMode? = null
 
+    // Bundle-restore: presenter.manga loads async, so onViewCreated can't touch it. We mark the
+    // deferred bits here and replay them once the presenter wakes us via onMangaInitialized().
+    private var pendingMangaInitSetup = false
+
     override fun getTitle(): String? {
         return manga?.title
     }
@@ -260,7 +264,11 @@ class MangaDetailsController :
 
             insets
         }
-        setPaletteColor()
+        if (presenter.isMangaLateInitInitialized()) {
+            setPaletteColor()
+        } else {
+            pendingMangaInitSetup = true
+        }
         adapter?.fastScroller = binding.fastScroller
         binding.fastScroller.addOnScrollStateChangeListener {
             activityBinding?.appBar?.y = 0f
@@ -298,10 +306,30 @@ class MangaDetailsController :
         binding.fab.transitionName = "details start reading transition"
         binding.fab.setOnClickListener { readNextChapter(it) }
 
-        presenter.onCreateLate()
+        if (presenter.isMangaLateInitInitialized()) {
+            presenter.onCreateLate()
+        } else {
+            pendingMangaInitSetup = true
+        }
         binding.swipeRefresh.isRefreshing = presenter.isLoading
         binding.swipeRefresh.setOnRefreshListener { presenter.refreshAll() }
         updateToolbarTitleAlpha()
+        if (presenter.preferences.themeMangaDetails().get()) {
+            setItemColors()
+        }
+    }
+
+    /**
+     * Called by the presenter once the bundle-restore `refreshMangaFromDb()` finishes. Replays
+     * any view setup that depends on `presenter.manga` which `onViewCreated` had to skip.
+     */
+    fun onMangaInitialized() {
+        if (!pendingMangaInitSetup) return
+        if (view == null) return
+        pendingMangaInitSetup = false
+        setPaletteColor()
+        presenter.onCreateLate()
+        if (isControllerVisible) setTitle()
         if (presenter.preferences.themeMangaDetails().get()) {
             setItemColors()
         }
@@ -649,6 +677,9 @@ class MangaDetailsController :
     /** Get the color of the manga cover*/
     fun setPaletteColor() {
         val view = view ?: return
+        // Bundle-restore can call into here before presenter.manga lateinit is loaded from DB.
+        // onMangaInitialized() will re-invoke us once that completes.
+        if (!presenter.isMangaLateInitInitialized()) return
 
         val request = ImageRequest.Builder(view.context)
             .data(presenter.manga.cover())

@@ -197,6 +197,9 @@ class MangaDetailsPresenter(
             presenterScope.launchUI {
                 refreshMangaFromDb()
                 finalizeOnCreate()
+                // Controller's onViewCreated had to skip any setup that touches presenter.manga;
+                // replay it now that the lateinit is populated.
+                view?.onMangaInitialized()
             }
         }
     }
