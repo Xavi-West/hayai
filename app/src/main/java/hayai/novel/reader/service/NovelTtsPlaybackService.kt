@@ -89,7 +89,12 @@ class NovelTtsPlaybackService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        when (intent?.action) {
+        if (intent == null) {
+            stopSelf()
+            return START_NOT_STICKY
+        }
+
+        when (intent.action) {
             ACTION_STOP_SERVICE -> {
                 controller.dispatch(hayai.novel.reader.tts.TtsCommand.Stop)
                 stopForeground(STOP_FOREGROUND_REMOVE)
@@ -115,7 +120,7 @@ class NovelTtsPlaybackService : Service() {
         }
 
         startForegroundWithNotification()
-        return START_STICKY
+        return START_NOT_STICKY
     }
 
     override fun onDestroy() {
@@ -226,10 +231,7 @@ class NovelTtsPlaybackService : Service() {
         }
 
         fun stop(context: Context) {
-            context.startService(
-                Intent(context, NovelTtsPlaybackService::class.java)
-                    .setAction(ACTION_STOP_SERVICE),
-            )
+            context.stopService(Intent(context, NovelTtsPlaybackService::class.java))
         }
     }
 }

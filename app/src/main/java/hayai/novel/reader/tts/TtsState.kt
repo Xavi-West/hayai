@@ -56,11 +56,11 @@ sealed class TtsCommand {
     object ReapplySettings : TtsCommand()
 
     /** Engine emitted a fatal error; controller routes to TtsState.Error. */
-    data class InternalEngineError(val message: String) : TtsCommand()
+    data class InternalEngineError(val message: String, val generation: Int?) : TtsCommand()
 
     /** Engine finished the last queued utterance for paragraph [paragraphIndex]. */
-    data class InternalParagraphDone(val paragraphIndex: Int) : TtsCommand()
+    data class InternalParagraphDone(val paragraphIndex: Int, val generation: Int) : TtsCommand()
 
     /** Engine started the first utterance for paragraph [paragraphIndex]. */
-    data class InternalParagraphStarted(val paragraphIndex: Int) : TtsCommand()
+    data class InternalParagraphStarted(val paragraphIndex: Int, val generation: Int) : TtsCommand()
 }

@@ -93,6 +93,7 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
 
     // Track scroll progress
     private var lastSavedProgress = 0f
+    private val lastSavedProgressByChapterId = LinkedHashMap<Long, Float>()
 
     // Infinite scroll state tracking
     private var isInfiniteScrollPrepend = false
@@ -940,6 +941,7 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
             chapterParagraphsById.remove(removedId)
             originalChapterParagraphsById.remove(removedId)
             chapterTranslationStateById.remove(removedId)
+            lastSavedProgressByChapterId.remove(removedId)
             removed.add(removedId)
         }
         if (removed.isEmpty()) return
@@ -1338,8 +1340,8 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
                     // Keep chapter boundaries in sync with actual DOM markers.
                     // This is important after appends/prepends.
                     if (infiniteScrollEnabled && typeof window.updateChapterBoundaries === 'function') {
-                        var dividers = document.querySelectorAll('.chapter-divider');
-                        if (!window.chapterBoundaries || window.chapterBoundaries.length !== dividers.length) {
+                        var markers = document.querySelectorAll('.chapter-boundary-marker[data-chapter-id]');
+                        if (!window.chapterBoundaries || window.chapterBoundaries.length !== markers.length) {
                             window.updateChapterBoundaries();
                         } else if (Date.now() - window.__tsundokuLastBoundaryUpdate > 1000) {
                             window.__tsundokuLastBoundaryUpdate = Date.now();
@@ -1358,7 +1360,9 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
                     // single-chapter document progress.
                     var currentChapterProgress = progress;
                     var currentChapterIdx = 0;
-                    if (infiniteScrollEnabled && window.chapterBoundaries.length > 1) {
+                    var activeChapterId = null;
+                    if (window.chapterBoundaries.length > 0) {
+                        var matchedBoundary = false;
                         for (var i = 0; i < window.chapterBoundaries.length; i++) {
                             var boundary = window.chapterBoundaries[i];
                             var chapterEnd = boundary.startOffset + boundary.height;
@@ -1368,7 +1372,15 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
                                 var effectiveHeight = Math.max(boundary.height - window.innerHeight, 1);
                                 currentChapterProgress = Math.min(chapterScrollY / effectiveHeight, 1.0);
                                 if (currentChapterProgress >= 0.98) currentChapterProgress = 1.0;
+                                matchedBoundary = true;
                                 break;
+                            }
+                        }
+                        if (!matchedBoundary) {
+                            var firstBoundary = window.chapterBoundaries[0];
+                            if (firstBoundary && scrollTop < firstBoundary.startOffset) {
+                                currentChapterIdx = 0;
+                                currentChapterProgress = 0;
                             }
                         }
                     }
@@ -1379,24 +1391,34 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
                     // chapter" bugs (see ReaderViewModel.setNovelVisibleChapter invariant).
                     if (window.chapterBoundaries.length > 0) {
                         var activeBoundary = window.chapterBoundaries[currentChapterIdx];
-                        var activeChapterId = activeBoundary && activeBoundary.chapterId;
+                        activeChapterId = activeBoundary && activeBoundary.chapterId;
                         if (activeChapterId) {
-                            Android.onActiveChapterUpdate(String(activeChapterId));
+                            Android.onActiveChapterChanged(String(activeChapterId), currentChapterProgress);
                         }
                     }
 
                     if (Math.abs(currentChapterProgress - lastProgress) > 0.01) {
                         lastProgress = currentChapterProgress;
+                        var chapterIdForCallback = activeChapterId ? String(activeChapterId) : '';
+                        var progressForCallback = currentChapterProgress;
 
                         // Immediate update for UI (throttled)
                         if (!window.lastScrollUpdate || Date.now() - window.lastScrollUpdate > 50) {
                             window.lastScrollUpdate = Date.now();
-                            Android.onScrollUpdate(currentChapterProgress);
+                            if (chapterIdForCallback) {
+                                Android.onChapterScrollUpdate(chapterIdForCallback, progressForCallback);
+                            } else {
+                                Android.onScrollUpdate(progressForCallback);
+                            }
                         }
 
                         clearTimeout(saveTimeout);
                         saveTimeout = setTimeout(function() {
-                            Android.onScrollProgress(currentChapterProgress);
+                            if (chapterIdForCallback) {
+                                Android.onChapterScrollProgress(chapterIdForCallback, progressForCallback);
+                            } else {
+                                Android.onScrollProgress(progressForCallback);
+                            }
                         }, 500);
                     }
 
@@ -1459,7 +1481,7 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
 
                 // Function to update chapter boundary heights after content load
                 window.updateChapterBoundaries = function() {
-                    var dividers = document.querySelectorAll('.chapter-divider');
+                    var dividers = document.querySelectorAll('.chapter-boundary-marker[data-chapter-id]');
                     var boundaries = [];
                     var lastEnd = 0;
                     dividers.forEach(function(divider, index) {
@@ -1489,7 +1511,13 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
                     if ($markShortChapterAsRead && window.chapterBoundaries.length <= 1) {
                         var sh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
                         if (sh <= 1) {
-                            Android.onScrollProgress(1.0);
+                            var shortBoundary = window.chapterBoundaries[0];
+                            var shortChapterId = shortBoundary && shortBoundary.chapterId;
+                            if (shortChapterId) {
+                                Android.onChapterScrollProgress(String(shortChapterId), 1.0);
+                            } else {
+                                Android.onScrollProgress(1.0);
+                            }
                         }
                     }
                 }, 0);
@@ -1505,6 +1533,7 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
         // "saved active chapter" lookup needed; see ReaderViewModel.setNovelVisibleChapter
         // invariant.
         currentPage?.let { page ->
+            val chapterId = page.chapter.chapter.id
             val savedProgress = page.chapter.chapter.last_page_read
             val isRead = page.chapter.chapter.read
 
@@ -1521,20 +1550,39 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
             if (shouldRestore) {
                 val progress = savedProgress / 100f
                 lastSavedProgress = progress
+                chapterId?.let { lastSavedProgressByChapterId[it] = progress }
 
                 // Wait for the WebView to actually have laid out content before scrolling.
                 // The previous `postDelayed(100)` raced with layout and frequently fired before
                 // scrollHeight was non-zero, leaving the user stuck unable to scroll. Now we
-                // poll inside JS via requestAnimationFrame until content height appears, with
-                // a hard cap so we don't loop forever on a genuinely-empty page.
+                // poll inside JS via requestAnimationFrame until content height appears, then
+                // restore against this chapter's own boundary rather than the whole document.
+                // That matters when transition cards or adjacent infinite-scroll chapters are
+                // present: the stored percent is chapter-local, not document-global.
                 val js = """
                     (function() {
                         var attempts = 0;
+                        var chapterId = ${JSONObject.quote(chapterId?.toString().orEmpty())};
                         function tryScroll() {
                             var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
                             if (scrollHeight > 0 && document.readyState !== 'loading') {
-                                window.scrollTo(0, scrollHeight * $progress);
-                                console.log('Restored scroll to ' + Math.round($progress * 100) + '% (' + Math.round(scrollHeight * $progress) + 'px) after ' + attempts + ' frames');
+                                if (typeof window.updateChapterBoundaries === 'function') {
+                                    window.updateChapterBoundaries();
+                                }
+                                var target = scrollHeight * $progress;
+                                if (chapterId && window.chapterBoundaries && window.chapterBoundaries.length) {
+                                    for (var i = 0; i < window.chapterBoundaries.length; i++) {
+                                        var boundary = window.chapterBoundaries[i];
+                                        if (String(boundary.chapterId) === chapterId) {
+                                            var effectiveHeight = Math.max(boundary.height - window.innerHeight, 1);
+                                            target = boundary.startOffset + (effectiveHeight * $progress);
+                                            break;
+                                        }
+                                    }
+                                }
+                                target = Math.max(0, Math.min(target, scrollHeight));
+                                window.scrollTo(0, target);
+                                console.log('Restored chapter scroll to ' + Math.round($progress * 100) + '% (' + Math.round(target) + 'px) after ' + attempts + ' frames');
                                 return;
                             }
                             attempts++;
@@ -1550,6 +1598,7 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
                 // Ensure we are at top for read chapters
                 webView.scrollTo(0, 0)
                 lastSavedProgress = 0f
+                chapterId?.let { lastSavedProgressByChapterId[it] = 0f }
             }
         }
     }
@@ -1759,6 +1808,10 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
      */
     private fun currentActiveChapter(): ReaderChapter? = currentChapters?.currChapter
 
+    private fun chapterById(chapterId: Long): ReaderChapter? =
+        loadedChapters.firstOrNull { it.chapter.id == chapterId }
+            ?: currentChapters?.currChapter?.takeIf { it.chapter.id == chapterId }
+
     /**
      * First active page of the currently-visible chapter, suitable as the saveProgress
      * "page" argument. Returns the entry `currentPage` only as a last resort so single-
@@ -1770,14 +1823,40 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
         return activePage ?: currentPage
     }
 
-    private fun saveProgress(isTeardown: Boolean = false) {
-        val page = currentActivePage() ?: return
-        val progressValue = (lastSavedProgress * 100).toInt().coerceIn(0, 100)
-        activity.saveNovelProgress(page, progressValue, isTeardown = isTeardown)
-        val activeId = currentActiveChapter()?.chapter?.id
-        Logger.d {
-            "NovelWebViewViewer: Saving progress $progressValue% chapter=$activeId teardown=$isTeardown"
+    private fun saveProgressForChapter(
+        chapterId: Long,
+        progress: Float,
+        isTeardown: Boolean = false,
+    ) {
+        val page = chapterById(chapterId)?.pages?.firstOrNull() ?: return
+        val clamped = progress.coerceIn(0f, 1f)
+        lastSavedProgressByChapterId[chapterId] = clamped
+
+        if (currentActiveChapter()?.chapter?.id == chapterId) {
+            lastSavedProgress = clamped
         }
+
+        val progressValue = (clamped * 100).roundToInt().coerceIn(0, 100)
+        activity.saveNovelProgress(page, progressValue, isTeardown = isTeardown)
+        Logger.d {
+            "NovelWebViewViewer: Saving progress $progressValue% chapter=$chapterId teardown=$isTeardown"
+        }
+    }
+
+    private fun saveProgress(isTeardown: Boolean = false) {
+        val activeId = currentActiveChapter()?.chapter?.id
+        if (activeId != null) {
+            saveProgressForChapter(
+                chapterId = activeId,
+                progress = lastSavedProgressByChapterId[activeId] ?: lastSavedProgress,
+                isTeardown = isTeardown,
+            )
+            return
+        }
+
+        val page = currentActivePage() ?: return
+        val progressValue = (lastSavedProgress * 100).roundToInt().coerceIn(0, 100)
+        activity.saveNovelProgress(page, progressValue, isTeardown = isTeardown)
     }
 
     /**
@@ -1791,7 +1870,59 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
         Logger.d {
             "NovelWebViewViewer: flushPersistentState chapter=${active.chapter.id} progress=${(lastSavedProgress * 100).toInt()}%"
         }
+        requestImmediateProgressSave(isTeardown = true)
         saveProgress(isTeardown = true)
+    }
+
+    private fun requestImmediateProgressSave(isTeardown: Boolean) {
+        val methodName = if (isTeardown) "onChapterTeardownProgress" else "onChapterScrollProgress"
+        evaluateJavascriptSafe(
+            """
+            (function() {
+                if (!window.Android || !Android.$methodName) return;
+                if (typeof window.updateChapterBoundaries === 'function') {
+                    window.updateChapterBoundaries();
+                }
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop || 0;
+                var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                var progress = scrollHeight > 0 ? scrollTop / scrollHeight : 1;
+                var chapterId = null;
+                var chapterProgress = progress;
+                if (window.chapterBoundaries && window.chapterBoundaries.length) {
+                    var matchedBoundary = false;
+                    for (var i = 0; i < window.chapterBoundaries.length; i++) {
+                        var boundary = window.chapterBoundaries[i];
+                        var chapterEnd = boundary.startOffset + boundary.height;
+                        if (scrollTop >= boundary.startOffset && scrollTop < chapterEnd) {
+                            chapterId = boundary.chapterId;
+                            var chapterScrollY = scrollTop - boundary.startOffset;
+                            var effectiveHeight = Math.max(boundary.height - window.innerHeight, 1);
+                            chapterProgress = Math.min(chapterScrollY / effectiveHeight, 1.0);
+                            if (chapterProgress >= 0.98) chapterProgress = 1.0;
+                            matchedBoundary = true;
+                            break;
+                        }
+                    }
+                    if (!matchedBoundary) {
+                        var firstBoundary = window.chapterBoundaries[0];
+                        if (firstBoundary && scrollTop < firstBoundary.startOffset) {
+                            chapterId = firstBoundary.chapterId;
+                            chapterProgress = 0;
+                        } else {
+                            var lastBoundary = window.chapterBoundaries[window.chapterBoundaries.length - 1];
+                            if (lastBoundary) {
+                                chapterId = lastBoundary.chapterId;
+                                chapterProgress = 1.0;
+                            }
+                        }
+                    }
+                }
+                if (chapterId) {
+                    Android.$methodName(String(chapterId), chapterProgress);
+                }
+            })();
+            """.trimIndent(),
+        )
     }
 
     override fun getView(): View = container
@@ -2041,7 +2172,7 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
     private fun scrollToChapterIndex(index: Int) {
         val js = """
             (function() {
-                var dividers = document.querySelectorAll('.chapter-divider');
+                var dividers = document.querySelectorAll('.chapter-boundary-marker[data-chapter-id]');
                 if (dividers[$index]) {
                     dividers[$index].scrollIntoView({ behavior: 'smooth' });
                 }
@@ -2220,7 +2351,6 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
             ""
         }
         val escapedTransition = JSONObject.quote(transitionHtml)
-        val transitionClass = if (showTransition) "chapter-divider chapter-transition" else "chapter-divider"
 
         val js = """
             (function() {
@@ -2230,18 +2360,11 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
                 // Boundary marker for the prepended chapter (kept invisible — same
                 // shape as the initial chapter divider in loadHtmlContent).
                 var marker = document.createElement('div');
-                marker.className = 'chapter-divider';
+                marker.className = 'chapter-divider chapter-boundary-marker';
                 marker.setAttribute('data-chapter-id', '$chapterId');
                 marker.style.height = '0';
                 marker.style.margin = '0';
                 marker.style.padding = '0';
-
-                // Visible transition card sits between the prepended content and the
-                // previously-first content (which already has its own boundary marker).
-                var transition = document.createElement('div');
-                transition.className = '$transitionClass';
-                transition.setAttribute('data-chapter-id', '$chapterId');
-                transition.innerHTML = $escapedTransition;
 
                 // New chapter content above the visible card.
                 var contentDiv = document.createElement('div');
@@ -2251,8 +2374,18 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
                 ${if (plainTextMode) "contentDiv.textContent = $escapedContent;" else "contentDiv.innerHTML = $escapedContent;"}
 
                 var firstChild = document.body.firstChild;
-                document.body.insertBefore(transition, firstChild);
-                document.body.insertBefore(contentDiv, transition);
+                var insertionPoint = firstChild;
+                if ($showTransition) {
+                    // Visible transition card sits between the prepended content and the
+                    // previously-first content (which already has its own boundary marker).
+                    var transition = document.createElement('div');
+                    transition.className = 'chapter-transition';
+                    transition.setAttribute('data-chapter-id', '$chapterId');
+                    transition.innerHTML = $escapedTransition;
+                    document.body.insertBefore(transition, firstChild);
+                    insertionPoint = transition;
+                }
+                document.body.insertBefore(contentDiv, insertionPoint);
                 document.body.insertBefore(marker, contentDiv);
 
                 setTimeout(function() {
@@ -2321,15 +2454,24 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
             ""
         }
         val escapedTransition = JSONObject.quote(transitionHtml)
-        val dividerClass = if (showTransition) "chapter-divider chapter-transition" else "chapter-divider"
 
         val js = """
             (function() {
-                var divider = document.createElement('div');
-                divider.className = '$dividerClass';
-                divider.setAttribute('data-chapter-id', '$chapterId');
-                divider.innerHTML = $escapedTransition;
-                document.body.appendChild(divider);
+                var marker = document.createElement('div');
+                marker.className = 'chapter-divider chapter-boundary-marker';
+                marker.setAttribute('data-chapter-id', '$chapterId');
+                marker.style.height = '0';
+                marker.style.margin = '0';
+                marker.style.padding = '0';
+                document.body.appendChild(marker);
+
+                if ($showTransition) {
+                    var transition = document.createElement('div');
+                    transition.className = 'chapter-transition';
+                    transition.setAttribute('data-chapter-id', '$chapterId');
+                    transition.innerHTML = $escapedTransition;
+                    document.body.appendChild(transition);
+                }
 
                 var contentDiv = document.createElement('div');
                 contentDiv.className = 'chapter-content';
@@ -2559,7 +2701,7 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
             }
 
             val chapterDivider = if (chapterId != null) {
-                """<div class="chapter-divider" data-chapter-id="$chapterId" style="height:0;margin:0;padding:0;"></div>
+                """<div class="chapter-divider chapter-boundary-marker" data-chapter-id="$chapterId" style="height:0;margin:0;padding:0;"></div>
                    <div class="chapter-content" data-chapter-id="$chapterId">"""
             } else {
                 ""
@@ -2573,7 +2715,7 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
                     isNext = false,
                 )
                 val cardId = prevChapterForCard?.chapter?.id?.toString() ?: "no-prev"
-                """<div class="chapter-divider chapter-transition initial-prev-card" data-chapter-id="$cardId">$cardInner</div>"""
+                """<div class="chapter-transition initial-prev-card" data-chapter-id="$cardId">$cardInner</div>"""
             } else {
                 ""
             }
@@ -2607,16 +2749,17 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
                     body {
                         display: block !important;
                     }
-                    /* Boundary marker without the transition card (used by the first chapter
-                       and as a JS scroll-position anchor). Kept invisible. */
-                    .chapter-divider:not(.chapter-transition) {
-                        height: 1px;
-                        margin: 32px auto;
+                    /* Boundary markers are scroll-position anchors only; visible transition
+                       cards are rendered separately so progress math sees one marker per
+                       loaded chapter. */
+                    .chapter-boundary-marker {
+                        height: 0;
+                        margin: 0;
                         padding: 0;
                         border: none;
-                        border-top: 1px solid currentColor;
-                        opacity: 0.4;
-                        width: 60%;
+                        opacity: 0;
+                        width: 0;
+                        overflow: hidden;
                     }
                     /* Static top card needs extra breathing room above so the user has
                        a real scroll-up surface — the regular .chapter-transition margin
@@ -3273,6 +3416,36 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
             }
         }
 
+        @JavascriptInterface
+        fun onChapterScrollProgress(chapterIdStr: String, progress: Float) {
+            val chapterId = chapterIdStr.toLongOrNull() ?: return
+            activity.runOnUiThread {
+                saveProgressForChapter(chapterId, progress, isTeardown = false)
+            }
+        }
+
+        @JavascriptInterface
+        fun onChapterTeardownProgress(chapterIdStr: String, progress: Float) {
+            val chapterId = chapterIdStr.toLongOrNull() ?: return
+            activity.runOnUiThread {
+                saveProgressForChapter(chapterId, progress, isTeardown = true)
+            }
+        }
+
+        @JavascriptInterface
+        fun onChapterScrollUpdate(chapterIdStr: String, progress: Float) {
+            val chapterId = chapterIdStr.toLongOrNull() ?: return
+            activity.runOnUiThread {
+                if (chapterById(chapterId) == null) return@runOnUiThread
+                val clamped = progress.coerceIn(0f, 1f)
+                lastSavedProgressByChapterId[chapterId] = clamped
+                if (currentActiveChapter()?.chapter?.id == chapterId) {
+                    lastSavedProgress = clamped
+                    activity.onNovelProgressChanged(clamped)
+                }
+            }
+        }
+
         /**
          * The DOM is the source of truth for "which chapter is visible". JS reports the
          * `data-chapter-id` of the divider nearest scrollTop; Kotlin maps that to a
@@ -3286,31 +3459,43 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
          */
         @JavascriptInterface
         fun onActiveChapterUpdate(chapterIdStr: String) {
+            onActiveChapterChanged(chapterIdStr, lastSavedProgress)
+        }
+
+        @JavascriptInterface
+        fun onActiveChapterChanged(chapterIdStr: String, progress: Float) {
             val newChapterId = chapterIdStr.toLongOrNull() ?: return
             activity.runOnUiThread {
+                val clamped = progress.coerceIn(0f, 1f)
                 val currentId = currentChapters?.currChapter?.chapter?.id
-                if (newChapterId == currentId) return@runOnUiThread
+                if (newChapterId == currentId) {
+                    lastSavedProgressByChapterId[newChapterId] = clamped
+                    lastSavedProgress = clamped
+                    return@runOnUiThread
+                }
 
-                val newChapter = loadedChapters.firstOrNull { it.chapter.id == newChapterId }
+                val newChapter = chapterById(newChapterId)
                 if (newChapter == null) {
                     Logger.w {
-                        "NovelWebViewViewer: onActiveChapterUpdate chapter=$newChapterId " +
+                        "NovelWebViewViewer: onActiveChapterChanged chapter=$newChapterId " +
                             "not in loadedChapters (loaded=${loadedChapterIds.size}); " +
                             "boundary marker outpaced Kotlin-side append"
                     }
                     return@runOnUiThread
                 }
+                lastSavedProgressByChapterId[newChapterId] = clamped
                 Logger.d {
-                    "NovelWebViewViewer: active chapter changed $currentId -> $newChapterId"
+                    "NovelWebViewViewer: active chapter changed $currentId -> $newChapterId at ${(clamped * 100).roundToInt()}%"
                 }
 
                 activity.viewModel.setNovelVisibleChapter(newChapter)
                 newChapter.pages?.firstOrNull()?.let { page ->
+                    page.chapter.chapter.last_page_read = (clamped * 100).roundToInt().coerceIn(0, 100)
                     currentPage = page
                     activity.onPageSelected(page, false)
                 }
-                lastSavedProgress = 0f
-                activity.onNovelProgressChanged(0f)
+                lastSavedProgress = clamped
+                activity.onNovelProgressChanged(clamped)
                 updateChapterMetaJs()
             }
         }
@@ -3789,17 +3974,36 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
     fun setProgressPercent(percent: Int) {
         val progress = percent.coerceIn(0, 100)
         // Update local state immediately for consistent UI
-        lastSavedProgress = progress / 100f
+        val progressFraction = progress / 100f
+        lastSavedProgress = progressFraction
+        currentActiveChapter()?.chapter?.id?.let {
+            lastSavedProgressByChapterId[it] = progressFraction
+        }
 
         evaluateJavascriptSafe(
             """
             (function() {
                 var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-                var targetScroll = scrollHeight * $progress / 100;
+                var targetScroll = scrollHeight * $progressFraction;
+                var chapterId = ${JSONObject.quote(currentActiveChapter()?.chapter?.id?.toString().orEmpty())};
+                if (typeof window.updateChapterBoundaries === 'function') {
+                    window.updateChapterBoundaries();
+                }
+                if (chapterId && window.chapterBoundaries && window.chapterBoundaries.length) {
+                    for (var i = 0; i < window.chapterBoundaries.length; i++) {
+                        var boundary = window.chapterBoundaries[i];
+                        if (String(boundary.chapterId) === chapterId) {
+                            var effectiveHeight = Math.max(boundary.height - window.innerHeight, 1);
+                            targetScroll = boundary.startOffset + (effectiveHeight * $progressFraction);
+                            break;
+                        }
+                    }
+                }
+                targetScroll = Math.max(0, Math.min(targetScroll, scrollHeight));
                 window.scrollTo(0, targetScroll);
                 // Update the tracking variable to prevent immediate re-report
                 if (typeof lastProgress !== 'undefined') {
-                    lastProgress = $progress / 100.0;
+                    lastProgress = $progressFraction;
                 }
             })();
             """.trimIndent(),

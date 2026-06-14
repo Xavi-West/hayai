@@ -680,8 +680,7 @@ class ReaderActivity : BaseActivity<ReaderActivityBinding>() {
     /**
      * Makes the TTS service "started" in addition to "bound" so it survives this
      * activity going away — keeping audio alive in the background notification. The
-     * service is already foreground from `onCreate`, so this is just a sticky-lifecycle
-     * promotion. The state listener wired in the service drives the notification; the
+     * state listener wired in the service drives the foreground notification; the
      * activity no longer needs to polling-sync anything.
      */
     private fun startBackgroundTtsIfEnabled() {

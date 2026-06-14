@@ -1,6 +1,6 @@
 [versions]
 aboutlibraries = "14.2.1"
-chucker = "3.5.2"
+chucker = "4.3.1"
 flexible-adapter = "c8013533"
 fast_adapter = "5.7.0"
 fuzzywuzzy = "1.4.0"
@@ -15,8 +15,8 @@ junit = "6.1.0"
 kermit = "2.1.0"
 koin = "4.2.1"
 leakcanary = "2.14"
-markdown = "0.7.3"
-voyager = "1.1.0-beta03"
+markdown = "0.7.5"
+voyager = "2.2.21-1.10.3"
 
 [libraries]
 aboutlibraries = { module = "com.mikepenz:aboutlibraries-compose-m3", version.ref = "aboutlibraries" }
@@ -55,7 +55,7 @@ koin-core = { module = "io.insert-koin:koin-core" }
 koin-android = { module = "io.insert-koin:koin-android" }
 koin-injekt = { module = "com.github.null2264:injekt-koin", version = "aad18b6148" }
 
-kotest-assertions = { module = "io.kotest:kotest-assertions-core", version = "5.9.1" }
+kotest-assertions = { module = "io.kotest:kotest-assertions-core", version = "6.1.11" }
 
 leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
 leakcanary-plumber = { module = "com.squareup.leakcanary:plumber-android", version.ref = "leakcanary" }
@@ -65,7 +65,7 @@ libarchive = { module = "me.zhanghai.android.libarchive:library", version = "1.1
 material = { module = "com.google.android.material:material", version = "1.14.0" }
 markdown = { module = "org.jetbrains:markdown", version.ref = "markdown" }
 markwon = { module = "io.noties.markwon:core", version = "4.6.2" }
-mpandroidchart = { module = "com.github.PhilJay:MPAndroidChart", version = "v3.1.0" }
+mpandroidchart = { module = "com.github.PhilJay:MPAndroidChart", version = "3.1.0" }
 java-nat-sort = { module = "com.github.gpanther:java-nat-sort", version = "natural-comparator-1.1" }
 jsoup = { module = "org.jsoup:jsoup", version = "1.22.2" }
 junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }

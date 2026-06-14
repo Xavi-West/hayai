@@ -117,7 +117,7 @@ class NovelTtsEngine(private val context: Context) {
      * same [paragraphIndex] so the controller's `paragraph started/done` mapping is
      * one-to-one with the user's paragraph regardless of internal chunking.
      */
-    fun speakParagraph(paragraphIndex: Int, text: String, flush: Boolean) {
+    fun speakParagraph(generation: Int, paragraphIndex: Int, text: String, flush: Boolean) {
         val engine = tts ?: run {
             _events.tryEmit(UtteranceEvent.Error(null, "engine not initialized"))
             return
@@ -125,7 +125,7 @@ class NovelTtsEngine(private val context: Context) {
         if (text.isBlank()) {
             // Nothing to say — synthesise a started+done pair so the controller still
             // advances. Use a unique id so the listener routes deliver in order.
-            val id = NovelTtsController.makeUtteranceId(paragraphIndex, 0, totalChunks = 1)
+            val id = NovelTtsController.makeUtteranceId(generation, paragraphIndex, 0, totalChunks = 1)
             _events.tryEmit(UtteranceEvent.Started(id))
             _events.tryEmit(UtteranceEvent.Done(id))
             return
@@ -139,7 +139,7 @@ class NovelTtsEngine(private val context: Context) {
         val total = chunks.size
         chunks.forEachIndexed { utteranceIndex, chunk ->
             val mode = if (flush && utteranceIndex == 0) TextToSpeech.QUEUE_FLUSH else TextToSpeech.QUEUE_ADD
-            val id = NovelTtsController.makeUtteranceId(paragraphIndex, utteranceIndex, total)
+            val id = NovelTtsController.makeUtteranceId(generation, paragraphIndex, utteranceIndex, total)
             val result = engine.speak(chunk, mode, null, id)
             if (result == TextToSpeech.ERROR) {
                 _events.tryEmit(UtteranceEvent.Error(id, "speak() returned ERROR"))

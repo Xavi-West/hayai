@@ -45,6 +45,7 @@ class NovelTtsController(
     private var engineEventJob: Job? = null
     private var focusJob: Job? = null
     private var stateUpdateJob: Job? = null
+    private var utteranceGeneration = 0
 
     /**
      * Listener invoked whenever the state changes and the MediaSession/notification need
@@ -66,6 +67,7 @@ class NovelTtsController(
         val paragraphs: List<String>,
         var paragraphIndex: Int,
         var lastPersistedParagraph: Int,
+        var generation: Int,
     )
 
     private var session: Session? = null
@@ -131,8 +133,8 @@ class NovelTtsController(
             engine.events.collect { event ->
                 when (event) {
                     is UtteranceEvent.Started ->
-                        utteranceIdToParagraph(event.utteranceId)?.let {
-                            dispatch(TtsCommand.InternalParagraphStarted(it))
+                        utteranceIdToParts(event.utteranceId)?.let {
+                            dispatch(TtsCommand.InternalParagraphStarted(it.paragraphIndex, it.generation))
                         }
                     is UtteranceEvent.Done -> {
                         val parts = utteranceIdToParts(event.utteranceId) ?: return@collect
@@ -140,11 +142,11 @@ class NovelTtsController(
                         // doesn't advance to the next paragraph while earlier chunks of
                         // a long paragraph are still queued in the engine.
                         if (parts.utteranceIndex == parts.totalChunks - 1) {
-                            dispatch(TtsCommand.InternalParagraphDone(parts.paragraphIndex))
+                            dispatch(TtsCommand.InternalParagraphDone(parts.paragraphIndex, parts.generation))
                         }
                     }
                     is UtteranceEvent.Error ->
-                        dispatch(TtsCommand.InternalEngineError(event.message))
+                        dispatch(TtsCommand.InternalEngineError(event.message, event.utteranceId?.let(::utteranceIdToParts)?.generation))
                 }
             }
         }
@@ -202,9 +204,9 @@ class NovelTtsController(
             is TtsCommand.NextChapter -> onAdvanceChapter(forward = true)
             is TtsCommand.PreviousChapter -> onAdvanceChapter(forward = false)
             is TtsCommand.ReapplySettings -> applyEngineSettings()
-            is TtsCommand.InternalParagraphStarted -> onParagraphStarted(cmd.paragraphIndex)
-            is TtsCommand.InternalParagraphDone -> onParagraphDone(cmd.paragraphIndex)
-            is TtsCommand.InternalEngineError -> onEngineError(cmd.message)
+            is TtsCommand.InternalParagraphStarted -> onParagraphStarted(cmd.paragraphIndex, cmd.generation)
+            is TtsCommand.InternalParagraphDone -> onParagraphDone(cmd.paragraphIndex, cmd.generation)
+            is TtsCommand.InternalEngineError -> onEngineError(cmd.message, cmd.generation)
         }
     }
 
@@ -255,12 +257,14 @@ class NovelTtsController(
             paragraphs = paragraphs,
             paragraphIndex = startIndex,
             lastPersistedParagraph = -1,
+            generation = nextGeneration(),
         )
         speakCurrentParagraph(flush = true)
     }
 
     private fun onPause() {
         val s = session ?: return
+        s.generation = nextGeneration()
         engine.stop()
         _state.value = TtsState.Paused(s.chapterId, s.paragraphIndex, s.paragraphs.size)
     }
@@ -289,11 +293,13 @@ class NovelTtsController(
             return
         }
         s.paragraphIndex = next
+        s.generation = nextGeneration()
         speakCurrentParagraph(flush = true)
     }
 
-    private fun onParagraphStarted(paragraphIndex: Int) {
+    private fun onParagraphStarted(paragraphIndex: Int, generation: Int) {
         val s = session ?: return
+        if (s.generation != generation) return
         if (s.paragraphIndex != paragraphIndex) {
             // Stale callback (e.g. delayed Started after a skip flushed the queue): ignore.
             return
@@ -303,8 +309,9 @@ class NovelTtsController(
         persistProgress(s, paragraphIndex)
     }
 
-    private suspend fun onParagraphDone(paragraphIndex: Int) {
+    private suspend fun onParagraphDone(paragraphIndex: Int, generation: Int) {
         val s = session ?: return
+        if (s.generation != generation) return
         if (s.paragraphIndex != paragraphIndex) return
 
         val nextIndex = paragraphIndex + 1
@@ -322,7 +329,9 @@ class NovelTtsController(
         speakCurrentParagraph(flush = false)
     }
 
-    private fun onEngineError(message: String) {
+    private fun onEngineError(message: String, generation: Int?) {
+        val s = session
+        if (generation != null && s != null && s.generation != generation) return
         Logger.e { "TTS: engine error — $message" }
         _state.value = TtsState.Error(message)
         cleanupSession(stopEngine = true)
@@ -372,6 +381,7 @@ class NovelTtsController(
             paragraphs = paragraphs,
             paragraphIndex = 0,
             lastPersistedParagraph = -1,
+            generation = nextGeneration(),
         )
         speakCurrentParagraph(flush = true)
     }
@@ -384,7 +394,12 @@ class NovelTtsController(
             onStop()
             return
         }
-        engine.speakParagraph(s.paragraphIndex, text, flush)
+        engine.speakParagraph(s.generation, s.paragraphIndex, text, flush)
+    }
+
+    private fun nextGeneration(): Int {
+        utteranceGeneration = if (utteranceGeneration >= Int.MAX_VALUE - 1) 1 else utteranceGeneration + 1
+        return utteranceGeneration
     }
 
     private fun applyEngineSettings() {
@@ -434,27 +449,26 @@ class NovelTtsController(
      * `TextToSpeech.getMaxSpeechInputLength()` that get split internally.
      */
     private data class UtteranceParts(
+        val generation: Int,
         val paragraphIndex: Int,
         val utteranceIndex: Int,
         val totalChunks: Int,
     )
 
-    private fun utteranceIdToParagraph(utteranceId: String): Int? =
-        utteranceIdToParts(utteranceId)?.paragraphIndex
-
     private fun utteranceIdToParts(utteranceId: String): UtteranceParts? {
         val match = UTTERANCE_ID_REGEX.matchEntire(utteranceId) ?: return null
-        val paragraph = match.groupValues[1].toIntOrNull() ?: return null
-        val utterance = match.groupValues[2].toIntOrNull() ?: return null
-        val total = match.groupValues[3].toIntOrNull()?.coerceAtLeast(1) ?: return null
-        return UtteranceParts(paragraph, utterance, total)
+        val generation = match.groupValues[1].toIntOrNull() ?: return null
+        val paragraph = match.groupValues[2].toIntOrNull() ?: return null
+        val utterance = match.groupValues[3].toIntOrNull() ?: return null
+        val total = match.groupValues[4].toIntOrNull()?.coerceAtLeast(1) ?: return null
+        return UtteranceParts(generation, paragraph, utterance, total)
     }
 
     companion object {
-        private val UTTERANCE_ID_REGEX = Regex("""tts-p(\d+)-u(\d+)-of(\d+)""")
+        private val UTTERANCE_ID_REGEX = Regex("""tts-g(\d+)-p(\d+)-u(\d+)-of(\d+)""")
         private val JSON = Json { ignoreUnknownKeys = true }
 
-        fun makeUtteranceId(paragraphIndex: Int, utteranceIndex: Int, totalChunks: Int) =
-            "tts-p$paragraphIndex-u$utteranceIndex-of$totalChunks"
+        fun makeUtteranceId(generation: Int, paragraphIndex: Int, utteranceIndex: Int, totalChunks: Int) =
+            "tts-g$generation-p$paragraphIndex-u$utteranceIndex-of$totalChunks"
     }
 }
