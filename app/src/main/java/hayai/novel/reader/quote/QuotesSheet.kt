@@ -1,5 +1,6 @@
 package hayai.novel.reader.quote
 
+import android.app.Activity
 import android.view.ViewGroup
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -45,7 +46,6 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.compose.stringResource
-import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import kotlinx.coroutines.launch
 import yokai.i18n.MR
 import yokai.presentation.theme.Size
@@ -63,7 +63,7 @@ import yokai.presentation.theme.YokaiTheme
 fun QuotesSheet(
     quotes: List<Quote>,
     onDismiss: () -> Unit,
-    onQuoteAdd: (String) -> Unit,
+    onQuoteAdd: ((String) -> Unit)?,
     onQuoteUpdate: (Quote) -> Unit,
     onQuoteDelete: (Quote) -> Unit,
 ) {
@@ -179,7 +179,7 @@ fun QuotesSheet(
         )
     }
 
-    if (showAddDialog) {
+    if (showAddDialog && onQuoteAdd != null) {
         AlertDialog(
             onDismissRequest = { showAddDialog = false },
             title = { Text(stringResource(MR.strings.novel_quote_add)) },
@@ -237,8 +237,10 @@ fun QuotesSheet(
                         style = MaterialTheme.typography.titleLarge,
                     )
                 }
-                IconButton(onClick = { showAddDialog = true }) {
-                    Icon(Icons.Outlined.Add, contentDescription = stringResource(MR.strings.novel_quote_add))
+                if (onQuoteAdd != null) {
+                    IconButton(onClick = { showAddDialog = true }) {
+                        Icon(Icons.Outlined.Add, contentDescription = stringResource(MR.strings.novel_quote_add))
+                    }
                 }
             }
 
@@ -360,10 +362,10 @@ private fun QuoteCard(
  * from the view hierarchy on dismissal.
  */
 fun showQuotesSheet(
-    activity: ReaderActivity,
+    activity: Activity,
     novelId: Long,
     novelName: String,
-    chapterName: String,
+    chapterName: String? = null,
 ) {
     val manager = QuoteManager(activity)
     val rootView = activity.findViewById<ViewGroup>(android.R.id.content) ?: return
@@ -382,11 +384,13 @@ fun showQuotesSheet(
                 onDismiss = {
                     (composeView.parent as? ViewGroup)?.removeView(composeView)
                 },
-                onQuoteAdd = { content ->
-                    scope.launch {
-                        val q = Quote.create(novelName, chapterName, content)
-                        manager.addQuote(novelId, q)
-                        quotes = manager.getQuotes(novelId)
+                onQuoteAdd = chapterName?.let { currentChapterName ->
+                    { content: String ->
+                        scope.launch {
+                            val q = Quote.create(novelName, currentChapterName, content)
+                            manager.addQuote(novelId, q)
+                            quotes = manager.getQuotes(novelId)
+                        }
                     }
                 },
                 onQuoteUpdate = { updated ->

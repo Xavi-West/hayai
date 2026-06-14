@@ -1,6 +1,5 @@
 package yokai.domain.series
 
-import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import yokai.domain.series.model.SeriesDisplaySection
@@ -28,8 +27,8 @@ class SeriesKnowledgeModelsTest {
     }
 
     @Test
-    fun `characters are hidden by default while existing manga sections remain visible`() {
-        assertFalse(SeriesDisplaySection.CHARACTERS.defaultVisible)
+    fun `characters are visible by default with existing manga sections`() {
+        assertTrue(SeriesDisplaySection.CHARACTERS.defaultVisible)
         assertTrue(SeriesDisplaySection.TITLE.defaultVisible)
         assertTrue(SeriesDisplaySection.COVER_BANNER.defaultVisible)
         assertTrue(SeriesDisplaySection.DESCRIPTION.defaultVisible)

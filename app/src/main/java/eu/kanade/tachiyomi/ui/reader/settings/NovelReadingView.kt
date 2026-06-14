@@ -38,6 +38,11 @@ class NovelReadingView @JvmOverloads constructor(context: Context, attrs: Attrib
                 } ?: 0,
             )
 
+            skipReadChapters.bindToPreference(preferences.skipRead())
+            skipFilteredChapters.bindToPreference(preferences.skipFiltered())
+            skipDupeChapters.bindToPreference(preferences.skipDupe())
+            alwaysShowChapterTransition.bindToPreference(preferences.alwaysShowChapterTransition())
+
             // Font family
             val fontEntries = listOf(
                 "sans-serif" to context.getString(MR.strings.novel_font_sans_serif),

@@ -169,6 +169,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.filterNotNull
@@ -2846,6 +2847,18 @@ class ReaderActivity : BaseActivity<ReaderActivityBinding>() {
             preferences.alwaysShowChapterTransition().changesIn(scope) {
                 showNewChapter = it
             }
+
+            combine(
+                preferences.skipRead().changes(),
+                preferences.skipFiltered().changes(),
+                preferences.skipDupe().changes(),
+            ) { _, _, _ -> Unit }
+                .drop(1)
+                .onEach {
+                    viewModel.refreshNovelReaderChapterList()
+                    refreshChapters()
+                }
+                .launchIn(scope)
 
             preferences.pageLayout().changesIn(scope) { setBottomNavButtons(it) }
 

@@ -104,6 +104,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_quotes"
+        android:icon="@drawable/ic_format_quote_24dp"
+        android:title="@string/novel_quotes"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_set_fetch_interval"
         android:icon="@drawable/ic_calendar_text_outline_24dp"
         android:title="@string/manga_interval_custom_amount"

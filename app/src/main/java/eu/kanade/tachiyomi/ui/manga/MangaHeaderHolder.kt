@@ -36,6 +36,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.R as materialR
 import dev.icerock.moko.resources.compose.stringResource
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.database.models.isNovel
 import eu.kanade.tachiyomi.data.database.models.seriesType
 import eu.kanade.tachiyomi.databinding.ChapterHeaderItemBinding
 import eu.kanade.tachiyomi.databinding.MangaHeaderItemBinding
@@ -161,6 +162,7 @@ class MangaHeaderHolder(
     private var resolvedSeriesMetadata: ResolvedSeriesMetadata? = null
     private var seriesKnowledgeJob: Job? = null
     private var boundMangaId: Long? = null
+    private var boundMangaIsNovel = false
     private val accentColorState = mutableStateOf<Int?>(null)
     private val descriptionExpandedState = mutableStateOf(false)
     // Cache the (description, genre) the post-layout lineCount probe last ran against.
@@ -415,6 +417,7 @@ class MangaHeaderHolder(
             return
         }
         boundMangaId = manga.id
+        boundMangaIsNovel = manga.isNovel()
         seriesKnowledgeJob?.cancel()
         resolveDisplayOptions(null, 0)
         applyResolvedMetadata(manga, null)
@@ -591,10 +594,15 @@ class MangaHeaderHolder(
 
     private fun loadSeriesKnowledge(mangaId: Long?) {
         mangaId ?: return
+        val shouldLoadQuotes = boundMangaIsNovel
         seriesKnowledgeJob = adapter.controller.viewScope.launch {
             val (bundle, quoteCount) = withContext(Dispatchers.IO) {
                 val knowledge = seriesKnowledgeRepository.get(mangaId)
-                val quotes = itemView.context.quoteManager.getQuoteCount(mangaId)
+                val quotes = if (shouldLoadQuotes) {
+                    itemView.context.quoteManager.getQuoteCount(mangaId)
+                } else {
+                    0
+                }
                 knowledge to quotes
             }
             if (boundMangaId != mangaId || binding == null) return@launch
@@ -620,7 +628,7 @@ class MangaHeaderHolder(
         showAliasesSection = visible(SeriesDisplaySection.ALIASES)
         showCharactersSection = visible(SeriesDisplaySection.CHARACTERS)
         showTrackersSection = visible(SeriesDisplaySection.TRACKERS)
-        showQuotesTranslationSection = visible(SeriesDisplaySection.QUOTES_TRANSLATION)
+        showQuotesTranslationSection = boundMangaIsNovel && visible(SeriesDisplaySection.QUOTES_TRANSLATION)
         showExtraImagesSection = visible(SeriesDisplaySection.EXTRA_IMAGES)
         seriesQuoteCount = if (showQuotesTranslationSection) quoteCount else 0
         showMetadataSection = showAliasesSection || showCharactersSection ||

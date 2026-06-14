@@ -72,6 +72,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.coil.getBestColor
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Chapter
+import eu.kanade.tachiyomi.data.database.models.isNovel
 import eu.kanade.tachiyomi.data.database.models.seriesType
 import eu.kanade.tachiyomi.data.database.models.vibrantCoverColor
 import eu.kanade.tachiyomi.data.download.DownloadJob
@@ -154,6 +155,7 @@ import eu.kanade.tachiyomi.util.view.snack
 import eu.kanade.tachiyomi.util.view.toolbarHeight
 import eu.kanade.tachiyomi.util.view.withFadeTransaction
 import eu.kanade.tachiyomi.widget.LinearLayoutManagerAccurateOffset
+import hayai.novel.reader.quote.showQuotesSheet
 import java.io.File
 import java.io.IOException
 import java.util.Locale
@@ -1347,7 +1349,10 @@ class MangaDetailsController :
         }
         val editItem = menu.findItem(R.id.action_edit)
         editItem?.isVisible = (presenter.manga.favorite || presenter.manga.isLocal()) && !presenter.isLockedFromSearch
-        menu.findItem(R.id.action_advanced_translation)?.isVisible = !presenter.isLockedFromSearch && presenter.manga.favorite
+        val isNovel = presenter.manga.isNovel()
+        menu.findItem(R.id.action_advanced_translation)?.isVisible =
+            !presenter.isLockedFromSearch && presenter.manga.favorite && isNovel
+        menu.findItem(R.id.action_quotes)?.isVisible = !presenter.isLockedFromSearch && isNovel
         menu.findItem(R.id.action_download)?.isVisible = !presenter.isLockedFromSearch &&
             !presenter.manga.isLocal()
         menu.findItem(R.id.action_mark_all_as_read)?.isVisible =
@@ -1384,6 +1389,7 @@ class MangaDetailsController :
                 )
             }
             R.id.action_advanced_translation -> showAdvancedTranslationSheet(this)
+            R.id.action_quotes -> openQuotesSheet()
             R.id.action_color_from_cover -> {
                 val newValue = !presenter.preferences.themeMangaDetails().get()
                 presenter.preferences.themeMangaDetails().set(newValue)
@@ -1426,6 +1432,16 @@ class MangaDetailsController :
             else -> return super.onOptionsItemSelected(item)
         }
         return true
+    }
+
+    private fun openQuotesSheet() {
+        val activity = activity ?: return
+        val mangaId = presenter.manga.id ?: return
+        showQuotesSheet(
+            activity = activity,
+            novelId = mangaId,
+            novelName = presenter.manga.title,
+        )
     }
     //endregion
 

@@ -21,6 +21,7 @@ import com.google.android.material.chip.ChipGroup
 import com.google.android.material.R as materialR
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.coil.useCustomCover
+import eu.kanade.tachiyomi.data.database.models.isNovel
 import eu.kanade.tachiyomi.data.database.models.seriesType
 import eu.kanade.tachiyomi.databinding.EditMangaDialogBinding
 import eu.kanade.tachiyomi.domain.manga.models.Manga
@@ -308,6 +309,7 @@ class EditMangaController : BaseLegacyController<EditMangaDialogBinding>, SmallT
         binding.displayCharacters.isChecked = resolved(SeriesDisplaySection.CHARACTERS)
         binding.displayTrackers.isChecked = resolved(SeriesDisplaySection.TRACKERS)
         binding.displayQuotesTranslation.isChecked = resolved(SeriesDisplaySection.QUOTES_TRANSLATION)
+        binding.displayQuotesTranslation.isVisible = manga.isNovel()
         binding.displayExtraImages.isChecked = resolved(SeriesDisplaySection.EXTRA_IMAGES)
         binding.resetDisplayOptions.setOnClickListener {
             resetDisplayOptionsToGlobal = true

@@ -298,17 +298,54 @@ class ReaderViewModel(
         }
     }
 
-    private suspend fun getChapterList(): List<ReaderChapter> {
+    private suspend fun getChapterList(selectedChapterId: Long = chapterId): List<ReaderChapter> {
         val manga = manga!!
         val dbChapters = getChapter.awaitAll(manga.id!!, true)
 
-        val selectedChapter = dbChapters.find { it.id == chapterId }
-            ?: error("Requested chapter of id $chapterId not found in chapter list")
+        val selectedChapter = dbChapters.find { it.id == selectedChapterId }
+            ?: error("Requested chapter of id $selectedChapterId not found in chapter list")
 
         val chaptersForReader =
             chapterFilter.filterChaptersForReader(dbChapters, manga, selectedChapter)
         val chapterSort = ChapterSort(manga, chapterFilter, preferences)
         return chaptersForReader.sortedWith(chapterSort.sortComparator(true)).map(::ReaderChapter)
+    }
+
+    fun refreshNovelReaderChapterList() {
+        if (source !is TextSource || !::chapterList.isInitialized) return
+        val visibleChapter = state.value.viewerChapters?.currChapter ?: return
+        val visibleChapterId = visibleChapter.chapter.id ?: return
+
+        viewModelScope.launchIO {
+            val refreshed = try {
+                getChapterList(visibleChapterId)
+            } catch (e: Throwable) {
+                if (e is CancellationException) throw e
+                Logger.e(e) { "Failed to refresh novel reader chapter list" }
+                return@launchIO
+            }
+            if (state.value.viewerChapters?.currChapter?.chapter?.id != visibleChapterId) return@launchIO
+
+            chapterId = visibleChapterId
+            chapterList = refreshed.map { candidate ->
+                if (candidate.chapter.id == visibleChapterId) visibleChapter else candidate
+            }
+            val newIndex = chapterList.indexOfFirst { it.chapter.id == visibleChapterId }
+            if (newIndex < 0) return@launchIO
+
+            val newChapters = ViewerChapters(
+                visibleChapter,
+                chapterList.getOrNull(newIndex - 1),
+                chapterList.getOrNull(newIndex + 1),
+            )
+            withUIContext {
+                mutableState.update { state ->
+                    newChapters.ref()
+                    state.viewerChapters?.unref()
+                    state.copy(viewerChapters = newChapters)
+                }
+            }
+        }
     }
 
     suspend fun getChapters(): List<ReaderChapterItem> {
