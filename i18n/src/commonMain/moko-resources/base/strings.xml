@@ -1836,6 +1836,7 @@
 
     <!-- Translation -->
     <string name="pref_category_translation">Translation</string>
+    <string name="novel_translation_tab">Translation</string>
     <string name="pref_translation_enabled">Enable translation</string>
     <string name="pref_translation_enabled_summary">Allow novel chapters to be translated</string>
     <string name="pref_translation_realtime">Translate while reading</string>
@@ -1852,6 +1853,9 @@
     <string name="pref_translation_engine_offline_format">%1$s (Offline)</string>
     <string name="pref_translation_source_language">Source language</string>
     <string name="pref_translation_target_language">Target language</string>
+    <string name="pref_translation_language_filter">Translate source languages</string>
+    <string name="pref_translation_language_filter_summary_all">All source languages</string>
+    <string name="pref_translation_all_source_languages">All source languages</string>
     <string name="pref_translation_chunk_size">Paragraphs per request</string>
     <string name="pref_translation_contextual_anchoring">Contextual anchoring</string>
     <string name="pref_translation_contextual_anchoring_summary">Send previous translated paragraphs as context to LLM engines</string>
@@ -1863,6 +1867,7 @@
     <string name="pref_translation_openai_model">OpenAI model</string>
     <string name="pref_translation_deepseek_api_key">DeepSeek API key</string>
     <string name="pref_translation_gemini_api_key">Gemini API key</string>
+    <string name="pref_translation_gemini_model">Gemini model</string>
     <string name="pref_translation_nvidia_base_url">NVIDIA NIM base URL</string>
     <string name="pref_translation_nvidia_api_key">NVIDIA NIM API key</string>
     <string name="pref_translation_nvidia_model">NVIDIA NIM model</string>
@@ -1883,6 +1888,15 @@
     <string name="pref_translation_custom_http_headers_summary">Name: Value pairs separated by semicolons or line breaks</string>
     <string name="pref_translation_custom_http_request_template">Custom HTTP request template</string>
     <string name="pref_translation_custom_http_response_path">Custom HTTP response path</string>
+    <string name="translation_provider_setup">Provider setup</string>
+    <string name="pref_translation_provider_configured">%1$s is configured</string>
+    <string name="pref_translation_provider_not_configured">%1$s needs setup</string>
+    <string name="pref_translation_configure_provider">Configure provider</string>
+    <string name="pref_translation_configure_provider_title">Configure %1$s</string>
+    <string name="pref_translation_provider_no_setup">%1$s can run without a key in Hayai. If it stops working, choose an API-backed or local engine.</string>
+    <string name="pref_translation_provider_setup_saved">%1$s setup saved</string>
+    <string name="pref_translation_subscription_note">ChatGPT Plus/Pro and Google AI subscriptions do not provide API access to Hayai. Use an API key, an OpenAI-compatible endpoint, or a local engine such as Ollama.</string>
+    <string name="pref_translation_apply_now">Apply to current chapter</string>
     <string name="advanced_translation_memory">Translation memory</string>
     <string name="advanced_translation_canon">Series canon</string>
     <string name="advanced_translation_summary">Summary</string>

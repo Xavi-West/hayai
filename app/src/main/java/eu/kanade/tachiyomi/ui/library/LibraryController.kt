@@ -860,16 +860,13 @@ open class LibraryController(
     }
 
     private fun syncLibraryToolbarBackground(scrolled: Boolean) {
-        if (!showActivityTabs) {
-            setAppBarBG(0f, includeTabView = false)
-            return
-        }
+        val appBar = appBar() ?: return
         val pageRecycler = pagerAdapter?.recyclerForPosition(binding.libraryPager.currentItem)
-        if (pageRecycler != null) {
+        if (showActivityTabs && pageRecycler != null) {
             syncPageToolbarBackground(pageRecycler)
         } else {
-            val progress = appBar()?.backgroundProgressForScroll(scrolled) ?: 0f
-            setAppBarBG(progress, includeTabView = true)
+            val progress = appBar.backgroundProgressForScroll(scrolled)
+            setAppBarBG(progress, includeTabView = showActivityTabs)
         }
     }
 
@@ -1159,6 +1156,7 @@ open class LibraryController(
                     binding.headerCard.isVisible = false
                 },
                 liftOnScroll = ::syncLibraryToolbarBackground,
+                liftOnScrollEveryFrame = true,
                 onBottomNavUpdate = {
                     updateFilterSheetY()
                 },

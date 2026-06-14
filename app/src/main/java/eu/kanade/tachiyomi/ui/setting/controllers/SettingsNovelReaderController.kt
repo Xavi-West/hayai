@@ -8,6 +8,7 @@ import eu.kanade.tachiyomi.ui.setting.defaultValue
 import eu.kanade.tachiyomi.ui.setting.editTextPreference
 import eu.kanade.tachiyomi.ui.setting.infoPreference
 import eu.kanade.tachiyomi.ui.setting.listPreference
+import eu.kanade.tachiyomi.ui.setting.multiSelectListPreferenceMat
 import eu.kanade.tachiyomi.ui.setting.onChange
 import eu.kanade.tachiyomi.ui.setting.preferenceCategory
 import eu.kanade.tachiyomi.ui.setting.seekBarPreference
@@ -245,6 +246,15 @@ fun SettingsLegacyController.populateNovelReaderPreferences(screen: PreferenceSc
                 summaryRes = MR.strings.pref_translation_smart_auto_summary
             }
 
+            multiSelectListPreferenceMat(activity) {
+                bindTo(translationPreferences.enabledSourceLanguages())
+                titleRes = MR.strings.pref_translation_language_filter
+                val languages = LanguageCodes.common.filterNot { it.first == "auto" }
+                entries = languages.map { it.second }
+                entryValues = languages.map { it.first }
+                allSelectionRes = MR.strings.pref_translation_all_source_languages
+            }
+
             listPreference(activity) {
                 bindTo(seriesPreferences.translationMode())
                 titleRes = MR.strings.pref_translation_mode
@@ -266,12 +276,29 @@ fun SettingsLegacyController.populateNovelReaderPreferences(screen: PreferenceSc
                 entryValues = engines.map { it.id.toString() }
                 tempValue = entryValues.indexOf(translationPreferences.selectedEngineId().get().toString())
                     .takeIf { it >= 0 }
-                summary = engines.firstOrNull { it.id == translationPreferences.selectedEngineId().get() }?.name
-                    ?: engines.firstOrNull()?.name
+                summary = engines.firstOrNull { it.id == translationPreferences.selectedEngineId().get() }?.let { engine ->
+                    context.getString(
+                        if (engine.isConfigured()) {
+                            MR.strings.pref_translation_provider_configured
+                        } else {
+                            MR.strings.pref_translation_provider_not_configured
+                        },
+                        engine.name,
+                    )
+                } ?: engines.firstOrNull()?.name
                 onChange { newValue ->
                     val id = (newValue as String).toLongOrNull() ?: return@onChange false
                     translationPreferences.selectedEngineId().set(id)
-                    summary = engines.firstOrNull { it.id == id }?.name ?: id.toString()
+                    summary = engines.firstOrNull { it.id == id }?.let { engine ->
+                        context.getString(
+                            if (engine.isConfigured()) {
+                                MR.strings.pref_translation_provider_configured
+                            } else {
+                                MR.strings.pref_translation_provider_not_configured
+                            },
+                            engine.name,
+                        )
+                    } ?: id.toString()
                     true
                 }
             }
@@ -343,6 +370,8 @@ fun SettingsLegacyController.populateNovelReaderPreferences(screen: PreferenceSc
                 titleRes = MR.strings.pref_translation_openai_model
             }
 
+            infoPreference(MR.strings.pref_translation_subscription_note)
+
             editTextPreference(activity) {
                 bindTo(translationPreferences.deepSeekApiKey())
                 titleRes = MR.strings.pref_translation_deepseek_api_key
@@ -351,6 +380,11 @@ fun SettingsLegacyController.populateNovelReaderPreferences(screen: PreferenceSc
             editTextPreference(activity) {
                 bindTo(translationPreferences.geminiApiKey())
                 titleRes = MR.strings.pref_translation_gemini_api_key
+            }
+
+            editTextPreference(activity) {
+                bindTo(translationPreferences.geminiModel())
+                titleRes = MR.strings.pref_translation_gemini_model
             }
 
             editTextPreference(activity) {

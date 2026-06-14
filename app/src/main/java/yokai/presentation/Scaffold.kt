@@ -2,7 +2,7 @@ package yokai.presentation
 
 import android.app.Activity
 import android.os.Build
-import androidx.compose.animation.animateColorAsState
+import androidx.annotation.AttrRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,10 +11,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.calculateEndPadding
-import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.text.input.TextFieldState
@@ -33,8 +30,6 @@ import androidx.compose.material3.SearchBar
 import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
-import yokai.presentation.core.AppBarScrollBehavior
-import yokai.presentation.core.pinnedAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
@@ -46,22 +41,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
+import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.layout.onSizeChanged
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import androidx.core.graphics.ColorUtils
 import androidx.core.view.WindowInsetsControllerCompat
+import com.google.android.material.R as materialR
 import dev.icerock.moko.resources.compose.stringResource
+import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.util.system.getResourceColor
+import kotlin.math.roundToInt
 import yokai.i18n.MR
 import yokai.presentation.component.ToolTipButton
-import kotlin.math.roundToInt
+import yokai.presentation.core.AppBarScrollBehavior
+import yokai.presentation.core.pinnedAppBarScrollBehavior
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -84,28 +83,33 @@ fun YokaiScaffold(
     val m3ScrollBehavior = behavior.m3ScrollBehavior
     val view = LocalView.current
     val (color, scrolledColor) = getTopAppBarColor(title)
-    val appBarScrolled = m3ScrollBehavior.state.collapsedFraction > 0.01f ||
-        m3ScrollBehavior.state.overlappedFraction > 0.01f
-    val appBarSurfaceColor by animateColorAsState(
-        targetValue = if (appBarScrolled) scrolledColor else color,
-        label = "AppBarSurfaceColor",
-    )
+    val appBarContentColor = getTopAppBarContentColor()
+    val appBarBackgroundProgress = when (appBarType) {
+        AppBarType.LARGE -> m3ScrollBehavior.state.collapsedFraction
+        AppBarType.SMALL -> maxOf(
+            m3ScrollBehavior.state.collapsedFraction,
+            m3ScrollBehavior.state.overlappedFraction,
+        )
+        AppBarType.NONE -> 0f
+    }.coerceIn(0f, 1f)
+    val appBarSurfaceColor = lerp(color, scrolledColor, appBarBackgroundProgress)
     val statusBarContrastColor = appBarSurfaceColor.takeUnless { it == Color.Transparent }
         ?: MaterialTheme.colorScheme.surface
     val useDarkIcons = statusBarContrastColor.luminance() > .5
 
     SideEffect {
-        val activity = view.context as Activity
+        val activity = view.context as? Activity ?: return@SideEffect
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM)
-                activity.window.statusBarColor = appBarSurfaceColor.toArgb()
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+                activity.window.statusBarColor = ColorUtils.setAlphaComponent(
+                    appBarSurfaceColor.toArgb(),
+                    (0.87f * 255).roundToInt(),
+                )
+            }
             WindowInsetsControllerCompat(activity.window, view).isAppearanceLightStatusBars = useDarkIcons
         }
     }
 
-    val density = LocalDensity.current
-    val layoutDirection = LocalLayoutDirection.current
-    var appBarHeight by remember { mutableStateOf(0f) }
     val noWindowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
 
     Scaffold(
@@ -118,11 +122,6 @@ fun YokaiScaffold(
                         .fillMaxWidth()
                         .background(appBarSurfaceColor)
                         .statusBarsPadding()
-                        .onSizeChanged { size ->
-                            appBarHeight = size.height.toFloat()
-                            m3ScrollBehavior.state.heightOffsetLimit = -appBarHeight
-                        }
-                        .offset { IntOffset(x = 0, y = m3ScrollBehavior.state.heightOffset.roundToInt()) }
                 ) {
                     if (textFieldState != null && appBarType == AppBarType.SMALL) {
                         // Small appBar with SearchBar: only display SearchBar
@@ -184,18 +183,18 @@ fun YokaiScaffold(
                                         )
                                     },
                                     colors = topAppBarColors(
-                                        containerColor = color,
-                                        scrolledContainerColor = scrolledColor,
-                                        navigationIconContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                                        titleContentColor = MaterialTheme.colorScheme.onSurface,
-                                        actionIconContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        containerColor = appBarSurfaceColor,
+                                        scrolledContainerColor = appBarSurfaceColor,
+                                        navigationIconContentColor = appBarContentColor,
+                                        titleContentColor = appBarContentColor,
+                                        actionIconContentColor = appBarContentColor,
                                     ),
                                     navigationIcon = {
                                         Box(Modifier.padding(start = 4.dp)) {
                                             ToolTipButton(
                                                 toolTipLabel = navigationIconLabel,
                                                 icon = navigationIcon,
-                                                enabledTint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                                enabledTint = appBarContentColor,
                                                 buttonClicked = onNavigationIconClicked,
                                             )
                                         }
@@ -215,17 +214,17 @@ fun YokaiScaffold(
                                         )
                                     },
                                     colors = topAppBarColors(
-                                        containerColor = color,
-                                        scrolledContainerColor = scrolledColor,
-                                        navigationIconContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                                        titleContentColor = MaterialTheme.colorScheme.onSurface,
-                                        actionIconContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        containerColor = appBarSurfaceColor,
+                                        scrolledContainerColor = appBarSurfaceColor,
+                                        navigationIconContentColor = appBarContentColor,
+                                        titleContentColor = appBarContentColor,
+                                        actionIconContentColor = appBarContentColor,
                                     ),
                                     navigationIcon = {
                                         ToolTipButton(
                                             toolTipLabel = navigationIconLabel,
                                             icon = navigationIcon,
-                                            enabledTint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                            enabledTint = appBarContentColor,
                                             buttonClicked = onNavigationIconClicked,
                                         )
                                     },
@@ -282,23 +281,29 @@ fun YokaiScaffold(
             }
         },
         snackbarHost = snackbarHost,
-        content = { innerPadding ->
-            val topPadding = with(density) { appBarHeight.toDp() }
-            content(PaddingValues(
-                start = innerPadding.calculateStartPadding(layoutDirection),
-                top = topPadding,
-                end = innerPadding.calculateEndPadding(layoutDirection),
-                bottom = innerPadding.calculateBottomPadding()
-            ))
-        },
+        content = content,
     )
 }
 
 @Composable
 fun getTopAppBarColor(title: String): Pair<Color, Color> {
+    val expandedColor = rememberThemeColor(materialR.attr.colorSurface)
+    val collapsedColor = rememberThemeColor(materialR.attr.colorPrimaryVariant)
     return when (title.isEmpty()) {
         true -> Color.Transparent to Color.Transparent
-        false -> MaterialTheme.colorScheme.surfaceContainerLow to MaterialTheme.colorScheme.surfaceContainerHigh
+        false -> expandedColor to collapsedColor
+    }
+}
+
+@Composable
+private fun getTopAppBarContentColor(): Color =
+    rememberThemeColor(R.attr.actionBarTintColor)
+
+@Composable
+private fun rememberThemeColor(@AttrRes attrRes: Int): Color {
+    val context = LocalContext.current
+    return remember(context, attrRes, context.resources.configuration.uiMode) {
+        Color(context.getResourceColor(attrRes))
     }
 }
 

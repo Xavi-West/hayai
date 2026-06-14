@@ -14,7 +14,7 @@ import yokai.i18n.MR
  * so the visual style matches `TabbedReaderSettingsSheet` exactly. Each tab is an XML-inflated
  * [eu.kanade.tachiyomi.widget.BaseReaderSettingsView] that binds to `ReaderPreferences`.
  *
- * Four tabs: Reading | Display | Controls | TTS.
+ * Five tabs: Reading | Display | Controls | Translation | TTS.
  */
 class TabbedNovelReaderSettingsSheet(
     val readerActivity: ReaderActivity,
@@ -29,12 +29,15 @@ class TabbedNovelReaderSettingsSheet(
     private val controlsView: NovelControlsView = View.inflate(
         readerActivity, R.layout.reader_novel_controls, null,
     ) as NovelControlsView
+    private val translationView: NovelTranslationView = View.inflate(
+        readerActivity, R.layout.reader_novel_translation, null,
+    ) as NovelTranslationView
     private val ttsView: NovelTtsView = View.inflate(
         readerActivity, R.layout.reader_novel_tts, null,
     ) as NovelTtsView
 
     override fun getTabViews(): List<View> = listOf(
-        readingView, appearanceView, controlsView, ttsView,
+        readingView, appearanceView, controlsView, translationView, ttsView,
     )
 
     // "Display" is shorter than "Appearance" and prevents tab-text wrap on narrower phones.
@@ -44,6 +47,7 @@ class TabbedNovelReaderSettingsSheet(
         MR.strings.reading,
         MR.strings.display,
         MR.strings.controls,
+        MR.strings.novel_translation_tab,
         MR.strings.novel_tts_tab,
     )
 
@@ -51,6 +55,7 @@ class TabbedNovelReaderSettingsSheet(
         readingView.activity = readerActivity
         appearanceView.activity = readerActivity
         controlsView.activity = readerActivity
+        translationView.activity = readerActivity
         ttsView.activity = readerActivity
 
         binding.menu.isVisible = false

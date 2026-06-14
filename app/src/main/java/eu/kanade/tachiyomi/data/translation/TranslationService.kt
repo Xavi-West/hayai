@@ -157,10 +157,16 @@ class TranslationService(
         mangaId: Long?,
         mangaTitle: String?,
     ): String {
-        if (preferences.smartAutoTranslate().get()) {
-            val detected = detectLanguage(content)
+        val enabledSourceLanguages = preferences.enabledSourceLanguages().get()
+        if (preferences.smartAutoTranslate().get() || enabledSourceLanguages.isNotEmpty()) {
+            val detected = if (sourceLanguage == "auto") detectLanguage(content) else sourceLanguage
             if (detected != "unknown" && TranslationHtmlUtils.languageCodesMatch(detected, targetLanguage)) {
                 return content
+            }
+            if (enabledSourceLanguages.isNotEmpty()) {
+                val sourceEnabled = detected != "unknown" &&
+                    enabledSourceLanguages.any { TranslationHtmlUtils.languageCodesMatch(detected, it) }
+                if (!sourceEnabled) return content
             }
         }
 

@@ -325,6 +325,7 @@ fun Controller.scrollViewWith(
     swipeRefreshLayout: SwipeRefreshLayout? = null,
     afterInsets: ((WindowInsetsCompat) -> Unit)? = null,
     liftOnScroll: ((Boolean) -> Unit)? = null,
+    liftOnScrollEveryFrame: Boolean = false,
     onLeavingController: (() -> Unit)? = null,
     onBottomNavUpdate: (() -> Unit)? = null,
 ): ((Boolean) -> Unit) {
@@ -445,7 +446,12 @@ fun Controller.scrollViewWith(
     fun syncToolbarColorToScroll() {
         val notAtTop = !atTopOfRecyclerView()
         if (liftOnScroll != null) {
-            if (notAtTop != isToolbarColor) colorToolbar(notAtTop)
+            if (liftOnScrollEveryFrame) {
+                isToolbarColor = notAtTop
+                liftOnScroll.invoke(notAtTop)
+            } else if (notAtTop != isToolbarColor) {
+                colorToolbar(notAtTop)
+            }
             return
         }
         toolbarColorAnim?.cancel()
@@ -550,7 +556,7 @@ fun Controller.scrollViewWith(
             }
         },
     )
-    colorToolbar(!atTopOfRecyclerView())
+    syncToolbarColorToScroll()
 
     recycler.post {
         if (isControllerVisible) {

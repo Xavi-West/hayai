@@ -9,6 +9,7 @@ class TranslationPreferences(
     fun selectedEngineId() = preferenceStore.getLong("translation_engine_id", 10L)
     fun sourceLanguage() = preferenceStore.getString("translation_source_language", "auto")
     fun targetLanguage() = preferenceStore.getString("translation_target_language", "en")
+    fun enabledSourceLanguages() = preferenceStore.getStringSet("translation_enabled_source_languages", emptySet())
     fun smartAutoTranslate() = preferenceStore.getBoolean("pref_auto_translate", false)
     fun realTimeTranslation() = preferenceStore.getBoolean("translation_realtime", false)
     fun cacheTranslations() = preferenceStore.getBoolean("translation_cache_enabled", true)
