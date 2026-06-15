@@ -1,7 +1,9 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.text
 
 import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
 import android.view.ActionMode
 import android.view.GestureDetector
 import android.view.KeyEvent
@@ -1727,9 +1729,40 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
     }
 
     private fun launchTranslateIntent(selected: String) {
+        // Prefer the Google Translate app for the selection; fall back to the web result
+        // (Custom Tab / in-app sheet) only when the app isn't installed.
+        if (openInGoogleTranslateApp(selected)) return
         val url = "https://translate.google.com/?sl=auto&tl=en&op=translate&text=" +
             android.net.Uri.encode(selected)
         openSelectionResult(url, selected)
+    }
+
+    /** Hands [text] to the Google Translate app. Returns false if the app can't be launched. */
+    private fun openInGoogleTranslateApp(text: String): Boolean {
+        // PROCESS_TEXT lands directly on a read-only translation; SEND is the older share-to
+        // entry point some Translate builds still expose. Try both before giving up.
+        val intents = listOf(
+            Intent(Intent.ACTION_PROCESS_TEXT).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_PROCESS_TEXT, text)
+                putExtra(Intent.EXTRA_PROCESS_TEXT_READONLY, true)
+                setPackage(GOOGLE_TRANSLATE_PACKAGE)
+            },
+            Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, text)
+                setPackage(GOOGLE_TRANSLATE_PACKAGE)
+            },
+        )
+        for (intent in intents) {
+            try {
+                activity.startActivity(intent)
+                return true
+            } catch (_: ActivityNotFoundException) {
+                // Try the next intent shape, then fall back to the web result.
+            }
+        }
+        return false
     }
 
     private fun triggerWebSearchFromSelection(actionMode: ActionMode? = null) {
@@ -4372,6 +4405,7 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
         private const val DEFINE_MENU_ITEM_ID = 0xBEF0
         private const val TRANSLATE_MENU_ITEM_ID = 0xBEF1
         private const val WEB_SEARCH_MENU_ITEM_ID = 0xBEF2
+        private const val GOOGLE_TRANSLATE_PACKAGE = "com.google.android.apps.translate"
         private const val SELECTION_TAB_HEIGHT_FRACTION = 0.7f
         private const val SELECTION_TAB_SIDE_WIDTH_FRACTION = 0.42f
         private const val SELECTION_TAB_MIN_SIDE_WIDTH_DP = 360
