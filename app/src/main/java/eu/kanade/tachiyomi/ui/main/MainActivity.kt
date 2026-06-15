@@ -1242,11 +1242,11 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
             )
         }
         when (intent.action) {
-            SHORTCUT_LIBRARY -> nav.selectedItemId = R.id.nav_library
+            SHORTCUT_LIBRARY -> ensureRootTabSelected(R.id.nav_library)
             SHORTCUT_RECENTLY_UPDATED, SHORTCUT_RECENTLY_READ, Constants.SHORTCUT_RECENTS -> {
-                if (nav.selectedItemId != R.id.nav_recents) {
-                    nav.selectedItemId = R.id.nav_recents
-                } else {
+                val wasOnRecents = isRootTabSelected(R.id.nav_recents)
+                ensureRootTabSelected(R.id.nav_recents)
+                if (wasOnRecents) {
                     router.popToRoot()
                 }
                 if (intent.action == Constants.SHORTCUT_RECENTS) return true
@@ -1261,11 +1261,11 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
                     )
                 }
             }
-            SHORTCUT_BROWSE -> nav.selectedItemId = R.id.nav_browse
+            SHORTCUT_BROWSE -> ensureRootTabSelected(R.id.nav_browse)
             SHORTCUT_EXTENSIONS -> {
-                if (nav.selectedItemId != R.id.nav_browse) {
-                    nav.selectedItemId = R.id.nav_browse
-                } else {
+                val wasOnBrowse = isRootTabSelected(R.id.nav_browse)
+                ensureRootTabSelected(R.id.nav_browse)
+                if (wasOnBrowse) {
                     router.popToRoot()
                 }
                 nav.post {
@@ -1276,12 +1276,12 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
             }
             Constants.SHORTCUT_MANGA -> {
                 val extras = intent.extras ?: return false
-                if (router.backstack.isEmpty()) nav.selectedItemId = R.id.nav_library
+                ensureRootTabReady(R.id.nav_library)
                 router.pushController(MangaDetailsController(extras).withFadeTransaction())
             }
             SHORTCUT_UPDATE_NOTES -> {
                 val extras = intent.extras ?: return false
-                if (router.backstack.isEmpty()) nav.selectedItemId = R.id.nav_library
+                ensureRootTabReady(R.id.nav_library)
                 if (
                     router.backstack.lastOrNull()?.controller !is AboutController.NewUpdateDialogController &&
                     // FIXME: Show Compose version of NewUpdateDialog for AboutController
@@ -1292,11 +1292,11 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
             }
             SHORTCUT_SOURCE -> {
                 val extras = intent.extras ?: return false
-                if (router.backstack.isEmpty()) nav.selectedItemId = R.id.nav_library
+                ensureRootTabReady(R.id.nav_library)
                 router.pushController(BrowseSourceController(extras).withFadeTransaction())
             }
             SHORTCUT_DOWNLOADS -> {
-                nav.selectedItemId = R.id.nav_recents
+                ensureRootTabSelected(R.id.nav_recents)
                 router.popToRoot()
                 nav.post {
                     val controller =
@@ -1305,7 +1305,7 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
                 }
             }
             SHORTCUT_LIBRARY_UPDATE_REPORT -> {
-                if (router.backstack.isEmpty()) nav.selectedItemId = R.id.nav_library
+                ensureRootTabReady(R.id.nav_library)
                 val tabName = intent.getStringExtra(EXTRA_LIBRARY_UPDATE_REPORT_TAB)
                 val tab = tabName?.let {
                     runCatching {
@@ -1318,9 +1318,9 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
                 )
             }
             Intent.ACTION_VIEW -> {
-                if (router.backstack.isEmpty()) nav.selectedItemId = R.id.nav_library
                 if (intent.scheme == "tachiyomi" && intent.data?.host == "add-repo") {
                     intent.data?.getQueryParameter("url")?.let { repoUrl ->
+                        ensureRootTabReady(R.id.nav_browse)
                         router.popToRoot()
                         router.pushController(ExtensionRepoController(repoUrl).withFadeTransaction())
                     }
@@ -1425,11 +1425,49 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
     }
 
     private fun goToStartingTab() {
-        nav.selectedItemId = startingTab()
+        ensureRootTabSelected(startingTab())
     }
 
     fun goToTab(@IdRes id: Int) {
-        nav.selectedItemId = id
+        ensureRootTabSelected(id)
+    }
+
+    private fun isRootTabSelected(@IdRes id: Int): Boolean {
+        val rootTabs = rootTabsController
+        return if (rootTabs != null) {
+            rootTabs.currentTabId == id
+        } else {
+            nav.selectedItemId == id
+        }
+    }
+
+    private fun ensureRootTabSelected(@IdRes id: Int = startingTab()) {
+        rootTabsController?.let { rootTabs ->
+            if (nav.selectedItemId != id) {
+                nav.selectedItemId = id
+            }
+            rootTabs.selectTab(id)
+            return
+        }
+        if (router.backstack.isEmpty()) {
+            nav.selectedItemId = id
+        }
+    }
+
+    private fun ensureRootTabReady(@IdRes fallbackId: Int = startingTab()) {
+        val rootTabs = rootTabsController
+        if (rootTabs == null) {
+            if (router.backstack.isEmpty()) {
+                nav.selectedItemId = fallbackId
+            }
+            return
+        }
+
+        if (rootTabs.currentTabId == -1 ||
+            rootTabs.activeChildRouter()?.hasRootController() != true
+        ) {
+            ensureRootTabSelected(fallbackId)
+        }
     }
 
     /**
