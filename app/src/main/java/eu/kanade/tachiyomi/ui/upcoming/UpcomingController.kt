@@ -1,5 +1,15 @@
 package eu.kanade.tachiyomi.ui.upcoming
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.ContentTransform
+import androidx.compose.animation.SizeTransform
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
@@ -22,8 +32,8 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.ArrowBack
-import androidx.compose.material.icons.automirrored.outlined.ArrowForward
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.Badge
 import androidx.compose.material3.Icon
@@ -34,6 +44,7 @@ import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -43,10 +54,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.icerock.moko.resources.compose.stringResource
@@ -269,7 +283,10 @@ private enum class UpcomingType {
 
 private const val DAYS_OF_WEEK = 7
 private const val MAX_VISIBLE_EVENT_INDICATORS = 3
-private const val EVENT_INDICATOR_ALPHA_STEP = 0.3f
+private const val EVENT_INDICATOR_ALPHA_MULTIPLIER = 0.3f
+private const val EVENT_INDICATOR_SCALE = 12
+private const val MONTH_YEAR_CHANGE_ANIMATION_DURATION = 200
+private val CalendarFontSize = 16.sp
 
 @Composable
 private fun UpcomingTypeTabs(
@@ -311,41 +328,19 @@ private fun UpcomingCalendar(
 ) {
     Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 2.dp, bottom = 8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
+            .fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(4.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Row(
+        CalendarHeader(
+            yearMonth = selectedMonth,
+            onPreviousClick = { onMonthChange(selectedMonth.minusMonths(1)) },
+            onNextClick = { onMonthChange(selectedMonth.plusMonths(1)) },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 4.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
-        ) {
-            Text(
-                text = selectedMonth.format(DateTimeFormatter.ofPattern("MMMM yyyy", Locale.getDefault())),
-                modifier = Modifier.weight(1f),
-                style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onSurface,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-            Row {
-                IconButton(onClick = { onMonthChange(selectedMonth.minusMonths(1)) }) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
-                        contentDescription = stringResource(MR.strings.upcoming_calendar_prev),
-                    )
-                }
-                IconButton(onClick = { onMonthChange(selectedMonth.plusMonths(1)) }) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Outlined.ArrowForward,
-                        contentDescription = stringResource(MR.strings.upcoming_calendar_next),
-                    )
-                }
-            }
-        }
+                .padding(vertical = 8.dp)
+                .padding(start = 16.dp),
+        )
         CalendarGrid(
             selectedMonth = selectedMonth,
             events = events,
@@ -355,17 +350,81 @@ private fun UpcomingCalendar(
 }
 
 @Composable
+private fun CalendarHeader(
+    yearMonth: YearMonth,
+    onPreviousClick: () -> Unit,
+    onNextClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        AnimatedContent(
+            targetState = yearMonth,
+            modifier = Modifier.weight(1f),
+            transitionSpec = { monthChangeAnimation() },
+            label = "Change Month",
+        ) { monthYear ->
+            Text(
+                text = monthYear.calendarTitle(),
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.onSurface,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+        }
+        Row {
+            IconButton(onClick = onPreviousClick) {
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowLeft,
+                    contentDescription = stringResource(MR.strings.upcoming_calendar_prev),
+                )
+            }
+            IconButton(onClick = onNextClick) {
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = stringResource(MR.strings.upcoming_calendar_next),
+                )
+            }
+        }
+    }
+}
+
+private fun AnimatedContentTransitionScope<YearMonth>.monthChangeAnimation(): ContentTransform {
+    val movingForward = targetState > initialState
+    val enterTransition = slideInVertically(
+        animationSpec = tween(durationMillis = MONTH_YEAR_CHANGE_ANIMATION_DURATION),
+    ) { height -> if (movingForward) height else -height } + fadeIn(
+        animationSpec = tween(durationMillis = MONTH_YEAR_CHANGE_ANIMATION_DURATION),
+    )
+    val exitTransition = slideOutVertically(
+        animationSpec = tween(durationMillis = MONTH_YEAR_CHANGE_ANIMATION_DURATION),
+    ) { height -> if (movingForward) -height else height } + fadeOut(
+        animationSpec = tween(durationMillis = MONTH_YEAR_CHANGE_ANIMATION_DURATION),
+    )
+    return (enterTransition togetherWith exitTransition)
+        .using(SizeTransform(clip = false))
+}
+
+@Composable
+@ReadOnlyComposable
+private fun YearMonth.calendarTitle(): String =
+    DateTimeFormatter.ofPattern("MMMM yyyy", Locale.getDefault()).format(this)
+
+@Composable
 private fun CalendarGrid(
     selectedMonth: YearMonth,
     events: Map<LocalDate, Int>,
     onDayClick: (LocalDate) -> Unit,
 ) {
-    val weekDays = remember {
-        val firstDay = WeekFields.of(Locale.getDefault()).firstDayOfWeek.value
-        (0 until DAYS_OF_WEEK).map { DayOfWeek.of((firstDay - 1 + it) % DAYS_OF_WEEK + 1) }
+    val localeFirstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek.value
+    val weekDays = remember(localeFirstDayOfWeek) {
+        (0 until DAYS_OF_WEEK).map { DayOfWeek.of((localeFirstDayOfWeek - 1 + it) % DAYS_OF_WEEK + 1) }
     }
-    val leading = weekDays.indexOf(selectedMonth.atDay(1).dayOfWeek)
-    val cells = List(leading) { null } + (1..selectedMonth.lengthOfMonth()).map { selectedMonth.atDay(it) }
+    val emptyFieldCount = weekDays.indexOf(selectedMonth.atDay(1).dayOfWeek)
+    val cells = List(emptyFieldCount) { null } + (1..selectedMonth.lengthOfMonth()).map { selectedMonth.atDay(it) }
 
     Row(modifier = Modifier.fillMaxWidth()) {
         weekDays.forEach { day ->
@@ -373,8 +432,7 @@ private fun CalendarGrid(
                 text = day.getDisplayName(TextStyle.NARROW, Locale.getDefault()),
                 modifier = Modifier.weight(1f),
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                fontSize = CalendarFontSize,
                 fontWeight = FontWeight.SemiBold,
             )
         }
@@ -411,58 +469,74 @@ private fun CalendarDay(
     onClick: () -> Unit,
 ) {
     val today = remember { LocalDate.now() }
-    val isPast = date.isBefore(today)
     Box(
         modifier = Modifier
-            .size(44.dp)
             .then(
                 if (date == today) {
-                    Modifier.border(1.dp, MaterialTheme.colorScheme.onSurfaceVariant, CircleShape)
+                    Modifier.border(
+                        border = BorderStroke(
+                            width = 1.dp,
+                            color = MaterialTheme.colorScheme.onBackground,
+                        ),
+                        shape = CircleShape,
+                    )
                 } else {
                     Modifier
                 },
             )
             .clip(CircleShape)
-            .clickable(onClick = onClick),
+            .clickable(onClick = onClick)
+            .circleLayout(),
         contentAlignment = Alignment.Center,
     ) {
         Text(
             text = date.dayOfMonth.toString(),
-            style = MaterialTheme.typography.bodyMedium,
+            textAlign = TextAlign.Center,
             fontSize = 16.sp,
             fontWeight = FontWeight.SemiBold,
-            color = when {
-                events > 0 -> MaterialTheme.colorScheme.primary
-                isPast -> MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.38f)
-                else -> MaterialTheme.colorScheme.onSurface
+            color = if (date.isBefore(today)) {
+                MaterialTheme.colorScheme.onBackground.copy(alpha = 0.38f)
+            } else {
+                MaterialTheme.colorScheme.onBackground
             },
         )
-        CalendarIndicators(
-            count = events,
-            modifier = Modifier
-                .align(Alignment.Center)
-                .offset(y = 13.dp),
-        )
+        Row(Modifier.offset(y = 12.dp)) {
+            val visibleCount = events.coerceAtMost(MAX_VISIBLE_EVENT_INDICATORS)
+            repeat(visibleCount) { index ->
+                CalendarIndicator(
+                    index = index,
+                    size = 56.dp,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+            }
+        }
     }
 }
 
 @Composable
-private fun CalendarIndicators(
-    count: Int,
+private fun CalendarIndicator(
+    index: Int,
+    size: Dp,
+    color: Color,
     modifier: Modifier = Modifier,
 ) {
-    val visibleCount = count.coerceAtMost(MAX_VISIBLE_EVENT_INDICATORS)
-    if (visibleCount == 0) return
-    Row(modifier = modifier) {
-        repeat(visibleCount) { index ->
-            Box(
-                modifier = Modifier
-                    .padding(horizontal = 1.dp)
-                    .size(4.dp)
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.primary.copy(alpha = (index + 1) * EVENT_INDICATOR_ALPHA_STEP)),
-            )
-        }
+    Box(
+        modifier = modifier
+            .padding(horizontal = 1.dp)
+            .clip(CircleShape)
+            .background(color = color.copy(alpha = (index + 1) * EVENT_INDICATOR_ALPHA_MULTIPLIER))
+            .size(size = size.div(EVENT_INDICATOR_SCALE)),
+    )
+}
+
+private fun Modifier.circleLayout() = layout { measurable, constraints ->
+    val placeable = measurable.measure(constraints)
+    val diameter = maxOf(placeable.height, placeable.width, 48.dp.roundToPx())
+    layout(diameter, diameter) {
+        placeable.placeRelative(
+            x = (diameter - placeable.width) / 2,
+            y = (diameter - placeable.height) / 2,
+        )
     }
 }
 
