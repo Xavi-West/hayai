@@ -398,14 +398,6 @@ class TrackingBottomSheet(private val controller: MangaDetailsController) :
         hideSearchView()
     }
 
-    override fun onBackPressed() {
-        if (searchingItem != null) {
-            hideSearchView()
-        } else {
-            super.onBackPressed()
-        }
-    }
-
     override fun onStatusClick(position: Int) {
         val item = adapter?.getItem(position) ?: return
         if (item.track == null) return

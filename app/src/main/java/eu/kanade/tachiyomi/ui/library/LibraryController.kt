@@ -836,8 +836,8 @@ open class LibraryController(
     }
 
     fun pageRecyclerTopPadding(): Int {
-        val systemTop = appBar()?.rootWindowInsets
-            ?.getInsets(android.view.WindowInsets.Type.systemBars())?.top ?: 0
+        val systemTop = appBar()?.rootWindowInsetsCompat
+            ?.getInsets(WindowInsetsCompat.Type.systemBars())?.top ?: 0
         // fullAppBarHeight already accounts for the tab strip when [showActivityTabs] is true.
         val appBarHeight = fullAppBarHeight ?: (appBar()?.attrToolbarHeight ?: 0)
         return systemTop + appBarHeight

@@ -32,8 +32,12 @@ class LoadingButtonComposeView @JvmOverloads constructor(
         setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnDetachedFromWindowOrReleasedFromPool)
         attrs?.let {
             val arr = context.obtainStyledAttributes(it, R.styleable.LoadingButtonComposeView)
-            arr.getResourceId(R.styleable.LoadingButtonComposeView_android_text, -1).takeIf { it >= 0 }?.let { resId ->
-                text = context.getString(resId)
+            try {
+                arr.getResourceId(R.styleable.LoadingButtonComposeView_android_text, -1)
+                    .takeIf { it >= 0 }
+                    ?.let { resId -> text = context.getString(resId) }
+            } finally {
+                arr.recycle()
             }
         }
     }

@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.hippo.unifile.UniFile
@@ -87,7 +88,7 @@ suspend fun DialogHostState.awaitCreateBackup(
     context: Context,
     uri: Uri,
 ): Unit = dialog { cont ->
-    var options by mutableStateOf(BackupOptions())
+    var options by remember { mutableStateOf(BackupOptions()) }
 
     AlertDialog(
         onDismissRequest = { cont.cancel() },

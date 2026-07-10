@@ -57,6 +57,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
@@ -402,7 +403,8 @@ private fun getTopAppBarContentColor(): Color =
 @Composable
 private fun rememberThemeColor(@AttrRes attrRes: Int): Color {
     val context = LocalContext.current
-    return remember(context, attrRes, context.resources.configuration.uiMode) {
+    val uiMode = LocalConfiguration.current.uiMode
+    return remember(context, attrRes, uiMode) {
         Color(context.getResourceColor(attrRes))
     }
 }

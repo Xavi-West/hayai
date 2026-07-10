@@ -55,6 +55,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.intl.Locale as ComposeLocale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -396,7 +397,10 @@ private fun AnimatedContentTransitionScope<YearMonth>.monthChangeAnimation(): Co
 @Composable
 @ReadOnlyComposable
 private fun YearMonth.calendarTitle(): String =
-    DateTimeFormatter.ofPattern("MMMM yyyy", Locale.getDefault()).format(this)
+    DateTimeFormatter.ofPattern(
+        "MMMM yyyy",
+        Locale.forLanguageTag(ComposeLocale.current.toLanguageTag()),
+    ).format(this)
 
 @Composable
 private fun CalendarGrid(
@@ -404,7 +408,8 @@ private fun CalendarGrid(
     events: Map<LocalDate, Int>,
     onDayClick: (LocalDate) -> Unit,
 ) {
-    val localeFirstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek.value
+    val locale = Locale.forLanguageTag(ComposeLocale.current.toLanguageTag())
+    val localeFirstDayOfWeek = WeekFields.of(locale).firstDayOfWeek.value
     val weekDays = remember(localeFirstDayOfWeek) {
         (0 until DAYS_OF_WEEK).map { DayOfWeek.of((localeFirstDayOfWeek - 1 + it) % DAYS_OF_WEEK + 1) }
     }
@@ -414,7 +419,7 @@ private fun CalendarGrid(
     Row(modifier = Modifier.fillMaxWidth()) {
         weekDays.forEach { day ->
             Text(
-                text = day.getDisplayName(TextStyle.NARROW, Locale.getDefault()),
+                text = day.getDisplayName(TextStyle.NARROW, locale),
                 modifier = Modifier.weight(1f),
                 textAlign = TextAlign.Center,
                 fontSize = CalendarFontSize,

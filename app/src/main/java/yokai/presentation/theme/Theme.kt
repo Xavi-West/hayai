@@ -10,6 +10,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.LayoutDirection
 import com.google.accompanist.themeadapter.material3.createMdc3Theme
 import java.util.concurrent.ConcurrentHashMap
@@ -18,9 +19,9 @@ import java.util.concurrent.ConcurrentHashMap
 // visible cell. Result only varies by (theme hash, uiMode), so cache process-wide.
 private val colourSchemeCache = ConcurrentHashMap<Long, ColorScheme>()
 
-private fun cachedColourScheme(context: Context): ColorScheme {
+private fun cachedColourScheme(context: Context, uiMode: Int): ColorScheme {
     val key = (context.theme.hashCode().toLong() shl 32) or
-        (context.resources.configuration.uiMode.toLong() and 0xFFFFFFFFL)
+        (uiMode.toLong() and 0xFFFFFFFFL)
     return colourSchemeCache.getOrPut(key) {
         @Suppress("DEPRECATION")
         val theme = createMdc3Theme(
@@ -37,8 +38,9 @@ private fun cachedColourScheme(context: Context): ColorScheme {
 @Composable
 fun YokaiTheme(content: @Composable () -> Unit) {
     val context = LocalContext.current
-    val colourScheme = remember(context.theme, context.resources.configuration.uiMode) {
-        cachedColourScheme(context)
+    val uiMode = LocalConfiguration.current.uiMode
+    val colourScheme = remember(context.theme, uiMode) {
+        cachedColourScheme(context, uiMode)
     }
 
     // Observe via the central accessor so toggling reduced motion recomposes the tree.

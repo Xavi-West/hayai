@@ -72,7 +72,7 @@ class NovelTtsPlaybackService : Service() {
                 ) {
                     // Drop the foreground status when playback ends so the notification
                     // doesn't sit there saying "Paused" with no underlying engine.
-                    stopForeground(STOP_FOREGROUND_REMOVE)
+                    stopForegroundCompat()
                 } else {
                     startForegroundWithNotification()
                 }
@@ -97,7 +97,7 @@ class NovelTtsPlaybackService : Service() {
         when (intent.action) {
             ACTION_STOP_SERVICE -> {
                 controller.dispatch(hayai.novel.reader.tts.TtsCommand.Stop)
-                stopForeground(STOP_FOREGROUND_REMOVE)
+                stopForegroundCompat()
                 stopSelf()
                 return START_NOT_STICKY
             }
@@ -108,7 +108,7 @@ class NovelTtsPlaybackService : Service() {
 
             ACTION_STOP_PLAYBACK -> {
                 controller.dispatch(hayai.novel.reader.tts.TtsCommand.Stop)
-                stopForeground(STOP_FOREGROUND_REMOVE)
+                stopForegroundCompat()
                 stopSelf()
                 return START_NOT_STICKY
             }
@@ -126,17 +126,26 @@ class NovelTtsPlaybackService : Service() {
     override fun onDestroy() {
         Logger.d { "NovelTtsPlaybackService: onDestroy" }
         controller.shutdown()
-        stopForeground(STOP_FOREGROUND_REMOVE)
+        stopForegroundCompat()
         super.onDestroy()
     }
 
     override fun onTaskRemoved(rootIntent: Intent?) {
         super.onTaskRemoved(rootIntent)
-        stopForeground(STOP_FOREGROUND_REMOVE)
+        stopForegroundCompat()
         stopSelf()
     }
 
     override fun onBind(intent: Intent?): IBinder = binder
+
+    private fun stopForegroundCompat() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            stopForeground(STOP_FOREGROUND_REMOVE)
+        } else {
+            @Suppress("DEPRECATION")
+            stopForeground(true)
+        }
+    }
 
     private fun startForegroundWithNotification() {
         val notification = NovelTtsNotification.build(
