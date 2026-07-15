@@ -69,6 +69,9 @@ class RecentsPresenter(
     private val upsertHistory: UpsertHistory by injectLazy()
 
     private var recentsJob: Job? = null
+    private var initialized = false
+    @Volatile private var uiActive = false
+    @Volatile private var refreshWhenActive = true
     var recentItems = listOf<RecentMangaItem>()
         private set
     var query = ""
@@ -124,6 +127,12 @@ class RecentsPresenter(
 
     override fun onCreate() {
         super.onCreate()
+        if (initialized) {
+            refreshWhenActive = true
+            getRecents()
+            return
+        }
+        initialized = true
         // History-by-Source headers fetch extension app icons via PackageManager.loadIcon
         // (Binder, main-thread). Warm the icon cache from IO before the user can navigate
         // into the source-grouped view.
@@ -136,6 +145,10 @@ class RecentsPresenter(
         }
         presenterScope.launchIO {
             downloadManager.queueState.collectLatest {
+                if (!uiActive) {
+                    refreshWhenActive = true
+                    return@collectLatest
+                }
                 if (recentItems.isNotEmpty()) setDownloadedChapters(recentItems, it)
                 withUIContext {
                     if (recentItems.isNotEmpty()) view?.showLists(recentItems, true)
@@ -173,10 +186,26 @@ class RecentsPresenter(
     }
 
     fun getRecents(updatePageCount: Boolean = false) {
+        if (!uiActive) {
+            refreshWhenActive = true
+            return
+        }
+        refreshWhenActive = false
         val oldQuery = query
         recentsJob?.cancel()
         recentsJob = presenterScope.launch {
             runRecents(oldQuery, updatePageCount)
+        }
+    }
+
+    fun setUiActive(active: Boolean) {
+        if (uiActive == active) return
+        uiActive = active
+        if (!active) {
+            refreshWhenActive = true
+            recentsJob?.cancel()
+        } else if (refreshWhenActive) {
+            getRecents()
         }
     }
 
@@ -615,11 +644,14 @@ class RecentsPresenter(
      * @param chapters the list of chapter from the database.
      */
     private fun setDownloadedChapters(chapters: List<RecentMangaItem>, queue: List<Download> = downloadManager.queueState.value) {
-        for (item in chapters.filter { it.chapter.id != null }) {
+        val downloadsByChapterId = queue.associateBy { it.chapter.id }
+        for (item in chapters) {
+            if (item.chapter.id == null) continue
             if (downloadManager.isChapterDownloaded(item.chapter, item.mch.manga)) {
+                item.download = null
                 item.status = Download.State.DOWNLOADED
-            } else if (queue.isNotEmpty()) {
-                item.download = queue.find { it.chapter.id == item.chapter.id }
+            } else {
+                item.download = downloadsByChapterId[item.chapter.id]
                 item.status = item.download?.status ?: Download.State.default
             }
 
@@ -628,8 +660,8 @@ class RecentsPresenter(
                 downloadInfo.chapterId = chapter.id
                 if (downloadManager.isChapterDownloaded(chapter, item.mch.manga)) {
                     downloadInfo.status = Download.State.DOWNLOADED
-                } else if (queue.isNotEmpty()) {
-                    downloadInfo.download = queue.find { it.chapter.id == chapter.id }
+                } else {
+                    downloadInfo.download = downloadsByChapterId[chapter.id]
                     downloadInfo.status = downloadInfo.download?.status ?: Download.State.default
                 }
                 downloadInfo
@@ -797,10 +829,12 @@ class RecentsPresenter(
     }
 
     override fun onQueueUpdate(download: Download) {
+        if (!uiActive) return
         view?.updateChapterDownload(download)
     }
 
     override fun onPageProgressUpdate(download: Download) {
+        if (!uiActive) return
         view?.updateChapterDownload(download)
     }
 

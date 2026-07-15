@@ -167,8 +167,8 @@ class RootTabsController : Controller() {
     }
 
     /**
-     * Cross-fade between two tab containers: incoming alpha 0→1, outgoing alpha 1→0,
-     * then outgoing visibility=GONE so its view tree drops out of measure/layout passes.
+     * Fade/slide the incoming tab over a stable outgoing tab, then mark the outgoing tab GONE
+     * so its view tree drops out of measure/layout passes.
      *
      * Honors [ReducedMotion.isEnabled] — snaps to the end state without an animator when
      * the user has opted into reduced motion (Appearance → Motion preference).
@@ -192,32 +192,36 @@ class RootTabsController : Controller() {
             }
         }
 
-        val incomingWasVisible = incoming.isVisible
         incoming.isVisible = true
         outgoing.isVisible = true
+        incoming.bringToFront()
 
         // Animate render properties through ViewPropertyAnimator so the RenderThread can
         // drive the transition. The previous ValueAnimator ran a Kotlin callback on the UI
         // thread every frame and invalidated two complete RecyclerView/Compose trees.
-        val rtlMultiplier = if (incoming.layoutDirection == View.LAYOUT_DIRECTION_RTL) -1f else 1f
-        val movingForward = TAB_IDS.indexOf(currentTabId) >= TAB_IDS.indexOf(previousTabId)
-        val direction = (if (movingForward) 1f else -1f) * rtlMultiplier
+        val direction = rootTabTransitionDirection(
+            previousIndex = TAB_IDS.indexOf(previousTabId),
+            currentIndex = TAB_IDS.indexOf(currentTabId),
+            isRtl = incoming.layoutDirection == View.LAYOUT_DIRECTION_RTL,
+        )
         val travel = TAB_SWAP_TRANSLATION_DP * incoming.resources.displayMetrics.density
-        if (!incomingWasVisible) {
-            incoming.alpha = 0f
-            incoming.translationX = direction * travel
-        }
+        // Always establish a fresh start state. A rapid retap can make the destination one of
+        // the two containers from the cancelled transition; reusing its partial alpha/translation
+        // made the next motion start halfway through or appear to snap.
+        incoming.alpha = 0f
+        incoming.translationX = direction * travel
 
         val generation = ++swapGeneration
         activeOutgoing = outgoing
         activeIncoming = incoming
 
-        outgoingAnimator = outgoing.animate()
-            .alpha(0f)
-            .translationX(-direction * travel * OUTGOING_TRANSLATION_FRACTION)
-            .setDuration(TAB_SWAP_DURATION_MS)
-            .setInterpolator(tabSwapInterpolator)
-            .withLayer()
+        // Keep the outgoing tree stable behind the incoming one. Animating alpha + translation
+        // on both full-screen containers promoted two RecyclerView/Compose hierarchies to large
+        // hardware layers at once. A one-way fade/slide has the same spatial continuity while
+        // cutting the transition's full-screen animation and layer work in half.
+        outgoing.alpha = 1f
+        outgoing.translationX = 0f
+        outgoingAnimator = null
 
         incomingAnimator = incoming.animate()
             .alpha(1f)
@@ -240,6 +244,8 @@ class RootTabsController : Controller() {
         ++swapGeneration
         outgoingAnimator?.setListener(null)?.cancel()
         incomingAnimator?.setListener(null)?.cancel()
+        activeOutgoing?.alpha = 1f
+        activeIncoming?.alpha = 1f
         activeOutgoing?.translationX = 0f
         activeIncoming?.translationX = 0f
         outgoingAnimator = null
@@ -342,8 +348,6 @@ class RootTabsController : Controller() {
          */
         private const val TAB_SWAP_DURATION_MS = 250L
         private const val TAB_SWAP_TRANSLATION_DP = 12f
-        private const val OUTGOING_TRANSLATION_FRACTION = 0.35f
-
         private const val KEY_CURRENT_TAB = "RootTabsController.currentTabId"
         // Stable container ids so Conductor's child router restores into the same FrameLayout
         // across config changes. Picked from the 0x7E_xx_xxxx custom-id range to avoid R clash.
@@ -352,4 +356,13 @@ class RootTabsController : Controller() {
         private const val CONTAINER_ID_BROWSE = 0x7E001003
         private val TAB_IDS = listOf(R.id.nav_library, R.id.nav_recents, R.id.nav_browse)
     }
+}
+
+internal fun rootTabTransitionDirection(
+    previousIndex: Int,
+    currentIndex: Int,
+    isRtl: Boolean,
+): Float {
+    val logicalDirection = if (currentIndex >= previousIndex) 1f else -1f
+    return if (isRtl) -logicalDirection else logicalDirection
 }

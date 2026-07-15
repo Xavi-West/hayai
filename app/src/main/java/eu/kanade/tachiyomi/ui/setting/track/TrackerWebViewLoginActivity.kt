@@ -32,6 +32,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.lifecycleScope
 import co.touchlab.kermit.Logger
 import com.kevinnzou.web.AccompanistWebViewClient
 import com.kevinnzou.web.WebView
@@ -64,6 +65,7 @@ import android.webkit.WebView as AndroidWebView
 class TrackerWebViewLoginActivity : AppCompatActivity() {
 
     private val trackManager: TrackManager by injectLazy()
+    private var loginInProgress = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,14 +92,26 @@ class TrackerWebViewLoginActivity : AppCompatActivity() {
                         else -> null
                     }
                     tracker?.let {
-                        it.logout()
-                        kotlinx.coroutines.runBlocking {
-                            // Use "cookie_auth" as username since isLogged requires non-empty username.
-                            it.login("cookie_auth", token)
+                        if (loginInProgress) return@TrackerWebViewLoginScreen
+                        loginInProgress = true
+                        lifecycleScope.launch {
+                            val result = runCatching {
+                                withContext(Dispatchers.IO) {
+                                    it.logout()
+                                    // Use "cookie_auth" as username since isLogged requires non-empty username.
+                                    it.login("cookie_auth", token)
+                                }
+                            }
+                            result.onSuccess {
+                                toast(MR.strings.successfully_logged_in)
+                                setResult(RESULT_OK)
+                                finish()
+                            }.onFailure { error ->
+                                loginInProgress = false
+                                Logger.e(error) { "Tracker web login failed" }
+                                error.message?.let(::toast) ?: toast(MR.strings.unknown_error)
+                            }
                         }
-                        toast(MR.strings.successfully_logged_in)
-                        setResult(RESULT_OK)
-                        finish()
                     }
                 },
                 onUp = { finish() },

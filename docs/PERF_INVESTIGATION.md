@@ -165,7 +165,7 @@ current implementation and the validation performed after removing it.
 ### Verification
 
 - `:app:compileStandardDebugKotlin` — passed.
-- `:app:testStandardDebugUnitTest` — passed, 88 tests, 0 failures/errors/skips.
+- `:app:testStandardDebugUnitTest` — passed, 95 tests, 0 failures/errors/skips.
 - `git diff --check` — passed.
 - A full `lintStandardDebug` analysis exceeded the 15-minute validation window without
   producing a report or diagnostic; it was stopped, and is not represented as passing.
@@ -1064,19 +1064,96 @@ scroll grids), `fetcherCoroutineContext = Dispatchers.IO.limitedParallelism(8)`,
   `drawBehind` would avoid it entirely. Not worth the surface area until
   someone profiles it as a hotspot.
 
+## Navigation critical path, source restoration, and ART profile (2026-07-15)
+
+This pass moved beyond holder-level churn and removed work that could stall whole-screen
+transitions:
+
+- `MainActivity` no longer calls `runBlocking` for the first-run library query. The root tab
+  can draw and the splash can exit while the database decision runs on IO; only the final
+  onboarding navigation returns to Main.
+- `BrowseSourcePresenter` now has an explicit `LOADING → READY | UNAVAILABLE` source state.
+  Cold plugin/source restoration and extension-provided filter creation run on IO. The
+  controller paints a loading state immediately and only starts the pager after readiness.
+- Saved-search loading is no longer a prerequisite for source first paint or first-page fetch.
+  It arrives as secondary state after the source UI is active.
+- Root-tab motion is now a one-way incoming fade/slide over a stable outgoing screen. This
+  preserves spatial direction while avoiding simultaneous hardware-layer animation of two
+  complete RecyclerView/Compose trees. Rapid retaps reset partial alpha/translation before
+  establishing a fresh deterministic start state.
+- Fade change handlers restore alpha as well as translation on cancellation/reset, closing a
+  class of interrupted-transition visual residue.
+- Added `app/src/main/baseline-prof.txt` plus `androidx.profileinstaller`. The initial targeted
+  rules cover startup, persistent root navigation, Library, Recents, Browse, MangaDetails,
+  source browsing, and reader entry. `mergeStandardReleaseArtProfile` confirms the rules are
+  merged into the release ART profile. Replace/expand these manual rules with device-generated
+  critical-user-journey rules when a profiling device is available.
+
+### Blocking-state, hidden-tab, and bounded-animation depth pass
+
+- Migration search process restoration now persists the original title/source primitives and
+  resolves source objects from the in-memory registry; it no longer queries manga from a
+  controller constructor. Edit-manga process restoration similarly attaches a lightweight view
+  first and loads its manga on IO before enabling Save.
+- Reader initialization loads the unfiltered chapter snapshot inside its existing IO coroutine
+  instead of hiding a database wait behind a lazy `runBlocking`. Duplicate-manga migration option
+  discovery (tracks/custom cover/info) is also computed on IO and passed to the dialog as one
+  immutable snapshot. Tracker web login/logout no longer blocks the lifecycle main thread.
+- Persistent Library and Recents tabs now stop submitting adapter data while inactive or covered
+  by a pushed controller. Each retains only the newest pending presenter snapshot and drains it
+  once on activation, preventing invisible diff/bind/layout work from competing with the visible
+  screen and transition.
+- The inactivity boundary now reaches upstream: Library unsubscribes its SQL/category/preference
+  combine and skips filtering, tracking joins, sorting, and section materialization while hidden.
+  Recents cancels its current query, coalesces refresh requests, and restarts once when activated.
+  Pushed filtered-library screens explicitly opt in because they do not receive root-tab callbacks.
+- Recents previously invoked `presenter.onCreate()` on every return from MangaDetails, reinstalling
+  download, queue, library-update, and preference collectors. Initialization is now idempotent and
+  pop-back only reactivates the retained presenter. MangaDetails similarly owns and replaces its
+  download/library collector jobs across view recreation instead of accumulating subscriptions.
+- Library-update status no longer synchronously waits on WorkManager's database from refresh/menu
+  interactions. Manual pending/running state is tracked in memory; category queue expansion and
+  smart-update filtering run on the worker IO scope. Stop also cancels the known worker directly
+  instead of blocking on a work query. Backup restore uses the same lifecycle-owned state, removing
+  a WorkManager database wait from Recents pagination.
+- Leaving Library selection mode rebinds only selected items and headers. Changing MangaDetails'
+  chapter-title display mode rebinds only attached chapter rows; off-screen rows naturally bind the
+  new mode when recycled. Both paths previously invalidated the complete list.
+- Recents' nested-chapter expansion previously began a RecyclerView-wide transition after mutating
+  the row while a second implicit `LayoutTransition` was active. It now starts one explicit
+  row-scoped bounds/fade transition before the mutation, so a pending animation cannot capture a
+  later presenter submission.
+- Recents and MangaDetails now index each download-queue snapshot by chapter ID once instead of
+  scanning the complete queue for every main and nested chapter. MangaDetails queue emissions no
+  longer reload chapters from the database, redo translation/filter work, or submit the whole
+  adapter; they mutate download state in memory and repaint only attached affected rows.
+- MangaDetails description expansion and Recents nested-chapter expansion begin their transitions
+  before mutation, scope motion to the changed row/header, and honor both app and system reduced
+  motion. This prevents a late transition from capturing an unrelated subsequent layout pass.
+- MangaDetails' header and floating reading actions now share one unfiltered reading target and
+  one numbered label model. Chapter/read/download filters can no longer remove the primary action,
+  and a collapsed or not-yet-composed header action explicitly falls back to the FAB. A single
+  cancel-and-replace Activity-resume refresh awaits the database submission after reader return,
+  replacing the previous nested and attach-time refresh race.
+- The header reading Compose island is installed once per holder and driven by observable text,
+  enabled, visible, and accent states. Chapter mutations no longer reinstall the composition, and
+  ExtendedFloatingActionButton visibility is owned exclusively by its show/hide motion API so a
+  fast refresh cannot strand it halfway through an animation.
+- The manual baseline profile still merges successfully after these changes. The full Standard
+  debug unit suite passes with 101 tests. No new device frame-time claim is made because no device
+  is attached.
+
 ## Open backlog (updated 2026-07-15)
 
 Carrying forward — pick any of these next session.
 
 ### Verification — owed for today's work
 
-- **Cross-fade tab-swap feel at 250 ms** (was 150 ms; bumped 2026-05-16). User
-  reported the 150 ms version felt "very subtle, maybe increase it a bit i don't
-  feel it". Verify the 250 ms feels intentional but not sluggish on rapid
-  Library ↔ Recents ↔ Browse taps.
-- **Browse first-entry feel after defer + warmup**. The deferred init lands at
-  +280 ms; cross-fade is 250 ms. Verify the cold frame no longer looks like a
-  blank flash and the sheet doesn't pop in awkwardly when its wiring lands.
+- **One-way tab-swap feel at 250 ms.** Verify the incoming fade/12dp slide feels intentional
+  in both LTR and RTL and that backward switching never renders underneath the outgoing tab.
+- **Browse first-entry feel after asynchronous source restoration.** Verify the loading state
+  paints during a cold plugin registry load and transitions directly into the first page
+  without a blank flash or premature "source not installed" pop.
 - **"Fast tab swap = content never renders"** — was likely fixed by the
   AsyncLayoutInflater revert (task #35) but never explicitly reconfirmed.
   Reproduce by tapping bottom-nav items as fast as possible across 10-15 swaps;
@@ -1087,13 +1164,10 @@ Carrying forward — pick any of these next session.
 - **Recents item open path** (history → reader / history → MangaDetails).
   Never profiled post-refactor; might share the Library → MangaDetails push
   cost (now mostly fixed) but the Recents item path is distinct.
-- **Library ↔ Recents "text splatter"** in tabbed mode (5.03 % baseline jank).
-  Root cause already understood — cross-controller race where
-  `LibraryController.onChangeStarted` calls `showTabBar(false, animate=true)`
-  while `RecentsController.onChangeStarted` calls `mainTabs.bindStringTabs(...)`
-  + `showTabBar(true)` simultaneously, and TabLayout re-measures during the
-  alpha animation. Fix is surgical to `MainActivity.showTabBar` + the two
-  controllers' `onChangeStarted`.
+- **Done structurally 2026-07-15 — Library ↔ Recents "text splatter".** Library and
+  Recents now own separate persistent local app bars, so a shared `TabLayout` is no longer
+  relabeled by two controllers during the same transition. The incoming-only root motion also
+  keeps the outgoing hierarchy stable. Device verification remains in the checklist above.
 
 ### Cold-path improvements (extends today's Browse work)
 

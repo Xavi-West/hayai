@@ -41,6 +41,7 @@ import androidx.core.net.toFile
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsCompat.Type.systemBars
+import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePaddingRelative
@@ -162,8 +163,8 @@ import java.io.IOException
 import java.util.Locale
 import kotlin.math.max
 import kotlin.math.roundToInt
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withTimeoutOrNull
 import yokai.domain.manga.interactor.FetchInterval
 import yokai.domain.manga.models.cover
 import yokai.i18n.MR
@@ -249,6 +250,7 @@ class MangaDetailsController :
     var refreshTracker: Int? = null
     private var chapterPopupMenu: Pair<Int, PopupMenu>? = null
     private var isPushing = true
+    private var activityResumeRefreshJob: Job? = null
 
     // Tablet Layout
     var isTablet = false
@@ -261,7 +263,6 @@ class MangaDetailsController :
 
     private var headerHeight = 0
     private var fullCoverActive = false
-    var returningFromReader = false
     private var floatingActionMode: android.view.ActionMode? = null
 
     // Bundle-restore: presenter.manga loads async, so onViewCreated can't touch it. We mark the
@@ -853,11 +854,13 @@ class MangaDetailsController :
             presenter.isLockedFromSearch =
                 shouldLockIfNeeded && SecureActivityDelegate.shouldBeLocked()
             presenter.headerItem.isLocked = presenter.isLockedFromSearch
-            // Run the DB refresh + dependent calls off Main; ordering preserved by sequencing inside the launch.
-            viewScope.launch {
+            // Cancel/replace prevents repeated Activity resumes from racing list submissions and
+            // restoring an older read target after the newer one has already rendered.
+            activityResumeRefreshJob?.cancel()
+            activityResumeRefreshJob = viewScope.launch {
                 presenter.refreshMangaFromDb()
                 presenter.syncData()
-                presenter.fetchChapters(refreshTracker == null)
+                presenter.refreshChapters(refreshTracker == null)
                 if (refreshTracker != null) {
                     trackingBottomSheet?.refreshItem(refreshTracker ?: 0)
                     presenter.refreshTracking(trackIndex = refreshTracker)
@@ -874,20 +877,6 @@ class MangaDetailsController :
             searchView?.post {
                 setSearchViewListener(searchView)
             }
-        }
-    }
-
-    override fun onAttach(view: View) {
-        super.onAttach(view)
-        if (!returningFromReader) return
-        returningFromReader = false
-        // DB await off Main so reader-back transition isn't blocked for up to 1s.
-        viewScope.launch {
-            val chapters = withTimeoutOrNull(1000) { presenter.getChaptersNow() } ?: return@launch
-            tabletAdapter?.notifyItemChanged(0)
-            addMangaHeader()
-            adapter?.setChapters(chapters)
-            updateFab()
         }
     }
 
@@ -1016,6 +1005,15 @@ class MangaDetailsController :
         )
     }
 
+    fun updateChapterDownloadState(chapterId: Long, status: Download.State, progress: Int) {
+        (binding.recycler.findViewHolderForItemId(chapterId) as? ChapterHolder)?.notifyStatus(
+            status,
+            presenter.isLockedFromSearch,
+            progress,
+            true,
+        )
+    }
+
     private fun getHolder(chapter: Chapter): ChapterHolder? {
         return binding.recycler.findViewHolderForItemId(chapter.id!!) as? ChapterHolder
     }
@@ -1038,25 +1036,30 @@ class MangaDetailsController :
         // their place"). addMangaHeader is a no-op when the header is already present.
         addMangaHeader()
         adapter?.setChapters(presenter.chapters)
+        refreshReadingActions()
         updateMenuVisibility(activityBinding?.toolbar?.menu)
     }
 
     fun updateFab() {
         val context = view?.context ?: return
-        val nextChapter = presenter.getNextUnreadChapter()
-        binding.fab.isEnabled = nextChapter != null
-        if (nextChapter != null) {
-            binding.fab.text = context.getString(
-                if (nextChapter.last_page_read > 0) {
-                    MR.strings.resume
-                } else {
-                    MR.strings.start_reading
-                },
-            )
-        } else {
-            binding.fab.isVisible = false
+        val readingState = presenter.getReadingButtonState()
+        binding.fab.isEnabled = readingState != null
+        if (readingState != null) {
+            val decimalFormat = adapter?.decimalFormat ?: tabletAdapter?.decimalFormat
+            if (decimalFormat != null) {
+                binding.fab.text = context.getReadingButtonText(readingState, decimalFormat)
+            }
         }
+        // ExtendedFloatingActionButton owns its visibility animation state. Directly assigning
+        // isVisible here can strand it between hidden and shown during rapid chapter updates.
         syncReadingFabVisibility()
+    }
+
+    private fun refreshReadingActions() {
+        // Update the in-header fallback first so FAB visibility is computed from current state,
+        // not the previous bind's visibility.
+        getHeader()?.refreshReadingButton()
+        updateFab()
     }
 
     private fun syncReadingFabVisibility() {
@@ -1070,13 +1073,16 @@ class MangaDetailsController :
     }
 
     private fun shouldShowReadingFab(): Boolean {
-        if (isTablet || !binding.fab.isEnabled || isSelectionMode) return false
-        val headerBinding = getHeader()?.binding ?: return true
-        if (headerBinding.buttonGroupCompose.isVisible != true) return false
-
-        val bound = Rect()
-        binding.recycler.getHitRect(bound)
-        return !headerBinding.buttonGroupCompose.getLocalVisibleRect(bound)
+        val headerAction = getHeader()?.binding?.buttonGroupCompose
+        val headerActionVisible = headerAction?.isVisible == true
+        val headerActionInViewport = headerActionVisible && headerAction.getLocalVisibleRect(Rect())
+        return shouldShowMangaReadingFab(
+            isTablet = isTablet,
+            hasReadingTarget = binding.fab.isEnabled,
+            isSelectionMode = isSelectionMode,
+            headerActionVisible = headerActionVisible,
+            headerActionInViewport = headerActionInViewport,
+        )
     }
 
     fun updateChapters() {
@@ -1085,9 +1091,8 @@ class MangaDetailsController :
         tabletAdapter?.notifyItemChanged(0)
         addMangaHeader()
         adapter?.setChapters(presenter.chapters)
-        updateFab()
-        // Phone scrollable header binds once while chapters are empty; refresh the read button now.
-        getHeader()?.refreshReadingButton()
+        // Phone scrollable header binds once while chapters are empty; refresh both actions now.
+        refreshReadingActions()
         colorToolbar(binding.recycler.canScrollVertically(-1))
         updateMenuVisibility(activityBinding?.toolbar?.menu)
     }
@@ -1105,8 +1110,17 @@ class MangaDetailsController :
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun refreshAdapter() = adapter?.notifyDataSetChanged()
+    fun refreshAdapter() {
+        val chapterAdapter = adapter ?: return
+        // Display-mode changes only alter the text of bound chapter rows. Rebinding the entire
+        // chapter list is especially expensive for long-running series; off-screen rows will bind
+        // with the new mode naturally when recycled.
+        binding.recycler.children.forEach { child ->
+            binding.recycler.getChildAdapterPosition(child)
+                .takeIf { it != RecyclerView.NO_POSITION }
+                ?.let(chapterAdapter::notifyItemChanged)
+        }
+    }
 
     override fun onItemClick(view: View?, position: Int): Boolean {
         val chapterItem = (adapter?.getItem(position) as? ChapterItem) ?: return false
@@ -1295,7 +1309,6 @@ class MangaDetailsController :
                 } else {
                     longArrayOf()
                 }
-                returningFromReader = true
                 intent.putExtra(ReaderActivity.VISIBLE_CHAPTERS, chapterRange)
                 startActivity(intent, bundle)
             } else {

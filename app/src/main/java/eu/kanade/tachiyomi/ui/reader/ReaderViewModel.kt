@@ -71,7 +71,6 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import yokai.util.koin.injectLazy
 import yokai.domain.category.interactor.GetCategories
@@ -181,10 +180,7 @@ class ReaderViewModel(
     private var finished = false
     private var chapterToDownload: Download? = null
 
-    private val unfilteredChapterList by lazy {
-        val manga = manga!!
-        runBlocking { getChapter.awaitAll(manga, filterScanlators = false) }
-    }
+    private var unfilteredChapterList: List<Chapter> = emptyList()
 
     private lateinit var chapterList: List<ReaderChapter>
 
@@ -280,9 +276,10 @@ class ReaderViewModel(
                     loader = ChapterLoader(context, downloadManager, downloadProvider, manga, resolvedSource)
 
                     chapterList = getChapterList()
-                    // Warm the lazy unfiltered list off-main so adjacentChapterResult()'s first
-                    // touch (which runs on Main) never blocks the UI thread on a SQLDelight read.
-                    unfilteredChapterList
+                    // Populate the full list directly inside the existing IO initialization
+                    // context. The old lazy runBlocking wrapper hid a synchronous database wait
+                    // and made correctness depend on this warm-up line running first.
+                    unfilteredChapterList = getChapter.awaitAll(manga, filterScanlators = false)
                     loadChapter(loader!!, chapterList.first { chapterId == it.chapter.id }, page)
                     Result.success(true)
                 } else {

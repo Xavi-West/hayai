@@ -194,6 +194,8 @@ class RecentsController(bundle: Bundle? = null) :
     private var lastChapterId: Long? = null
     private var showingDownloads = false
     private var headerHeight = 0
+    private var rootUiActive = false
+    private var pendingInactiveList: PendingRecentsList? = null
     private var ogRadius = 0f
     private var deviceRadius = 0f to 0f
     private var lastScale = 1f
@@ -654,6 +656,9 @@ class RecentsController(bundle: Bundle? = null) :
     }
 
     override fun onDestroyView(view: View) {
+        rootUiActive = false
+        presenter.setUiActive(false)
+        pendingInactiveList = null
         // Drop the action mode before the underlying view is torn down so we
         // don't leak the activity reference.
         destroyActionModeIfNeeded()
@@ -672,6 +677,10 @@ class RecentsController(bundle: Bundle? = null) :
         hasNewItems: Boolean,
         shouldMoveToTop: Boolean = false,
     ) {
+        if (!rootUiActive) {
+            pendingInactiveList = PendingRecentsList(recents, hasNewItems, shouldMoveToTop)
+            return
+        }
         if (view == null) return
         if (!binding.progress.isVisible && recents.isNotEmpty()) {
             (activity as? MainActivity)?.showNotificationPermissionPrompt()
@@ -725,6 +734,12 @@ class RecentsController(bundle: Bundle? = null) :
             lastChapterId = null
         }
     }
+
+    private data class PendingRecentsList(
+        val items: List<RecentMangaItem>,
+        val hasNewItems: Boolean,
+        val shouldMoveToTop: Boolean,
+    )
 
     fun updateChapterDownload(download: Download) {
         if (view == null || !this::adapter.isInitialized) return
@@ -1036,12 +1051,15 @@ class RecentsController(bundle: Bundle? = null) :
                     // calls onSetupLocalChrome + UI setup — we don't duplicate it here.
                 }
                 ControllerChangeType.POP_ENTER -> {
+                    rootUiActive = true
+                    presenter.setUiActive(true)
                     // Returning from a pushed controller (e.g. MangaDetails). Refresh the
-                    // presenter, then activation re-wires the local chrome.
-                    presenter.onCreate()
+                    // retained presenter without reinstalling its long-lived flow collectors.
                     onTabActivated()
                 }
                 ControllerChangeType.PUSH_EXIT, ControllerChangeType.POP_EXIT -> {
+                    rootUiActive = false
+                    presenter.setUiActive(false)
                     // Drop out of Conductor's menu dispatch while something is on top.
                     setOptionsMenuHidden(true)
                     snack?.dismiss()
@@ -1070,6 +1088,8 @@ class RecentsController(bundle: Bundle? = null) :
      * tab strip back in.
      */
     override fun onTabActivated() {
+        rootUiActive = true
+        presenter.setUiActive(true)
         if (!isBindingInitialized) return
         binding.downloadBottomSheet.dlBottomSheet.dismiss()
         // Tab swap is not a Conductor event, so the base-controller hoist of
@@ -1077,6 +1097,10 @@ class RecentsController(bundle: Bundle? = null) :
         onSetupLocalChrome()
         setBottomPadding()
         updateTitleAndMenu()
+        pendingInactiveList?.let { pending ->
+            pendingInactiveList = null
+            showLists(pending.items, pending.hasNewItems, pending.shouldMoveToTop)
+        }
     }
 
     /**
@@ -1085,6 +1109,8 @@ class RecentsController(bundle: Bundle? = null) :
      * (snackbars).
      */
     override fun onTabDeactivated() {
+        rootUiActive = false
+        presenter.setUiActive(false)
         if (!isBindingInitialized) return
         snack?.dismiss()
         setBottomPadding()

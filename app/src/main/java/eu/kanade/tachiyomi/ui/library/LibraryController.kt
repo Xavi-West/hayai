@@ -518,6 +518,8 @@ open class LibraryController(
     private var staggeredObserver: ViewTreeObserver.OnGlobalLayoutListener? = null
     var isPoppingIn = false
     var tempItems: List<LibraryItem>? = null
+    private var rootUiActive = false
+    private var pendingInactiveLibraryUpdate: PendingLibraryUpdate? = null
 
     // Dynamically injected into the search bar, controls category visibility during search
     private var showAllCategoriesView: ImageView? = null
@@ -1626,15 +1628,25 @@ open class LibraryController(
         when (type) {
             ControllerChangeType.PUSH_ENTER -> {
                 // Initial creation; selectTab follows up with onTabActivated → onSetupLocalChrome.
+                // FilteredLibraryController is pushed outside the root-tab host and therefore
+                // does not receive a root activation callback.
+                if (isSubClass) {
+                    rootUiActive = true
+                    presenter.setUiActive(true)
+                }
             }
             ControllerChangeType.POP_ENTER -> {
                 // Pop back from MangaDetails etc. Refresh library data, then re-wire the
                 // local chrome via onTabActivated.
+                rootUiActive = true
+                presenter.setUiActive(true)
                 presenter.updateLibrary()
                 isPoppingIn = true
                 onTabActivated()
             }
             ControllerChangeType.PUSH_EXIT, ControllerChangeType.POP_EXIT -> {
+                rootUiActive = false
+                presenter.setUiActive(false)
                 // Pushed-over: drop out of menu dispatch so our items don't stack on top of
                 // the pushed controller's. Each ported controller wires its own local
                 // appBar via onSetupLocalChrome; we don't touch chrome here.
@@ -1671,6 +1683,8 @@ open class LibraryController(
      * lifecycle because the controller view stays attached across swaps.
      */
     override fun onTabActivated() {
+        rootUiActive = true
+        presenter.setUiActive(true)
         if (!isBindingInitialized) return
         binding.filterBottomSheet.filterBottomSheet.isVisible = true
         binding.recyclerCover.isClickable = false
@@ -1687,6 +1701,10 @@ open class LibraryController(
         // swaps go through RootTabsController.selectTab → onTabActivated and bypass
         // Conductor's lifecycle. Wire chrome explicitly here.
         onSetupLocalChrome()
+        pendingInactiveLibraryUpdate?.let { pending ->
+            pendingInactiveLibraryUpdate = null
+            onNextLibraryUpdate(pending.items, pending.freshStart)
+        }
         // Drain a query handed off from another screen now that the menu/search bar exist.
         consumePendingLibrarySearch()
     }
@@ -1697,6 +1715,8 @@ open class LibraryController(
      * sets up its own appBar — nothing for us to undo.
      */
     override fun onTabDeactivated() {
+        rootUiActive = false
+        presenter.setUiActive(false)
         if (!isBindingInitialized) return
         saveStaggeredState()
         updateFilterSheetY()
@@ -1767,6 +1787,9 @@ open class LibraryController(
     }
 
     override fun onDestroyView(view: View) {
+        rootUiActive = false
+        presenter.setUiActive(false)
+        pendingInactiveLibraryUpdate = null
         destroyActionModeIfNeeded()
         if (isBindingInitialized) {
             binding.libraryGridRecycler.recycler.removeOnScrollListener(scrollListener)
@@ -1794,6 +1817,10 @@ open class LibraryController(
     }
 
     open fun onNextLibraryUpdate(mangaMap: List<LibraryItem>, freshStart: Boolean = false) {
+        if (!rootUiActive) {
+            pendingInactiveLibraryUpdate = PendingLibraryUpdate(mangaMap, freshStart)
+            return
+        }
         if (isPoppingIn) {
             tempItems = mangaMap
             return
@@ -1975,6 +2002,11 @@ open class LibraryController(
             ),
         )
     }
+
+    private data class PendingLibraryUpdate(
+        val items: List<LibraryItem>,
+        val freshStart: Boolean,
+    )
 
     private fun showSlideAnimation() {
         isAnimatingHopper = true
@@ -2205,15 +2237,15 @@ open class LibraryController(
         return true
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onDestroyActionMode(mode: ActionMode?) {
         selectedMangas.clear()
         actionMode = null
         lastClickPosition = -1
         forEachLibraryAdapter { ad, _ ->
+            val changedPositions = (ad.selectedPositions + ad.getHeaderPositions()).distinct()
             ad.mode = SelectableAdapter.Mode.SINGLE
             ad.clearSelection()
-            ad.notifyDataSetChanged()
+            changedPositions.forEach(ad::notifyItemChanged)
             ad.isLongPressDragEnabled = canDrag()
         }
     }

@@ -106,8 +106,16 @@ class CrossFadeChangeHandler : AnimatorChangeHandler {
                 null
             } ?: 150
         }
-        animatorSet.doOnCancel { to?.translationX = 0f }
-        animatorSet.doOnEnd { to?.translationX = 0f }
+        animatorSet.doOnCancel {
+            from?.alpha = 1f
+            from?.translationX = 0f
+            to?.alpha = 1f
+            to?.translationX = 0f
+        }
+        animatorSet.doOnEnd {
+            to?.alpha = 1f
+            to?.translationX = 0f
+        }
         if (!isPush && from != null && from.translationX != 0f &&
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE
         ) {
@@ -121,6 +129,7 @@ class CrossFadeChangeHandler : AnimatorChangeHandler {
     }
 
     override fun resetFromView(from: View) {
+        from.alpha = 1f
         from.translationX = 0f
     }
 

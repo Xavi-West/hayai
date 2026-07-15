@@ -59,6 +59,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
@@ -113,6 +114,7 @@ class LibraryPresenter(
 
     private val forceUpdateEvent = MutableSharedFlow<Unit>(replay = 1).apply { tryEmit(Unit) }
     private var librarySubscriptionJob: Job? = null
+    private val uiActive = MutableStateFlow(false)
 
     private val context = preferences.context
     private val viewContext
@@ -276,47 +278,55 @@ class LibraryPresenter(
     private fun subscribeLibrary() {
         librarySubscriptionJob?.cancel()
         librarySubscriptionJob = presenterScope.launchIO {
-            // Initial setup
-            if (categories.isEmpty()) {
-                val dbCategories = getCategories.await()
-                if ((dbCategories + Category.createDefault(context)).distinctBy { it.order }.size != dbCategories.size + 1) {
-                    reorderCategories(dbCategories)
+            uiActive.collectLatest { active ->
+                if (!active) return@collectLatest
+
+                // Initial setup is deferred until the Library surface is actually visible.
+                if (categories.isEmpty()) {
+                    val dbCategories = getCategories.await()
+                    if ((dbCategories + Category.createDefault(context)).distinctBy { it.order }.size != dbCategories.size + 1) {
+                        reorderCategories(dbCategories)
+                    }
+                    categories = lastCategories ?: getCategories.await().toMutableList()
                 }
-                categories = lastCategories ?: getCategories.await().toMutableList()
-            }
 
-            combine(
-                getLibraryFlow(),
-                downloadCache.changes,
-            ) { data, _ -> data }.collectLatest { data ->
-                categories = data.categories
-                allCategories = data.allCategories
-                categoryNamesById = data.allCategories
-                    .asSequence()
-                    .filter { it.id != null }
-                    .associate { it.id!! to it.name }
+                combine(
+                    getLibraryFlow(),
+                    downloadCache.changes,
+                ) { data, _ -> data }.collectLatest { data ->
+                    categories = data.categories
+                    allCategories = data.allCategories
+                    categoryNamesById = data.allCategories
+                        .asSequence()
+                        .filter { it.id != null }
+                        .associate { it.id!! to it.name }
 
-                val library = data.items
-                val hiddenItems = data.hiddenItems
+                    val library = data.items
+                    val hiddenItems = data.hiddenItems
 
-                library.forEach { (_, items) ->
-                    setDownloadCount(items)
-                    setUnreadBadge(items)
-                    setSourceLanguage(items)
+                    library.forEach { (_, items) ->
+                        setDownloadCount(items)
+                        setUnreadBadge(items)
+                        setSourceLanguage(items)
+                    }
+                    setDownloadCount(hiddenItems)
+                    setUnreadBadge(hiddenItems)
+                    setSourceLanguage(hiddenItems)
+
+                    currentLibrary = library
+                    hiddenLibraryItems = hiddenItems
+                    val mangaMap = library
+                        .applyFilters()
+                        .applySort()
+                    val freshStart = libraryToDisplay.isEmpty()
+                    sectionLibrary(mangaMap, freshStart)
                 }
-                setDownloadCount(hiddenItems)
-                setUnreadBadge(hiddenItems)
-                setSourceLanguage(hiddenItems)
-
-                currentLibrary = library
-                hiddenLibraryItems = hiddenItems
-                val mangaMap = library
-                    .applyFilters()
-                    .applySort()
-                val freshStart = libraryToDisplay.isEmpty()
-                sectionLibrary(mangaMap, freshStart)
             }
         }
+    }
+
+    fun setUiActive(active: Boolean) {
+        uiActive.value = active
     }
 
     private suspend fun reorderCategories(categories: List<Category>) {

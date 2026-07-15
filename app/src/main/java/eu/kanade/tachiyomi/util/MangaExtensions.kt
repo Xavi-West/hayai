@@ -378,81 +378,82 @@ private suspend fun showAddDuplicateDialog(
     migrateManga: (Long, Boolean) -> Unit,
     @OptIn(DelicateCoroutinesApi::class)
     scope: CoroutineScope = GlobalScope,
-) = withUIContext {
-    val source = sourceManager.getOrStub(libraryManga.source)
+) {
+    val migrationOptions = MigrationFlags.options(libraryManga)
+    withUIContext {
+        val source = sourceManager.getOrStub(libraryManga.source)
 
-    val titles by lazy { MigrationFlags.titles(activity, libraryManga) }
-    fun migrateManga(mDialog: DialogInterface, replace: Boolean) {
-        val listView = (mDialog as AlertDialog).listView
-        val enabled = titles.indices.map { listView.isItemChecked(it) }.toTypedArray()
-        val flags = MigrationFlags.getFlagsFromPositions(enabled, libraryManga)
-        val enhancedServices by lazy { get<TrackManager>().services.filterIsInstance<EnhancedTrackService>() }
-        scope.launchUI {
-            MigrationProcessAdapter.migrateMangaInternal(
-                flags,
-                enhancedServices,
-                get(),
-                get(),
-                source,
-                sourceManager.getOrStub(newManga.source),
-                libraryManga,
-                newManga,
-                replace,
-            )
-        }
-        migrateManga(libraryManga.source, !replace)
-    }
-
-    activity.materialAlertDialog().apply {
-        setCustomTitleAndMessage(0, activity.getString(MR.strings.confirm_manga_add_duplicate, source.name))
-        setItems(
-            arrayOf(
-                activity.getString(MR.strings.show_, libraryManga.seriesType(activity, sourceManager)).asButton(activity),
-                activity.getString(MR.strings.add_to_library).asButton(activity),
-                activity.getString(MR.strings.migrate).asButton(activity, !newManga.initialized),
-            ),
-        ) { dialog, i ->
-            when (i) {
-                0 -> controller.router.pushController(
-                    MangaDetailsController(libraryManga)
-                        .withFadeTransaction(),
+        val titles by lazy { migrationOptions.titles(activity) }
+        fun migrateManga(mDialog: DialogInterface, replace: Boolean) {
+            val listView = (mDialog as AlertDialog).listView
+            val enabled = titles.indices.map { listView.isItemChecked(it) }.toTypedArray()
+            val flags = migrationOptions.getFlagsFromPositions(enabled)
+            val enhancedServices by lazy { get<TrackManager>().services.filterIsInstance<EnhancedTrackService>() }
+            scope.launchUI {
+                MigrationProcessAdapter.migrateMangaInternal(
+                    flags,
+                    enhancedServices,
+                    get(),
+                    get(),
+                    source,
+                    sourceManager.getOrStub(newManga.source),
+                    libraryManga,
+                    newManga,
+                    replace,
                 )
-                1 -> scope.launchIO { addManga() }
-                2 -> {
-                    if (!newManga.initialized) {
-                        activity.toast(MR.strings.must_view_details_before_migration, Toast.LENGTH_LONG)
-                        return@setItems
-                    }
-                    activity.materialAlertDialog().apply {
-                        setTitle(MR.strings.migration)
-                        setMultiChoiceItems(
-                            titles,
-                            titles.map { true }.toBooleanArray(),
-                            null,
-                        )
-                        setPositiveButton(MR.strings.migrate) { mDialog, _ ->
-                            migrateManga(mDialog, true)
-                        }
-                        setNegativeButton(AR.string.copy) { mDialog, _ ->
-                            migrateManga(mDialog, false)
-                        }
-                        setNeutralButton(AR.string.cancel, null)
-                        setCancelable(true)
-                    }.show()
-                }
-                else -> {}
             }
-            dialog.dismiss()
+            migrateManga(libraryManga.source, !replace)
         }
-        setNegativeButton(activity.getString(AR.string.cancel)) { _, _ -> }
-        setCancelable(true)
-    }.create().apply {
-        setOnShowListener {
-            if (!newManga.initialized) {
-                val listView = (it as AlertDialog).listView
-                val view = listView.getChildAt(2)
-                view?.setOnClickListener {
-                    if (!newManga.initialized) {
+
+        activity.materialAlertDialog().apply {
+            setCustomTitleAndMessage(0, activity.getString(MR.strings.confirm_manga_add_duplicate, source.name))
+            setItems(
+                arrayOf(
+                    activity.getString(MR.strings.show_, libraryManga.seriesType(activity, sourceManager)).asButton(activity),
+                    activity.getString(MR.strings.add_to_library).asButton(activity),
+                    activity.getString(MR.strings.migrate).asButton(activity, !newManga.initialized),
+                ),
+            ) { dialog, i ->
+                when (i) {
+                    0 -> controller.router.pushController(
+                        MangaDetailsController(libraryManga)
+                            .withFadeTransaction(),
+                    )
+                    1 -> scope.launchIO { addManga() }
+                    2 -> {
+                        if (!newManga.initialized) {
+                            activity.toast(MR.strings.must_view_details_before_migration, Toast.LENGTH_LONG)
+                            return@setItems
+                        }
+                        activity.materialAlertDialog().apply {
+                            setTitle(MR.strings.migration)
+                            setMultiChoiceItems(
+                                titles,
+                                titles.map { true }.toBooleanArray(),
+                                null,
+                            )
+                            setPositiveButton(MR.strings.migrate) { mDialog, _ ->
+                                migrateManga(mDialog, true)
+                            }
+                            setNegativeButton(AR.string.copy) { mDialog, _ ->
+                                migrateManga(mDialog, false)
+                            }
+                            setNeutralButton(AR.string.cancel, null)
+                            setCancelable(true)
+                        }.show()
+                    }
+                    else -> {}
+                }
+                dialog.dismiss()
+            }
+            setNegativeButton(activity.getString(AR.string.cancel)) { _, _ -> }
+            setCancelable(true)
+        }.create().apply {
+            setOnShowListener {
+                if (!newManga.initialized) {
+                    val listView = (it as AlertDialog).listView
+                    val view = listView.getChildAt(2)
+                    view?.setOnClickListener {
                         activity.toast(
                             MR.strings.must_view_details_before_migration,
                             Toast.LENGTH_LONG,
@@ -460,8 +461,8 @@ private suspend fun showAddDuplicateDialog(
                     }
                 }
             }
-        }
-    }.show()
+        }.show()
+    }
 }
 
 fun Manga.autoAddTrack(onMangaMoved: () -> Unit) {
