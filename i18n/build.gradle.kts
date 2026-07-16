@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import yokai.build.generatedBuildDir
+import java.io.File
 
 plugins {
     kotlin("multiplatform")
@@ -60,9 +61,48 @@ tasks {
        dependsOn(localesConfigTask)
    }
 
+    val verifyTranslations = register("verifyTranslations") {
+        group = "verification"
+        description = "Checks that every supported locale defines every base string and plural."
+
+        doLast {
+            val resourcesDir = file("src/commonMain/moko-resources")
+            val baseStrings = translationKeys(resourcesDir.resolve("base/strings.xml"), "string")
+            val basePlurals = translationKeys(resourcesDir.resolve("base/plurals.xml"), "plurals")
+
+            val incompleteLocales = resourcesDir.listFiles()
+                .orEmpty()
+                .filter(File::isDirectory)
+                .filterNot { it.name == "base" }
+                .mapNotNull { localeDir ->
+                    val missingStrings = baseStrings - translationKeys(localeDir.resolve("strings.xml"), "string")
+                    val missingPlurals = basePlurals - translationKeys(localeDir.resolve("plurals.xml"), "plurals")
+                    localeDir.name.takeIf { missingStrings.isNotEmpty() || missingPlurals.isNotEmpty() }?.let {
+                        "$it (strings: ${missingStrings.size}, plurals: ${missingPlurals.size})"
+                    }
+                }
+
+            check(incompleteLocales.isEmpty()) {
+                "Incomplete translations:\n${incompleteLocales.joinToString("\n")}" 
+            }
+        }
+    }
+
+    named("check") {
+        dependsOn(verifyTranslations)
+    }
+
     withType<KotlinCompile> {
         compilerOptions.freeCompilerArgs.addAll(
             "-Xexpect-actual-classes",
         )
     }
+}
+
+private fun translationKeys(file: File, element: String): Set<String> {
+    if (!file.isFile) return emptySet()
+    return Regex("<$element\\s+name=\"([^\"]+)\"")
+        .findAll(file.readText())
+        .map { it.groupValues[1] }
+        .toSet()
 }

@@ -1,3 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <plurals name="remove_n_chapters">
+        <item quantity="one">බාගත කළ පරිච්ඡේදය %1$d ඉවත් කරන්නද?</item>
+        <item quantity="other">බාගත කළ පරිච්ඡේද %1$d ඉවත් කරන්නද?</item>
+    </plurals>
+    <plurals name="chapters_plural">
+        <item quantity="one">%1$s පරිච්ඡේදය</item>
+        <item quantity="other">%1$s පරිච්ඡේද</item>
+    </plurals>
+    <plurals name="category_plural">
+        <item quantity="one">%d කාණ්ඩය</item>
+        <item quantity="other">%d ප්‍රවර්ග</item>
+    </plurals>
+    <plurals name="for_n_titles">
+        <item quantity="one">%d මාතෘකාව සඳහා</item>
+        <item quantity="other">%d මාතෘකා සඳහා</item>
+    </plurals>
+    <plurals name="notification_and_n_more">
+        <item quantity="one">සහ %1$d තවත් පරිච්ඡේදයක්</item>
+        <item quantity="other">සහ තවත් පරිච්ඡේද %1$d</item>
+    </plurals>
+    <plurals name="_updates_pending">
+        <item quantity="one">%d යාවත්කාලීනය පොරොත්තුවෙන්</item>
+        <item quantity="other">%d යාවත්කාලීන බලාපොරොත්තු වේ</item>
+    </plurals>
+    <plurals name="extensions_updated_plural">
+        <item quantity="one">දිගුව යාවත්කාලීන කරන ලදී</item>
+        <item quantity="other">%d දිගු යාවත්කාලීන කරන ලදී</item>
+    </plurals>
+    <plurals name="extension_updates_available">
+        <item quantity="one">දිගු යාවත්කාලීන පවතී</item>
+        <item quantity="other">%d දිගු යාවත්කාලීන තිබේ</item>
+    </plurals>
+    <plurals name="pages_plural">
+        <item quantity="one">%1$d පිටුව</item>
+        <item quantity="other">%1$d පිටු</item>
+    </plurals>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">%d පරිච්ඡේදය මඟ හැරීම, එක්කෝ මූලාශ්‍රය එය මග හැරී ඇත, නැතහොත් එය පෙරා ඇත</item>
+        <item quantity="other">%d පරිච්ඡේද මඟ හැරීම, එක්කෝ මූලාශ්‍රය ඒවා මග හැරී ඇත නැතහොත් ඒවා පෙරා ඇත</item>
+    </plurals>
+    <plurals name="next_unread_chapters">
+        <item quantity="one">ඊළඟ නොකියවූ පරිච්ඡේදය</item>
+        <item quantity="other">මීළඟ %d නොකියවූ පරිච්ඡේද</item>
+    </plurals>
+    <plurals name="deleted_chapters">
+        <item quantity="one">මූලාශ්‍රයෙන් පරිච්ඡේදයක් ඉවත් කර ඇත:\n%2$s\nමකන්න
+            එය බාගත කිරීම?</item>
+        <item quantity="other">%1$s පරිච්ඡේද මූලාශ්‍රයෙන් ඉවත් කර ඇත:\n%2$s\n\nමකන්න
+            ඔවුන්ගේ බාගත කිරීම්?</item>
+    </plurals>
+    <plurals name="migrate_manga">
+        <item quantity="one">%1$d%2$s ශ්‍රේණි සංක්‍රමණය කරන්නද?</item>
+        <item quantity="other">%1$d%2$s ශ්‍රේණි සංක්‍රමණය කරන්නද?</item>
+    </plurals>
+    <plurals name="copy_manga">
+        <item quantity="one">%1$d%2$s ශ්‍රේණි පිටපත් කරන්නද?</item>
+        <item quantity="other">%1$d%2$s ශ්‍රේණි පිටපත් කරන්නද?</item>
+    </plurals>
+    <plurals name="manga_migrated">
+        <item quantity="one">%d ශ්‍රේණි සංක්‍රමණය විය</item>
+        <item quantity="other">%d ශ්‍රේණි සංක්‍රමණය විය</item>
+    </plurals>
+    <plurals name="restore_completed_message">
+        <item quantity="one">%2$s දෝෂයක් සහිතව %1$s තුළ සිදු කරන ලදී</item>
+        <item quantity="other">%2$s දෝෂ සහිතව %1$s තුළ සිදු කර ඇත</item>
+    </plurals>
+    <plurals name="cache_cleared">
+        <item quantity="one">හැඹිලිය හිස් කරන ලදී. %d ගොනුව මකා ඇත</item>
+        <item quantity="other">හැඹිලිය හිස් කරන ලදී. %d ගොනු මකා ඇත</item>
+    </plurals>
+    <plurals name="cleanup_done">
+        <item quantity="one">පිරිසිදු කිරීම සිදු කර ඇත. %d ෆෝල්ඩරය ඉවත් කරන ලදී</item>
+        <item quantity="other">පිරිසිදු කිරීම සිදු කර ඇත. %d ෆෝල්ඩර ඉවත් කරන ලදී</item>
+    </plurals>
+    <plurals name="_series_types">
+        <item quantity="other">%d ශ්‍රේණි වර්ග</item>
+    </plurals>
+    <plurals name="_sources">
+        <item quantity="other">%d මූලාශ්‍ර</item>
+    </plurals>
+    <plurals name="_statuses">
+        <item quantity="other">%d තත්ව</item>
+    </plurals>
+    <plurals name="_languages">
+        <item quantity="other">%d භාෂා</item>
+    </plurals>
+    <plurals name="after_minutes">
+        <item quantity="one">%1$s විනාඩියකට පසු</item>
+        <item quantity="other">මිනිත්තු %1$sකට පසුව</item>
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">%1$d අයිතමය සඟවා ඇත</item>
+        <item quantity="other">%1$d අයිතම සඟවා ඇත</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">%1$d අයිතමය නොසඟවා ඇත</item>
+        <item quantity="other">%1$d අයිතම සඟවා නැත</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">දැනටමත් කියවා ඇති පරිච්ඡේදය %d මඟ හැර ඇත</item>
+        <item quantity="other">දැනටමත් කියවා ඇති පරිච්ඡේද %d මඟ හැර ඇත</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">පෙරහන් කළ පරිච්ඡේදය %d මඟ හැරිය</item>
+        <item quantity="other">පෙරහන් කළ පරිච්ඡේද %d මඟ හැරිය</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">%d දවස</item>
+        <item quantity="other">%d දින</item>
+    </plurals>
 </resources>

@@ -1,12 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <plurals name="category_plural">
-        <item quantity="other">အမျိုးအစား %d ခု</item>
+    <plurals name="remove_n_chapters">
+        <item quantity="one">%1$d ဒေါင်းလုဒ်လုပ်ထားသော အခန်းကို ဖယ်ရှားမလား။</item>
+        <item quantity="other">ဒေါင်းလုဒ်ဆွဲထားတဲ့အပိုင်း %1$d ပိုင်းကိုဖျက်ပစ်မှာလား</item>
     </plurals>
     <plurals name="chapters_plural">
+        <item quantity="one">%1$s အခန်း</item>
         <item quantity="other">%1$s ပိုင်း</item>
     </plurals>
-    <plurals name="remove_n_chapters">
-        <item quantity="other">ဒေါင်းလုဒ်ဆွဲထားတဲ့အပိုင်း %1$d ပိုင်းကိုဖျက်ပစ်မှာလား</item>
+    <plurals name="category_plural">
+        <item quantity="one">%d အမျိုးအစား</item>
+        <item quantity="other">အမျိုးအစား %d ခု</item>
+    </plurals>
+    <plurals name="for_n_titles">
+        <item quantity="one">%d ခေါင်းစဉ်အတွက်</item>
+        <item quantity="other">%d ခေါင်းစဉ်များအတွက်</item>
+    </plurals>
+    <plurals name="notification_and_n_more">
+        <item quantity="one">နှင့် %1$d နောက်ထပ်အခန်း</item>
+        <item quantity="other">နှင့် %1$d နောက်ထပ်အခန်းများ</item>
+    </plurals>
+    <plurals name="_updates_pending">
+        <item quantity="one">%d အပ်ဒိတ်ကို ဆိုင်းငံ့ထားသည်။</item>
+        <item quantity="other">%d အပ်ဒိတ်များကို ဆိုင်းငံ့ထားသည်။</item>
+    </plurals>
+    <plurals name="extensions_updated_plural">
+        <item quantity="one">တိုးချဲ့မှုကို အပ်ဒိတ်လုပ်ထားသည်။</item>
+        <item quantity="other">&lt;x id="0"&gt;နောက်ဆက်တွဲများကို အပ်ဒိတ်လုပ်ထားသည်။</item>
+    </plurals>
+    <plurals name="extension_updates_available">
+        <item quantity="one">တိုးချဲ့မှု အပ်ဒိတ် ရနိုင်သည်။</item>
+        <item quantity="other">&lt;x id="0"&gt;နောက်ဆက်တွဲ အပ်ဒိတ်များ ရနိုင်ပါသည်။</item>
+    </plurals>
+    <plurals name="pages_plural">
+        <item quantity="one">%1$d စာမျက်နှာ</item>
+        <item quantity="other">%1$d စာမျက်နှာများ</item>
+    </plurals>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">%d အခန်းကို ကျော်သွားသည်၊ အရင်းအမြစ်ပျောက်နေသည် သို့မဟုတ် ၎င်းကို စစ်ထုတ်ထားသည်။</item>
+        <item quantity="other">%d အခန်းများကို ကျော်သွားခြင်း၊ ရင်းမြစ်ပျောက်နေသည် သို့မဟုတ် ၎င်းတို့ကို စစ်ထုတ်ထားသည်။</item>
+    </plurals>
+    <plurals name="next_unread_chapters">
+        <item quantity="one">မဖတ်ရသေးသော နောက်အခန်း</item>
+        <item quantity="other">နောက်တစ်ခု %d မဖတ်ရသေးသော အခန်းများ</item>
+    </plurals>
+    <plurals name="deleted_chapters">
+        <item quantity="one">အခန်းတစ်ခန်းကို အရင်းအမြစ်မှ ဖယ်ရှားလိုက်ပါပြီ-\n%2$s\nဖျက်ပါ။
+            ၎င်း၏ဒေါင်းလုဒ်?</item>
+        <item quantity="other">%1$s အခန်းများကို အရင်းအမြစ်မှ ဖယ်ရှားလိုက်ပါပြီ-\n%2$s\n\nဖျက်မည်
+            ၎င်းတို့၏ ဒေါင်းလုဒ်များ</item>
+    </plurals>
+    <plurals name="migrate_manga">
+        <item quantity="one">%1$d%2$s စီးရီးကို ရွှေ့ပြောင်းမလား။</item>
+        <item quantity="other">%1$d%2$s စီးရီးကို ရွှေ့ပြောင်းမလား။</item>
+    </plurals>
+    <plurals name="copy_manga">
+        <item quantity="one">%1$d%2$s စီးရီးကို ကူးယူမလား။</item>
+        <item quantity="other">%1$d%2$s စီးရီးကို ကူးယူမလား။</item>
+    </plurals>
+    <plurals name="manga_migrated">
+        <item quantity="one">%d စီးရီးကို ရွှေ့ပြောင်းထားသည်။</item>
+        <item quantity="other">%d စီးရီးကို ရွှေ့ပြောင်းထားသည်။</item>
+    </plurals>
+    <plurals name="restore_completed_message">
+        <item quantity="one">%1$s %2$s အမှားဖြင့် ပြီးပါပြီ။</item>
+        <item quantity="other">%1$s အမှားများဖြင့် %2$s တွင် ပြီးပါပြီ။</item>
+    </plurals>
+    <plurals name="cache_cleared">
+        <item quantity="one">ကက်ရှ်ကို ရှင်းလင်းထားသည်။ %d ဖိုင်ကို ဖျက်လိုက်ပါပြီ။</item>
+        <item quantity="other">ကက်ရှ်ကို ရှင်းလင်းထားသည်။ %d ဖိုင်များကို ဖျက်လိုက်ပါပြီ။</item>
+    </plurals>
+    <plurals name="cleanup_done">
+        <item quantity="one">သန့်ရှင်းရေး ပြီးပါပြီ။ %d ဖိုင်တွဲကို ဖယ်ရှားခဲ့သည်။</item>
+        <item quantity="other">သန့်ရှင်းရေး ပြီးပါပြီ။ %d ဖိုင်တွဲများကို ဖယ်ရှားခဲ့သည်။</item>
+    </plurals>
+    <plurals name="_series_types">
+        <item quantity="other">%d စီးရီးအမျိုးအစားများ</item>
+    </plurals>
+    <plurals name="_sources">
+        <item quantity="other">%d အရင်းအမြစ်များ</item>
+    </plurals>
+    <plurals name="_statuses">
+        <item quantity="other">%d အခြေအနေများ</item>
+    </plurals>
+    <plurals name="_languages">
+        <item quantity="other">%d ဘာသာစကားများ</item>
+    </plurals>
+    <plurals name="after_minutes">
+        <item quantity="one">%1$s မိနစ်ပြီးနောက်</item>
+        <item quantity="other">%1$s မိနစ်ပြီးနောက်</item>
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">&lt;x id="0"&gt;ကို ဝှက်ထားသည်။</item>
+        <item quantity="other">&lt;x id="0"&gt;အရာများကို ဝှက်ထားသည်။</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">%1$d အကြောင်းအရာကို ဖျောက်ထားသည်</item>
+        <item quantity="other">%1$d ဖိုင်များကို ဖျောက်ထားသည်</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">%d ဖတ်ပြီးသော အခန်းကို ကျော်သွားခဲ့သည်။</item>
+        <item quantity="other">%d ဖတ်ပြီးသော အခန်းများကို ကျော်သွားခဲ့သည်။</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">စစ်ထုတ်ထားသော %d အခန်းကို ကျော်သွားခဲ့သည်။</item>
+        <item quantity="other">စစ်ထုတ်ထားသော %d အခန်းများကို ကျော်သွားခဲ့သည်။</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">%d နေ့</item>
+        <item quantity="other">%d ရက်</item>
     </plurals>
 </resources>

@@ -1,8 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <plurals name="remove_n_chapters">
+        <item quantity="one">Alisin ang %1$d na-download na kabanata?</item>
+        <item quantity="other">Alisin ang %1$d mga na-download na kabanata?</item>
+    </plurals>
+    <plurals name="chapters_plural">
+        <item quantity="one">%1$s kabanata</item>
+        <item quantity="other">%1$s mga kabanata</item>
+    </plurals>
+    <plurals name="category_plural">
+        <item quantity="one">%d kategorya</item>
+        <item quantity="other">%d mga kategorya</item>
+    </plurals>
+    <plurals name="for_n_titles">
+        <item quantity="one">Para sa %d pamagat</item>
+        <item quantity="other">Para sa %d mga pamagat</item>
+    </plurals>
+    <plurals name="notification_and_n_more">
+        <item quantity="one">at %1$d higit pang kabanata</item>
+        <item quantity="other">at %1$d higit pang mga kabanata</item>
+    </plurals>
+    <plurals name="_updates_pending">
+        <item quantity="one">%d nakabinbin ang pag-update</item>
+        <item quantity="other">%d nakabinbin ang mga update</item>
+    </plurals>
+    <plurals name="extensions_updated_plural">
+        <item quantity="one">Na-update ang extension</item>
+        <item quantity="other">Na-update ang %d extension</item>
+    </plurals>
+    <plurals name="extension_updates_available">
+        <item quantity="one">Available ang pag-update ng extension</item>
+        <item quantity="other">%d available ang mga update sa extension</item>
+    </plurals>
+    <plurals name="pages_plural">
+        <item quantity="one">%1$d pahina</item>
+        <item quantity="other">%1$d mga pahina</item>
+    </plurals>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">Nilaktawan ang %d kabanata, nawawala man ang pinagmulan nito o na-filter out ito</item>
+        <item quantity="other">Nilaktawan ang %d na mga kabanata, maaaring wala ang pinagmulan nito o na-filter ang mga ito</item>
+    </plurals>
+    <plurals name="next_unread_chapters">
+        <item quantity="one">#
+Susunod na hindi pa nababasang kabanata</item>
+        <item quantity="other">#
+Susunod na %d mga hindi pa nababasang kabanata</item>
+    </plurals>
+    <plurals name="deleted_chapters">
+        <item quantity="one">Inalis ang isang kabanata sa pinagmulan:\n%2$s\nTanggalin
+            download nito?</item>
+        <item quantity="other">%1$s mga kabanata ay inalis mula sa pinagmulan:\n%2$s\n\nTanggalin
+            kanilang mga download?</item>
+    </plurals>
+    <plurals name="migrate_manga">
+        <item quantity="one">I-migrate ang %1$d%2$s serye?</item>
+        <item quantity="other">I-migrate ang %1$d%2$s serye?</item>
+    </plurals>
+    <plurals name="copy_manga">
+        <item quantity="one">Kopyahin ang serye ng %1$d%2$s?</item>
+        <item quantity="other">Kopyahin ang serye ng %1$d%2$s?</item>
+    </plurals>
+    <plurals name="manga_migrated">
+        <item quantity="one">%d na-migrate ang serye</item>
+        <item quantity="other">%d na-migrate ang serye</item>
+    </plurals>
+    <plurals name="restore_completed_message">
+        <item quantity="one">#
+Tapos na sa %1$s na may %2$s error</item>
+        <item quantity="other">#
+Tapos na sa %1$s na may %2$s na mga error</item>
+    </plurals>
+    <plurals name="cache_cleared">
+        <item quantity="one">Na-clear ang cache. Ang %d file ay tinanggal</item>
+        <item quantity="other">#
+Na-clear ang cache. %d mga file ay tinanggal</item>
+    </plurals>
     <plurals name="cleanup_done">
         <item quantity="one">Tapos na ang paglilinis. Nakapagtanggal ng %d folder.</item>
         <item quantity="other">Tapos na ang paglilinis. Nakapagtanggal ng %d na mga folder.</item>
+    </plurals>
+    <plurals name="_series_types">
+        <item quantity="other">%d mga uri ng serye</item>
+    </plurals>
+    <plurals name="_sources">
+        <item quantity="other">#
+%d pinagmumulan</item>
+    </plurals>
+    <plurals name="_statuses">
+        <item quantity="other">#
+%d mga status</item>
+    </plurals>
+    <plurals name="_languages">
+        <item quantity="other">#
+%d mga wika</item>
+    </plurals>
+    <plurals name="after_minutes">
+        <item quantity="one">#
+Pagkatapos ng %1$s minuto</item>
+        <item quantity="other">#
+Pagkatapos ng %1$s minuto</item>
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">#
+%1$d nakatago ang item</item>
+        <item quantity="other">#
+%1$d nakatago ang mga item</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">#
+%1$d hindi nakatago ang item</item>
+        <item quantity="other">#
+%1$d na-unhide ang mga item</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">Nilaktawan ang %d nabasa nang kabanata</item>
+        <item quantity="other">Nilaktawan ang %d mga nabasa nang kabanata</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">Nilaktawan ang %d na-filter na kabanata</item>
+        <item quantity="other">Nilaktawan ang %d na-filter na mga kabanata</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">#
+%d araw</item>
+        <item quantity="other">%d araw</item>
     </plurals>
 </resources>

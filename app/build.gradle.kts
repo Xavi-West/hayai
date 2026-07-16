@@ -142,7 +142,6 @@ android {
             dimension = "default"
         }
         create("dev") {
-            androidResources.localeFilters.add("en")
             dimension = "default"
         }
     }

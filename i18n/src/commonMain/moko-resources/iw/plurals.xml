@@ -1,57 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <plurals name="category_plural">
-        <item quantity="one">קטגורייה אחת</item>
-        <item quantity="two">שתי קטגוריות</item>
-        <item quantity="many">%d קטגוריות</item>
-        <item quantity="other"/>
-    </plurals>
-    <plurals name="extension_updates_available">
-        <item quantity="one">זמין עדכון לתוסף</item>
-        <item quantity="two">זמינים עדכונים ל-%d תוספים</item>
-        <item quantity="many">זמינים עדכונים ל-%d תוספים</item>
-        <item quantity="other"/>
-    </plurals>
-    <plurals name="restore_completed_message">
-        <item quantity="one">הושלם ב %1$s עם שגיאה אחת</item>
-        <item quantity="two">הושלם ב %1$s עם שתי שגיאות</item>
-        <item quantity="many">הושלם ב %1$s עם %2$s שגיאות</item>
-        <item quantity="other"/>
-    </plurals>
-    <plurals name="after_minutes">
-        <item quantity="one">לאחר דקה אחת</item>
-        <item quantity="two">לאחר שתי דקות</item>
-        <item quantity="many">לאחר %1$s דקות</item>
-        <item quantity="other"/>
-    </plurals>
     <plurals name="remove_n_chapters">
         <item quantity="one">הסר %1$d פרק מההורדות\?</item>
-        <item quantity="two">הסר %1$d פרקים מההורדות\?</item>
-        <item quantity="many">הסר %1$d פרקים מההורדות\?</item>
         <item quantity="other">הסר %1$d פרקים מההורדות\?</item>
     </plurals>
     <plurals name="chapters_plural">
         <item quantity="one">%1$s פרק</item>
-        <item quantity="two">%1$s פרקים</item>
-        <item quantity="many">%1$s פרקים</item>
         <item quantity="other">%1$s פרקים</item>
+    </plurals>
+    <plurals name="category_plural">
+        <item quantity="one">קטגורייה אחת</item>
+        <item quantity="other" />
     </plurals>
     <plurals name="for_n_titles">
         <item quantity="one">עבור כותר אחד</item>
-        <item quantity="two">עבור שני כותרים</item>
-        <item quantity="many">עבור %d כותרים</item>
-        <item quantity="other"/>
+        <item quantity="other" />
+    </plurals>
+    <plurals name="notification_and_n_more">
+        <item quantity="one">ועוד %1$d פרק</item>
+        <item quantity="other">ו-%1$d פרקים נוספים</item>
+    </plurals>
+    <plurals name="_updates_pending">
+        <item quantity="one">%d עדכון בהמתנה</item>
+        <item quantity="other">%d עדכונים בהמתנה</item>
+    </plurals>
+    <plurals name="extensions_updated_plural">
+        <item quantity="one">ההרחבה עודכנה</item>
+        <item quantity="other">%d תוספים עודכנו</item>
+    </plurals>
+    <plurals name="extension_updates_available">
+        <item quantity="one">זמין עדכון לתוסף</item>
+        <item quantity="other" />
+    </plurals>
+    <plurals name="pages_plural">
+        <item quantity="one">דף %1$d</item>
+        <item quantity="other">%1$d דפים</item>
     </plurals>
     <plurals name="missing_chapters_warning">
         <item quantity="one">דולג פרק אחד, המקור חסר או שהוא סונן החוצה</item>
-        <item quantity="two">דולגו שני פרקים, המקור חסר או שהם סוננו החוצה</item>
-        <item quantity="many">דולגו %d פרקים, המקור חסר או שהם סוננו החוצה</item>
-        <item quantity="other"/>
+        <item quantity="other" />
     </plurals>
     <plurals name="next_unread_chapters">
         <item quantity="one">הפרק הבא שלא נקרא</item>
-        <item quantity="two">שני הפרקים הבאים שלא נקראו</item>
-        <item quantity="many">%d הפרקים הבאים שלא נקראו</item>
-        <item quantity="other"/>
+        <item quantity="other" />
+    </plurals>
+    <plurals name="deleted_chapters">
+        <item quantity="one">פרק הוסר מהמקור:\n%2$s\nמחק
+            ההורדה שלו?</item>
+        <item quantity="other">%1$s פרקים הוסרו מהמקור:\n%2$s\n\nמחק
+            ההורדות שלהם?</item>
+    </plurals>
+    <plurals name="migrate_manga">
+        <item quantity="one">להעביר %1$d%2$s סדרה?</item>
+        <item quantity="other">להעביר %1$d%2$s סדרה?</item>
+    </plurals>
+    <plurals name="copy_manga">
+        <item quantity="one">להעתיק %1$d%2$s סדרה?</item>
+        <item quantity="other">האם להעתיק %1$d%2$s סדרה?</item>
+    </plurals>
+    <plurals name="manga_migrated">
+        <item quantity="one">%d סדרה עברה</item>
+        <item quantity="other">%d סדרה עברה</item>
+    </plurals>
+    <plurals name="restore_completed_message">
+        <item quantity="one">הושלם ב %1$s עם שגיאה אחת</item>
+        <item quantity="other" />
+    </plurals>
+    <plurals name="cache_cleared">
+        <item quantity="one">המטמון נוקה. הקובץ %d נמחק</item>
+        <item quantity="other">המטמון נוקה. %d קבצים נמחקו</item>
+    </plurals>
+    <plurals name="cleanup_done">
+        <item quantity="one">הניקוי נעשה. הוסרה תיקיית %d</item>
+        <item quantity="other">הניקוי נעשה. הוסרו %d תיקיות</item>
+    </plurals>
+    <plurals name="_series_types">
+        <item quantity="other">%d סוגי סדרות</item>
+    </plurals>
+    <plurals name="_sources">
+        <item quantity="other">%d מקורות</item>
+    </plurals>
+    <plurals name="_statuses">
+        <item quantity="other">%d סטטוסים</item>
+    </plurals>
+    <plurals name="_languages">
+        <item quantity="other">%d שפות</item>
+    </plurals>
+    <plurals name="after_minutes">
+        <item quantity="one">לאחר דקה אחת</item>
+        <item quantity="other" />
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">%1$d פריט מוסתר</item>
+        <item quantity="other">%1$d פריטים מוסתרים</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">%1$d פריט לא מוסתר</item>
+        <item quantity="other">%1$d פריטים בוטלו</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">דילג על %d פרק שכבר קרא</item>
+        <item quantity="other">דילג על %d פרקים שכבר קראו</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">דילג על %d פרק מסונן</item>
+        <item quantity="other">דילג על %d פרקים מסוננים</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">%d יום</item>
+        <item quantity="other">%d ימים</item>
     </plurals>
 </resources>

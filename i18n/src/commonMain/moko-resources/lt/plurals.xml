@@ -1,51 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <plurals name="extension_updates_available">
-        <item quantity="one">%d plėtinio atnaujinimas pasiekiamas</item>
-        <item quantity="few">%d plėtinių atnaujinimai pasiekiami</item>
-        <item quantity="other">%d plėtinių atnaujinimai pasiekiami</item>
+    <plurals name="remove_n_chapters">
+        <item quantity="one">Pašalinti %1$d atsisiųstą skyrių?</item>
+        <item quantity="other">Pašalinti %1$d atsisiųstų skyrių?</item>
     </plurals>
-
-    <plurals name="category_plural">
-        <item quantity="one">%d kategorija</item>
-        <item quantity="few">%d kategorijos</item>
-        <item quantity="other">%d kategorijos</item>
-    </plurals>
-
-    <plurals name="for_n_titles">
-        <item quantity="one">Dėl %d pavadinimo</item>
-        <item quantity="few">Dėl %d pavadinimų</item>
-        <item quantity="other">Dėl %d pavadinimo</item>
-    </plurals>
-
-    <plurals name="restore_completed_message">
-        <item quantity="one">Atlikta %1$s su %2$s klaida</item>
-        <item quantity="few">Atlikta %1$s su %2$s klaidomis</item>
-        <item quantity="other">Atlikta %1$s su %2$s klaidomis</item>
-    </plurals>
-
-    <plurals name="after_minutes">
-        <item quantity="one">Po %1$s minutės</item>
-        <item quantity="few">Po %1$s minučių</item>
-        <item quantity="other">Po %1$s minučių</item>
-    </plurals>
-
-    <plurals name="next_unread_chapters">
-        <item quantity="one">Kitas neskaitytas skyrius</item>
-        <item quantity="few">Kiti %d neskaityti skyriai</item>
-        <item quantity="other">Kiti %d neskaitytų skyrių</item>
-    </plurals>
-
     <plurals name="chapters_plural">
         <item quantity="one">%1$s skyrius</item>
-        <item quantity="few">%1$s skyriai</item>
         <item quantity="other">%1$s skyriai</item>
     </plurals>
-
+    <plurals name="category_plural">
+        <item quantity="one">%d kategorija</item>
+        <item quantity="other">%d kategorijos</item>
+    </plurals>
+    <plurals name="for_n_titles">
+        <item quantity="one">Dėl %d pavadinimo</item>
+        <item quantity="other">Dėl %d pavadinimo</item>
+    </plurals>
+    <plurals name="notification_and_n_more">
+        <item quantity="one">ir dar %1$d skyrius</item>
+        <item quantity="other">ir dar %1$d skyrių</item>
+    </plurals>
+    <plurals name="_updates_pending">
+        <item quantity="one">Laukiama %d atnaujinimo</item>
+        <item quantity="other">Laukiama %d atnaujinimų</item>
+    </plurals>
+    <plurals name="extensions_updated_plural">
+        <item quantity="one">Plėtinys atnaujintas</item>
+        <item quantity="other">Atnaujinta %d plėtinių</item>
+    </plurals>
+    <plurals name="extension_updates_available">
+        <item quantity="one">%d plėtinio atnaujinimas pasiekiamas</item>
+        <item quantity="other">%d plėtinių atnaujinimai pasiekiami</item>
+    </plurals>
+    <plurals name="pages_plural">
+        <item quantity="one">%1$d puslapis</item>
+        <item quantity="other">%1$d puslapių</item>
+    </plurals>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Praleidžiamas %d skyrius, arba jo nėra šaltinyje, arba jis buvo nepasirinktas</item>
-        <item quantity="few">Praleidžiami %d skyriai, arba jų nėra šaltinyje, arba jie buvo nepasirinkti</item>
         <item quantity="other">Praleidžiamia %d skyrių, arba jų nėra šaltinyje, arba jie buvo nepasirinkti</item>
+    </plurals>
+    <plurals name="next_unread_chapters">
+        <item quantity="one">Kitas neskaitytas skyrius</item>
+        <item quantity="other">Kiti %d neskaitytų skyrių</item>
+    </plurals>
+    <plurals name="deleted_chapters">
+        <item quantity="one">Skyrius buvo pašalintas iš šaltinio:\n%2$s\nIštrinti
+            jo atsisiuntimas?</item>
+        <item quantity="other">%1$s skyriai buvo pašalinti iš šaltinio:\n%2$s\n\nIštrinti
+            jų atsisiuntimai?</item>
+    </plurals>
+    <plurals name="migrate_manga">
+        <item quantity="one">Perkelti %1$d%2$s seriją?</item>
+        <item quantity="other">Perkelti %1$d%2$s seriją?</item>
+    </plurals>
+    <plurals name="copy_manga">
+        <item quantity="one">Kopijuoti %1$d%2$s seriją?</item>
+        <item quantity="other">Kopijuoti %1$d%2$s seriją?</item>
+    </plurals>
+    <plurals name="manga_migrated">
+        <item quantity="one">%d serija perkelta</item>
+        <item quantity="other">%d serija perkelta</item>
+    </plurals>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Atlikta %1$s su %2$s klaida</item>
+        <item quantity="other">Atlikta %1$s su %2$s klaidomis</item>
+    </plurals>
+    <plurals name="cache_cleared">
+        <item quantity="one">Talpykla išvalyta. %d failas buvo ištrintas</item>
+        <item quantity="other">Talpykla išvalyta. Ištrinta %d failų</item>
+    </plurals>
+    <plurals name="cleanup_done">
+        <item quantity="one">Valymas atliktas. Pašalintas aplankas %d</item>
+        <item quantity="other">Valymas atliktas. Pašalinta %d aplankų</item>
+    </plurals>
+    <plurals name="_series_types">
+        <item quantity="other">%d serijos tipai</item>
+    </plurals>
+    <plurals name="_sources">
+        <item quantity="other">%d šaltinių</item>
+    </plurals>
+    <plurals name="_statuses">
+        <item quantity="other">%d būsenos</item>
+    </plurals>
+    <plurals name="_languages">
+        <item quantity="other">%d kalbų</item>
+    </plurals>
+    <plurals name="after_minutes">
+        <item quantity="one">Po %1$s minutės</item>
+        <item quantity="other">Po %1$s minučių</item>
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">%1$d elementas paslėptas</item>
+        <item quantity="other">Paslėpta %1$d elementų</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">%1$d elementas nebeslepiamas</item>
+        <item quantity="other">%1$d elementai nebepaslėpti</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">Praleistas %d jau perskaitytas skyrius</item>
+        <item quantity="other">Praleista %d jau perskaitytų skyrių</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">Praleistas %d filtruotas skyrius</item>
+        <item quantity="other">Praleista %d filtruotų skyrių</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">%d dieną</item>
+        <item quantity="other">%d d</item>
     </plurals>
 </resources>

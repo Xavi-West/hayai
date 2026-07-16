@@ -1,48 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <plurals name="restore_completed_message">
-        <item quantity="zero">Pabeigts %1$s ar %2$s kļūdām</item>
-        <item quantity="one">Pabeigts %1$s ar %2$s kļūdu</item>
-        <item quantity="other">Pabeigts %1$s ar %2$s kļūdām</item>
-    </plurals>
-    <plurals name="notification_and_n_more">
-        <item quantity="zero">un vēl %1$d nodaļas</item>
-        <item quantity="one">un vēl %1$d nodaļa</item>
-        <item quantity="other">un vēl %1$d nodaļas</item>
+    <plurals name="remove_n_chapters">
+        <item quantity="one">Vai noņemt %1$d lejupielādēto nodaļu?</item>
+        <item quantity="other">Vai noņemt %1$d lejupielādētās nodaļas?</item>
     </plurals>
     <plurals name="chapters_plural">
-        <item quantity="zero">%1$s nodaļas</item>
         <item quantity="one">%1$s nodaļa</item>
         <item quantity="other">%1$s nodaļas</item>
     </plurals>
-    <plurals name="after_minutes">
-        <item quantity="zero">Pēc %1$s minūtēmPēc %1$s minūtesPēc %1$s minūtēm</item>
-        <item quantity="one"/>
-        <item quantity="other"/>
-    </plurals>
     <plurals name="category_plural">
-        <item quantity="zero">%d kategoriju%d kategorija%d kategorijas</item>
-        <item quantity="one"/>
-        <item quantity="other"/>
-    </plurals>
-    <plurals name="extension_updates_available">
-        <item quantity="zero">Pieejami %d paplašinājumi atjaunināšanaiPieejams %d paplašinājums atjaunināšanaiPieejami %d paplašinājumi atjaunināšanai</item>
-        <item quantity="one"/>
-        <item quantity="other"/>
+        <item quantity="one" />
+        <item quantity="other" />
     </plurals>
     <plurals name="for_n_titles">
-        <item quantity="zero">Priekš %dPriekš %dPriekš %d</item>
-        <item quantity="one"/>
-        <item quantity="other"/>
+        <item quantity="one" />
+        <item quantity="other" />
+    </plurals>
+    <plurals name="notification_and_n_more">
+        <item quantity="one">un vēl %1$d nodaļa</item>
+        <item quantity="other">un vēl %1$d nodaļas</item>
+    </plurals>
+    <plurals name="_updates_pending">
+        <item quantity="one">%d gaida atjauninājumu</item>
+        <item quantity="other">%d gaida atjauninājumus</item>
+    </plurals>
+    <plurals name="extensions_updated_plural">
+        <item quantity="one">Paplašinājums atjaunināts</item>
+        <item quantity="other">%d paplašinājumi ir atjaunināti</item>
+    </plurals>
+    <plurals name="extension_updates_available">
+        <item quantity="one" />
+        <item quantity="other" />
+    </plurals>
+    <plurals name="pages_plural">
+        <item quantity="one">%1$d lapa</item>
+        <item quantity="other">%1$d lapas</item>
     </plurals>
     <plurals name="missing_chapters_warning">
-        <item quantity="zero">Izlaisti %d nodaļu, vai nu to nav avotā, vai arī tie ir izfiltrēti</item>
         <item quantity="one">Izlaists %d nodaļa, vai nu tā nav avotā, vai arī tā ir izfiltrēta</item>
         <item quantity="other">Izlaistas %d nodaļas, vai nu tās nav avotā, vai arī tās ir izfiltrētas</item>
     </plurals>
     <plurals name="next_unread_chapters">
-        <item quantity="zero">Nākamā nelasītā nodaļa</item>
         <item quantity="one">Nākamā nelasītā nodaļa</item>
         <item quantity="other">Nākamās %d nelasītas nodaļas</item>
+    </plurals>
+    <plurals name="deleted_chapters">
+        <item quantity="one">No avota ir noņemta nodaļa:\n%2$s\nDzēst
+            tās lejupielāde?</item>
+        <item quantity="other">%1$s nodaļas ir noņemtas no avota:\n%2$s\n\nDzēst
+            viņu lejupielādes?</item>
+    </plurals>
+    <plurals name="migrate_manga">
+        <item quantity="one">Vai migrēt sēriju %1$d%2$s?</item>
+        <item quantity="other">Vai migrēt sēriju %1$d%2$s?</item>
+    </plurals>
+    <plurals name="copy_manga">
+        <item quantity="one">Vai kopēt sēriju %1$d%2$s?</item>
+        <item quantity="other">Vai kopēt sēriju %1$d%2$s?</item>
+    </plurals>
+    <plurals name="manga_migrated">
+        <item quantity="one">%d sērija ir migrēta</item>
+        <item quantity="other">%d sērija ir migrēta</item>
+    </plurals>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Pabeigts %1$s ar %2$s kļūdu</item>
+        <item quantity="other">Pabeigts %1$s ar %2$s kļūdām</item>
+    </plurals>
+    <plurals name="cache_cleared">
+        <item quantity="one">Kešatmiņa notīrīta. %d fails ir izdzēsts</item>
+        <item quantity="other">Kešatmiņa notīrīta. %d faili ir izdzēsti</item>
+    </plurals>
+    <plurals name="cleanup_done">
+        <item quantity="one">Tīrīšana veikta. Noņemta mape %d</item>
+        <item quantity="other">Tīrīšana veikta. Noņemtas %d mapes</item>
+    </plurals>
+    <plurals name="_series_types">
+        <item quantity="other">%d sērijas veidi</item>
+    </plurals>
+    <plurals name="_sources">
+        <item quantity="other">%d avoti</item>
+    </plurals>
+    <plurals name="_statuses">
+        <item quantity="other">%d statusi</item>
+    </plurals>
+    <plurals name="_languages">
+        <item quantity="other">%d valodas</item>
+    </plurals>
+    <plurals name="after_minutes">
+        <item quantity="one" />
+        <item quantity="other" />
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">%1$d vienums ir paslēpts</item>
+        <item quantity="other">%1$d vienumi ir paslēpti</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">%1$d vienums ir atcelts</item>
+        <item quantity="other">%1$d vienumi ir atcelti</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">Izlaista %d jau izlasītā nodaļa</item>
+        <item quantity="other">Izlaistas %d jau lasītas nodaļas</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">Izlaista %d filtrētā nodaļa</item>
+        <item quantity="other">Izlaistas %d filtrētās nodaļas</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">%d diena</item>
+        <item quantity="other">%d dienas</item>
     </plurals>
 </resources>

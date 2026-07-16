@@ -10,22 +10,104 @@
     </plurals>
     <plurals name="category_plural">
         <item quantity="one">%d kategorio%d kategorioj</item>
-        <item quantity="other"/>
+        <item quantity="other" />
     </plurals>
-    <plurals name="restore_completed_message">
-        <item quantity="one">Farita en %1$s kun %2$s eraro</item>
-        <item quantity="other">Farita en %1$s kun %2$s eraroj</item>
+    <plurals name="for_n_titles">
+        <item quantity="one">Por 1 titoloPor %d titoloj</item>
+        <item quantity="other" />
+    </plurals>
+    <plurals name="notification_and_n_more">
+        <item quantity="one">kaj %1$d plia ĉapitro</item>
+        <item quantity="other">kaj %1$d pliajn ĉapitrojn</item>
+    </plurals>
+    <plurals name="_updates_pending">
+        <item quantity="one">%d ĝisdatigo atendas</item>
+        <item quantity="other">%d ĝisdatigoj atendataj</item>
+    </plurals>
+    <plurals name="extensions_updated_plural">
+        <item quantity="one">Etendo ĝisdatigita</item>
+        <item quantity="other">%d etendaĵoj ĝisdatigitaj</item>
+    </plurals>
+    <plurals name="extension_updates_available">
+        <item quantity="one">Ĝisdatigo de etendaĵo havebla</item>
+        <item quantity="other">%d etendaj ĝisdatigoj haveblaj</item>
+    </plurals>
+    <plurals name="pages_plural">
+        <item quantity="one">%1$d paĝo</item>
+        <item quantity="other">%1$d paĝoj</item>
     </plurals>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Mankas 1 ĉapitron</item>
         <item quantity="other">Mankas %d ĉapitrojn</item>
     </plurals>
+    <plurals name="next_unread_chapters">
+        <item quantity="one">Sekva nelegita ĉapitro</item>
+        <item quantity="other">Sekvaj %d nelegitaj ĉapitroj</item>
+    </plurals>
+    <plurals name="deleted_chapters">
+        <item quantity="one">Ĉapitro estas forigita el la fonto:\n%2$s\nForigi
+            ĝia elŝuto?</item>
+        <item quantity="other">%1$s ĉapitroj estas forigitaj de la fonto:\n%2$s\n\nForigi
+            iliaj elŝutoj?</item>
+    </plurals>
+    <plurals name="migrate_manga">
+        <item quantity="one">Migri %1$d%2$s seriojn?</item>
+        <item quantity="other">Migri %1$d%2$s seriojn?</item>
+    </plurals>
+    <plurals name="copy_manga">
+        <item quantity="one">Ĉu kopii %1$d%2$s seriojn?</item>
+        <item quantity="other">Ĉu kopii %1$d%2$s seriojn?</item>
+    </plurals>
+    <plurals name="manga_migrated">
+        <item quantity="one">%d serio migris</item>
+        <item quantity="other">%d serio migris</item>
+    </plurals>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Farita en %1$s kun %2$s eraro</item>
+        <item quantity="other">Farita en %1$s kun %2$s eraroj</item>
+    </plurals>
+    <plurals name="cache_cleared">
+        <item quantity="one">Kaŝmemoro malplenigita. %d dosiero estis forigita</item>
+        <item quantity="other">Kaŝmemoro malplenigita. %d dosieroj estis forigitaj</item>
+    </plurals>
+    <plurals name="cleanup_done">
+        <item quantity="one">Purigado farita. Forigita %d dosierujo</item>
+        <item quantity="other">Purigado farita. Forigitaj %d dosierujoj</item>
+    </plurals>
+    <plurals name="_series_types">
+        <item quantity="other">%d seriotipoj</item>
+    </plurals>
+    <plurals name="_sources">
+        <item quantity="other">%d fontoj</item>
+    </plurals>
+    <plurals name="_statuses">
+        <item quantity="other">%d statoj</item>
+    </plurals>
+    <plurals name="_languages">
+        <item quantity="other">%d lingvoj</item>
+    </plurals>
     <plurals name="after_minutes">
         <item quantity="one">Post 1 minutoPost %1$s minutoj</item>
-        <item quantity="other"/>
+        <item quantity="other" />
     </plurals>
-    <plurals name="for_n_titles">
-        <item quantity="one">Por 1 titoloPor %d titoloj</item>
-        <item quantity="other"/>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">%1$d ero kaŝita</item>
+        <item quantity="other">%1$d eroj kaŝitaj</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">%1$d ero nekaŝita</item>
+        <item quantity="other">%1$d eroj nekaŝitaj</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">Preterpasis %d jam legitan ĉapitron</item>
+        <item quantity="other">Preterpasis %d jam legitajn ĉapitrojn</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">Saltis %d filtritan ĉapitron</item>
+        <item quantity="other">Saltis %d filtritajn ĉapitrojn</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">%d tago</item>
+        <item quantity="other">%d tagoj</item>
     </plurals>
 </resources>

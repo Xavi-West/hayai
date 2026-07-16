@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <plurals name="extension_updates_available">
-        <item quantity="one">Хушма валли ҫӗнетӳ пур</item>
-        <item quantity="other">%d хушма валли ҫӗнетӳ пур</item>
+    <plurals name="remove_n_chapters">
+        <item quantity="one">%1$d тиенӗ сыпӑка катертмелле-и\?</item>
+        <item quantity="other">%1$d тиенӗ сыпӑксене катертмелле-и\?</item>
     </plurals>
     <plurals name="chapters_plural">
         <item quantity="one">%1$s сыпӑк</item>
@@ -12,24 +12,102 @@
         <item quantity="one">%d пухмӑш</item>
         <item quantity="other">%d пухмӑш</item>
     </plurals>
-    <plurals name="remove_n_chapters">
-        <item quantity="one">%1$d тиенӗ сыпӑка катертмелле-и\?</item>
-        <item quantity="other">%1$d тиенӗ сыпӑксене катертмелле-и\?</item>
-    </plurals>
-    <plurals name="restore_completed_message">
-        <item quantity="one">%1$s,%2$s йӑнӑшпа тӑвӑннӑ%1$s, %2$s йӑнӑшпа тӑвӑннӑ</item>
-        <item quantity="other"/>
-    </plurals>
-    <plurals name="after_minutes">
-        <item quantity="one">1 минут хыҫҫӑн%1$s минут хыҫҫӑн</item>
-        <item quantity="other"/>
-    </plurals>
     <plurals name="for_n_titles">
         <item quantity="one">Ҫӗнӗ сыпӑксем 1 хайлав валли тупӑннӑҪӗнӗ сыпӑксем %d хайлав валли тупӑннӑ</item>
-        <item quantity="other"/>
+        <item quantity="other" />
+    </plurals>
+    <plurals name="notification_and_n_more">
+        <item quantity="one">тата %1$d ытларах сыпӑк</item>
+        <item quantity="other">тата %1$d ытларах сыпӑксем</item>
+    </plurals>
+    <plurals name="_updates_pending">
+        <item quantity="one">%d ҫӗнетӳ кӗтет</item>
+        <item quantity="other">%d ҫӗнетӳсем кӗтеҫҫӗ</item>
+    </plurals>
+    <plurals name="extensions_updated_plural">
+        <item quantity="one">Тӑсӑм ҫӗнетнӗ</item>
+        <item quantity="other">%d расширенисем ҫӗнетнӗ</item>
+    </plurals>
+    <plurals name="extension_updates_available">
+        <item quantity="one">Хушма валли ҫӗнетӳ пур</item>
+        <item quantity="other">%d хушма валли ҫӗнетӳ пур</item>
+    </plurals>
+    <plurals name="pages_plural">
+        <item quantity="one">%1$d страница</item>
+        <item quantity="other">%1$d страницӑсем</item>
     </plurals>
     <plurals name="missing_chapters_warning">
         <item quantity="one">1 сыпӑк ҫук</item>
         <item quantity="other">%d сыпӑк ҫук</item>
+    </plurals>
+    <plurals name="next_unread_chapters">
+        <item quantity="one">Тепӗр вуламан сыпӑк</item>
+        <item quantity="other">Тепӗр %d вуламан сыпӑксем</item>
+    </plurals>
+    <plurals name="deleted_chapters">
+        <item quantity="one">Ҫӑлкуҫран пӗр сыпӑка кӑларса пӑрахнӑ:\n%2$s\nDelete
+            унӑн скачать?</item>
+        <item quantity="other">%1$s сыпӑксене ҫӑлкуҫран кӑларса пӑрахнӑ:\n%2$s\n\nDelete
+            вӗсен скачиванийӗсем?</item>
+    </plurals>
+    <plurals name="migrate_manga">
+        <item quantity="one">%1$d%2$s ярӑма куҫармалла-и?</item>
+        <item quantity="other">%1$d%2$s ярӑма куҫармалла-и?</item>
+    </plurals>
+    <plurals name="copy_manga">
+        <item quantity="one">%1$d%2$s ярӑма копилемелле-и?</item>
+        <item quantity="other">%1$d%2$s ярӑма копилемелле-и?</item>
+    </plurals>
+    <plurals name="manga_migrated">
+        <item quantity="one">%d ярӑм куҫнӑ</item>
+        <item quantity="other">%d ярӑм куҫнӑ</item>
+    </plurals>
+    <plurals name="restore_completed_message">
+        <item quantity="one">%1$s,%2$s йӑнӑшпа тӑвӑннӑ%1$s, %2$s йӑнӑшпа тӑвӑннӑ</item>
+        <item quantity="other" />
+    </plurals>
+    <plurals name="cache_cleared">
+        <item quantity="one">Кэш тасатнӑ. %d файла пӗтернӗ</item>
+        <item quantity="other">Кэш тасатнӑ. %d файлсене пӗтернӗ</item>
+    </plurals>
+    <plurals name="cleanup_done">
+        <item quantity="one">Тасатса пӗтернӗ. %d папкӑна кӑларса пӑрахнӑ</item>
+        <item quantity="other">Тасатса пӗтернӗ. %d папкӑсене кӑларса пӑрахнӑ</item>
+    </plurals>
+    <plurals name="_series_types">
+        <item quantity="other">%d ярӑм тӗсӗсем</item>
+    </plurals>
+    <plurals name="_sources">
+        <item quantity="other">%d ҫӑлкуҫсем</item>
+    </plurals>
+    <plurals name="_statuses">
+        <item quantity="other">%d статуссем</item>
+    </plurals>
+    <plurals name="_languages">
+        <item quantity="other">%d чӗлхесем</item>
+    </plurals>
+    <plurals name="after_minutes">
+        <item quantity="one">1 минут хыҫҫӑн%1$s минут хыҫҫӑн</item>
+        <item quantity="other" />
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">%1$d япала пытарнӑ</item>
+        <item quantity="other">%1$d пытарнӑ япаласем</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">%1$d япала пытарман</item>
+        <item quantity="other">%1$d пытарман япаласем</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">%d вуласа тухнӑ сыпӑка сиктерсе хӑварнӑ</item>
+        <item quantity="other">%d вуланӑ сыпӑксене сиктерсе хӑварнӑ</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">Сиктерсе хӑварнӑ %d фильтрланӑ сыпӑк</item>
+        <item quantity="other">%d фильтрланӑ сыпӑксене сиктерсе хӑварнӑ</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">%d кун</item>
+        <item quantity="other">%d кунсем</item>
     </plurals>
 </resources>

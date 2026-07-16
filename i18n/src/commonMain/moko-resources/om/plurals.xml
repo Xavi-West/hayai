@@ -12,4 +12,102 @@
         <item quantity="one">Ramaddi %d</item>
         <item quantity="other">Ramaddiiwwan %d</item>
     </plurals>
+    <plurals name="for_n_titles">
+        <item quantity="one">Mata duree %d tiif</item>
+        <item quantity="other">Mata dureewwan %d tiif</item>
+    </plurals>
+    <plurals name="notification_and_n_more">
+        <item quantity="one">fi %1$d boqonnaa dabalataa</item>
+        <item quantity="other">fi %1$d boqonnaawwan dabalataa</item>
+    </plurals>
+    <plurals name="_updates_pending">
+        <item quantity="one">%d fooyya'iinsi eegamaa jira</item>
+        <item quantity="other">%d fooyya'iinsi eegamaa jira</item>
+    </plurals>
+    <plurals name="extensions_updated_plural">
+        <item quantity="one">Eksteenshiniin haaromfame</item>
+        <item quantity="other">%d dheerina fooyya'eera</item>
+    </plurals>
+    <plurals name="extension_updates_available">
+        <item quantity="one">Fooyya'iinsi dheerina ni jira</item>
+        <item quantity="other">%d fooyya'iinsi dheerina ni jira</item>
+    </plurals>
+    <plurals name="pages_plural">
+        <item quantity="one">%1$d fuula</item>
+        <item quantity="other">%1$d fuula</item>
+    </plurals>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">Boqonnaa %d darbuun, yookaan maddi dhabameera yookaan calalamee ba'eera</item>
+        <item quantity="other">Boqonnaawwan %d darbuun, yookaan maddi isaan dhabe yookaan calalamaniiru</item>
+    </plurals>
+    <plurals name="next_unread_chapters">
+        <item quantity="one">Boqonnaa itti aanu kan hin dubbifamne</item>
+        <item quantity="other">Itti aansee %d boqonnaawwan hin dubbifamne</item>
+    </plurals>
+    <plurals name="deleted_chapters">
+        <item quantity="one">Boqonnaan tokko madda irraa haqameera:\n%2$s\nHaqi
+            buufachuu isaa?</item>
+        <item quantity="other">%1$s boqonnaawwan madda irraa haqamaniiru:\n%2$s\n\nHaqi
+            buufachuu isaanii?</item>
+    </plurals>
+    <plurals name="migrate_manga">
+        <item quantity="one">Tartiiba %1$d%2$s godaansi?</item>
+        <item quantity="other">Tartiiba %1$d%2$s godaansi?</item>
+    </plurals>
+    <plurals name="copy_manga">
+        <item quantity="one">Tartiiba %1$d%2$s waraabi?</item>
+        <item quantity="other">Tartiiba %1$d%2$s waraabi?</item>
+    </plurals>
+    <plurals name="manga_migrated">
+        <item quantity="one">%d tartiiba godaane</item>
+        <item quantity="other">%d tartiiba godaane</item>
+    </plurals>
+    <plurals name="restore_completed_message">
+        <item quantity="one">%1$s keessatti dogongora %2$s waliin raawwatame</item>
+        <item quantity="other">%1$s keessatti dogongora %2$s waliin raawwatame</item>
+    </plurals>
+    <plurals name="cache_cleared">
+        <item quantity="one">Cache qulqullaa'e. %d faayilii haqameera</item>
+        <item quantity="other">Cache qulqullaa'e. %d faayilii haqamaniiru</item>
+    </plurals>
+    <plurals name="cleanup_done">
+        <item quantity="one">Qulqullina raawwatame. Galfata %d haqame</item>
+        <item quantity="other">Qulqullina raawwatame. Galmeewwan %d haqaman</item>
+    </plurals>
+    <plurals name="_series_types">
+        <item quantity="other">%d akaakuuwwan tartiiba</item>
+    </plurals>
+    <plurals name="_sources">
+        <item quantity="other">%d maddoota</item>
+    </plurals>
+    <plurals name="_statuses">
+        <item quantity="other">%d haalawwan</item>
+    </plurals>
+    <plurals name="_languages">
+        <item quantity="other">%d afaanota</item>
+    </plurals>
+    <plurals name="after_minutes">
+        <item quantity="one">Daqiiqaa %1$s booda</item>
+        <item quantity="other">Daqiiqaa %1$s booda</item>
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">%1$d wanti dhokate</item>
+        <item quantity="other">%1$d wantoota dhokatan</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">%1$d wanti hin dhokanne</item>
+        <item quantity="other">%1$d wantoota hin dhokanne</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">%d boqonnaa duraan dubbifame darbeera</item>
+        <item quantity="other">%d boqonnaawwan duraan dubbifaman darbame</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">Boqonnaa %d calalame darbe</item>
+        <item quantity="other">Boqonnaawwan %d calalaman darbame</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">%d guyyaa</item>
+        <item quantity="other">%d guyyoota</item>
+    </plurals>
 </resources>
