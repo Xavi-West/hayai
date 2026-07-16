@@ -229,12 +229,11 @@ open class BrowseSourceController(bundle: Bundle) :
         if (sourceUiInitialized || !presenter.sourceIsInitialized) return
         sourceUiInitialized = true
 
-        if (presenter.sourceFilters.isEmpty() && !presenter.source.supportsLatest) {
-            binding.floatingBrowseBar.isVisible = false
-        } else {
-            binding.btnGroupFilter.isVisible = presenter.sourceFilters.isNotEmpty()
-            binding.btnGroupLatest.isVisible = presenter.source.supportsLatest
-        }
+        val hasFilters = presenter.sourceFilters.isNotEmpty()
+        val supportsLatest = presenter.source.supportsLatest
+        binding.floatingBrowseBar.isVisible = hasFilters || supportsLatest
+        binding.btnGroupFilter.isVisible = hasFilters
+        binding.btnGroupLatest.isVisible = supportsLatest
         val isFiltered = { !presenter.filtersMatchDefault() || presenter.query.isNotBlank() }
         binding.btnGroupPopular.setOnClickListener {
             if (presenter.useLatest || isFiltered()) {
