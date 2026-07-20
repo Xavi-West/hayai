@@ -1,126 +1,2029 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="comic">ବ୍ୟଙ୍ଗ</string>
+    <string name="app_name" translatable="false">Hayai</string>
+    <string name="app_short_name" translatable="false">Hayai</string>
+    <string name="app_normalized_name" translatable="false">Hayai</string>
+    <string name="action_menu_overflow_description">ଅଧିକ ବିକଳ୍ପ |</string>
+    <string name="action_bar_up_description">ନେଭିଗେଟ୍ କରନ୍ତୁ |</string>
+    <string name="onboarding_heading">ସ୍ Welcome ାଗତ!</string>
+    <string name="onboarding_description">କିଛି ଡିଫଲ୍ଟ ବାଛିବା | ଆପଣ ସବୁବେଳେ ସେଟିଂରେ ଏହି ଜିନିଷଗୁଡ଼ିକୁ ପରିବର୍ତ୍ତନ କରିପାରିବେ |</string>
+    <string name="onboarding_finish">ଆରମ୍ଭ କର |</string>
+    <string name="onboarding_storage_info">ଏକ ଫୋଲ୍ଡର ବାଛନ୍ତୁ ଯେଉଁଠାରେ &lt;x id = "0" /&gt; ଅଧ୍ୟାୟ ଡାଉନଲୋଡ୍, ବ୍ୟାକଅପ୍ ଏବଂ ଅଧିକ ସଂରକ୍ଷଣ କରିବ | \ n \ n ଏକ ଉତ୍ସର୍ଗୀକୃତ ଫୋଲ୍ଡର ସୁପାରିଶ କରାଯାଏ | \ n \ n ମନୋନୀତ ଫୋଲ୍ଡର: &lt;x id = "1" /&gt;</string>
+    <string name="onboarding_storage_action_select">ଏକ ଫୋଲ୍ଡର୍ ଚୟନ କରନ୍ତୁ |</string>
+    <string name="onboarding_storage_help_info">ଏକ ପୁରାତନ ସଂସ୍କରଣରୁ ଅଦ୍ୟତନ କରିବା ଏବଂ କ’ଣ ବାଛିବାକୁ ନିଶ୍ଚିତ ନୁହେଁ? ଅଧିକ ସୂଚନା ପାଇଁ ମିହନ୍ ଷ୍ଟୋରେଜ୍ ଗାଇଡ୍ ଉପରେ ଟାଚିୟୋମି ଅପଗ୍ରେଡ୍ ବିଭାଗକୁ ଅନୁସରଣ କରନ୍ତୁ |</string>
+    <string name="onboarding_storage_help_action">ଷ୍ଟୋରେଜ୍ ଗାଇଡ୍ |</string>
+    <string name="onboarding_permission_type_required">ଆବଶ୍ୟକ</string>
+    <string name="onboarding_permission_type_optional">ବ tion କଳ୍ପିକ କିନ୍ତୁ ପରାମର୍ଶିତ |</string>
+    <string name="onboarding_permission_install_apps">ଆପ୍ସ ଅନୁମତି ସଂସ୍ଥାପନ କରନ୍ତୁ |</string>
+    <string name="onboarding_permission_install_apps_description">ଅପଡେଟ୍ ଉପରେ ଆପ୍ ସଂସ୍ଥାପନ କରିବାକୁ |</string>
+    <string name="onboarding_permission_notifications">ବିଜ୍ଞପ୍ତି ଅନୁମତି |</string>
+    <string name="onboarding_permission_notifications_description">ଲାଇବ୍ରେରୀ ଅପଡେଟ୍ ଏବଂ ଅଧିକ ପାଇଁ ବିଜ୍ଞପ୍ତି ପ୍ରାପ୍ତ କରନ୍ତୁ |</string>
+    <string name="onboarding_permission_ignore_battery_opts">ପୃଷ୍ଠଭୂମି ବ୍ୟାଟେରୀ ବ୍ୟବହାର |</string>
+    <string name="onboarding_permission_ignore_battery_opts_description">ଦୀର୍ଘ ଦିନ ଧରି ଚାଲୁଥିବା ଲାଇବ୍ରେରୀ ଅପଡେଟ୍, ଡାଉନଲୋଡ୍ ଏବଂ ବ୍ୟାକଅପ୍ ପୁନରୁଦ୍ଧାରରେ ବାଧାକୁ ଏଡାନ୍ତୁ |</string>
+    <string name="onboarding_permission_action_grant">ଅନୁଦାନ</string>
+    <string name="onboarding_library_view_description">ଆପଣଙ୍କ ଲାଇବ୍ରେରୀରେ ବର୍ଗଗୁଡିକ କିପରି ଦେଖାଯାଏ ତାହା ବାଛନ୍ତୁ | ଆପଣ ସେଟିଂସମୂହରୁ ଯେକ time ଣସି ସମୟରେ ସୁଇଚ୍ କରିପାରିବେ |</string>
+    <string name="onboarding_library_view_continuous_description">ସମସ୍ତ ବର୍ଗ ଏକ ତାଲିକାରେ ସ୍କ୍ରୋଲ୍ କରନ୍ତୁ, ସେମାନଙ୍କ ମଧ୍ୟରେ ବର୍ଗ ହେଡର୍ ସହିତ |</string>
+    <string name="onboarding_library_view_tabbed_description">ପ୍ରତ୍ୟେକ ବର୍ଗ ଶୀର୍ଷରେ ନିଜର ଟ୍ୟାବ୍ ପାଇଥାଏ, ତେଣୁ ଗୋଟିଏ ଥରରେ କେବଳ ଗୋଟିଏ ବର୍ଗ ଦୃଶ୍ୟମାନ ହୁଏ |</string>
+    <string name="no_location_set">କ storage ଣସି ସଂରକ୍ଷଣ ସ୍ଥାନ ସେଟ୍ ହୋଇନାହିଁ |</string>
+    <string name="invalid_location">ଅବ val ଧ ଅବସ୍ଥାନ: &lt;x id = "0" /&gt; |</string>
+    <string name="invalid_location_generic">ଅବ val ଧ ଅବସ୍ଥାନ |</string>
     <string name="manga">ମଙ୍ଗା</string>
-    <string name="description">ବର୍ଣ୍ଣନା</string>
-    <string name="unread">ପଢ଼ି ନାହାଁନ୍ତି</string>
-    <string name="bookmarked">ବୁକମାର୍କ ହୋଇଅଛି</string>
-    <string name="library">ଲାଇବ୍ରେରୀ</string>
-    <string name="history">ଇତିବୃତ୍ତି</string>
-    <string name="tracked">ଟ୍ରାକ୍ ହୋଇଅଛି</string>
-    <string name="started">ଆରମ୍ଭ କରିଛନ୍ତି</string>
-    <string name="reader">ପାଠକ</string>
-    <string name="appearance">ରୂପ</string>
-    <string name="advanced">ବିକଶିତ</string>
-    <string name="incognito_mode">ଅପରିଚିତ ମୋଡ୍</string>
-    <string name="app_theme">ଆପ୍ ଥିମ୍</string>
-    <string name="progress">ପ୍ରଗତି</string>
-    <string name="version">ସଂସ୍କରଣ</string>
-    <string name="every_3_days">ପ୍ରତି ୩ ଦିନରେ</string>
-    <string name="add">ଯୋଡ଼ନ୍ତୁ</string>
-    <string name="default_value">ଡିଫଲ୍ଟ</string>
-    <string name="edit">ସମ୍ପାଦନା</string>
-    <string name="filter">ଶୋଧନ</string>
-    <string name="left">ବାମ</string>
-    <string name="name">ନାମ</string>
-    <string name="newest">ସବୁଠୁ ନୂଆ</string>
-    <string name="oldest">ସବୁଠୁ ପୁରୁଣା</string>
-    <string name="right">ଡାହାଣ</string>
-    <string name="select_all">ସବୁ ଚୟନ କରନ୍ତୁ</string>
-    <string name="sort">ସଜାନ୍ତୁ</string>
+    <string name="novel">ଉପନ୍ୟାସ</string>
+    <string name="manhwa">ମନୱା</string>
+    <string name="manhua">ମାନହୁଆ |</string>
+    <string name="comic">ବ୍ୟଙ୍ଗ</string>
+    <string name="library_entries">ଲାଇବ୍ରେରୀ ଏଣ୍ଟ୍ରିଗୁଡିକ |</string>
+    <string name="not_started">ଆରମ୍ଭ ହୋଇନାହିଁ |</string>
+    <string name="in_progress">ଚାଲିଛି |</string>
+    <string name="read">ପ .଼ନ୍ତୁ |</string>
     <string name="title">ଆଖ୍ୟା</string>
+    <string name="author">ଲେଖକ</string>
+    <string name="original_value_hint_format">&lt;x id = "0" /&gt;: &lt;x id = "1" /&gt; |</string>
+    <string name="artist">ଚିତ୍ରକର</string>
+    <string name="description">ବର୍ଣ୍ଣନା</string>
+    <string name="move_x_to">&lt;X id = "0" /&gt; କୁ ଘୁଞ୍ଚାନ୍ତୁ |</string>
+    <string name="add_x_to">&lt;X id = "0" /&gt; କୁ ଯୋଡନ୍ତୁ |</string>
+    <string name="ongoing">ଚାଲୁ ରହିଛି |</string>
+    <string name="unknown">ଅଜ୍ଞାତ</string>
+    <string name="unknown_status">ଅଜ୍ଞାତ ସ୍ଥିତି |</string>
+    <string name="licensed">ଲାଇସେନ୍ସପ୍ରାପ୍ତ</string>
+    <string name="completed">ସାରିଛନ୍ତି</string>
+    <string name="publishing_finished">ପ୍ରକାଶନ ସମାପ୍ତ</string>
+    <string name="cancelled">ବାତିଲ</string>
+    <string name="on_hiatus">ବ୍ୟବଧାନରେ</string>
+    <string name="unlock_library">ଲାଇବ୍ରେରୀକୁ ପ୍ରବେଶ କରିବାକୁ ଅନଲକ୍ କରନ୍ତୁ |</string>
+    <string name="unlock">ଅନଲକ୍ କରନ୍ତୁ |</string>
+    <string name="lock_with_biometrics">ଅନଲକ୍ ଆବଶ୍ୟକ |</string>
+    <string name="lock_when_idle">ନିଷ୍କ୍ରିୟ ହେଲେ ଲକ୍ କରନ୍ତୁ |</string>
+    <string name="chapters">ଅଧ୍ୟାୟଗୁଡ଼ିକ</string>
+    <string name="new_chapters">ନୂତନ ଅଧ୍ୟାୟ |</string>
+    <string name="unread">ପଢ଼ି ନାହାଁନ୍ତି</string>
+    <string name="last_read_chapter_">ଶେଷ ପ read ଼ନ୍ତୁ ଅଧ୍ୟାୟ &lt;x id = "0" /&gt; |</string>
+    <string name="chapter_">ଅଧ୍ୟାୟ &lt;x id = "0" /&gt; |</string>
+    <string name="chapter_x_of_y">&lt;X id = "1" /&gt; ର ଅଧ୍ୟାୟ &lt;x id = "0" /&gt; |</string>
+    <string name="page_x_of_y">&lt;X id = "1" /&gt; ର ପୃଷ୍ଠା &lt;x id = "0" /&gt; |</string>
+    <string name="all_chapters_read">ସମସ୍ତ ଅଧ୍ୟାୟ ପ read ଼ାଯାଏ |</string>
+    <string name="bookmarked">ବୁକମାର୍କ ହୋଇଅଛି</string>
+    <string name="not_bookmarked">ବୁକମାର୍କ ହୋଇନାହିଁ |</string>
+    <string name="marked_as_read">ପ read ଼ିବା ପରି ଚିହ୍ନିତ |</string>
+    <string name="marked_as_unread">ପ read ା ହୋଇନଥିବା ଭାବରେ ଚିହ୍ନିତ |</string>
+    <string name="removed_bookmark">ବୁକମାର୍କ ଅପସାରଣ କରାଯାଇଛି |</string>
+    <string name="action_bookmark">ବୁକମାର୍କ</string>
+    <string name="action_remove_bookmark">ବୁକମାର୍କ ଅପସାରଣ କରନ୍ତୁ |</string>
+    <string name="chapters_removed">ଅଧ୍ୟାୟଗୁଡିକ ଅପସାରିତ ହୋଇଛି |</string>
+    <string name="chapter_not_found">ଅଧ୍ୟାୟ ମିଳିଲା ନାହିଁ |</string>
+    <string name="local_invalid_format">ଅବ val ଧ ଅଧ୍ୟାୟ ଫର୍ମାଟ୍ |</string>
+    <string name="order_by">ଦ୍ Order ାରା ଅର୍ଡର |</string>
+    <string name="no_chapters_error">କ No ଣସି ଅଧ୍ୟାୟ ମିଳିଲା ନାହିଁ |</string>
+    <string name="no_pages_found">କ pages ଣସି ପୃଷ୍ଠା ମିଳିଲା ନାହିଁ |</string>
+    <string name="remove_all_downloads">ସମସ୍ତ ଡାଉନଲୋଡ୍ ଅପସାରଣ କରିବେ?</string>
+    <string name="no_chapters_to_delete">ବିଲୋପ କରିବାକୁ କ No ଣସି ଅଧ୍ୟାୟ ନାହିଁ |</string>
+    <string name="by_source_order">ଉତ୍ସ କ୍ରମ ଅନୁଯାୟୀ |</string>
+    <string name="by_chapter_number">ଅଧ୍ୟାୟ ସଂଖ୍ୟା ଅନୁଯାୟୀ |</string>
+    <string name="by_update_date">ଅପଲୋଡ୍ ତାରିଖ ଅନୁଯାୟୀ</string>
+    <string name="scanlators">ସ୍କାନଲେଟର</string>
+    <string name="category">ବର୍ଗ</string>
+    <string name="categories">ବର୍ଗଗୁଡିକ</string>
+    <string name="adding_category_to_queue">ଧାଡି ଅପଡେଟ୍ କରିବାକୁ &lt;x id = "0" /&gt; ଯୋଡିବା |</string>
+    <string name="_already_in_queue">&lt;x id = "0" /&gt; ପୂର୍ବରୁ ଧାଡିରେ ଅଛି |</string>
+    <string name="create_new_category">ନୂତନ ବର୍ଗ ସୃଷ୍ଟି କରନ୍ତୁ |</string>
+    <string name="new_category">ନୂଆ ବର୍ଗ</string>
+    <string name="category_is_empty">ବର୍ଗ ଖାଲି ଅଛି</string>
+    <string name="show_categories_while_filtering">ଫିଲ୍ଟର କରିବା ସମୟରେ ଖାଲି ବର୍ଗ ଦେଖାନ୍ତୁ |</string>
+    <string name="no_matches_for_filters_short">ଆପଣଙ୍କର ଫିଲ୍ଟର୍ ପାଇଁ କ matches ଣସି ମେଳ ନାହିଁ |</string>
+    <string name="default_category">ଡିଫଲ୍ଟ ବର୍ଗ</string>
+    <string name="confirm_category_deletion">ବର୍ଗ ବିଲୋପ କରିବେ କି?</string>
+    <string name="confirm_category_deletion_message">ଏହି ବର୍ଗରେ ଏଣ୍ଟ୍ରିଗୁଡ଼ିକ ସ୍ଥାନାନ୍ତରିତ ହେବ |
+        ଡିଫଲ୍ଟ ବର୍ଗ</string>
+    <string name="already_in_category">ବର୍ଗରେ ଏଣ୍ଟ୍ରି ପୂର୍ବରୁ |</string>
+    <string name="add_categories">ବର୍ଗଗୁଡିକ ଯୋଡନ୍ତୁ |</string>
+    <string name="add_edit_categories">ବର୍ଗଗୁଡିକ ଯୋଡନ୍ତୁ / ସଂପାଦନ କରନ୍ତୁ |</string>
+    <string name="edit_categories">ବର୍ଗଗୁଡିକ ସଂପାଦନ କରନ୍ତୁ |</string>
+    <string name="manage_category">ବର୍ଗ ପରିଚାଳନା</string>
+    <string name="move_to_categories">ବର୍ଗକୁ ଯାଆନ୍ତୁ |</string>
+    <string name="category_with_name_exists">ସେଇ ନା‍ଁରେ ଆଗରୁ ଗୋଟିଏ ବର୍ଗ ବିଦ୍ୟମାନ ଅଛି!</string>
+    <string name="category_cannot_be_blank">ବର୍ଗର ନାମ ଖାଲି ଛଡ଼ା ଯାଇପାରିବ ନାହିଁ</string>
+    <string name="category_deleted">ବର୍ଗ ବିଲୋପ କରାଗଲା</string>
+    <string name="long_press_category">ଏକ ବର୍ଗ ସଂପାଦନ କରିବାକୁ ଦବାନ୍ତୁ ଏବଂ ଧରି ରଖନ୍ତୁ |</string>
+    <string name="jump_to_category">ବର୍ଗକୁ ଯାଆନ୍ତୁ |</string>
+    <string name="update">ଅଦ୍ୟତନ କରନ୍ତୁ |</string>
+    <string name="updating_">&lt;X id = "0" /&gt; ଅଦ୍ୟତନ କରୁଛି |</string>
+    <string name="update_available">ଅଦ୍ୟତନ ଉପଲବ୍ଧ |</string>
+    <string name="new_version_available">ନୂଆ ସଂସ୍କରଣ ଉପଲବ୍ଧ!</string>
+    <string name="new_beta_version_available">ନୂତନ ବିଟା ସଂସ୍କରଣ ଉପଲବ୍ଧ!</string>
+    <string name="no_new_updates_available">କୌଣସି ନୂତନ ଅଦ୍ୟତନ ଉପଲବ୍ଧ ନାହିଁ</string>
+    <string name="searching_for_updates">ଅଦ୍ୟତନ ପାଇଁ ସନ୍ଧାନ କରୁଛି…</string>
+    <string name="release_page">ପୃଷ୍ଠା ପ୍ରକାଶ କରନ୍ତୁ |</string>
+    <string name="could_not_install_update">ଅଦ୍ୟତନ ସଂସ୍ଥାପନ କରିପାରିଲା ନାହିଁ |</string>
+    <string name="update_completed">ଅଦ୍ୟତନ ସମାପ୍ତ ହୋଇଛି |</string>
+    <string name="library">ଲାଇବ୍ରେରୀ</string>
+    <string name="your_library">ଆପଣଙ୍କ ଲାଇବ୍ରେରୀ</string>
+    <string name="updating_library">ଲାଇବ୍ରେରୀ ଅଦ୍ୟତନ କରୁଛି |</string>
+    <string name="update_library">ଲାଇବ୍ରେରୀ ଅଦ୍ୟତନ କରନ୍ତୁ |</string>
+    <string name="library_nav_action_update">ଲାଇବ୍ରେରୀ ଅଦ୍ୟତନ କରନ୍ତୁ |</string>
+    <string name="library_nav_action_filters">ଫିଲ୍ଟର୍ ଖୋଲନ୍ତୁ |</string>
+    <string name="library_long_tap">ଲାଇବ୍ରେରୀ ଆଚରଣକୁ ଲମ୍ୱା ଟ୍ୟାପ୍ କରନ୍ତୁ |</string>
+    <string name="library_double_tap">ଲାଇବ୍ରେରୀ ଆଚରଣକୁ ଦୁଇଥର ଟ୍ୟାପ୍ କରନ୍ତୁ |</string>
+    <string name="not_selected">ମନୋନୀତ ହୋଇନାହିଁ |</string>
+    <string name="selected">ମନୋନୀତ |</string>
+    <string name="selected_">ମନୋନୀତ: &lt;x id = "0" /&gt; |</string>
+    <string name="local">ସ୍ଥାନୀୟ</string>
+    <string name="library_search_hint">ସନ୍ଧାନ ଆଖ୍ୟା, ଟ୍ୟାଗ୍, ଉତ୍ସ |</string>
+    <string name="library_is_empty_add_from_browse">ତୁମର ଲାଇବ୍ରେରୀ ଖାଲି ଅଛି, ତୁମକୁ ସିରିଜ୍ ଯୋଡ |
+        ବ୍ରାଉଜ୍ ଟ୍ୟାବରୁ ଲାଇବ୍ରେରୀ |</string>
+    <string name="no_matches_for_filters">ତୁମର ସାମ୍ପ୍ରତିକ ଫିଲ୍ଟର୍ ପାଇଁ କ matches ଣସି ମେଳକ ମିଳିଲା ନାହିଁ |</string>
+    <string name="getting_started_guide">ଗାଇଡ୍ ଆରମ୍ଭ କରିବା |</string>
+    <string name="show_all_categories">ସମସ୍ତ ବର୍ଗ ଦେଖାନ୍ତୁ |</string>
+    <string name="move_dynamic_to_bottom">ଭୁଶୁଡି ପଡିଥିବା ଗତିଶୀଳ ବର୍ଗକୁ ତଳକୁ ଘୁଞ୍ଚାନ୍ତୁ |</string>
+    <string name="show_number_of_items">ଆଇଟମ୍ ସଂଖ୍ୟା ଦେଖାନ୍ତୁ |</string>
+    <string name="when_grouping_by_sources_tags">ଉତ୍ସ, ସ୍ଥିତି ଇତ୍ୟାଦି ଦ୍ୱାରା ଲାଇବ୍ରେରୀକୁ ଗ୍ରୁପ୍ କରିବାବେଳେ |</string>
+    <string name="always_show_current_category">ସର୍ବଦା ସାମ୍ପ୍ରତିକ ବର୍ଗ ଦେଖାନ୍ତୁ |</string>
+    <string name="category_hopper_long_press">ବର୍ଗ ହପର୍ ଲଙ୍ଗ-ପ୍ରେସ୍ କ୍ରିୟା |</string>
+    <string name="expand_collapse_all_categories">ସମସ୍ତ ବର୍ଗ ବିସ୍ତାର / ପତନ |</string>
+    <string name="open_random_series">ଏକ ଅନିୟମିତ ସିରିଜ୍ ଖୋଲନ୍ତୁ |</string>
+    <string name="open_random_series_global">ଏକ ଅନିୟମିତ ସିରିଜ୍ ଖୋଲନ୍ତୁ (ଗ୍ଲୋବାଲ୍)</string>
+    <string name="expand_all_categories">ସମସ୍ତ ବର୍ଗ ବିସ୍ତାର କରନ୍ତୁ |</string>
+    <string name="collapse_all_categories">ସମସ୍ତ ବର୍ଗଗୁଡିକ ସଂଲଗ୍ନ କରନ୍ତୁ |</string>
+    <string name="reorder_filters">ଫିଲ୍ଟର୍ ରେକର୍ଡ କରନ୍ତୁ |</string>
+    <string name="_unread">&lt;x id = "0" /&gt; ପ read ା ନାହିଁ |</string>
+    <string name="search_globally">ସର୍ବଭାରତୀୟ ସ୍ତରରେ \ "&lt;x id =" 0 "/&gt; \" ସନ୍ଧାନ କରନ୍ତୁ |</string>
+    <string name="read_progress">ଅଗ୍ରଗତି ପ Read ଼ନ୍ତୁ |</string>
+    <string name="series_type">ସିରିଜ୍ ପ୍ରକାର |</string>
+    <string name="series">ସିରିଜ୍</string>
+    <string name="group_library_by">ଗ୍ରୁପ୍ ଲାଇବ୍ରେରୀ ଦ୍ୱାରା…</string>
+    <string name="tracking_status">ଟ୍ରାକିଂ ସ୍ଥିତି</string>
+    <string name="ungrouped">ଅଣସଂଗଠିତ |</string>
+    <string name="pref_use_compose_library">ପରୀକ୍ଷାମୂଳକ ରଚନା ଲାଇବ୍ରେରୀ ବ୍ୟବହାର କରନ୍ତୁ |</string>
+    <string name="pref_behavior">ଆଚରଣ</string>
+    <string name="pref_mark_as_read_duplicate_read_chapter">ନକଲ ପଠନ ଅଧ୍ୟାୟକୁ ପ read ଼ା ଭାବରେ ଚିହ୍ନିତ କର |</string>
+    <string name="pref_mark_as_read_duplicate_read_chapter_existing">ଏକ ଅଧ୍ୟାୟ ପ After ିବା ପରେ |</string>
+    <string name="pref_mark_as_read_duplicate_read_chapter_new">ନୂତନ ଅଧ୍ୟାୟ ଆଣିବା ପରେ |</string>
+    <string name="sort_by">ଏହା ଅନୁଯାୟୀ ସଜାନ୍ତୁ</string>
+    <string name="total_chapters">ସମୁଦାୟ ଅଧ୍ୟାୟ |</string>
     <string name="date_added">ଯୋଡ଼ାଯିବା ତାରିଖ</string>
     <string name="last_read">ଶେଷ ପଠନ</string>
     <string name="date_fetched">ଅଣାଯିବା ତାରିଖ</string>
+    <string name="latest_chapter">ସର୍ବଶେଷ ଅଧ୍ୟାୟ |</string>
+    <string name="drag_and_drop">ଡ୍ରାଗ୍ ଏବଂ ଡ୍ରପ୍ କର |</string>
+    <string name="random">ଅନିୟମିତ |</string>
+    <string name="display_options">ବିକଳ୍ପଗୁଡିକ ପ୍ରଦର୍ଶନ କରନ୍ତୁ |</string>
+    <string name="can_be_found_in_library_filters">ଲାଇବ୍ରେରୀ ଫିଲ୍ଟର ବିସ୍ତାର କରି ମଧ୍ୟ ମିଳିପାରିବ |</string>
+    <string name="library_view">ଲାଇବ୍ରେରୀ ଦୃଶ୍ୟ |</string>
+    <string name="continuous">ନିରନ୍ତର |</string>
+    <string name="tabbed">ଟ୍ୟାବଡ୍ |</string>
+    <string name="flatten_search_across_tabs">ଟ୍ୟାବଗୁଡ଼ିକରେ ସନ୍ଧାନ ଫ୍ଲାଟ କରନ୍ତୁ |</string>
+    <string name="list">ତାଲିକା |</string>
+    <string name="comfortable_grid">ଆରାମଦାୟକ ଗ୍ରୀଡ୍ |</string>
+    <string name="cover_only_grid">କଭର୍-କେବଳ ଗ୍ରୀଡ୍ |</string>
+    <string name="compact_grid">କମ୍ପାକ୍ଟ ଗ୍ରୀଡ୍ |</string>
+    <string name="download_badge">ବ୍ୟାଜ୍ ଡାଉନଲୋଡ୍ କରନ୍ତୁ |</string>
+    <string name="language_badge">ଭାଷା ବ୍ୟାଜ୍</string>
+    <string name="hide_start_reading_button">ପ reading ିବା ଆରମ୍ଭ ବଟନ୍ ଲୁଚାନ୍ତୁ |</string>
+    <string name="badges">ବ୍ୟାଜ୍</string>
+    <string name="uniform_grid_covers">ୟୁନିଫର୍ମ ଗ୍ରୀଡ୍ କଭର |</string>
+    <string name="use_staggered_grid">ଷ୍ଟ୍ରେଡ୍ ଗ୍ରୀଡ୍ ବ୍ୟବହାର କରନ୍ତୁ |</string>
+    <string name="show_outline_around_covers">କଭର ଚାରିପାଖରେ ବାହ୍ୟରେଖା ଦେଖାନ୍ତୁ |</string>
+    <string name="grid_size">ଗ୍ରୀଡ୍ ଆକାର |</string>
+    <string name="_per_row">ଧାଡିରେ &lt;x id = "0" /&gt; |</string>
+    <string name="hide_unread_badges">ପ read ାଯାଇଥିବା ବ୍ୟାଜ୍ ଲୁଚାନ୍ତୁ |</string>
+    <string name="show_unread_badges">ପ read ାଯାଇଥିବା ବ୍ୟାଜ୍ ଦେଖାନ୍ତୁ |</string>
+    <string name="show_unread_count">ପ read ି ନଥିବା ଗଣନା ଦେଖାନ୍ତୁ |</string>
+    <string name="tap_library_to_show_filters">ଫିଲ୍ଟର୍ ଦେଖାଇବାକୁ ଲାଇବ୍ରେରୀ ଆଇକନ୍ ଟ୍ୟାପ୍ କରନ୍ତୁ |</string>
+    <string name="display_as">ପରି ପ୍ରଦର୍ଶନ କରନ୍ତୁ |</string>
+    <string name="hide_category_hopper">ବର୍ଗ ହପର୍ ଲୁଚାନ୍ତୁ |</string>
+    <string name="more_library_settings">ଅଧିକ ଲାଇବ୍ରେରୀ ସେଟିଂସମୂହ |</string>
+    <string name="shift_one_page_over">ଗୋଟିଏ ପୃଷ୍ଠାକୁ ସ୍ଥାନାନ୍ତର କରନ୍ତୁ |</string>
+    <string name="shift_double_pages">ଡବଲ୍ ପେଜ୍ ସ୍ଥାନାନ୍ତର କରନ୍ତୁ |</string>
+    <string name="allow_notifications_recommended">ବିଜ୍ଞପ୍ତିକୁ ଅନୁମତି ଦେବା ଆପଣଙ୍କ ଲାଇବ୍ରେରୀ ଏବଂ ଆପ୍କୁ ଅଦ୍ୟତନ ରଖିବାକୁ ପରାମର୍ଶ ଦିଆଯାଇଛି |</string>
+    <string name="new_chapters_found">ନୂତନ ଅଧ୍ୟାୟ ମିଳିଲା |</string>
+    <string name="notification_size_warning">ବଡ଼ ଅଦ୍ୟତନଗୁଡ଼ିକ ବ୍ୟାଟେରୀ ବ୍ୟବହାର ବୃଦ୍ଧି ଏବଂ ଉତ୍ସଗୁଡ଼ିକ ମନ୍ଥର ହୋଇପାରେ | ଅଧିକ ଜାଣିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ |</string>
+    <string name="download_queue_size_warning">ଚେତାବନୀ: ବୃହତ ବଲ୍କ ଡାଉନଲୋଡ୍ ଉତ୍ସଗୁଡିକ ମନ୍ଥର ଏବଂ / କିମ୍ବା ତାଚିୟୋମିକୁ ଅବରୋଧ କରିପାରେ | ଅଧିକ ଜାଣିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ |</string>
+    <string name="notification_update_error">&lt;x id = "0" /&gt; ଅଦ୍ୟତନ (ଗୁଡିକ) ବିଫଳ ହେଲା |</string>
+    <string name="notification_update_skipped">&lt;x id = "0" /&gt; ଅଦ୍ୟତନ (ଗୁଡିକ) ଛାଡିଦିଆଗଲା |</string>
+    <string name="skipped_reason_completed">ଛାଡିଦିଆଯାଇଛି କାରଣ ସିରିଜ୍ ସଂପୂର୍ଣ୍ଣ ଅଟେ |</string>
+    <string name="skipped_reason_not_caught_up">ଏଡ଼ାଇଦିଆଯାଇଛି କାରଣ ସେଠାରେ ପ read ଼ାଯାଇଥିବା ଅଧ୍ୟାୟ ନାହିଁ |</string>
+    <string name="skipped_reason_not_started">କ chap ଣସି ଅଧ୍ୟାୟ ପ read ାଯାଇ ନ ଥିବାରୁ ଛାଡି ଦିଆଯାଇଛି |</string>
+    <string name="skipped_reason_not_always_update">ଛାଡିଦିଆଗଲା କାରଣ ସିରିଜ୍ ଅପଡେଟ୍ ଆବଶ୍ୟକ କରେ ନାହିଁ |</string>
+    <string name="channel_errors">ତ୍ରୁଟି</string>
+    <string name="channel_skipped">ଛାଡିଦେଲେ |</string>
+    <string name="library_update_report">ଲାଇବ୍ରେରୀ ଅପଡେଟ୍ ରିପୋର୍ଟ |</string>
+    <string name="library_update_report_errors">ତ୍ରୁଟି</string>
+    <string name="library_update_report_skipped">ଛାଡିଦେଲେ |</string>
+    <string name="library_update_report_no_errors">ଶେଷ ରନ୍ ଠାରୁ କ update ଣସି ଅଦ୍ୟତନ ତ୍ରୁଟି ନାହିଁ |</string>
+    <string name="library_update_report_no_skipped">ଶେଷ ରନ୍ ସମୟରେ କ No ଣସି ଟାଇଟଲ୍ ଛାଡି ଦିଆଯାଇନଥିଲା |</string>
+    <string name="library_update_report_empty">ଏପର୍ଯ୍ୟନ୍ତ କ library ଣସି ଲାଇବ୍ରେରୀ ଅପଡେଟ୍ ଚାଲିନାହିଁ |</string>
+    <string name="library_update_report_last_run">ଶେଷ ଚଲାନ୍ତୁ &lt;x id = "0" /&gt; |</string>
+    <string name="action_view_details">ବିବରଣୀ ଦେଖନ୍ତୁ |</string>
+    <string name="action_open_log_file">ଲଗ୍ ଫାଇଲ୍ ଖୋଲ |</string>
+    <string name="last_update_report">ଶେଷ ଅଦ୍ୟତନ ରିପୋର୍ଟ</string>
+    <string name="library_update_frequency">ଲାଇବ୍ରେରୀ ଅପଡେଟ୍ ଫ୍ରିକ୍ୱେନ୍ସି |</string>
+    <string name="pref_library_update_parallel">ସମାନ୍ତରାଳ ଲାଇବ୍ରେରୀ ଅଦ୍ୟତନଗୁଡ଼ିକ |</string>
+    <string name="pref_library_update_parallel_summary">ଉତ୍ସଗୁଡିକ ଏକାସାଙ୍ଗରେ ଅଦ୍ୟତନ ହେଲା: &lt;x id = "0" /&gt; |</string>
+    <string name="pref_library_update_manga_restriction">ଶିରୋନାମା ଅପଡେଟ୍ କୁ ଛାଡିଦିଅ |</string>
+    <string name="pref_update_only_completely_read">ପ read ି ନଥିବା ଅଧ୍ୟାୟ (ଗୁଡିକ) ସହିତ |</string>
+    <string name="pref_update_only_non_completed">\ "ସମାପ୍ତ \" ସ୍ଥିତି ସହିତ |</string>
+    <string name="pref_update_only_started">ତାହା ଆରମ୍ଭ ହୋଇନାହିଁ |</string>
+    <string name="pref_update_only_completely_read_summary">ଯଦି କ un ଣସି ପ read ଼ା ଅଧ୍ୟାୟ ନାହିଁ ତେବେ କେବଳ ସିରିଜ୍ ଅପଡେଟ୍ କରନ୍ତୁ (ସଂପୂର୍ଣ୍ଣ ପ read ନ୍ତୁ)</string>
+    <string name="library_update_restriction">ଉପକରଣ ପ୍ରତିବନ୍ଧକ |</string>
+    <string name="library_update_restriction_summary">ସର୍ତ୍ତ ପୂରଣ ହେଲେ ହିଁ ଅଦ୍ୟତନ କରନ୍ତୁ |</string>
+    <string name="restrictions_">ପ୍ରତିବନ୍ଧକ: &lt;x id = "0" /&gt; |</string>
+    <string name="sort_by_ignoring_articles">ପ୍ରବନ୍ଧଗୁଡ଼ିକୁ ଅଣଦେଖା କରି ସର୍ଟ କରନ୍ତୁ |</string>
+    <string name="when_sorting_ignore_articles">ବର୍ଣ୍ଣାନୁକ୍ରମିକ ଭାବରେ ସର୍ଟ କରିବାବେଳେ, ଅବହେଳାକୁ ସର୍ଟ କରନ୍ତୁ |
+        ଏକ ସିରିଜ୍ \ 'ଆଖ୍ୟା ଆରମ୍ଭରେ ପ୍ରବନ୍ଧଗୁଡିକ (a, an, the) |</string>
+    <string name="categories_to_include_in_global_update">ଗ୍ଲୋବାଲ୍ ଅପଡେଟ୍ ରେ ଅନ୍ତର୍ଭୂକ୍ତ କରିବାକୁ ବର୍ଗଗୁଡିକ |</string>
+    <string name="include_in_global_update">ଗ୍ଲୋବାଲ୍ ଅପଡେଟ୍ ରେ ଅନ୍ତର୍ଭୂକ୍ତ କରନ୍ତୁ |</string>
+    <string name="auto_refresh_covers">ମଲାଟଗୁଡ଼ିକୁ ସ୍ୱଚାଳିତ ଭାବେ ସତେଜ କରାଯାଉ</string>
+    <string name="auto_refresh_covers_summary">ଲାଇବ୍ରେରୀରେ କଭର ସତେଜ କରନ୍ତୁ |
+        ଲାଇବ୍ରେରୀ ଅପଡେଟ୍ କରିବାବେଳେ |</string>
+    <string name="global_updates">ଗ୍ଲୋବାଲ୍ ଅପଡେଟ୍ |</string>
+    <string name="display_buttons_bottom_reader">ପାଠକଙ୍କ ତଳେ ବଟନ୍ |</string>
+    <string name="certain_buttons_can_be_found">ଏଠାରେ ଅକ୍ଷମ ହେଲେ ଅନ୍ୟ କେତେକ ସ୍ଥାନରେ କିଛି ବଟନ୍ ମିଳିପାରିବ |</string>
+    <string name="search_suggestions">ପରାମର୍ଶ ଖୋଜ |</string>
+    <string name="search_tips_show_periodically">ସନ୍ଧାନ ଟିପ୍ସଗୁଡିକ ପର୍ଯ୍ୟାୟକ୍ରମେ ଦେଖାଯିବ | ଏହାକୁ ଖୋଜିବା ପାଇଁ ପରାମର୍ଶକୁ ଦୀର୍ଘ ସମୟ ଦବାନ୍ତୁ |</string>
+    <string name="enable_chapter_swipe_action">ଅଧ୍ୟାୟ ସ୍ୱାଇପ୍ କ୍ରିୟା ସକ୍ଷମ କରନ୍ତୁ |</string>
+    <string name="recents">ଗ୍ରହଣ</string>
+    <string name="updates_and_history">ଅଦ୍ୟତନ ଏବଂ ଇତିହାସ</string>
+    <string name="updates">ଅଦ୍ୟତନଗୁଡିକ</string>
+    <string name="newly_added">ନୂତନ ଭାବରେ ଯୋଡା ଯାଇଛି |</string>
+    <string name="history">ଇତିବୃତ୍ତି</string>
+    <string name="reset_chapter_history">ଅଧ୍ୟାୟ ଇତିହାସ ପୁନ Res ସେଟ୍ କରନ୍ତୁ |</string>
+    <string name="recent_updates">ସାମ୍ପ୍ରତିକ ଅଦ୍ୟତନଗୁଡିକ |</string>
+    <string name="label_recent_updates">ଅଦ୍ୟତନଗୁଡିକ</string>
+    <string name="this_will_remove_the_read_date_for_x_question">ଏହା ପ read ଼ୁଥିବା ତାରିଖକୁ ହଟାଇବ |
+        \ "&lt;x id =" 0 "/&gt; \" | ଆପଣ ନିଶ୍ଚିତ କି?</string>
+    <string name="reset_all_chapters_for_this_">ଏହି &lt;x id = "0" /&gt; ପାଇଁ ସମସ୍ତ ଅଧ୍ୟାୟ ପୁନ Res ସେଟ୍ କରନ୍ତୁ |</string>
+    <string name="last_read_">ଶେଷ ପ read ଼ନ୍ତୁ &lt;x id = "0" /&gt; |</string>
+    <string name="read_">&lt;X id = "0" /&gt; ପ Read ନ୍ତୁ |</string>
+    <string name="updated_">&lt;X id = "0" /&gt; ଅଦ୍ୟତନ କରାଯାଇଛି |</string>
+    <string name="added_">&lt;X id = "0" /&gt; ଯୋଡା ଯାଇଛି |</string>
+    <string name="fetched_">&lt;X id = "0" /&gt; ପ୍ରାପ୍ତ ହୋଇଛି |</string>
+    <string name="updates_last_update_info">ଲାଇବ୍ରେରୀ ଶେଷ ଅଦ୍ୟତନ: &lt;x id = "0" /&gt; |</string>
+    <string name="view_history">ଇତିହାସ ଦେଖନ୍ତୁ |</string>
+    <string name="view_all_updates">ସମସ୍ତ ଅଦ୍ୟତନଗୁଡିକ ଦେଖନ୍ତୁ |</string>
+    <string name="show_more_chapters">ଅଧିକ ଅଧ୍ୟାୟ ଦେଖାନ୍ତୁ |</string>
+    <string name="collapse_grouped_chapters">ଗୋଷ୍ଠୀଗତ ଅଧ୍ୟାୟଗୁଡିକ ଭୁଶୁଡ଼ନ୍ତୁ |</string>
+    <string name="search_recents">ସନ୍ଧାନ ପୁନର୍ବାର…</string>
+    <string name="no_recent_read_updated_manga">ସମ୍ପ୍ରତି ପ read ଼ା କିମ୍ବା ଅପଡେଟ୍ ସିରିଜ୍ ନାହିଁ |</string>
+    <string name="no_recent_chapters">କ recent ଣସି ସାମ୍ପ୍ରତିକ ଅଧ୍ୟାୟ ନାହିଁ |</string>
+    <string name="no_recently_read_manga">ସମ୍ପ୍ରତି ପ read ଼ା ସିରିଜ୍ ନାହିଁ |</string>
+    <string name="grouped">ଗୋଷ୍ଠୀଭୁକ୍ତ |</string>
+    <string name="reset_chapter_question">ଅଧ୍ୟାୟ ପୁନ Res ସେଟ୍ କରନ୍ତୁ?</string>
+    <string name="press_and_hold_to_also_reset">ପ୍ରେସ୍ ଏବଂ ଧରିବା ମଧ୍ୟ ଅଧ୍ୟାୟ ଇତିହାସକୁ ପୁନ reset ସେଟ୍ କରିପାରିବ |</string>
+    <string name="show_download_button">ଡାଉନଲୋଡ୍ ବଟନ୍ ଦେଖାନ୍ତୁ |</string>
+    <string name="clear_history_completed">ଇତିହାସ ବିଲୋପ ହେଲା |</string>
+    <string name="clear_history_confirmation">ଆପଣ ନିଶ୍ଚିତ କି? ସମସ୍ତ ଇତିହାସ ନଷ୍ଟ ହୋଇଯିବ |</string>
+    <string name="show_reset_history_button">ପୁନ res ସେଟ୍ ଇତିହାସ ବଟନ୍ ଦେଖାନ୍ତୁ |</string>
+    <string name="show_read_chapters_all">ଗ୍ରୁପ୍ ଏବଂ ଅଲ୍ ରେ ପ read ଼ୁଥିବା ଅଧ୍ୟାୟଗୁଡିକ ଦେଖାନ୍ତୁ |</string>
+    <string name="show_title_first">ପ୍ରଥମେ ଟାଇଟଲ୍ ଦେଖାନ୍ତୁ |</string>
+    <string name="a_while_ago">କିଛି ସମୟ ପୂର୍ବରୁ</string>
+    <string name="show_updated_time">ଅଦ୍ୟତନ ସମୟ ଦେଖାନ୍ତୁ |</string>
+    <string name="sort_fetched_time">ଅଣାଯାଇଥିବା ସମୟ ଅନୁଯାୟୀ ସର୍ଟ କରନ୍ତୁ |</string>
+    <string name="group_chapters_together">ଗୋଷ୍ଠୀ ଅଧ୍ୟାୟ ଏକତ୍ର |</string>
+    <string name="by_series">କ୍ରମରେ |</string>
+    <string name="by_week">ସପ୍ତାହ ସୁଦ୍ଧା</string>
+    <string name="by_day">ଦିନକୁ ଦିନ</string>
+    <string name="uniform_covers">ୟୁନିଫର୍ମ କଭର |</string>
+    <string name="affects_library_grid">ଲାଇବ୍ରେରୀ ଗ୍ରୀଡ୍ କଭରକୁ ପ୍ରଭାବିତ କରେ |</string>
+    <string name="only_unread">କେବଳ ପ read ା ନାହିଁ |</string>
+    <string name="only_downloaded">କେବଳ ଡାଉନଲୋଡ୍ ହୋଇଛି |</string>
+    <string name="unread_or_downloaded">ପ read ାଯାଇ ନାହିଁ କିମ୍ବା ଡାଉନଲୋଡ୍ ହୋଇଛି |</string>
+    <string name="clear_history">ଇତିହାସ ସଫା କରନ୍ତୁ |</string>
+    <string name="recents_nav_action_download_queue">ଡାଉନଲୋଡ୍ କ୍ୟୁ ଦେଖାନ୍ତୁ |</string>
+    <string name="recents_nav_action_last_read">ଶେଷ ପଠନ ଅଧ୍ୟାୟ ଖୋଲନ୍ତୁ |</string>
+    <string name="recents_long_tap">ଲଙ୍ଗ୍ ଟ୍ୟାପ୍ ଆଚରଣ ଗ୍ରହଣ କରେ |</string>
+    <string name="recents_double_tap">ଡବଲ୍ ଟ୍ୟାପ୍ ଆଚରଣ ଗ୍ରହଣ କରେ |</string>
+    <string name="recents_group_by_source">ଉତ୍ସ ଦ୍ୱାରା</string>
+    <string name="recents_select">ଚୟନ କରନ୍ତୁ |</string>
+    <string name="recents_select_all">ସମସ୍ତ ଚୟନ କରନ୍ତୁ |</string>
+    <string name="recents_invert_selection">ଓଲଟା ଚୟନ</string>
+    <string name="recents_hide">ଲୁଚାନ୍ତୁ |</string>
+    <string name="recents_hide_from_source_">ସମସ୍ତଙ୍କୁ &lt;x id = "0" /&gt; ରୁ ଲୁଚାନ୍ତୁ |</string>
+    <string name="recents_show_hidden">ଲୁକ୍କାୟିତ ଦେଖାନ୍ତୁ |</string>
+    <string name="recents_hidden_sources">ଲୁକ୍କାୟିତ ଉତ୍ସ |</string>
+    <string name="recents_no_hidden_sources">କ hidden ଣସି ଲୁକ୍କାୟିତ ଉତ୍ସ ନାହିଁ |</string>
+    <string name="recents_default_tab">ଡିଫଲ୍ଟ ଟ୍ୟାବ୍ |</string>
+    <string name="recents_clear_all_hidden">ସମସ୍ତ ଲୁକ୍କାୟିତ ସଫା କର |</string>
+    <string name="recents_clear_all_hidden_confirm">ଏହି ଟ୍ୟାବ୍ ପାଇଁ ସମସ୍ତ ଲୁକ୍କାୟିତ ପ୍ରବିଷ୍ଟଗୁଡିକ ପୁନରୁଦ୍ଧାର ହେବ |</string>
+    <string name="recents_cleared_hidden">ଲୁକ୍କାୟିତ ଏଣ୍ଟ୍ରିଗୁଡିକ ସଫା ହେଲା |</string>
+    <string name="search_filters">ଫିଲ୍ଟର୍ ସନ୍ଧାନ କରନ୍ତୁ |</string>
+    <string name="no_more_results">ଆଉ ଫଳାଫଳ ନାହିଁ |</string>
+    <string name="no_results_found">କ results ଣସି ଫଳାଫଳ ମିଳିଲା ନାହିଁ |</string>
+    <string name="local_source">ସ୍ଥାନୀୟ ଉତ୍ସ |</string>
+    <string name="other">ଅନ୍ୟମାନେ |</string>
+    <string name="global_search">ସର୍ବଭାରତୀୟ ସନ୍ଧାନ…</string>
+    <string name="label_global_search">ସର୍ବଭାରତୀୟ ସନ୍ଧାନ |</string>
+    <string name="latest">ସର୍ବଶେଷ</string>
+    <string name="popular">ଲୋକପ୍ରିୟ</string>
+    <string name="browse">ବ୍ରାଉଜ୍ କରନ୍ତୁ |</string>
+    <string name="in_library">ଲାଇବ୍ରେରୀରେ</string>
+    <string name="search_extensions">ବିସ୍ତୃତକରଣ ଖୋଜ…</string>
+    <string name="all_sources">ସମସ୍ତ ଉତ୍ସ |</string>
+    <string name="sources">ଉତ୍ସ</string>
+    <string name="source_hidden">ଉତ୍ସ ଲୁକ୍କାୟିତ |</string>
+    <string name="last_used">ଶେଷ ବ୍ୟବହୃତ |</string>
+    <string name="local_source_help_guide">ସ୍ଥାନୀୟ ଉତ୍ସ ଗାଇଡ୍ |</string>
+    <string name="check_site_in_web">ୱେବ୍ ଭ୍ୟୁରେ ୱେବସାଇଟ୍ ଯାଞ୍ଚ କରନ୍ତୁ |</string>
+    <string name="browse_nav_action_sources_sheet">ଖୋଲା ଉତ୍ସ ସିଟ୍ |</string>
+    <string name="browse_nav_action_global_search">ସର୍ବଭାରତୀୟ ସନ୍ଧାନ ଖୋଲନ୍ତୁ |</string>
+    <string name="browse_long_tap">ଲଙ୍ଗ୍ ଟ୍ୟାପ୍ ଆଚରଣ ବ୍ରାଉଜ୍ କରନ୍ତୁ |</string>
+    <string name="browse_double_tap">ଡବଲ୍ ଟ୍ୟାପ୍ ଆଚରଣ ବ୍ରାଉଜ୍ କରନ୍ତୁ |</string>
+    <string name="extensions">ବିସ୍ତୃତକରଣ</string>
+    <string name="extension_updates">ସମ୍ପ୍ରସାରଣ ଅଦ୍ୟତନଗୁଡ଼ିକ |</string>
+    <string name="extension_updates_pending">ବିସ୍ତାର ଅଦ୍ୟତନଗୁଡିକ ବିଚାରାଧୀନ ଅଛି |</string>
+    <string name="extension_info">ସମ୍ପ୍ରସାରଣ ସୂଚନା</string>
+    <string name="filter_languages">ଭାଷା ଫିଲ୍ଟର୍ କରନ୍ତୁ |</string>
+    <string name="obsolete">ପୁରୁଣା |</string>
+    <string name="pending">ବିଚାରାଧୀନ ଅଛି</string>
+    <string name="installing">ସଂସ୍ଥାପନ</string>
+    <string name="installed">ସଂସ୍ଥାପିତ |</string>
+    <string name="trust">ବିଶ୍ୱାସ</string>
+    <string name="untrusted">ଅବିଶ୍ୱସନୀୟ</string>
+    <string name="uninstall">ଅନଇନଷ୍ଟଲ୍ କରିବା</string>
+    <string name="ext_installer_shizuku_stopped">ସିଜୁକୁ ଚାଲୁନାହିଁ |</string>
+    <string name="ext_installer_shizuku_unavailable_dialog">ସିଜୁକୁ ଏକ୍ସଟେନ୍ସନ୍ ସଂସ୍ଥାପକ ଭାବରେ ବ୍ୟବହାର କରିବାକୁ ସିଜୁକୁ ସଂସ୍ଥାପନ ଏବଂ ଆରମ୍ଭ କରନ୍ତୁ |</string>
+    <string name="ext_installer_pref">ସଂସ୍ଥାପକ</string>
+    <string name="ext_installer_shizuku" translatable="false">Shizuku</string>
+    <string name="ext_installer_private" translatable="false">Private</string>
+    <string name="ext_installer_packageinstaller">ଡିଫଲ୍ଟ |</string>
+    <string name="ext_installer_legacy">ଉତ୍ତରାଧିକାରୀ |</string>
+    <string name="ext_installer_summary">ଉପଭୋକ୍ତା ପ୍ରମ୍ପ୍ଟ ବିନା ଏକ୍ସଟେନ୍ସନ୍ ସଂସ୍ଥାପିତ ହେବାକୁ ଅନୁମତି ଦିଏ ଏବଂ ଆଣ୍ଡ୍ରଏଡ୍ 12 ଅଧୀନରେ ଥିବା ଉପକରଣଗୁଡ଼ିକ ପାଇଁ ସ୍ୱୟଂଚାଳିତ ଅଦ୍ୟତନଗୁଡ଼ିକୁ ସକ୍ଷମ କରିଥାଏ |</string>
+    <string name="ext_installer_summary_legacy">ପୁରୁଣା ସଂସ୍ଥାପକ ଏପର୍ଯ୍ୟନ୍ତ କାର୍ଯ୍ୟକାରୀ ହୋଇନାହିଁ, ବର୍ତ୍ତମାନ ପ୍ୟାକେଜ୍ ଇନଷ୍ଟଲର୍ (ଡିଫଲ୍ଟ) କୁ ଫେରିଯାଉଛି |</string>
+    <string name="untrusted_extension">ଅବିଶ୍ୱସନୀୟ ବିସ୍ତାର</string>
+    <string name="untrusted_extension_message">ଦୁର୍ଦ୍ଦାନ୍ତ ବିସ୍ତୃତକରଣ ଯେକ any ଣସି ଗଚ୍ଛିତ ଲଗଇନ୍ ପ୍ରମାଣପତ୍ର ପ read ିପାରେ କିମ୍ବା ଇଚ୍ଛାଧୀନ କୋଡ୍ ଏକଜେକ୍ୟୁଟ୍ କରିପାରିବ | \ n \ n ଏହି ବିସ୍ତାରକୁ ବିଶ୍ ing ାସ କରି ଆପଣ ଏହି ବିପଦଗୁଡିକ ଗ୍ରହଣ କରନ୍ତି |</string>
+    <string name="obsolete_extension_message">ଏହି ବିସ୍ତୃତକରଣ ଆଉ ଉପଲବ୍ଧ ନାହିଁ |</string>
+    <string name="unofficial_extension_message">ଏହି ବିସ୍ତୃତକରଣ ସରକାରୀ ତାଚିୟୋମି ବିସ୍ତୃତକରଣ ତାଲିକାରୁ ନୁହେଁ |</string>
     <string name="version_">ସଂସ୍କରଣ: %1$s</string>
     <string name="language_">ଭାଷା: %1$s</string>
+    <string name="nsfw_short">18+</string>
+    <string name="installed_">&lt;X id = "0" /&gt; ସଂସ୍ଥାପିତ ହୋଇଛି |</string>
+    <string name="unofficial">ଅଣଆନୁଷ୍ଠାନିକ |</string>
+    <string name="extensions_miui_warning">ବିସ୍ତୃତକରଣ ସଂସ୍ଥାପନ କରିବାକୁ MIUI ଅପ୍ଟିମାଇଜେସନ୍ ଅକ୍ଷମ ହେବା ଜରୁରୀ |</string>
+    <string name="may_contain_nsfw">NSFW (18+) ବିଷୟବସ୍ତୁ ଧାରଣ କରିପାରେ |</string>
     <string name="app_info">ଆପ୍ ସୂଚନା</string>
+    <string name="_must_be_enabled_first">&lt;x id = "0" /&gt; ପ୍ରଥମେ ସକ୍ଷମ ହେବା ଜରୁରୀ |</string>
+    <string name="could_not_install_extension">ବିସ୍ତୃତକରଣ ସଂସ୍ଥାପନ କରିପାରିଲା ନାହିଁ |</string>
+    <string name="update_all">ସମସ୍ତ ଅଦ୍ୟତନ କରନ୍ତୁ |</string>
+    <string name="some_extensions_may_prompt">କିଛି ବିସ୍ତୃତକରଣ ତଥାପି ପ୍ରଥମେ ସଂସ୍ଥାପିତ ହେବାକୁ କହିପାରେ |</string>
+    <string name="updating_extensions">ବିସ୍ତୃତକରଣ ଅଦ୍ୟତନ କରୁଛି</string>
+    <string name="extensions_updated">ବିସ୍ତୃତକରଣ ଅଦ୍ୟତନ ହୋଇଛି |</string>
+    <string name="action_revoke_all_extensions">ସମସ୍ତ ବିଶ୍ୱସ୍ତ ବିସ୍ତୃତକରଣ ପ୍ରତ୍ୟାହାର କରନ୍ତୁ |</string>
+    <string name="confirm_revoke_all_extensions">ସମସ୍ତ ବିଶ୍ୱସ୍ତ ବିସ୍ତୃତକରଣ ପ୍ରତ୍ୟାହାର କରିବେ?</string>
+    <string name="set_as_cover">କଭର ଭାବରେ ସେଟ୍ କରନ୍ତୁ |</string>
+    <string name="reader_settings">ପାଠକ ସେଟିଂସମୂହ</string>
+    <string name="set_as_default_for_all">ସମସ୍ତଙ୍କ ପାଇଁ ଡିଫଲ୍ଟ ଭାବରେ ସେଟ୍ କରନ୍ତୁ |</string>
+    <string name="cover_updated">ମଲାଟ ଅପଡେଟ୍ କରାଗଲା</string>
+    <string name="page_">ପୃଷ୍ଠା &lt;x id = "0" /&gt; |</string>
+    <string name="pages_">ପୃଷ୍ଠାଗୁଡିକ &lt;x id = "0" /&gt; |</string>
+    <string name="next_chapter_not_found">ପରବର୍ତ୍ତୀ ଅଧ୍ୟାୟ ମିଳିଲା ନାହିଁ |</string>
+    <string name="decode_image_error">ପ୍ରତିଛବି ଲୋଡ୍ ହୋଇପାରିବ ନାହିଁ |</string>
+    <string name="use_image_as_cover">ଏଇ ପ୍ରତିଛବିଟିକୁ ମଲାଟ ଚିତ୍ରକଳା ଭାବରେ ବ୍ୟବହାର କରିବେ କି\?</string>
+    <string name="reading_mode">ପଠନ ମୋଡ୍</string>
+    <string name="changing_will_reset_reading_mode">ଏହାକୁ ପରିବର୍ତ୍ତନ କରିବା ଏହି ସିରିଜ୍ ପାଇଁ ପଠନ ମୋଡ୍ ପୁନ res ସେଟ୍ କରିବ |</string>
+    <string name="finished_chapter">ସାରିଲେ:</string>
+    <string name="current_chapter">ଚଳିତ:</string>
+    <string name="next_title">ପରବର୍ତ୍ତୀ:</string>
+    <string name="previous_title">ପୂର୍ବବର୍ତ୍ତୀ:</string>
+    <string name="theres_no_next_chapter">ପରବର୍ତ୍ତୀ ଅଧ୍ୟାୟ ନାହିଁ |</string>
+    <string name="theres_no_previous_chapter">ସେଠାରେ କ previous ଣସି ପୂର୍ବ ଅଧ୍ୟାୟ ନାହିଁ |</string>
+    <string name="loading_pages">ପୃଷ୍ଠାଗୁଡ଼ିକୁ ଲୋଡ୍ କରୁଛି…</string>
+    <string name="failed_to_load_pages_">ପୃଷ୍ଠାଗୁଡ଼ିକୁ ଧାରଣ କରିବାରେ ବିଫଳ: &lt;x id = "0" /&gt; |</string>
+    <string name="reading_">&lt;X id = "0" /&gt; ପ Reading ିବା |</string>
+    <string name="long_strip">ଲମ୍ବା ଷ୍ଟ୍ରିପ୍ |</string>
+    <string name="next_page">ପରବର୍ତ୍ତୀ ପୃଷ୍ଠା |</string>
+    <string name="previous_page">ପୂର୍ବ ପୃଷ୍ଠା |</string>
+    <string name="next_chapter">ପରବର୍ତ୍ତୀ ଅଧ୍ୟାୟ |</string>
+    <string name="previous_chapter">ପୂର୍ବ ଅଧ୍ୟାୟ</string>
+    <string name="set_first_page_as_cover">ପ୍ରଥମ ପୃଷ୍ଠାକୁ କଭର ଭାବରେ ସେଟ୍ କରନ୍ତୁ |</string>
+    <string name="share_first_page">ପ୍ରଥମ ପୃଷ୍ଠା ଅଂଶୀଦାର କରନ୍ତୁ |</string>
+    <string name="save_first_page">ପ୍ରଥମ ପୃଷ୍ଠା ସଞ୍ଚୟ କରନ୍ତୁ |</string>
+    <string name="set_second_page_as_cover">କଭର ଭାବରେ ଦ୍ୱିତୀୟ ପୃଷ୍ଠା ସେଟ୍ କରନ୍ତୁ |</string>
+    <string name="share_second_page">ଦ୍ୱିତୀୟ ପୃଷ୍ଠା ଅଂଶୀଦାର କରନ୍ତୁ |</string>
+    <string name="save_second_page">ଦ୍ୱିତୀୟ ପୃଷ୍ଠା ସଞ୍ଚୟ କରନ୍ତୁ |</string>
+    <string name="share_combined_pages">ମିଳିତ ପୃଷ୍ଠାଗୁଡିକ ଅଂଶୀଦାର କରନ୍ତୁ |</string>
+    <string name="save_combined_pages">ମିଳିତ ପୃଷ୍ଠାଗୁଡ଼ିକୁ ସେଭ୍ କରନ୍ତୁ |</string>
+    <string name="fullscreen">ଫୁଲ୍ ସ୍କ୍ରିନ୍ |</string>
+    <string name="animate_page_transitions">ଆନିମେଟ ପୃଷ୍ଠା ସ୍ଥାନାନ୍ତରଣ |</string>
+    <string name="enable_zoom_out">ଜୁମ୍ ଆଉଟ୍ ସକ୍ଷମ କରନ୍ତୁ |</string>
+    <string name="double_tap_anim_speed">ଡବଲ୍ ଟ୍ୟାପ୍ ଆନିମେସନ୍ ସ୍ପିଡ୍ |</string>
+    <string name="show_page_number">ପୃଷ୍ଠା ସଂଖ୍ୟା ଦେଖାନ୍ତୁ |</string>
+    <string name="true_32bit_color">32-ବିଟ୍ ରଙ୍ଗ |</string>
+    <string name="page_preload_amount">ପୃଷ୍ଠା ପ୍ରିଲୋଡ୍ ପରିମାଣ |</string>
+    <string name="amount_of_pages_to_preload">ପ reading ିବା ସମୟରେ ପ୍ରିଲୋଡ୍ କରିବାକୁ ପୃଷ୍ଠାଗୁଡ଼ିକର ପରିମାଣ | ଉଚ୍ଚ କ୍ୟାଚ୍ ଏବଂ ନେଟୱର୍କ ବ୍ୟବହାର ମୂଲ୍ୟରେ ଉଚ୍ଚ ମୂଲ୍ୟଗୁଡ଼ିକ ଏକ ସରଳ ପ reading ଼ିବା ଅଭିଜ୍ in ତା ସୃଷ୍ଟି କରିବ |</string>
+    <string name="reduces_banding_impacts_performance">ବ୍ୟାଣ୍ଡିଂ ହ୍ରାସ କରେ, କିନ୍ତୁ ପ୍ରଭାବ ପକାଇପାରେ |
+        କାର୍ଯ୍ୟଦକ୍ଷତା</string>
+    <string name="invert_double_pages">ଡବଲ୍ ପୃଷ୍ଠାଗୁଡ଼ିକୁ ଓଲଟାନ୍ତୁ |</string>
+    <string name="zoom_double_page_spreads">ଡବଲ୍ ପେଜ୍ ବିସ୍ତାର କରନ୍ତୁ |</string>
+    <string name="navigate_pan">ପ୍ୟାନକୁ ନେଭିଗେଟ୍ କରନ୍ତୁ |</string>
+    <string name="split_double_pages_portrait">ଚିତ୍ରରେ ଡବଲ୍ ପୃଷ୍ଠାଗୁଡ଼ିକୁ ବିଭାଜନ କର |</string>
+    <string name="crop_borders">କ୍ରପ୍ ସୀମା |</string>
+    <string name="crop_borders_paged">କ୍ରପ୍ ସୀମା (ପୃଷ୍ଠା)</string>
+    <string name="crop_borders_long_strip">କ୍ରପ୍ ସୀମା (ଲଙ୍ଗ୍ ଷ୍ଟ୍ରିପ୍)</string>
+    <string name="remove_crop">ଫସଲ ହଟାନ୍ତୁ |</string>
+    <string name="use_custom_brightness">କଷ୍ଟମ୍ ଉଜ୍ଜ୍ୱଳତା ବ୍ୟବହାର କରନ୍ତୁ |</string>
+    <string name="grayscale">ଗ୍ରେସ୍କେଲ୍ |</string>
+    <string name="pref_inverted_colors">ଓଲଟା</string>
+    <string name="custom_filter">ଫିଲ୍ଟର୍ |</string>
+    <string name="use_custom_color_filter">କଷ୍ଟମ୍ ରଙ୍ଗ ଫିଲ୍ଟର୍ ବ୍ୟବହାର କରନ୍ତୁ |</string>
+    <string name="color_filter_blend_mode">ରଙ୍ଗ ଫିଲ୍ଟର ମିଶ୍ରଣ ମୋଡ୍ |</string>
+    <string name="overlay">ଆଚ୍ଛାଦନ</string>
+    <string name="multiply">ଗୁଣନ କର |</string>
+    <string name="screen">ସ୍କ୍ରିନ୍</string>
+    <string name="dodge_lighten">ଡୋଜ୍ / ହାଲୁକା |</string>
+    <string name="burn_darken">ଜଳିବା / ଅନ୍ଧାର |</string>
     <string name="keep_screen_on">ସ୍କ୍ରିନ୍ ସଚଳ ରଖନ୍ତୁ</string>
+    <string name="skip_read_chapters">ପ read ଼ାଯାଇଥିବା ଚିହ୍ନିତ ଅଧ୍ୟାୟଗୁଡ଼ିକୁ ଛାଡିଦିଅ |</string>
+    <string name="skip_filtered_chapters">ଫିଲ୍ଟର୍ ହୋଇଥିବା ଅଧ୍ୟାୟଗୁଡ଼ିକୁ ଏଡ଼ାଇଦିଅ |</string>
+    <string name="skip_dupe_chapters">ନକଲ ଅଧ୍ୟାୟକୁ ଏଡ଼ାଇଦିଅ |</string>
+    <string name="navigation">ନାଭିଗେସନ୍</string>
+    <string name="volume_keys">ଭଲ୍ୟୁମ୍ କି</string>
+    <string name="invert_volume_keys">ଭଲ୍ୟୁମ୍ କିଗୁଡ଼ିକୁ ଓଲଟା କରନ୍ତୁ |</string>
+    <string name="background_color">ପୃଷ୍ଠଭୂମି ରଙ୍ଗ |</string>
     <string name="white">ଧଳା</string>
+    <string name="gray_background">ଧୂସର</string>
     <string name="black">କଳା</string>
+    <string name="smart_by_page">ସ୍ମାର୍ଟ (ପୃଷ୍ଠା ଅନୁଯାୟୀ)</string>
+    <string name="smart_by_theme">ସ୍ମାର୍ଟ (ଥିମ୍ ଅନୁଯାୟୀ)</string>
+    <string name="default_reading_mode">ଡିଫଲ୍ଟ ପଠନ ମୋଡ୍ |</string>
+    <string name="left_to_right_viewer">ବାମରୁ ଡାହାଣ</string>
+    <string name="right_to_left_viewer">ଡାହାଣରୁ ବାମ</string>
+    <string name="vertical_viewer">ଭୂଲମ୍ବ |</string>
+    <string name="continuous_vertical">କ୍ରମାଗତ ଭୂଲମ୍ବ |</string>
+    <string name="paged">ପୃଷ୍ଠା</string>
+    <string name="scale_type">ମାପ ପ୍ରକାର |</string>
+    <string name="tap_zones">ଜୋନ୍ ଟ୍ୟାପ୍ କରନ୍ତୁ |</string>
+    <string name="fit_screen">ସ୍କ୍ରିନ୍ ଫିଟ୍ କରନ୍ତୁ |</string>
+    <string name="stretch">ବିସ୍ତାର କର |</string>
+    <string name="fit_width">ଫିଟ୍ ଓସାର |</string>
+    <string name="fit_height">ଫିଟ୍ ଉଚ୍ଚତା |</string>
+    <string name="original_size">ମୂଳ ଆକାର |</string>
+    <string name="smart_fit">ସ୍ମାର୍ଟ ଫିଟ୍ |</string>
+    <string name="zoom_start_position">ଜୁମ୍ ଆରମ୍ଭ ସ୍ଥିତି |</string>
+    <string name="split_double_pages">ଡବଲ୍ ପେଜ୍ ଗୁଡିକୁ ବିଭାଜନ କର |</string>
+    <string name="double_pages">ଦୁଇଥର ପୃଷ୍ଠା |</string>
+    <string name="single_page">ଏକକ ପୃଷ୍ଠା |</string>
+    <string name="switch_to_double">ଡବଲ୍ ପେଜ୍ କୁ ସୁଇଚ୍ କରନ୍ତୁ |</string>
+    <string name="switch_to_single">ଏକକ ପୃଷ୍ଠାକୁ ସୁଇଚ୍ କରନ୍ତୁ |</string>
     <string name="portrait">ପୋର୍ଟ୍ରେଟ୍</string>
     <string name="landscape">ଲ୍ୟାଣ୍ଡସ୍କେପ୍</string>
-    <string name="every_6_hours">ପ୍ରତି ୬ ଘଣ୍ଟାରେ</string>
-    <string name="every_12_hours">ପ୍ରତି ୧୨ ଘଣ୍ଟାରେ</string>
-    <string name="every_2_days">ପ୍ରତି ୨ ଦିନରେ</string>
-    <string name="email">ଇମେଲ୍ ଠିକଣା</string>
-    <string name="password">ପାସ୍‍ୱାର୍ଡ଼</string>
-    <string name="downloaded">ଡାଉନଲୋଡ୍ ହୋଇଅଛି</string>
-    <string name="alphabetically">ବର୍ଣ୍ଣମାଳା ଅନୁଯାୟୀ</string>
-    <string name="language">ଭାଷା</string>
-    <string name="kindlish_nav">Kindle ଭଳିଆ</string>
-    <string name="edge_nav">କଡ଼</string>
+    <string name="locked_portrait">ଲକ୍ ପୋଟ୍ରେଟ୍ |</string>
+    <string name="locked_landscape">ଲକ୍ ଲ୍ୟାଣ୍ଡସ୍କେପ୍ |</string>
+    <string name="reverse_portrait">ଓଲଟା ଚିତ୍ର</string>
+    <string name="reverse_landscape">ଓଲଟା ଦୃଶ୍ୟ |</string>
+    <string name="red_initial">ଆର</string>
+    <string name="green_initial">ଜି</string>
+    <string name="blue_initial">ବି</string>
+    <string name="alpha_initial">କ</string>
+    <string name="smart_based_on_page">ସ୍ମାର୍ଟ (ପୃଷ୍ଠା ଉପରେ ଆଧାରିତ)</string>
+    <string name="smart_based_on_page_and_theme">ସ୍ମାର୍ଟ (ପୃଷ୍ଠା ଏବଂ ଥିମ୍ ଉପରେ ଆଧାରିତ)</string>
+    <string name="always_show_chapter_transition">ସର୍ବଦା ଅଧ୍ୟାୟ ପରିବର୍ତ୍ତନକୁ ଦେଖାନ୍ତୁ |</string>
+    <string name="if_disabled_transition_will_skip">ଯଦି ଅକ୍ଷମ ହୁଏ, ସ୍ଥାନାନ୍ତରଣ ପୃଷ୍ଠା ହେବ |
+        ଯଦି ପରବର୍ତ୍ତୀ ଅଧ୍ୟାୟ ଲୋଡ୍ ହୋଇଛି</string>
+    <string name="pref_long_strip_side_padding">ସାଇଡ୍ ପ୍ୟାଡିଂ |</string>
+    <string name="long_strip_side_padding_0">କିଛି ନୁହେଁ |</string>
+    <string name="long_strip_side_padding_5">୫%</string>
     <string name="long_strip_side_padding_10">୧୦%</string>
     <string name="long_strip_side_padding_15">୧୫%</string>
     <string name="long_strip_side_padding_20">୨୦%</string>
     <string name="long_strip_side_padding_25">୨୫%</string>
-    <string name="services">ସେବା</string>
-    <string name="restore_duration">%1$02d ମି, %2$02d ସେ</string>
-    <string name="uninstall">ଅନଇନଷ୍ଟଲ୍ କରିବା</string>
-    <string name="help">ସହାୟତା</string>
-    <string name="open_in_webview">WebViewରେ ଖୋଲନ୍ତୁ</string>
-    <string name="install">ଇନଷ୍ଟଲ୍ କରିବା</string>
-    <string name="reading">ପଢ଼ୁଛନ୍ତି</string>
-    <string name="completed">ସାରିଛନ୍ତି</string>
-    <string name="picture_saved">ଚିତ୍ର ସଞ୍ଚୟ କରାଗଲା</string>
-    <string name="cover_updated">ମଲାଟ ଅପଡେଟ୍ କରାଗଲା</string>
-    <string name="status">ସ୍ଥିତି</string>
+    <string name="l_nav">L ଆକୃତିର |</string>
+    <string name="kindlish_nav">Kindle ଭଳିଆ</string>
+    <string name="edge_nav">କଡ଼</string>
+    <string name="right_and_left_nav">ଡାହାଣ ଏବଂ ବାମ</string>
+    <string name="invert_tapping">ଟ୍ୟାପ୍ ଜୋନ୍ଗୁଡ଼ିକୁ ଓଲଟା କରନ୍ତୁ |</string>
+    <string name="none">କିଛି ନୁହେଁ |</string>
+    <string name="horizontally">ଭୂସମାନ୍ତର ଭାବରେ |</string>
+    <string name="vertically">ଭୂଲମ୍ବ ଭାବରେ |</string>
+    <string name="both_axes">ଉଭୟ କୁମ୍ଭ</string>
+    <string name="cutout_area_behavior">କଟଆଉଟ୍ କ୍ଷେତ୍ର ଆଚରଣ |</string>
+    <string name="pad_cutout_areas">ପ୍ୟାଡ୍ କଟ୍ଆଉଟ୍ କ୍ଷେତ୍ରଗୁଡିକ |</string>
+    <string name="start_past_cutout">ଅତୀତ କଟଆଉଟ୍ ଆରମ୍ଭ କରନ୍ତୁ |</string>
+    <string name="cutout_behavior_only_applies">କଟଆଉଟ୍ କ୍ଷେତ୍ର ଆଚରଣ କେବଳ ନିର୍ଦ୍ଦିଷ୍ଟ ସ୍କେଲ୍ ପ୍ରକାର ସହିତ ପୋଟ୍ରେଟ୍ ମୋଡ୍ ରେ ପ୍ରଯୁଜ୍ୟ |</string>
+    <string name="pref_legacy_cutout">ପୁରୁଣା କଟଆଉଟ୍ ସେଟିଂସମୂହ ଖୋଲନ୍ତୁ |</string>
+    <string name="pref_legacy_cutout_info">ଆଣ୍ଡ୍ରଏଡ୍ 9.0 ଠାରୁ ପୁରୁଣା ଡିଭାଇସରେ, ତୁମ ସିଷ୍ଟମ୍ ସେଟିଂସମୂହ ମାଧ୍ୟମରେ ତୁମକୁ କଟଆଉଟ୍ ସେଟିଂସମୂହ ସେଟ୍ କରିବାକୁ ପଡିବ |</string>
+    <string name="pref_cutout_short">କଟଆଉଟ୍ କ୍ଷେତ୍ରରେ ବିଷୟବସ୍ତୁ ଦେଖାନ୍ତୁ |</string>
+    <string name="cutout_ignore">କଟଆଉଟ୍ କ୍ଷେତ୍ରକୁ ଉପେକ୍ଷା କରନ୍ତୁ |</string>
+    <string name="page_layout">ପୃଷ୍ଠା ଲେଆଉଟ୍ |</string>
+    <string name="automatic_can_still_switch">ସ୍ୱୟଂଚାଳିତ ପୃଷ୍ଠା ଲେଆଉଟ୍ ବ୍ୟବହାର କରିବାବେଳେ, ଆପଣ ଏହି ସେଟିଂକୁ ନବଲିଖନ କରି ପ reading ିବାବେଳେ ଲେଆଉଟ୍ ମଧ୍ୟରେ ସୁଇଚ୍ କରିପାରିବେ |</string>
+    <string name="automatic_orientation">ସ୍ୱୟଂଚାଳିତ (ଆଭିମୁଖ୍ୟ ଉପରେ ଆଧାରିତ)</string>
+    <string name="actions">କାର୍ଯ୍ୟ</string>
+    <string name="show_on_long_press">ଲଙ୍ଗ୍ ପ୍ରେସ୍ ରେ ଦେଖାନ୍ତୁ |</string>
+    <string name="save_pages_separately">ପୃଷ୍ଠାଗୁଡ଼ିକୁ ଅଲଗା ଫୋଲ୍ଡରରେ ସେଭ୍ କରନ୍ତୁ |</string>
+    <string name="create_folders_by_manga_title">ମାଙ୍ଗା ଟାଇଟଲ୍ ଅନୁଯାୟୀ ଫୋଲ୍ଡର୍ ତିଆରି କରେ |</string>
+    <string name="pref_hide_threshold">ସ୍କ୍ରୋଲରେ ମେନୁ ଲୁଚାଇବା ପାଇଁ ସମ୍ବେଦନଶୀଳତା |</string>
+    <string name="pref_highest">ସର୍ବୋଚ୍ଚ</string>
+    <string name="pref_high">ଉଚ୍ଚ</string>
+    <string name="pref_low">ନିମ୍ନ</string>
+    <string name="pref_lowest">ସର୍ବନିମ୍ନ</string>
+    <string name="pref_display_profile">କଷ୍ଟମ୍ ପ୍ରଦର୍ଶନ ପ୍ରୋଫାଇଲ୍ |</string>
+    <string name="pref_hardware_bitmap_threshold">କଷ୍ଟମ୍ ହାର୍ଡୱେର୍ ବିଟମ୍ୟାପ୍ ଥ୍ରେସହୋଲ୍ଡ |</string>
+    <string name="pref_hardware_bitmap_threshold_default">ଡିଫଲ୍ଟ (&lt;x id = "0" /&gt;)</string>
+    <string name="pref_hardware_bitmap_threshold_summary">ଯଦି ପାଠକ ଏକ ଖାଲି ପ୍ରତିଛବି ଲୋଡ୍ କରେ କ୍ରମାଗତ ଭାବରେ ସୀମାକୁ ହ୍ରାସ କରେ | \ n ମନୋନୀତ: &lt;x id = "0" /&gt;</string>
+    <string name="pref_double_tap_zoom">ଜୁମ୍ କରିବାକୁ ଦୁଇଥର ଟ୍ୟାପ୍ କରନ୍ତୁ |</string>
+    <string name="about_this_">ଏହି ବିଷୟରେ &lt;x id = "0" /&gt; ବିଷୟରେ |</string>
+    <string name="start_reading">ପ reading ିବା ଆରମ୍ଭ କର |</string>
+    <string name="start_reading_chapter_">ଅଧ୍ୟାୟ &lt;x id = "0" /&gt; ପ reading ିବା ଆରମ୍ଭ କରନ୍ତୁ |</string>
+    <string name="continue_reading_chapter_">ଅଧ୍ୟାୟ &lt;x id = "0" /&gt; ପ reading ିବା ଜାରି ରଖ |</string>
+    <string name="continue_reading">ପ reading ିବା ଜାରି ରଖ |</string>
+    <string name="chapters_">ଅଧ୍ୟାୟ &lt;x id = "0" /&gt; |</string>
+    <string name="volume_">ଭଲ୍ୟୁମ୍ &lt;x id = "0" /&gt; |</string>
+    <string name="season_">Ason ତୁ &lt;x id = "0" /&gt; |</string>
+    <string name="added_to_library">ଲାଇବ୍ରେରୀରେ ଯୋଡ଼ାଗଲା</string>
+    <string name="add_to_library">ଲାଇବ୍ରେରୀରେ ଯୋଡନ୍ତୁ |</string>
+    <string name="removed_from_library">ଲାଇବ୍ରେରୀରୁ ଅପସାରିତ |</string>
+    <string name="show_">&lt;X id = "0" /&gt; ଦେଖାନ୍ତୁ |</string>
+    <string name="must_view_details_before_migration">ସ୍ଥାନାନ୍ତରଣ କରିବାକୁ ସକ୍ଷମ ହେବା ପୂର୍ବରୁ ଏହି ଏଣ୍ଟ୍ରିର ସବିଶେଷ ପୃଷ୍ଠା ନିଶ୍ଚିତ ଭାବରେ ଦେଖାଯିବ |</string>
+    <string name="confirm_manga_add_duplicate">ତୁମର ଲାଇବ୍ରେରୀରେ ସମାନ ନାମ ସହିତ ଏକ ଏଣ୍ଟ୍ରି ଅଛି କିନ୍ତୁ ଏକ ଭିନ୍ନ ଉତ୍ସରୁ (&lt;x id = "0" /&gt;)। \ N \ n ଆପଣ ଏପର୍ଯ୍ୟନ୍ତ ଜାରି ରଖିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
+    <string name="_copied_to_clipboard">&lt;x id = "0" /&gt; କ୍ଲିପବୋର୍ଡରେ କପି କରାଯାଇଛି |</string>
+    <string name="source_not_installed_">ଉତ୍ସ ସଂସ୍ଥାପିତ ହୋଇନାହିଁ: &lt;x id = "0" /&gt; |</string>
+    <string name="no_description">କ description ଣସି ବର୍ଣ୍ଣନା ନାହିଁ |</string>
+    <string name="mark_all_chapters_as_read">ସମସ୍ତ ଅଧ୍ୟାୟକୁ ପ read ଼ିବା ପରି ଚିହ୍ନିତ କର?</string>
+    <string name="mark_all_chapters_as_unread">ସମସ୍ତ ଅଧ୍ୟାୟକୁ ପ read ାଯାଇଥିବା ଭାବରେ ଚିହ୍ନିତ କର?</string>
+    <string name="remove_from_library">ଲାଇବ୍ରେରୀରୁ ଅପସାରଣ କରନ୍ତୁ |</string>
+    <string name="select_starting_chapter">ପ୍ରାରମ୍ଭ ଅଧ୍ୟାୟ ଚୟନ କରନ୍ତୁ |</string>
+    <string name="select_ending_chapter">ଶେଷ ଅଧ୍ୟାୟ ଚୟନ କରନ୍ତୁ |</string>
+    <string name="search_chapters">ଅଧ୍ୟାୟ ଖୋଜ |</string>
+    <string name="search_tracking">ଟ୍ରାକିଂ ଖୋଜ |</string>
+    <string name="tracking_sheet_summary">ଆପଣଙ୍କର ସେବା ସହିତ ଆପଣଙ୍କର ପଠନ ପ୍ରଗତି ସିଙ୍କ୍ କରନ୍ତୁ |</string>
+    <string name="tracker_searching_service">&lt;X id = "0" /&gt; ଖୋଜୁଛି…</string>
+    <string name="tracker_search_empty">“&lt;X id =" 0 "/&gt; ରେ" &lt;x id = "1" /&gt; ପାଇଁ କ matches ଣସି ମେଳ ନାହିଁ |</string>
+    <string name="tracker_search_failed">&lt;X id = "0" /&gt; ସନ୍ଧାନ କରିପାରିଲା ନାହିଁ | ଆପଣଙ୍କର ସଂଯୋଗ ଯାଞ୍ଚ କରନ୍ତୁ ଏବଂ ପୁନର୍ବାର ଚେଷ୍ଟା କରନ୍ତୁ |</string>
+    <string name="tracker_session_expired">ଆପଣଙ୍କର &lt;x id = "0" /&gt; ଅଧିବେଶନ ସମାପ୍ତ ହୋଇଛି | ଟ୍ରାକିଂ ଜାରି ରଖିବାକୁ ପୁନର୍ବାର ସାଇନ୍ ଇନ୍ କରନ୍ତୁ |</string>
+    <string name="tracker_search_enter_title">ସନ୍ଧାନ କରିବାକୁ ଏକ ଆଖ୍ୟା ପ୍ରବେଶ କରନ୍ତୁ |</string>
+    <string name="find_tracker_entry">ଏକ ଏଣ୍ଟ୍ରି ଖୋଜ |</string>
+    <string name="find_tracker_entry_on">&lt;X id = "0" /&gt; ରେ ଏକ ଏଣ୍ଟ୍ରି ଖୋଜ |</string>
+    <string name="custom_range">କଷ୍ଟମ୍ ପରିସର |</string>
+    <string name="all_chapters">ସମସ୍ତ ଅଧ୍ୟାୟ |</string>
+    <string name="all_unread_chapters">ସମସ୍ତ ପ read ାଯାଇଥିବା ଅଧ୍ୟାୟ |</string>
+    <string name="all_read_chapters">ସମସ୍ତ ଅଧ୍ୟାୟ ପ read ନ୍ତୁ |</string>
+    <string name="all_but_bookmarked_chapters">କେବଳ ବୁକମାର୍କ ହୋଇଥିବା ଅଧ୍ୟାୟଗୁଡ଼ିକ |</string>
+    <string name="add_x_to_library">ଲାଇବ୍ରେରୀରେ &lt;x id = "0" /&gt; ଯୋଡନ୍ତୁ?</string>
+    <string name="show_all">ସମସ୍ତ ଦେଖାନ୍ତୁ |</string>
+    <string name="show_bookmarked_chapters">ବୁକମାର୍କ ହୋଇଥିବା ଅଧ୍ୟାୟଗୁଡିକ ଦେଖାନ୍ତୁ |</string>
+    <string name="show_downloaded_chapters">ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଅଧ୍ୟାୟଗୁଡିକ ଦେଖାନ୍ତୁ |</string>
+    <string name="show_unread_chapters">ପ read ାଯାଇଥିବା ଅଧ୍ୟାୟଗୁଡିକ ଦେଖାନ୍ତୁ |</string>
+    <string name="show_read_chapters">ପଠନ ଅଧ୍ୟାୟ ଦେଖାନ୍ତୁ |</string>
+    <string name="hide_chapter_titles">ଅଧ୍ୟାୟ ଆଖ୍ୟାଗୁଡିକ ଲୁଚାନ୍ତୁ |</string>
+    <string name="sort_by_source_s_order">ଉତ୍ସର କ୍ରମ ଅନୁଯାୟୀ ସର୍ଟ କରନ୍ତୁ |</string>
+    <string name="sort_by_chapter_number">ଅଧ୍ୟାୟ ସଂଖ୍ୟା ଅନୁଯାୟୀ ସର୍ଟ କରନ୍ତୁ |</string>
+    <string name="newest_first">ପୁରାତନରୁ ନୂତନ</string>
+    <string name="oldest_first">ପୁରାତନରୁ ନୂତନ</string>
+    <string name="add_tag">ଟ୍ୟାଗ୍ ଯୋଡନ୍ତୁ |</string>
+    <string name="clear_tags">ଟ୍ୟାଗ୍ ସଫା କରନ୍ତୁ |</string>
+    <string name="reset_tags">ଟ୍ୟାଗ୍ ପୁନ Res ସେଟ୍ କରନ୍ତୁ |</string>
+    <string name="reset_cover">କଭର ପୁନ Res ସେଟ୍ କରନ୍ତୁ |</string>
+    <string name="failed_to_update_cover">ମଲାଟ ଅପଡେଟ୍ କରିବାରେ ବିଫଳ ହେଲା</string>
+    <string name="must_be_in_library_to_edit">ସଂପାଦନ କରିବାକୁ ସିରିଜ୍ ଆପଣଙ୍କ ଲାଇବ୍ରେରୀରେ ରହିବା ଜରୁରୀ |</string>
+    <string name="remember_this_choice">ଏହି ପସନ୍ଦ ମନେରଖ |</string>
+    <string name="source_not_installed">ଉତ୍ସ ସଂସ୍ଥାପିତ ହୋଇନାହିଁ |</string>
+    <string name="novel_source_not_ready">ଉତ୍ସ &lt;x id = "0" /&gt; ତଥାପି ଲୋଡ୍ ହେଉଛି | ଥରେ ସଂସ୍ଥାପିତ ପ୍ଲଗଇନଗୁଡିକ ପଞ୍ଜୀକରଣ ଶେଷ କରିବା ପାଇଁ ପୁନ ry ଚେଷ୍ଟା କରନ୍ତୁ |</string>
     <string name="cover_saved">ମଲାଟ ସଞ୍ଚୟ କରାଗଲା</string>
+    <string name="share_cover">କଭର ଅଂଶୀଦାର କରନ୍ତୁ |</string>
     <string name="error_saving_cover">ମଲାଟ ସଞ୍ଚୟ କରିବାରେ ତ୍ରୁଟି</string>
-    <string name="plan_to_read">ପଢ଼ିବା ପାଇଁ ଇଚ୍ଛୁକ</string>
+    <string name="error_sharing_cover">କଭର ବାଣ୍ଟିବାରେ ତ୍ରୁଟି |</string>
+    <string name="app_settings">ଆପ୍ ସେଟିଂସମୂହ |</string>
+    <string name="source_settings">ଉତ୍ସ ସେଟିଂସମୂହ |</string>
+    <string name="custom_manga_info">କଷ୍ଟମ୍ ସିରିଜ୍ ସୂଚନା |</string>
+    <string name="all_read_manga">ସମସ୍ତ ପ read ଼ୁଥିବା ସିରିଜ୍ |</string>
+    <string name="set_as_default">ଡିଫଲ୍ଟ ଭାବରେ ସେଟ୍ କରନ୍ତୁ |</string>
+    <string name="filter_groups">ଫିଲ୍ଟର୍ ସ୍କାନଲେଟର ଗୋଷ୍ଠୀ |</string>
+    <string name="tracking">ଟ୍ରାକିଂ</string>
+    <string name="tracked">ଟ୍ରାକ୍ ହୋଇଅଛି</string>
+    <string name="not_tracked">ଟ୍ରାକ୍ ହୋଇନାହିଁ |</string>
+    <string name="services">ସେବା</string>
+    <string name="tracking_info">ଟ୍ରାକିଂ ସେବାରେ ଅଧ୍ୟାୟ ଅଗ୍ରଗତି ଅପଡେଟ୍ କରିବାକୁ ଏକପାଖିଆ ସିଙ୍କ୍ | ସେମାନଙ୍କର ଟ୍ରାକିଂ ବଟନ୍ ରୁ ବ୍ୟକ୍ତିଗତ ଏଣ୍ଟ୍ରିଗୁଡିକ ପାଇଁ ଟ୍ରାକିଂ ସେଟ୍ ଅପ୍ କରନ୍ତୁ |</string>
+    <string name="enhanced_services">ଉନ୍ନତ ସେବାଗୁଡିକ</string>
+    <string name="enhanced_tracking_info">ସେବା ଯାହା ନିର୍ଦ୍ଦିଷ୍ଟ ଉତ୍ସ ପାଇଁ ବର୍ଦ୍ଧିତ ବ features ଶିଷ୍ଟ୍ୟ ପ୍ରଦାନ କରେ | ଆପଣଙ୍କ ଲାଇବ୍ରେରୀରେ ଯୋଡିବାବେଳେ ଏଣ୍ଟ୍ରିଗୁଡ଼ିକ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ଟ୍ରାକ ହୋଇଥାଏ |</string>
+    <string name="update_tracking_after_reading">ପ reading ିବା ପରେ ଟ୍ରାକିଂ ଅପଡେଟ୍ କରନ୍ତୁ |</string>
+    <string name="update_tracking_marked_read">ପ read ଼ିବା ପରି ଚିହ୍ନିତ ହେଲେ ଟ୍ରାକିଂ ଅପଡେଟ୍ କରନ୍ତୁ |</string>
+    <string name="reading">ପଢ଼ୁଛନ୍ତି</string>
+    <string name="currently_reading">ସମ୍ପ୍ରତି ପଠନ |</string>
     <string name="dropped">ଛାଡ଼ିଦେଇଛନ୍ତି</string>
     <string name="on_hold">ଧରି ରଖିଛନ୍ତି</string>
+    <string name="plan_to_read">ପଢ଼ିବା ପାଇଁ ଇଚ୍ଛୁକ</string>
+    <string name="want_to_read">ପ Read ିବାକୁ ଚାହୁଁଛନ୍ତି |</string>
     <string name="paused">ବିରତ ହୋଇଅଛି</string>
-    <string name="current_chapter">ଚଳିତ:</string>
-    <string name="category_cannot_be_blank">ବର୍ଗର ନାମ ଖାଲି ଛଡ଼ା ଯାଇପାରିବ ନାହିଁ</string>
-    <string name="previous_title">ପୂର୍ବବର୍ତ୍ତୀ:</string>
-    <string name="reading_mode">ପଠନ ମୋଡ୍</string>
-    <string name="finished_chapter">ସାରିଲେ:</string>
-    <string name="next_title">ପରବର୍ତ୍ତୀ:</string>
-    <string name="author">ଲେଖକ</string>
-    <string name="artist">ଚିତ୍ରକର</string>
-    <string name="category">ବର୍ଗ</string>
-    <string name="new_category">ନୂଆ ବର୍ଗ</string>
-    <string name="category_is_empty">ବର୍ଗ ଖାଲି ଅଛି</string>
-    <string name="default_category">ଡିଫଲ୍ଟ ବର୍ଗ</string>
-    <string name="category_with_name_exists">ସେଇ ନା‍ଁରେ ଆଗରୁ ଗୋଟିଏ ବର୍ଗ ବିଦ୍ୟମାନ ଅଛି!</string>
-    <string name="manage_category">ବର୍ଗ ପରିଚାଳନା</string>
-    <string name="category_deleted">ବର୍ଗ ବିଲୋପ କରାଗଲା</string>
-    <string name="new_version_available">ନୂଆ ସଂସ୍କରଣ ଉପଲବ୍ଧ!</string>
-    <string name="your_library">ଆପଣଙ୍କ ଲାଇବ୍ରେରୀ</string>
-    <string name="sort_by">ଏହା ଅନୁଯାୟୀ ସଜାନ୍ତୁ</string>
-    <string name="in_library">ଲାଇବ୍ରେରୀରେ</string>
-    <string name="left_to_right_viewer">ବାମରୁ ଡାହାଣ</string>
-    <string name="right_to_left_viewer">ଡାହାଣରୁ ବାମ</string>
-    <string name="select_cover_image">ମଲାଟର ପ୍ରତିଛବି ଚୟନ କରନ୍ତୁ</string>
-    <string name="by_update_date">ଅପଲୋଡ୍ ତାରିଖ ଅନୁଯାୟୀ</string>
-    <string name="added_to_library">ଲାଇବ୍ରେରୀରେ ଯୋଡ଼ାଗଲା</string>
-    <string name="failed_to_update_cover">ମଲାଟ ଅପଡେଟ୍ କରିବାରେ ବିଫଳ ହେଲା</string>
     <string name="rereading">ପୁଣି ପଢ଼ୁଛନ୍ତି</string>
+    <string name="reading_list">ପଠନ ତାଲିକା |</string>
+    <string name="wish_list">ଇଚ୍ଛା ତାଲିକା |</string>
+    <string name="complete_list">ସମ୍ପୂର୍ଣ୍ଣ ତାଲିକା |</string>
+    <string name="on_hold_list">ହୋଲ୍ଡ ତାଲିକାରେ |</string>
+    <string name="unfinished_list">ଅସମାପ୍ତ ତାଲିକା |</string>
+    <string name="score">ସ୍କୋର |</string>
+    <string name="status">ସ୍ଥିତି</string>
+    <string name="started">ଆରମ୍ଭ କରିଛନ୍ତି</string>
     <string name="type">ପ୍ରକାର</string>
-    <string name="webview_is_required">Tachiyomi ପାଇଁ WebView ଆବଶ୍ୟକ ଅଟେ</string>
-    <string name="downloading_progress">ଡାଉନଲୋଡ୍ ହେଉଛି (%1$d/%2$d)</string>
-    <string name="undo">ପୂର୍ବବତ୍</string>
-    <string name="use_image_as_cover">ଏଇ ପ୍ରତିଛବିଟିକୁ ମଲାଟ ଚିତ୍ରକଳା ଭାବରେ ବ୍ୟବହାର କରିବେ କି\?</string>
+    <string name="refresh_tracking">ଟ୍ରାକିଂ ସତେଜ କରନ୍ତୁ |</string>
+    <string name="add_tracking">ଟ୍ରାକିଂ ଯୋଡନ୍ତୁ |</string>
+    <string name="select_an_entry">ଏକ ଏଣ୍ଟ୍ରି ଚୟନ କରନ୍ତୁ |</string>
+    <string name="source_unsupported">ଉତ୍ସ ସମର୍ଥିତ ନୁହେଁ |</string>
+    <string name="no_match_found">କ match ଣସି ମେଳକ ମିଳିଲା ନାହିଁ |</string>
+    <string name="remove_tracking">ଆପରୁ ଟ୍ରାକିଂ ଅପସାରଣ କରନ୍ତୁ |</string>
+    <string name="cannot_remove_tracking_while_offline">ଅଫଲାଇନ୍ ଥିବାବେଳେ ଟ୍ରାକରକୁ &lt;x id = "0" /&gt; ରୁ ଅପସାରଣ କରାଯାଇପାରିବ ନାହିଁ |</string>
+    <string name="remove_tracking_from_">&lt;X id = "0" /&gt; ରୁ ମଧ୍ୟ ଅପସାରଣ କରନ୍ତୁ |</string>
+    <string name="remove_previous_tracker">ପୂର୍ବ ଟ୍ରାକର୍ ଅପସାରଣ କରିବେ?</string>
+    <string name="remove_x_from_service_and_add_y">&lt;X id = "1" /&gt; ରୁ &lt;x id = "0" /&gt; ଅପସାରଣ କରନ୍ତୁ ଏବଂ &lt;x id = "2" /&gt; ଯୋଗ କରନ୍ତୁ |</string>
+    <string name="keep_both_on_service">ଉଭୟ &lt;x id = "0" /&gt; ରେ ରଖନ୍ତୁ ଏବଂ କେବଳ ସ୍ଥାନୀୟ ଭାବରେ ବଦଳାନ୍ତୁ |</string>
+    <string name="anilist" translatable="false">AniList</string>
+    <string name="myanimelist" translatable="false">MyAnimeList</string>
+    <string name="kitsu" translatable="false">Kitsu</string>
+    <string name="bangumi" translatable="false">Bangumi</string>
+    <string name="shikimori" translatable="false">Shikimori</string>
+    <string name="manga_updates" translatable="false">MangaUpdates</string>
+    <string name="komga" translatable="false">Komga</string>
+    <string name="kavita" translatable="false">Kavita</string>
+    <string name="suwayomi" translatable="false">Suwayomi</string>
+    <string name="update_tracking_scoring_type">&lt;X id = "0" /&gt; \ ର ସ୍କୋରିଂ ପ୍ରକାରକୁ ଅଦ୍ୟତନ କରନ୍ତୁ |</string>
+    <string name="scoring_type_updated">ସ୍କୋରିଂ ପ୍ରକାର ଅଦ୍ୟତନ ହୋଇଛି |</string>
+    <string name="could_not_update_scoring_">ସ୍କୋରିଂ ପ୍ରକାରକୁ ଅଦ୍ୟତନ କରିପାରିଲା ନାହିଁ: &lt;x id = "0" /&gt; |</string>
+    <string name="started_reading_date">ପ reading ିବା ତାରିଖ ଆରମ୍ଭ |</string>
+    <string name="finished_reading_date">ପ reading ଼ିବା ତାରିଖ ସମାପ୍ତ</string>
+    <string name="myanimelist_relogin">ଦୟାକରି ପୁନର୍ବାର MAL କୁ ଲଗ୍ ଇନ୍ କରନ୍ତୁ |</string>
+    <string name="use_suggested_date">ପରାମର୍ଶିତ ତାରିଖ ବ୍ୟବହାର କରନ୍ତୁ |</string>
+    <string name="failed_to_update_">&lt;X id = "0" /&gt; ଅଦ୍ୟତନ କରିବାରେ ବିଫଳ |</string>
+    <string name="select_sources">ଉତ୍ସଗୁଡିକ ଚୟନ କରନ୍ତୁ |</string>
+    <string name="source_migration">ଉତ୍ସ ସ୍ଥାନାନ୍ତରଣ |</string>
+    <string name="migration">ସ୍ଥାନାନ୍ତରଣ</string>
+    <string name="skip_pre_migration">ପୂର୍ବ ସ୍ଥାନାନ୍ତରଣକୁ ଛାଡିଦିଅ |</string>
+    <string name="select_a_source_then_item_to_migrate">ଏକ ଉତ୍ସ ଚୟନ କରନ୍ତୁ, ତାପରେ ଏକ ଆଇଟମ୍ ଚୟନ କରନ୍ତୁ |
+        ସ୍ଥାନାନ୍ତର କରନ୍ତୁ |</string>
+    <string name="data_to_include_in_migration">ସ୍ଥାନାନ୍ତରଣରେ ଅନ୍ତର୍ଭୂକ୍ତ କରିବାକୁ ତଥ୍ୟ |</string>
+    <string name="search_parameter_eg">ସନ୍ଧାନ ପାରାମିଟର (ଯଥା ଭାଷା: ଇଂରାଜୀ)</string>
+    <string name="include_extra_search_parameter">ସନ୍ଧାନ କରିବା ସମୟରେ ଅତିରିକ୍ତ ସନ୍ଧାନ ପାରାମିଟର ଅନ୍ତର୍ଭୂକ୍ତ କରନ୍ତୁ |</string>
+    <string name="use_most_chapters">ଅଧିକାଂଶ ଅଧ୍ୟାୟ ସହିତ ଉତ୍ସ ବ୍ୟବହାର କରନ୍ତୁ (ଧୀର)</string>
+    <string name="use_first_source">ବିକଳ୍ପ ସହିତ ପ୍ରଥମ ଉତ୍ସ ବ୍ୟବହାର କରନ୍ତୁ |</string>
+    <string name="skip_this_step_next_time">ପରବର୍ତ୍ତୀ ସମୟରେ ଏହି ପଦକ୍ଷେପକୁ ଏଡ଼ାଇଦିଅ |</string>
+    <string name="to_show_again_setting_sources">ପୁନର୍ବାର ଏହି ସ୍କ୍ରିନ୍ ଦେଖାଇବାକୁ, ସେଟିଂସମୂହ -&gt; କୁ ଯାଆନ୍ତୁ |
+        ଉତ୍ସ</string>
+    <string name="latest_">ସର୍ବଶେଷ: &lt;x id = "0" /&gt; |</string>
+    <string name="migrating_to">କୁ ସ୍ଥାନାନ୍ତରିତ |</string>
+    <string name="dont_migrate">ସ୍ଥାନାନ୍ତର କରନ୍ତୁ ନାହିଁ |</string>
+    <string name="search_manually">ହସ୍ତକୃତ ଭାବରେ ଖୋଜ |</string>
+    <string name="migrate_now">ବର୍ତ୍ତମାନ ସ୍ଥାନାନ୍ତର କରନ୍ତୁ |</string>
+    <string name="copy_now">ବର୍ତ୍ତମାନ କପି କରନ୍ତୁ |</string>
+    <string name="migrate">ସ୍ଥାନାନ୍ତର କରନ୍ତୁ |</string>
+    <string name="migrate_">&lt;X id = "0" /&gt; ସ୍ଥାନାନ୍ତର କରନ୍ତୁ |</string>
+    <string name="copy_value">କପି କରନ୍ତୁ |</string>
+    <string name="no_chapters_found_for_migration">କ chap ଣସି ଅଧ୍ୟାୟ ମିଳିଲା ନାହିଁ, ଏହି କ୍ରମ ପାଇଁ ବ୍ୟବହାର କରାଯାଇପାରିବ ନାହିଁ |
+        ସ୍ଥାନାନ୍ତରଣ</string>
+    <string name="no_alternatives_found">କ No ଣସି ବିକଳ୍ପ ମିଳିଲା ନାହିଁ |</string>
+    <string name="stop_migrating">ସ୍ଥାନାନ୍ତରଣ ବନ୍ଦ କରନ୍ତୁ?</string>
+    <string name="skipping_">(&lt;x id = "0" /&gt; କୁ ଛାଡି)</string>
+    <string name="settings">ସେଟିଂସମୂହ</string>
     <string name="general">ସାଧାରଣ</string>
-    <string name="cover_of_image">ମଙ୍ଗାର ମଲାଟ</string>
+    <string name="reader">ପାଠକ</string>
+    <string name="appearance">ରୂପ</string>
+    <string name="advanced">ବିକଶିତ</string>
+    <string name="about">ବିଷୟରେ</string>
+    <string name="help">ସହାୟତା</string>
+    <string name="search_settings">ସନ୍ଧାନ ସେଟିଂସମୂହ |</string>
+    <string name="turn_on_">&lt;X id = "0" /&gt; ଟର୍ନ୍ ଅନ୍ କରନ୍ତୁ |</string>
+    <string name="turn_off_">&lt;X id = "0" /&gt; ବନ୍ଦ କରନ୍ତୁ |</string>
+    <string name="incognito_mode">ଅପରିଚିତ ମୋଡ୍</string>
+    <string name="pauses_reading_history">ଇତିହାସ ପ reading ିବା ବନ୍ଦ କରେ |</string>
+    <string name="app_theme">ଆପ୍ ଥିମ୍</string>
+    <string name="light_theme">ହାଲୁକା ଥିମ୍ |</string>
+    <string name="dark_theme">ଗା ark ଥିମ୍ |</string>
+    <string name="dark">ଅନ୍ଧାର</string>
+    <string name="amoled_black">AMOLED କଳା</string>
+    <string name="classic_blue">କ୍ଲାସିକ୍ ବ୍ଲୁ |</string>
+    <string name="midnight_dusk">ମଧ୍ୟରାତ୍ରି ଡସ୍କ |</string>
+    <string name="spring_blossom">ବସନ୍ତ ଫୁଲ |</string>
+    <string name="strawberry_daiquiri">ଷ୍ଟ୍ରବେରୀ ଡାଏକିରି |</string>
+    <string name="a_brighter_you">ଏକ ଉଜ୍ଜ୍ୱଳ ତୁମେ (ଗତିଶୀଳ)</string>
+    <string name="a_calmer_you">ଏକ ଶାନ୍ତ ତୁମେ (ଗତିଶୀଳ)</string>
+    <string name="yotsuba">ୟୋଟସୁବା |</string>
+    <string name="tako">ଟାକୋ |</string>
+    <string name="yin">ୟିନ</string>
+    <string name="yang">ୟାଙ୍ଗ</string>
+    <string name="chocolate_strawberries">ଚକୋଲେଟ୍ ଷ୍ଟ୍ରବେରି |</string>
+    <string name="teal_ocean">ଟିଲ୍ ମହାସାଗର |</string>
+    <string name="sapphire_dusk">ନୀଳମଣି ଡସ୍କ |</string>
+    <string name="lavender">ଲାଭେଣ୍ଡର</string>
+    <string name="violet">ଭିଏଲେଟ୍ |</string>
+    <string name="hot_pink">ଗରମ ଗୋଲାପୀ |</string>
+    <string name="lime_time">ଚୂନ ସମୟ |</string>
+    <string name="flat_lime">ଫ୍ଲାଟ ଚୂନ |</string>
+    <string name="white_theme">ଶୁଦ୍ଧ ଧଳା |</string>
+    <string name="doki">ଡୋକି</string>
+    <string name="sakura">ସାକୁରା |</string>
+    <string name="moonlit_sakura">ଚନ୍ଦ୍ରଲି ସାକୁରା |</string>
+    <string name="pink_romance">ଗୋଲାପୀ ରୋମାନ୍ସ |</string>
+    <string name="deep_wine">ଗଭୀର ମଦ</string>
+    <string name="sumi_e">ସୁମି-ଇ</string>
+    <string name="ink_night">ଇଙ୍କ ନାଇଟ୍ |</string>
+    <string name="kimono">କିମୋନୋ |</string>
+    <string name="lantern_night">ଲନ୍ଟର୍ ନାଇଟ୍ |</string>
+    <string name="wagashi">ୱାଗାଶି |</string>
+    <string name="twilight_tearoom">ଟ୍ୱିଲାଇଟ୍ ଲୁହ |</string>
+    <string name="nordic_stone">ନର୍ଡିକ୍ ପଥର |</string>
+    <string name="fjord_night">Fjord ରାତ୍ରି |</string>
+    <string name="rose">ଗୋଲାପ |</string>
+    <string name="rose_noir">ରୋଜ ନୋଇର |</string>
+    <string name="locale">ଲୋକାଲ୍</string>
+    <string name="last_used_library_recents">ଶେଷ ବ୍ୟବହୃତ (ଲାଇବ୍ରେରୀ କିମ୍ବା ରିସେଣ୍ଟସ୍)</string>
+    <string name="system_default">ସିଷ୍ଟମ୍ ଡିଫଲ୍ଟ |</string>
+    <string name="date_format">ତାରିଖ ଫର୍ମାଟ୍ |</string>
+    <string name="check_for_updates">ଅଦ୍ୟତନ ପାଇଁ ଯାଞ୍ଚ କରନ୍ତୁ |</string>
+    <string name="app_updates">ଆପ୍ ଅଦ୍ୟତନଗୁଡିକ |</string>
+    <string name="updated_to_">V &lt;x id = "0" /&gt; କୁ ଅଦ୍ୟତନ କରାଯାଇଛି |</string>
+    <string name="secure_screen">ସୁରକ୍ଷିତ ପରଦା |</string>
+    <string name="secure_screen_summary">ଆପ୍ ବଦଳାଇବା ଏବଂ ସ୍କ୍ରିନସଟ୍କୁ ଅବରୋଧ କରିବା ସମୟରେ ସୁରକ୍ଷିତ ସ୍କ୍ରିନ୍ ଆପ୍ ବିଷୟବସ୍ତୁ ଲୁଚାଇଥାଏ |</string>
+    <string name="hide_bottom_nav">ତଳ ନାଭିଗେସନ୍ ଅଟୋ-ଲୁଚାନ୍ତୁ |</string>
+    <string name="side_nav_icon_alignment">ସାଇଡ୍ ନେଭିଗେସନ୍ ଆଇକନ୍ ଆଲାଇନ୍ମେଣ୍ଟ୍ |</string>
+    <string name="use_side_navigation">ପାର୍ଶ୍ୱ ନାଭିଗେସନ୍ ବ୍ୟବହାର କରନ୍ତୁ |</string>
+    <string name="default_behavior">ଡିଫଲ୍ଟ ଆଚରଣ</string>
+    <string name="by_default_side_nav_info">ଡିଫଲ୍ଟ ଭାବରେ, ଲ୍ୟାଣ୍ଡସ୍କେପରେ ଯେତେବେଳେ କିଛି ଫୋନ୍ ଏବଂ ଛୋଟ ଟାବଲେଟ୍ ପାଇଁ ସାଇଡ୍ ନେଭିଗେସନ୍ ବ୍ୟବହୃତ ହୁଏ, ଏବଂ ସବୁବେଳେ ବଡ଼ ଟାବଲେଟରେ ଦେଖାଯାଏ |</string>
+    <string name="follow_system_theme">ସିଷ୍ଟମ୍ ଥିମ୍ ଅନୁସରଣ କରନ୍ତୁ |</string>
+    <string name="pure_black_dark_mode">ଶୁଦ୍ଧ କଳା ଗା dark ଼ ମୋଡ୍ |</string>
+    <string name="details_page">ବିବରଣୀ ପୃଷ୍ଠା |</string>
+    <string name="theme_buttons_based_on_cover">କଭର ଉପରେ ଆଧାରିତ ଥିମ୍ ବଟନ୍ |</string>
+    <string name="color_details_from_cover">କଭରରୁ ରଙ୍ଗ ବିବରଣୀ |</string>
+    <string name="color_details_from_cover_summary">କଭରର ପ୍ୟାଲେଟ୍ ବ୍ୟବହାର କରି ମାଙ୍ଗା ପେଜ୍ ଉଚ୍ଚାରଣ, ହେଡର୍ ଏବଂ ଅଧ୍ୟାୟ ରଙ୍ଗକୁ ଟିଣ୍ଟ୍ କରନ୍ତୁ |</string>
+    <string name="cover_color_follow_global">ଗ୍ଲୋବାଲ୍ ସେଟିଂ ଅନୁସରଣ କରନ୍ତୁ |</string>
+    <string name="cover_color_enabled">ଏହି ପ୍ରବେଶ ପାଇଁ ସକ୍ଷମ |</string>
+    <string name="cover_color_disabled">ଏହି ପ୍ରବେଶ ପାଇଁ ଅକ୍ଷମ |</string>
+    <string name="expanded_toolbar">ବିସ୍ତାରିତ ଟୁଲ୍ ବାର୍ |</string>
+    <string name="show_larger_toolbar">ଅଧିକାଂଶ ପୃଷ୍ଠାର ଶୀର୍ଷରେ ଏକ ବୃହତ, ବିସ୍ତାରିତ ଟୁଲ୍ ବାର୍ ଦେଖାନ୍ତୁ (ସେଟିଂକୁ ଖାତିର ନକରି ଛୋଟ ଡିଭାଇସରେ ଦେଖାଯାଏ ନାହିଁ) |</string>
+    <string name="motion">ଗତି</string>
+    <string name="reduce_motion">ଗତି ହ୍ରାସ କରନ୍ତୁ |</string>
+    <string name="reduce_motion_summary">ସ୍କ୍ରିନ୍ ଟ୍ରାନ୍ସସାଇନ୍ସ ଏବଂ ଅନ୍ୟାନ୍ୟ ଇନ୍-ଆପ୍ ଆନିମେସନ୍ ଅକ୍ଷମ କରନ୍ତୁ |</string>
+    <string name="hides_on_scroll">ସ୍କ୍ରୋଲ୍ କରିବା ସମୟରେ ଲୁଚାଏ |</string>
+    <string name="hide_notification_content">ବିଜ୍ଞପ୍ତି ବିଷୟବସ୍ତୁ ଲୁଚାନ୍ତୁ |</string>
+    <string name="security">ସୁରକ୍ଷା</string>
+    <string name="starting_screen">ପରଦା ଆରମ୍ଭ</string>
+    <string name="back_to_start">ଆରମ୍ଭ କରିବାକୁ ଫେରନ୍ତୁ |</string>
+    <string name="pref_manage_notifications">ବିଜ୍ଞପ୍ତିଗୁଡିକ ପରିଚାଳନା କରନ୍ତୁ |</string>
+    <string name="pressing_back_to_start">ପ୍ରାରମ୍ଭ ପରଦାକୁ ଫେରିବା |</string>
+    <string name="auto_updates">ଅଟୋ-ଅପଡେଟ୍ |</string>
+    <string name="auto_update_app">ଅଟୋ-ଅପଡେଟ୍ ଆପ୍ |</string>
+    <string name="over_wifi_only">କେବଳ ୱାଇ-ଫାଇ ଉପରେ |</string>
+    <string name="over_any_network">ଯେକ any ଣସି ନେଟୱର୍କ ଉପରେ |</string>
+    <string name="dont_auto_update">ଅଟୋ-ଅପଡେଟ୍ କରନ୍ତୁ ନାହିଁ |</string>
+    <string name="language_requires_app_restart">ସଠିକ୍ ପ୍ରଦର୍ଶନ କରିବାକୁ କିଛି ଭାଷା ଏକ ଆପ୍ ପୁନ unch ଚାଳନ ଆବଶ୍ୟକ କରିପାରନ୍ତି |</string>
+    <string name="app_shortcuts">ଆପ୍ ସର୍ଟକଟ୍ |</string>
+    <string name="show_recent_sources">ସମ୍ପ୍ରତି ବ୍ୟବହୃତ ଉତ୍ସଗୁଡିକ ଦେଖାନ୍ତୁ |</string>
+    <string name="show_recent_series">ସାମ୍ପ୍ରତିକ ସିରିଜ୍ ଦେଖାନ୍ତୁ |</string>
+    <string name="includes_recently_read_updated_added">ସମ୍ପ୍ରତି ପ read ଼ାଯାଇଥିବା, ଅଦ୍ୟତନ ଏବଂ ଯୋଡିଥିବା ସିରିଜ୍ ଅନ୍ତର୍ଭୂକ୍ତ କରେ |</string>
+    <string name="series_opens_new_chapters">ସିରିଜ୍ ସର୍ଟକଟ୍ ନୂତନ ଅଧ୍ୟାୟ ଖୋଲିବ |</string>
+    <string name="no_new_chapters_open_details">ଯେତେବେଳେ କ new ଣସି ନୂତନ ଅଧ୍ୟାୟ ନାହିଁ, ଏହା ପରିବର୍ତ୍ତେ ସିରିଜ୍ \ 'ବିବରଣୀ ଖୋଲିବ |</string>
+    <string name="data_and_storage">ଡାଟା ଏବଂ ଷ୍ଟୋରେଜ୍ |</string>
+    <string name="storage_location">ସଂରକ୍ଷଣ ସ୍ଥାନ</string>
+    <string name="storage_usage">ସଂରକ୍ଷଣ ବ୍ୟବହାର</string>
+    <string name="available_disk_space_info">ଉପଲବ୍ଧ: &lt;x id = "0" /&gt; / ସମୁଦାୟ: &lt;x id = "1" /&gt; |</string>
+    <string name="backup">ବ୍ୟାକଅପ୍</string>
+    <string name="backup_and_restore">ବ୍ୟାକଅପ୍ ଓ ପୁନରୁଦ୍ଧାର</string>
+    <string name="create_backup">ବ୍ୟାକଅପ୍ ସୃଷ୍ଟି କରନ୍ତୁ |</string>
+    <string name="can_be_used_to_restore">ସାମ୍ପ୍ରତିକ ଲାଇବ୍ରେରୀ ପୁନରୁଦ୍ଧାର ପାଇଁ ବ୍ୟବହାର କରାଯାଇପାରିବ |</string>
+    <string name="restore_backup">ବ୍ୟାକଅପ୍ ପୁନରୁଦ୍ଧାର କରନ୍ତୁ |</string>
+    <string name="restore_from_backup_file">ବ୍ୟାକଅପ୍ ଫାଇଲରୁ ଲାଇବ୍ରେରୀ ପୁନରୁଦ୍ଧାର କରନ୍ତୁ |</string>
+    <string name="restore_in_progress">ଅଗ୍ରଗତି ଚାଲିଛି |</string>
+    <string name="backup_in_progress">ବ୍ୟାକଅପ୍ ପୂର୍ବରୁ ଚାଲିଛି |</string>
+    <string name="backup_location">ବ୍ୟାକଅପ୍ ଅବସ୍ଥାନ</string>
+    <string name="automatic_backups">ସ୍ୱୟଂଚାଳିତ ବ୍ୟାକଅପ୍ |</string>
+    <string name="backup_frequency">ବ୍ୟାକଅପ୍ ଫ୍ରିକ୍ୱେନ୍ସି |</string>
+    <string name="max_auto_backups">ସର୍ବାଧିକ ସ୍ୱୟଂଚାଳିତ ବ୍ୟାକଅପ୍ |</string>
+    <string name="invalid_backup_file">ଅବ val ଧ ବ୍ୟାକଅପ୍ ଫାଇଲ୍ |</string>
+    <string name="invalid_backup_file_type">ଅବ val ଧ ବ୍ୟାକଅପ୍ ଫାଇଲ୍ ପ୍ରକାର: &lt;x id = "0" /&gt; \ n ଏହା ".proto.gz" କିମ୍ବା ".json" ସହିତ ସମାପ୍ତ ହେବା ଉଚିତ |</string>
+    <string name="backup_has_no_manga">ବ୍ୟାକଅପ୍ କ any ଣସି ଏଣ୍ଟ୍ରି ଧାରଣ କରେ ନାହିଁ |</string>
+    <string name="backup_failed">ବ୍ୟାକଅପ୍ ବିଫଳ ହେଲା |</string>
+    <string name="empty_backup_error">ବ୍ୟାକଅପ୍ କରିବାକୁ କ library ଣସି ଲାଇବ୍ରେରୀ ଏଣ୍ଟ୍ରି ନାହିଁ |</string>
+    <string name="backup_created">ବ୍ୟାକଅପ୍ ସୃଷ୍ଟି ହୋଇଛି |</string>
+    <string name="restore_completed">ପୁନରୁଦ୍ଧାର ସମାପ୍ତ ହୋଇଛି |</string>
+    <string name="restore_error">ବ୍ୟାକଅପ୍ ପୁନରୁଦ୍ଧାର କରିବାରେ ବିଫଳ |</string>
+    <string name="restore_missing_sources">ନିଖୋଜ ଉତ୍ସ:</string>
+    <string name="restore_missing_trackers">ଟ୍ରାକର୍ ଲଗ୍ ହୋଇନାହିଁ:</string>
+    <string name="restore_content_full">ନକଲ ସଂରକ୍ଷଣ ଫାଇଲରୁ ତଥ୍ୟ ପୁନ restored ସ୍ଥାପିତ ହେବ |</string>
+    <string name="restoring_backup_canceled">ପୁନରୁଦ୍ଧାର ବାତିଲ |</string>
+    <string name="backup_restore_invalid_uri">ତ୍ରୁଟି: ଖାଲି URI |</string>
+    <string name="creating_backup">ବ୍ୟାକଅପ୍ ସୃଷ୍ଟି କରିବା |</string>
+    <string name="backup_info">ସ୍ୱୟଂଚାଳିତ ବ୍ୟାକଅପ୍ ଅତ୍ୟଧିକ ସୁପାରିଶ କରାଯାଏ | ଆପଣ ଅନ୍ୟ ସ୍ଥାନରେ ମଧ୍ୟ କପି ରଖିବା ଉଚିତ୍ |</string>
+    <string name="what_should_backup">ଆପଣ କ’ଣ ବ୍ୟାକଅପ୍ କରିବାକୁ ଚାହୁଁଛନ୍ତି?</string>
+    <string name="restoring_backup">ନକଲ ସଂରକ୍ଷଣ</string>
+    <string name="restore_duration">%1$02d ମି, %2$02d ସେ</string>
+    <string name="restore_miui_warning">MIUI ଅପ୍ଟିମାଇଜେସନ୍ ଅକ୍ଷମ ହେଲେ ବ୍ୟାକଅପ୍ / ପୁନ restore ସ୍ଥାପନ ସଠିକ୍ ଭାବରେ କାର୍ଯ୍ୟ କରିନପାରେ |</string>
+    <string name="progress">ପ୍ରଗତି</string>
+    <string name="complete">ସଂପୂର୍ଣ୍ଣ</string>
+    <string name="not_logged_into_">&lt;X id = "0" /&gt; ରେ ଲଗ୍ ହୋଇନାହିଁ |</string>
+    <string name="backup_private_pref">ସମ୍ବେଦନଶୀଳ ସେଟିଂସମୂହ ଅନ୍ତର୍ଭୂକ୍ତ କରନ୍ତୁ (ଯଥା ଟ୍ରାକର ଲଗଇନ୍ ଟୋକେନ୍)</string>
+    <string name="last_auto_backup_info">ଶେଷ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ବ୍ୟାକଅପ୍ ହେଲା: &lt;x id = "0" /&gt; |</string>
+    <string name="clear_chapter_cache">ଅଧ୍ୟାୟ କ୍ୟାଚ୍ ସଫା କରନ୍ତୁ |</string>
+    <string name="force_download_cache_refresh">ରେଇଣ୍ଡେକ୍ସ ଡାଉନଲୋଡ୍ |</string>
+    <string name="force_download_cache_refresh_summary">ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଅଧ୍ୟାୟଗୁଡ଼ିକୁ ପୁନ he ଯାଞ୍ଚ କରିବାକୁ ଆପ୍କୁ ବାଧ୍ୟ କରନ୍ତୁ |</string>
+    <string name="data_management">ଡାଟା ପରିଚାଳନା</string>
+    <string name="check_for_beta_releases">ବିଟା ପ୍ରକାଶନ ପାଇଁ ଯା Check ୍ଚ କରନ୍ତୁ |</string>
+    <string name="try_new_features">ସେମାନେ ଆନୁଷ୍ଠାନିକ ଭାବରେ ରିଲିଜ୍ ହେବା ପୂର୍ବରୁ ନୂତନ ବ features ଶିଷ୍ଟ୍ୟଗୁଡିକ ଚେଷ୍ଟା କରନ୍ତୁ | ବିଟା ରିଲିଜ୍ ଅସ୍ଥିର ହୋଇପାରେ ଏବଂ ବିକାଶକାରୀଙ୍କୁ ମତାମତ ଦେବା ପାଇଁ ପ୍ରଦାନ କରାଯାଇଥାଏ |</string>
+    <string name="warning_unenroll_from_beta">ପୂର୍ବ ଉତ୍ପାଦନ ସଂସ୍କରଣକୁ ଫେରିବା ଦ୍ issues ାରା ସମସ୍ୟା ସୃଷ୍ଟି ହୋଇପାରେ ଏବଂ ଆପ୍ ଡାଟା ସଫା କରିବାକୁ ଆବଶ୍ୟକ ହୋଇପାରେ |</string>
+    <string name="warning_enroll_into_beta">ବିଟା ରିଲିଜ୍ ଅସ୍ଥିର ହୋଇପାରେ ଏବଂ ଆପ୍ ଡାଟା ସଫା କରିବାକୁ ଆବଶ୍ୟକ କରିପାରନ୍ତି |</string>
+    <string name="crash_logs">କ୍ରାସ୍ ଲଗ୍ |</string>
+    <string name="dump_crash_logs">କ୍ରାସ୍ ଲଗ୍ ପକାନ୍ତୁ |</string>
+    <string name="saves_error_logs">ଡେଭଲପର୍ମାନଙ୍କ ସହିତ ଅଂଶୀଦାର ପାଇଁ ଏକ ଫାଇଲରେ ତ୍ରୁଟି ଲଗ୍ ସେଭ୍ କରେ |</string>
+    <string name="about_dont_kill_my_app">କିଛି ନିର୍ମାତାଙ୍କର ଅତିରିକ୍ତ ଆପ୍ ପ୍ରତିବନ୍ଧକ ଅଛି ଯାହା ପୃଷ୍ଠଭୂମି ସେବାକୁ ମାରିଦିଏ | ଏହାକୁ କିପରି ସମାଧାନ କରାଯିବ ଏହି ୱେବସାଇଟରେ ଅଧିକ ସୂଚନା ଅଛି |</string>
+    <string name="crash_log_saved">କ୍ରାସ୍ ଲଗ୍ ସେଭ୍ ହୋଇଛି |</string>
+    <string name="pref_verbose_logging">ଭର୍ବୋଜ୍ ଲଗିଂ |</string>
+    <string name="pref_verbose_logging_summary">ସିଷ୍ଟମ୍ ଲଗ୍ ରେ ଭର୍ବୋଜ୍ ଲଗ୍ ପ୍ରିଣ୍ଟ୍ କରନ୍ତୁ (ଆପ୍ କାର୍ଯ୍ୟଦକ୍ଷତା ହ୍ରାସ କରିପାରେ) |</string>
+    <string name="pref_reader_debug_mode">ତ୍ରୁଟି ନିବାରଣ ଧାରା</string>
+    <string name="pref_external_local_source">ଏଣ୍ଟ୍ରିଗୁଡିକ ପାଇଁ ବାହ୍ୟ ଷ୍ଟୋରେଜ୍ ସ୍କାନ୍ କରନ୍ତୁ |</string>
+    <string name="network">ନେଟୱାର୍କ |</string>
+    <string name="doh">HTTPS ଉପରେ DNS |</string>
+    <string name="user_agent_string">ଡିଫଲ୍ଟ ୟୁଜର୍ ଏଜେଣ୍ଟ ଷ୍ଟ୍ରିଙ୍ଗ୍ |</string>
+    <string name="error_user_agent_string_invalid">ଅବ val ଧ ଉପଭୋକ୍ତା ଏଜେଣ୍ଟ ଷ୍ଟ୍ରିଙ୍ଗ |</string>
+    <string name="disabled">ଅକ୍ଷମ</string>
+    <string name="cloudflare" translatable="false">Cloudflare</string>
+    <string name="google" translatable="false">Google</string>
+    <string name="ad_guard" translatable="false">AdGuard</string>
+    <string name="quad9" translatable="false">Quad9</string>
+    <string name="aliDNS" translatable="false">AliDNS</string>
+    <string name="dnsPod" translatable="false">DNSPod</string>
+    <string name="dns_360" translatable="false">360</string>
+    <string name="quad_101" translatable="false">Quad 101</string>
+    <string name="requires_app_restart">କାର୍ଯ୍ୟକାରୀ ହେବା ପାଇଁ ଆପ୍ ପୁନ rest ଆରମ୍ଭ ଆବଶ୍ୟକ କରେ |</string>
+    <string name="used_">ବ୍ୟବହୃତ: &lt;x id = "0" /&gt; |</string>
+    <string name="cache_delete_error">ସଫା କରିବା ସମୟରେ ତ୍ରୁଟି ଘଟିଗଲା |</string>
+    <string name="clear_cookies">କୁକିଜ୍ ସଫା କରନ୍ତୁ |</string>
+    <string name="cookies_cleared">କୁକିଜ୍ ସଫା ହେଲା |</string>
+    <string name="pref_clear_webview_data">ୱେବ୍ ଭିଭ୍ ଡାଟା ସଫା କରନ୍ତୁ |</string>
+    <string name="webview_data_deleted">ୱେବ୍ ଭିଭ୍ ଡାଟା ସଫା ହେଲା |</string>
+    <string name="clear_database">ଡାଟାବେସ୍ ସଫା କରନ୍ତୁ |</string>
+    <string name="clear_database_source_item_count">ଡାଟାବେସରେ &lt;x id = "0" /&gt; ଲାଇବ୍ରେରୀ ନଥିବା ପ୍ରବିଷ୍ଟଗୁଡିକ |</string>
+    <string name="clear_database_summary">ଏଣ୍ଟ୍ରିଗୁଡିକ ପାଇଁ ଇତିହାସ ବିଲୋପ କରନ୍ତୁ ଯାହା ଆପଣଙ୍କର ଲାଇବ୍ରେରୀରେ ସେଭ୍ ହୋଇନାହିଁ |</string>
+    <string name="clear_database_confirmation">ଆପଣ ନିଶ୍ଚିତ କି? ଅଧ୍ୟାୟ ପ Read ନ୍ତୁ ଏବଂ ଲାଇବ୍ରେରୀ ନଥିବା ପ୍ରବିଷ୍ଟଗୁଡ଼ିକର ଅଗ୍ରଗତି ନଷ୍ଟ ହୋଇଯିବ |</string>
+    <string name="clear_db_exclude_read">ପଠନ ଅଧ୍ୟାୟ ସହିତ ଏଣ୍ଟ୍ରିଗୁଡିକ ରଖନ୍ତୁ |</string>
+    <string name="clear_database_completed">ଏଣ୍ଟ୍ରିଗୁଡିକ ଡିଲିଟ୍ ହୋଇଛି |</string>
+    <string name="database_clean">ଡାଟାବେସ୍ ସଫା |</string>
+    <string name="refresh_library_metadata">ଲାଇବ୍ରେରୀ ମେଟାଡାଟା ସତେଜ କରନ୍ତୁ |</string>
+    <string name="updates_covers_genres_desc">ଅଦ୍ୟତନଗୁଡିକ କଭର୍, ଧାରା, ବର୍ଣ୍ଣନା ଏବଂ ଏଣ୍ଟ୍ରି ସ୍ଥିତି ସୂଚନା |</string>
+    <string name="refresh_tracking_metadata">ଟ୍ରାକିଂ ମେଟାଡାଟା ସତେଜ କରନ୍ତୁ |</string>
+    <string name="updates_tracking_details">ଟ୍ରାକିଂ ସେବାଗୁଡିକରୁ ପ status ଼ୁଥିବା ସ୍ଥିତି, ସ୍କୋର ଏବଂ ଶେଷ ଅଧ୍ୟାୟ ଅଦ୍ୟତନ କରେ |</string>
+    <string name="clean_up_downloaded_chapters">ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଅଧ୍ୟାୟଗୁଡିକ ସଫା କର |</string>
+    <string name="delete_unused_chapters">ଅବାସ୍ତବ, ଆଂଶିକ ଡାଉନଲୋଡ୍ ବିଲୋପ କରନ୍ତୁ,
+        ଏବଂ ଅଧ୍ୟାୟ ଫୋଲ୍ଡରଗୁଡ଼ିକୁ ପ read ଼ନ୍ତୁ |</string>
+    <string name="clean_orphaned_downloads">ଅନାଥ ପିଲାମାନଙ୍କୁ ସଫା କର |</string>
+    <string name="clean_read_downloads">ପରିଷ୍କାର ପ read ଼ନ୍ତୁ |</string>
+    <string name="clean_read_manga_not_in_library">ଲାଇବ୍ରେରୀରେ ନୁହେଁ ଏଣ୍ଟ୍ରିଗୁଡିକ ସଫା କରନ୍ତୁ |</string>
+    <string name="starting_cleanup">ସଫେଇ କାର୍ଯ୍ୟ ଆରମ୍ଭ</string>
+    <string name="no_folders_to_cleanup">ସଫା କରିବାକୁ କ folder ଣସି ଫୋଲ୍ଡର ନାହିଁ |</string>
+    <string name="disable_battery_optimization">ବ୍ୟାଟେରୀ ଅପ୍ଟିମାଇଜେସନ୍ ଅକ୍ଷମ କରନ୍ତୁ |</string>
+    <string name="disable_if_issues_with_updating">ଯଦି ଆପଣ ସମସ୍ୟାଗୁଡିକ ଅନୁଭବ କରୁଛନ୍ତି ତେବେ ଏହାକୁ ଅକ୍ଷମ କରନ୍ତୁ |
+        ଆପଣଙ୍କର ଲାଇବ୍ରେରୀ ଅପଡେଟ୍ କିମ୍ବା ପୁନରୁଦ୍ଧାର ସହିତ |</string>
+    <string name="battery_optimization_disabled">ବ୍ୟାଟେରୀ ଅପ୍ଟିମାଇଜେସନ୍ ପୂର୍ବରୁ ଅକ୍ଷମ ହୋଇଛି |</string>
+    <string name="clean_up_cached_covers">କ୍ୟାଚ୍ ହୋଇଥିବା କଭରଗୁଡିକ ସଫା କର |</string>
+    <string name="delete_old_covers_in_library_used_">ପୁରୁଣା ଏବଂ ଅବ୍ୟବହୃତ କ୍ୟାଚ୍ କଭରଗୁଡିକ ବିଲୋପ କରନ୍ତୁ |
+        ଆପଣଙ୍କର ଲାଇବ୍ରେରୀରେ ଏଣ୍ଟ୍ରିଗୁଡିକ ଯାହା ଅଦ୍ୟତନ ହୋଇଛି | \ n ବର୍ତ୍ତମାନ ବ୍ୟବହାର: &lt;x id = "0" /&gt; |</string>
+    <string name="clear_cached_covers_non_library">ଲାଇବ୍ରେରୀରେ ନୁହେଁ କ୍ୟାଚ୍ କଭରଗୁଡିକ ସଫା କରନ୍ତୁ |</string>
+    <string name="delete_all_covers__not_in_library_used_">କ୍ୟାଚ୍ ହୋଇଥିବା ସମସ୍ତ କଭର୍ ଡିଲିଟ୍ କରନ୍ତୁ |
+        ଆପଣଙ୍କ ଲାଇବ୍ରେରୀରେ ନୁହେଁ \ n ବର୍ତ୍ତମାନ ବ୍ୟବହାର: &lt;x id = "0" /&gt; |</string>
+    <string name="most_entries">ଅଧିକାଂଶ ଏଣ୍ଟ୍ରିଗୁଡିକ |</string>
+    <string name="select_uninstalled_sources">ଅସଂସ୍ଥାପିତ ଉତ୍ସଗୁଡିକ ବାଛନ୍ତୁ |</string>
+    <string name="pref_debug_info">ତ୍ରୁଟି ନିବାରଣ ସୂଚନା</string>
+    <string name="label_background_activity">ପୃଷ୍ଠଭୂମି କାର୍ଯ୍ୟକଳାପ |</string>
+    <string name="pref_global_search">ସର୍ବଭାରତୀୟ ସନ୍ଧାନ |</string>
+    <string name="check_for_extension_updates">ବିସ୍ତୃତକରଣ ଅଦ୍ୟତନ ପାଇଁ ଯାଞ୍ଚ କରନ୍ତୁ |</string>
+    <string name="auto_update_extensions">ଅଟୋ-ଅପଡେଟ୍ ଏକ୍ସଟେନ୍ସନ୍ |</string>
+    <string name="notify_extension_updated">ବିଜ୍ଞପ୍ତି ସମ୍ପ୍ରସାରଣକୁ ଅଦ୍ୟତନ କରାଯାଇଛି |</string>
+    <string name="some_extensions_may_not_update">କେତେକ ଏକ୍ସଟେନ୍ସନ୍ ଏହି ଆପ୍ ବାହାରେ ଇନଷ୍ଟଲ୍ ହୋଇଥିଲେ ଅଟୋ-ଅପଡେଟ୍ ହୋଇନପାରେ |</string>
+    <string name="only_search_pinned_when">କେବଳ ପିନ୍ ହୋଇଥିବା ଉତ୍ସଗୁଡିକ ଖୋଜ |</string>
+    <string name="hide_in_library_items">ଲାଇବ୍ରେରୀରେ ପୂର୍ବରୁ ଏଣ୍ଟ୍ରିଗୁଡିକ ଲୁଚାନ୍ତୁ |</string>
+    <string name="match_pinned_sources">ପିନ୍ ହୋଇଥିବା ଉତ୍ସଗୁଡିକ ସହିତ ମେଳ କରନ୍ତୁ |</string>
+    <string name="match_enabled_sources">ଉତ୍ସ ଉତ୍ସଗୁଡିକ ମେଳ କରନ୍ତୁ |</string>
+    <string name="only_enable_pinned_for_migration">କେବଳ ଆପଣଙ୍କର ପିନ୍ ହୋଇଥିବା ଉତ୍ସଗୁଡିକ ସକ୍ଷମ କରନ୍ତୁ |
+        ସ୍ଥାନାନ୍ତରଣ</string>
+    <string name="only_enable_enabled_for_migration">କେବଳ ଆପଣଙ୍କର ସମ୍ପ୍ରତି ସକ୍ଷମ ଉତ୍ସଗୁଡିକ ପାଇଁ ସକ୍ଷମ କରନ୍ତୁ |
+        ସ୍ଥାନାନ୍ତରଣ</string>
+    <string name="use_last_saved_migration_preferences">ଶେଷ ସଞ୍ଚିତ ପୂର୍ବ-ସ୍ଥାନାନ୍ତରଣ ପସନ୍ଦଗୁଡିକ ବ୍ୟବହାର କରନ୍ତୁ |
+        ଏବଂ ବହୁ ସ୍ଥାନାନ୍ତରଣ ପାଇଁ ଉତ୍ସ |</string>
+    <string name="migration_sources_changed">ସ୍ଥାନାନ୍ତରଣ ଉତ୍ସଗୁଡ଼ିକ ବଦଳିଗଲା |</string>
+    <string name="you_can_migrate_in_library">ତୁମ ଭିତରେ ଏଣ୍ଟ୍ରି ଚୟନ କରି ଆପଣ ମଧ୍ୟ ସ୍ଥାନାନ୍ତର କରିପାରିବେ |
+        ଲାଇବ୍ରେରୀ |</string>
+    <string name="source_migration_guide">ଉତ୍ସ ସ୍ଥାନାନ୍ତରଣ ଗାଇଡ୍ |</string>
+    <string name="pref_migration_parallel">ସମାନ୍ତରାଳ ସ୍ଥାନାନ୍ତରଣ |</string>
+    <string name="pref_migration_parallel_summary">ଶିରୋନାମା ଏକାସାଙ୍ଗରେ ସମାଧାନ ହେଲା: &lt;x id = "0" /&gt; |</string>
+    <string name="enable_source_swipe_action">ଉତ୍ସ ସ୍ୱାଇପ୍ କ୍ରିୟା ସକ୍ଷମ କରନ୍ତୁ |</string>
+    <string name="nsfw_sources">NSFW (18+) ଉତ୍ସ |</string>
+    <string name="show_in_sources_and_extensions">ଉତ୍ସ ଏବଂ ଏକ୍ସଟେନ୍ସନ୍ ତାଲିକାରେ ଦେଖାନ୍ତୁ |</string>
+    <string name="does_not_prevent_unofficial_nsfw">ଏହା ଆପରେ ଥିବା NSFW (18+) ବିଷୟବସ୍ତୁକୁ ଅଣଆନୁଷ୍ଠାନିକ କିମ୍ବା ସମ୍ଭାବ୍ୟ ଭୁଲ ଭାବରେ ଫ୍ଲାଗ୍ ହୋଇଥିବା ଏକ୍ସଟେନ୍ସନ୍ କୁ ପ୍ରତିରୋଧ କରେ ନାହିଁ |</string>
+    <string name="repos">ରେପୋସ୍</string>
+    <string name="repositories">ସଂଗ୍ରହାଳୟ</string>
+    <string name="source_repos">ସମ୍ପ୍ରସାରଣ ରେପୋସ୍ |</string>
+    <string name="label_add_repo">ସଂଗ୍ରହାଳୟ URL</string>
+    <string name="action_add_repo">ସଂଗ୍ରହାଳୟ ଯୋଡନ୍ତୁ |</string>
+    <string name="invalid_repo_url">ଏକ ବ valid ଧ ସଂଗ୍ରହାଳୟ URL ପ୍ରବେଶ କରନ୍ତୁ |</string>
+    <string name="repo_already_exists">ଏହି ସଂଗ୍ରହାଳୟ ପୂର୍ବରୁ ଯୋଗ କରାଯାଇଛି |</string>
+    <string name="repo_add_failed">ଏହି ସଂଗ୍ରହାଳୟ ଯୋଗ କରିପାରିବ ନାହିଁ | URL ଏବଂ ଆପଣଙ୍କର ସଂଯୋଗ ଯାଞ୍ଚ କରନ୍ତୁ, ତାପରେ ପୁନର୍ବାର ଚେଷ୍ଟା କରନ୍ତୁ |</string>
+    <string name="repo_refresh_failed">ସଂଗ୍ରହାଳୟ ସତେଜ ହୋଇପାରିବ ନାହିଁ | ଆପଣଙ୍କର ସଂଯୋଗ ଯାଞ୍ଚ କରନ୍ତୁ ଏବଂ ପୁନର୍ବାର ଚେଷ୍ଟା କରନ୍ତୁ |</string>
+    <string name="add_manga_repo">ଏକ ମାଙ୍ଗା ସଂଗ୍ରହାଳୟ ଯୋଡନ୍ତୁ |</string>
+    <string name="add_novel_repo">ଏକ ଉପନ୍ୟାସ ସଂଗ୍ରହାଳୟ ଯୋଡନ୍ତୁ |</string>
+    <string name="manga_repo_add_description">ସଂଗ୍ରହାଳୟ ରକ୍ଷକ ଦ୍ୱାରା ପ୍ରଦତ୍ତ ପୂର୍ଣ୍ଣ index.min.json URL ଲେପନ କରନ୍ତୁ |</string>
+    <string name="novel_repo_add_description">ଏହାର ସୂଚକାଙ୍କକୁ ବ valid ଧ କରିବା ଏବଂ ଏହାର ଉପନ୍ୟାସ ଉତ୍ସଗୁଡିକ ଉପଲବ୍ଧ କରାଇବା ପାଇଁ ଏକ ସଂଗ୍ରହାଳୟ URL ଲେପନ କରନ୍ତୁ |</string>
+    <string name="repository_url">ସଂଗ୍ରହାଳୟ URL</string>
+    <string name="repository_url_placeholder">https://example.org/repo/index.min.json</string>
+    <string name="paste">ଲେପନ କରନ୍ତୁ |</string>
+    <string name="your_repositories">ତୁମର ସଂଗ୍ରହାଳୟ</string>
+    <string name="repository_count">&lt;x id = "0" /&gt; ଯୋଡା ଯାଇଛି |</string>
+    <string name="remove_repository">ସଂଗ୍ରହାଳୟ ଅପସାରଣ କରନ୍ତୁ |</string>
+    <string name="information_empty_repos">ଏପର୍ଯ୍ୟନ୍ତ କ No ଣସି ମାଙ୍ଗା ସଂଗ୍ରହାଳୟ ନାହିଁ | ଅଧିକ ଏକ୍ସଟେନ୍ସନ୍ ବ୍ରାଉଜ୍ କରିବାକୁ ଉପରୋକ୍ତ ଗୋଟିଏ ଯୋଡନ୍ତୁ |</string>
+    <string name="information_empty_novel_repos">ଏପର୍ଯ୍ୟନ୍ତ କ novel ଣସି ଉପନ୍ୟାସ ସଂଗ୍ରହାଳୟ ନାହିଁ | ଉପନ୍ୟାସ ଉତ୍ସଗୁଡିକ ବ୍ରାଉଜ୍ କରିବାକୁ ଉପରୋକ୍ତ ଗୋଟିଏ ଯୋଡନ୍ତୁ |</string>
+    <string name="novel_repo_invalid">ଉପନ୍ୟାସ ରେପୋ ଇଣ୍ଡେକ୍ସ ଅବ alid ଧ ଅଟେ |</string>
+    <string name="novel_repo_empty">ଉପନ୍ୟାସ ରେପୋ ଖାଲି ଅଛି | ଏକ ରେପୋ ଯୋଡନ୍ତୁ ଯେଉଁଥିରେ ଉପନ୍ୟାସ ଉତ୍ସ ଅଛି |</string>
+    <string name="confirm_delete_repo_title">ସଂଗ୍ରହାଳୟ ଅପସାରଣ କରିବେ?</string>
+    <string name="confirm_delete_repo">ଏହି ଉପକରଣରୁ “&lt;x id =" 0 "/&gt;" ଅପସାରଣ କରନ୍ତୁ? ଆପଣ ଏହାକୁ ପରେ ପରେ ଯୋଡିପାରିବେ |</string>
+    <string name="action_replace_repo">ସଂଗ୍ରହାଳୟକୁ ବଦଳାନ୍ତୁ |</string>
+    <string name="action_replace_repo_title">ପୂର୍ବରୁ ବ୍ୟବହୃତ ରେପୋଜିଟୋରୀ ସାଇନ୍ କୀ |</string>
+    <string name="action_replace_repo_message">“&lt;X id =" 0 "/&gt;" ସମାନ ଦସ୍ତଖତ ଚାବିକୁ "&lt;x id =" 1 "/&gt;" ବ୍ୟବହାର କରେ | ଯଦି ଆପଣ “&lt;x id =" 3 "/&gt;" କୁ ଏହାର ଉଦ୍ଦେଶ୍ୟମୂଳକ ଉତ୍ତରାଧିକାରୀ ଭାବରେ ବିଶ୍ trust ାସ କରନ୍ତି ତେବେ "&lt;x id =" 2 "/&gt;" କୁ ବଦଳାନ୍ତୁ |</string>
+    <string name="version">ସଂସ୍କରଣ</string>
+    <string name="build_time">ସମୟ ନିର୍ମାଣ କରନ୍ତୁ |</string>
+    <string name="send_crash_report">କ୍ରାସ୍ ରିପୋର୍ଟ ପଠାନ୍ତୁ |</string>
+    <string name="helps_fix_bugs">ଯେକ any ଣସି ତ୍ରୁଟି ସମାଧାନ କରିବାରେ ସାହାଯ୍ୟ କରେ | କ sensitive ଣସି ସମ୍ବେଦନଶୀଳ ତଥ୍ୟ ପଠାଯିବ ନାହିଁ |</string>
+    <string name="whats_new">କଣ ନୂଆ |</string>
+    <string name="faq_and_guides">FAQ ଏବଂ ଗାଇଡ୍ |</string>
+    <string name="whats_new_this_release">ଏହି ପ୍ରକାଶନରେ କଣ ନୂଆ |</string>
+    <string name="help_translate">ଅନୁଵାଦ କରିବାରେ ସାହାଯ୍ୟ କରନ୍ତୁ</string>
+    <string name="helpful_translation_links">ଉପଯୋଗୀ ଅନୁଵାଦ ଲିଙ୍କ୍</string>
+    <string name="website">ୱେବସାଇଟ୍</string>
+    <string name="open_source_licenses">ମୁକ୍ତ ଉତ୍ସ ଲାଇସେନ୍ସ |</string>
+    <string name="action_open_repo">ମୁକ୍ତ ଉତ୍ସ ରେପୋ |</string>
+    <string name="open_in_browser_fail">Url ଖୋଲିବାକୁ ଅସମର୍ଥ |</string>
+    <string name="log_in_to_">&lt;X id = "0" /&gt; କୁ ଲଗ୍ ଇନ୍ କରନ୍ତୁ |</string>
+    <string name="username">ଉପଯୋଗକର୍ତ୍ତା ନାମ</string>
+    <string name="email">ଇମେଲ୍ ଠିକଣା</string>
+    <string name="password">ପାସ୍‍ୱାର୍ଡ଼</string>
+    <string name="log_in">ଲଗ୍ ଇନ୍ କରନ୍ତୁ |</string>
+    <string name="log_out">ଲଗ୍ ଆଉଟ୍ କରନ୍ତୁ |</string>
+    <string name="log_out_from_">&lt;X id = "0" /&gt; ରୁ ଲଗ୍ ଆଉଟ୍ କରନ୍ତୁ?</string>
+    <string name="successfully_logged_in">ସଫଳତାର ସହିତ ଲଗ୍ ଇନ୍ କଲେ |</string>
+    <string name="username_must_not_be_blank">ଉପଯୋଗକର୍ତ୍ତା ନାମ କିମ୍ବା ପାସୱାର୍ଡ ଖାଲି ହୋଇପାରିବ ନାହିଁ |</string>
+    <string name="successfully_logged_out">ଆପଣ ବର୍ତ୍ତମାନ ଲଗ୍ ଆଉଟ୍ ହୋଇଛନ୍ତି |</string>
+    <string name="downloads">ଡାଉନଲୋଡ୍ |</string>
+    <string name="download_queue">ଧାଡି ଡାଉନଲୋଡ୍ କରନ୍ତୁ |</string>
+    <string name="downloading_">ଡାଉନଲୋଡ୍: &lt;x id = "0" /&gt; |</string>
+    <string name="cancel_all">ସମସ୍ତ ବାତିଲ୍ କରନ୍ତୁ |</string>
+    <string name="move_series_to_top">କ୍ରମକୁ ଉପରକୁ ଘୁଞ୍ଚାନ୍ତୁ |</string>
+    <string name="move_series_to_bottom">କ୍ରମକୁ ତଳକୁ ଘୁଞ୍ଚାନ୍ତୁ |</string>
+    <string name="downloads_swipe_tutorial">ସେଗୁଡିକୁ ସ୍ୱାଇପ୍ କରି ଡାଉନଲୋଡ୍ ବାତିଲ୍ ହୋଇପାରିବ \ n ଏହାକୁ ବରଖାସ୍ତ କରିବାକୁ ଏହି ଟିପ୍ କୁ ସ୍ୱାଇପ୍ କରନ୍ତୁ |</string>
+    <string name="cancel_all_for_series">ଏହି ସିରିଜ୍ ପାଇଁ ସମସ୍ତ ବାତିଲ୍ କରନ୍ତୁ |</string>
+    <string name="downloaded">ଡାଉନଲୋଡ୍ ହୋଇଅଛି</string>
+    <string name="not_downloaded">ଡାଉନଲୋଡ୍ ହୋଇନାହିଁ |</string>
+    <string name="downloading">ଡାଉନଲୋଡ୍ କରୁଛି |</string>
+    <string name="download">ଡାଉନଲୋଡ୍ କରନ୍ତୁ |</string>
+    <string name="start_downloading_now">ବର୍ତ୍ତମାନ ଡାଉନଲୋଡ୍ ଆରମ୍ଭ କରନ୍ତୁ |</string>
+    <string name="remove_download">ଡାଉନଲୋଡ୍ ଅପସାରଣ କରନ୍ତୁ |</string>
+    <string name="remove_downloads">ଡାଉନଲୋଡ୍ ଅପସାରଣ କରନ୍ତୁ |</string>
+    <string name="downloading_progress">ଡାଉନଲୋଡ୍ ହେଉଛି (%1$d/%2$d)</string>
+    <string name="invalid_download_location">ଅବ Download ଧ ଡାଉନଲୋଡ୍ ଅବସ୍ଥାନ |</string>
+    <string name="download_paused">ଡାଉନଲୋଡ୍ ବିରତ |</string>
+    <string name="nothing_is_downloading">ବର୍ତ୍ତମାନ କିଛି ନାହିଁ ଡାଉନଲୋଡ୍ କରୁନାହିଁ |</string>
+    <string name="download_complete">ସମ୍ପୂର୍ଣ୍ଣ ଡାଉନଲୋଡ୍ କରନ୍ତୁ |</string>
+    <string name="download_error">ତ୍ରୁଟି ଡାଉନଲୋଡ୍ କରନ୍ତୁ |</string>
+    <string name="manage_whats_downloading">କ’ଣ ଡାଉନଲୋଡ୍ କରୁଛି ତାହା ପରିଚାଳନା କରନ୍ତୁ |</string>
+    <string name="visit_recents_for_download_queue">ଡାଉନଲୋଡ୍ ଆକ୍ସେସ୍ କରିବାକୁ ରିସେଣ୍ଟସ୍ ଟ୍ୟାବ୍ ପରିଦର୍ଶନ କରନ୍ତୁ |
+        ଧାଡି ଦ୍ରୁତ ପ୍ରବେଶ ପାଇଁ ଆପଣ ଦୁଇଥର ଟ୍ୟାପ୍ କିମ୍ବା ଦବାଇପାରିବେ ଏବଂ ଧରିପାରିବେ |</string>
+    <string name="couldnt_download_low_space">କମ୍ ଡିସ୍କ ସ୍ଥାନ ହେତୁ ଅଧ୍ୟାୟଗୁଡ଼ିକୁ ଡାଉନଲୋଡ୍ କରିପାରିଲା ନାହିଁ |</string>
+    <string name="download_notifier_split_page_not_found">ବିଭାଜନ ସମୟରେ ପୃଷ୍ଠା &lt;x id = "0" /&gt; ମିଳିଲା ନାହିଁ |</string>
+    <string name="download_notifier_split_failed">ଡାଉନଲୋଡ୍ ହୋଇଥିବା ପ୍ରତିଛବିକୁ ବିଭାଜନ କରିପାରିବ ନାହିଁ |</string>
+    <string name="download_with_id">ଅଟୋ-ଆପେଣ୍ଡ୍ ID |</string>
+    <string name="download_with_id_details">ସମାନ ନାମ ଥିବାବେଳେ ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଅଧ୍ୟାୟଗୁଡ଼ିକ ପରସ୍ପର ସହିତ ବିବାଦ ସହିତ ସମସ୍ୟା ସମାଧାନ କରିପାରନ୍ତି |</string>
+    <string name="could_not_download_unexpected_error">ଅପ୍ରତ୍ୟାଶିତ ତ୍ରୁଟି ହେତୁ ଅଧ୍ୟାୟ ଡାଉନଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ |</string>
+    <string name="no_wifi_connection">କ Wi ଣସି ୱାଇ-ଫାଇ ସଂଯୋଗ ଉପଲବ୍ଧ ନାହିଁ |</string>
+    <string name="no_network_connection">କ network ଣସି ନେଟୱର୍କ ସଂଯୋଗ ଉପଲବ୍ଧ ନାହିଁ |</string>
+    <string name="download_location">ଅବସ୍ଥାନ ଡାଉନଲୋଡ୍ କରନ୍ତୁ |</string>
+    <string name="only_download_over_wifi">କେବଳ ୱାଇ-ଫାଇ ଉପରେ ଡାଉନଲୋଡ୍ କରନ୍ତୁ |</string>
+    <string name="remove_when_marked_as_read">ପ read ଼ିବା ପରି ଚିହ୍ନିତ ହେଲେ ଅପସାରଣ କରନ୍ତୁ |</string>
+    <string name="allow_deleting_bookmarked_chapters">ବୁକମାର୍କ ହୋଇଥିବା ଅଧ୍ୟାୟଗୁଡ଼ିକୁ ବିଲୋପ କରିବାକୁ ଅନୁମତି ଦିଅନ୍ତୁ |</string>
+    <string name="remove_after_read">ପ read ିବା ପରେ ଅପସାରଣ କରନ୍ତୁ |</string>
+    <string name="pref_remove_exclude_categories">ବର୍ଗଗୁଡିକ ବାଦ ଦିଆଯାଇଛି |</string>
+    <string name="custom_location">କଷ୍ଟମ୍ ଅବସ୍ଥାନ |</string>
+    <string name="last_read_chapter">ଶେଷ ପ read ଼ା ଅଧ୍ୟାୟ |</string>
+    <string name="second_to_last">ଦ୍ୱିତୀୟରୁ ଶେଷ ଅଧ୍ୟାୟ |</string>
+    <string name="third_to_last">ତୃତୀୟରୁ ଶେଷ ଅଧ୍ୟାୟ |</string>
+    <string name="fourth_to_last">ଚତୁର୍ଥରୁ ଶେଷ ଅଧ୍ୟାୟ |</string>
+    <string name="fifth_to_last">ପଞ୍ଚମରୁ ଶେଷ ଅଧ୍ୟାୟ |</string>
+    <string name="download_ahead">ଆଗକୁ ଡାଉନଲୋଡ୍ କରନ୍ତୁ |</string>
+    <string name="auto_download_while_reading">ପ reading ିବା ସମୟରେ ଅଟୋ ଡାଉନଲୋଡ୍ |</string>
+    <string name="download_ahead_info">କେବଳ ଲାଇବ୍ରେରୀରେ ଥିବା ଏଣ୍ଟ୍ରିଗୁଡ଼ିକ ଉପରେ କାମ କରେ ଏବଂ ଯଦି ସାମ୍ପ୍ରତିକ ଅଧ୍ୟାୟ ଏବଂ ପରବର୍ତ୍ତୀଟି ଡାଉନଲୋଡ୍ ହୋଇସାରିଛି |</string>
+    <string name="download_new_chapters">ନୂତନ ଅଧ୍ୟାୟଗୁଡ଼ିକୁ ଡାଉନଲୋଡ୍ କରନ୍ତୁ |</string>
+    <string name="categories_to_include_in_download">ଡାଉନଲୋଡ୍ ରେ ଅନ୍ତର୍ଭୂକ୍ତ କରିବାକୁ ବର୍ଗଗୁଡିକ |</string>
+    <string name="delete_removed_chapters">ଅପସାରିତ ଅଧ୍ୟାୟଗୁଡିକ ବିଲୋପ କରନ୍ତୁ |</string>
+    <string name="delete_downloaded_if_removed_online">ଉତ୍ସ ଯଦି ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଅଧ୍ୟାୟଗୁଡିକ ବିଲୋପ କରନ୍ତୁ |
+        ଅନଲାଇନ୍ ଅଧ୍ୟାୟକୁ ଅପସାରଣ କରିଛି |</string>
+    <string name="ask_on_chapters_page">ଗ୍ଲୋବାଲ୍ ଅପଡେଟ୍ ସମୟରେ ଡିଲିଟ୍ କରନ୍ତୁ, ଅଧ୍ୟାୟ ପୃଷ୍ଠାରେ ପଚାରନ୍ତୁ |</string>
+    <string name="always_keep">ସର୍ବଦା ରଖ |</string>
+    <string name="always_delete">ସର୍ବଦା ବିଲୋପ କରନ୍ତୁ |</string>
+    <string name="automatic_removal">ସ୍ୱୟଂଚାଳିତ ଅପସାରଣ |</string>
+    <string name="save_chapters_as_cbz">CBZ ଅଭିଲେଖାଗାର ଭାବରେ ସଞ୍ଚୟ କରନ୍ତୁ |</string>
+    <string name="split_tall_images">ଲମ୍ବା ପ୍ରତିଛବିଗୁଡିକ ବିଭାଜନ କରନ୍ତୁ |</string>
+    <string name="split_tall_images_summary">ପାଠକ କାର୍ଯ୍ୟଦକ୍ଷତାକୁ ଉନ୍ନତ କରିଥାଏ |</string>
+    <string name="pref_download_concurrent_sources">ସମବାୟ ଉତ୍ସ ଡାଉନଲୋଡ୍ |</string>
+    <string name="pref_download_concurrent_pages">ସମକାଳୀନ ପୃଷ୍ଠା ଡାଉନଲୋଡ୍ |</string>
+    <string name="pref_download_concurrent_pages_summary">ପୃଷ୍ଠାଗୁଡ଼ିକ ଉତ୍ସ ପ୍ରତି ଏକାସାଙ୍ଗରେ ଡାଉନଲୋଡ୍ ହୋଇଛି |</string>
+    <string name="stat">ସ୍ଥିତି</string>
+    <string name="stats">ପରିସଂଖ୍ୟାନ</string>
+    <string name="statistics">ପରିସଂଖ୍ୟାନ</string>
+    <string name="statistics_details">ପରିସଂଖ୍ୟାନ ବିବରଣୀ</string>
+    <string name="titles_in_library">ଲାଇବ୍ରେରୀରେ ଆଖ୍ୟାଗୁଡିକ |</string>
+    <string name="chapters_read">ଅଧ୍ୟାୟ ପ Read ଼ନ୍ତୁ |</string>
+    <string name="mean_tracking_score">ଅର୍ଥ ଟ୍ରାକିଂ ସ୍କୋର |</string>
+    <string name="tracked_titles">ଟ୍ରାକ୍ ହୋଇଥିବା ଆଖ୍ୟାଗୁଡିକ |</string>
+    <string name="downloaded_chapters">ଅଧ୍ୟାୟଗୁଡ଼ିକୁ ଡାଉନଲୋଡ୍ କରାଯାଇଛି |</string>
+    <string name="tags">ଟ୍ୟାଗ୍ସ</string>
+    <string name="local_titles">ସ୍ଥାନୀୟ ଆଖ୍ୟାଗୁଡିକ |</string>
+    <string name="titles_in_global_update">ଗ୍ଲୋବାଲ୍ ଅପଡେଟ୍ ରେ ଟାଇଟଲ୍ |</string>
+    <string name="trackers">ଟ୍ରାକର୍ସ</string>
+    <string name="read_duration">ଅବଧି ପ Read ଼ନ୍ତୁ |</string>
+    <string name="read_duration_info">ଅଧ୍ୟାୟ ଇତିହାସ ଉପରେ ଆଧାର କରି ପାଠକରେ ବିତାଇଥିବା ସମୟ |</string>
+    <string name="manga_status_distribution">ସ୍ଥିତି ବଣ୍ଟନ |</string>
+    <string name="manga_score_distribution">ସ୍କୋର ବଣ୍ଟନ |</string>
+    <string name="view_detailed_statistics">ଵିସ୍ତୃତ ପରିସଂଖ୍ୟାନ ଦେଖନ୍ତୁ</string>
+    <string name="count">ଗଣନା କର |</string>
+    <string name="not_rated">ମୂଲ୍ୟାୟନ ହୋଇନାହିଁ |</string>
+    <string name="source">ଉତ୍ସ</string>
+    <string name="tracker">ଟ୍ରାକର୍</string>
+    <string name="length">ଦ Length ର୍ଘ୍ୟ |</string>
+    <string name="start_year">ବର୍ଷ ଆରମ୍ଭ</string>
+    <string name="no_data_for_filters">ଆପଣଙ୍କର ସାମ୍ପ୍ରତିକ ଫିଲ୍ଟର୍ ପାଇଁ କ data ଣସି ତଥ୍ୟ ମିଳିଲା ନାହିଁ |</string>
+    <string name="manual">ମାନୁଆଲ୍ |</string>
+    <string name="every_6_hours">ପ୍ରତି ୬ ଘଣ୍ଟାରେ</string>
+    <string name="every_12_hours">ପ୍ରତି ୧୨ ଘଣ୍ଟାରେ</string>
+    <string name="daily">ଦ Daily ନିକ |</string>
+    <string name="every_2_days">ପ୍ରତି ୨ ଦିନରେ</string>
+    <string name="every_3_days">ପ୍ରତି ୩ ଦିନରେ</string>
+    <string name="weekly">ସାପ୍ତାହିକ</string>
+    <string name="select_cover_image">ମଲାଟର ପ୍ରତିଛବି ଚୟନ କରନ୍ତୁ</string>
+    <string name="select_backup_file">ବ୍ୟାକଅପ୍ ଫାଇଲ୍ ଚୟନ କରନ୍ତୁ |</string>
+    <string name="file_picker_error">କ file ଣସି ଫାଇଲ୍ ପିକର୍ ଆପ୍ ମିଳିଲା ନାହିଁ |</string>
+    <string name="file_picker_uri_permission_unsupported">ସ୍ଥାୟୀ ଫୋଲ୍ଡର ପ୍ରବେଶ ହାସଲ କରିବାରେ ବିଫଳ | ଆପ୍ ଅପ୍ରତ୍ୟାଶିତ ଭାବରେ ଆଚରଣ କରିପାରେ |</string>
+    <string name="failed_to_bypass_cloudflare">କ୍ଲାଉଡ୍ ଫ୍ଲେର୍ ବାଇପାସ୍ କରିବାରେ ବିଫଳ |</string>
+    <string name="information_cloudflare_help">କ୍ଲାଉଡ୍ ଫ୍ଲାର୍ ସାହାଯ୍ୟ ପାଇଁ ଏଠାରେ ଟ୍ୟାପ୍ କରନ୍ତୁ |</string>
+    <string name="please_update_webview">ଉତ୍ତମ ସୁସଙ୍ଗତତା ପାଇଁ ଦୟାକରି ୱେବ୍ ଭିଭ୍ ଆପ୍ ଅପଡେଟ୍ କରନ୍ତୁ |</string>
+    <string name="information_webview_required">ଆପ୍ କାର୍ଯ୍ୟ କରିବା ପାଇଁ ୱେବ୍ ଭିଭ୍ ଆବଶ୍ୟକ |</string>
+    <string name="webview_is_required">Tachiyomi ପାଇଁ WebView ଆବଶ୍ୟକ ଅଟେ</string>
+    <string name="action_webview_back">ପଛକୁ</string>
+    <string name="action_webview_forward">ଅଗ୍ରଗାମୀ</string>
+    <string name="action_webview_refresh">ସତେଜ କରନ୍ତୁ |</string>
+    <string name="action_webview_close_tab">ଟ୍ୟାବ୍ ବନ୍ଦ କରନ୍ତୁ |</string>
+    <string name="appwidget_updates_description">ଆପଣଙ୍କର ସମ୍ପ୍ରତି ଅଦ୍ୟତନ ହୋଇଥିବା ଲାଇବ୍ରେରୀ ଏଣ୍ଟ୍ରିଗୁଡିକ ଦେଖନ୍ତୁ |</string>
+    <string name="appwidget_unavailable_locked">ଆପ୍ ଲକ୍ ସକ୍ଷମ ହେଲେ ୱିଜେଟ୍ ଉପଲବ୍ଧ ନାହିଁ |</string>
+    <string name="add">ଯୋଡ଼ନ୍ତୁ</string>
+    <string name="apply">ପ୍ରୟୋଗ କରନ୍ତୁ |</string>
+    <string name="add_to_">&lt;X id = "0" /&gt; ରେ ଯୋଡନ୍ତୁ |</string>
+    <string name="added_to_">&lt;X id = "0" /&gt; ରେ ଯୋଡା ଯାଇଛି |</string>
+    <string name="all">ସମସ୍ତ</string>
+    <string name="alphabetically">ବର୍ଣ୍ଣମାଳା ଅନୁଯାୟୀ</string>
+    <string name="always">ସର୍ବଦା |</string>
+    <string name="always_ask">ସର୍ବଦା ପଚାର |</string>
     <string name="ascending">ଆରୋହଣ</string>
+    <string name="automatic">ସ୍ୱଚାଳିତ</string>
+    <string name="back">ପଛକୁ</string>
+    <string name="beta">ବେଟା |</string>
+    <string name="bottom">ତଳ |</string>
+    <string name="cancel">ବାତିଲ୍ କରନ୍ତୁ |</string>
+    <string name="center">କେନ୍ଦ୍ର</string>
+    <string name="change">ପରିବର୍ତ୍ତନ କରନ୍ତୁ |</string>
+    <string name="charging">ଚାର୍ଜିଂ</string>
+    <string name="battery_not_low">ବ୍ୟାଟେରୀ କମ୍ ନୁହେଁ |</string>
+    <string name="clear">ସଫା</string>
+    <string name="clear_filters">ଫିଲ୍ଟର୍ ସଫା କରନ୍ତୁ |</string>
+    <string name="close">ବନ୍ଦ</string>
+    <string name="common">ସାଧାରଣ |</string>
+    <string name="cover_of_image">ମଙ୍ଗାର ମଲାଟ</string>
+    <string name="create">ସୃଷ୍ଟି କରନ୍ତୁ |</string>
     <string name="date">ତାରିଖ</string>
     <string name="descending">ଅବରୋହଣ</string>
-    <string name="tap_to_learn_more">ଅଧିକ ଜାଣିବା ପାଇଁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
-    <string name="tap_to_see_details">ବିବରଣୀ ଦେଖିବା ପାଇଁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
-    <string name="long_strip_side_padding_5">୫%</string>
-    <string name="stats">ପରିସଂଖ୍ୟାନ</string>
-    <string name="backup_and_restore">ବ୍ୟାକଅପ୍ ଓ ପୁନରୁଦ୍ଧାର</string>
-    <string name="backup">ବ୍ୟାକଅପ୍</string>
-    <string name="automatic">ସ୍ୱଚାଳିତ</string>
-    <string name="statistics_details">ପରିସଂଖ୍ୟାନ ବିବରଣୀ</string>
-    <string name="auto_refresh_covers">ମଲାଟଗୁଡ଼ିକୁ ସ୍ୱଚାଳିତ ଭାବେ ସତେଜ କରାଯାଉ</string>
+    <string name="default_value">ଡିଫଲ୍ଟ</string>
+    <string name="delete">ବିଲୋପ କରନ୍ତୁ |</string>
+    <string name="deleted_">ବିଲୋପିତ: &lt;x id = "0" /&gt; |</string>
+    <string name="display">ପ୍ରଦର୍ଶନ</string>
+    <string name="download_unread">ପ read ନ୍ତୁ ଡାଉନଲୋଡ୍ କରନ୍ତୁ |</string>
+    <string name="drag_handle">ହ୍ୟାଣ୍ଡଲ୍ ଡ୍ରାଗ୍ କରନ୍ତୁ |</string>
+    <string name="edit">ସମ୍ପାଦନା</string>
+    <string name="enable">ସକ୍ଷମ କରନ୍ତୁ |</string>
+    <string name="enabled">ସକ୍ଷମ</string>
+    <string name="exclude_">ବାଦ ଦିଅନ୍ତୁ: &lt;x id = "0" /&gt; |</string>
+    <string name="fast">ଦ୍ରୁତ</string>
+    <string name="filter">ଶୋଧନ</string>
+    <string name="forward">ଅଗ୍ରଗାମୀ</string>
+    <string name="free">ମାଗଣା |</string>
+    <string name="hide">ଲୁଚାନ୍ତୁ |</string>
+    <string name="ignore">ଅଣଦେଖା କରନ୍ତୁ |</string>
+    <string name="include_">ଅନ୍ତର୍ଭୂକ୍ତ କରନ୍ତୁ: &lt;x id = "0" /&gt; |</string>
+    <string name="install">ଇନଷ୍ଟଲ୍ କରିବା</string>
+    <string name="keep">ରଖନ୍ତୁ |</string>
+    <string name="keep_in_">&lt;X id = "0" /&gt; ରେ ରଖନ୍ତୁ |</string>
+    <string name="learn_why">କାହିଁକି ଜାଣନ୍ତୁ |</string>
+    <string name="left">ବାମ</string>
+    <string name="less">କମ୍ |</string>
+    <string name="loading">ଲୋଡିଂ…</string>
+    <string name="lock">ଲକ୍ କରନ୍ତୁ |</string>
+    <string name="mark_all_as_read">ସମସ୍ତଙ୍କୁ ପ read ଼ିବା ପରି ଚିହ୍ନିତ କର |</string>
+    <string name="mark_all_as_unread">ସମସ୍ତଙ୍କୁ ପ read ାଯାଇଥିବା ପରି ଚିହ୍ନିତ କର |</string>
+    <string name="mark_as_read">ପ read ଼ିବା ପରି ଚିହ୍ନିତ କର |</string>
+    <string name="mark_as_unread">ପ read ି ନଥିବା ଭାବରେ ଚିହ୍ନିତ କର |</string>
+    <string name="mark_range_as_read">ପ read ଼ାଯାଇଥିବା ପରି ଏକ ଅଧ୍ୟାୟକୁ ଚିହ୍ନିତ କର |</string>
+    <string name="mark_range_as_unread">ପ read ଼ିନଥିବା ପରି ଏକ ଅଧ୍ୟାୟକୁ ଚିହ୍ନିତ କର |</string>
+    <string name="mark_previous_as_read">ପୂର୍ବ ଅଧ୍ୟାୟଗୁଡ଼ିକୁ ପ read ଼ା ଭାବରେ ଚିହ୍ନିତ କର |</string>
+    <string name="mark_previous_as_unread">ପୂର୍ବ ଅଧ୍ୟାୟଗୁଡ଼ିକୁ ପ read ଼ା ନଥିବା ଚିହ୍ନିତ କର |</string>
+    <string name="menu">ମେନୁ</string>
     <string name="more">ଅଧିକ</string>
-    <string name="statistics">ପରିସଂଖ୍ୟାନ</string>
-    <string name="help_translate">ଅନୁଵାଦ କରିବାରେ ସାହାଯ୍ୟ କରନ୍ତୁ</string>
-    <string name="view_detailed_statistics">ଵିସ୍ତୃତ ପରିସଂଖ୍ୟାନ ଦେଖନ୍ତୁ</string>
-    <string name="searching_for_updates">ଅଦ୍ୟତନ ପାଇଁ ସନ୍ଧାନ କରୁଛି…</string>
-    <string name="helpful_translation_links">ଉପଯୋଗୀ ଅନୁଵାଦ ଲିଙ୍କ୍</string>
-    <string name="no_new_updates_available">କୌଣସି ନୂତନ ଅଦ୍ୟତନ ଉପଲବ୍ଧ ନାହିଁ</string>
+    <string name="move_to_bottom">ତଳକୁ ଯାଆନ୍ତୁ |</string>
+    <string name="move_to_top">ଉପରକୁ ଯାଆନ୍ତୁ |</string>
+    <string name="move_to_">&lt;X id = "0" /&gt; କୁ ଯାଆନ୍ତୁ |</string>
+    <string name="moved_to_">&lt;X id = "0" /&gt; କୁ ସ୍ଥାନାନ୍ତରିତ |</string>
+    <string name="name">ନାମ</string>
+    <string name="recently_updated">ସମ୍ପ୍ରତି ଅଦ୍ୟତନ ହୋଇଛି |</string>
+    <string name="recently_installed">ସମ୍ପ୍ରତି ସଂସ୍ଥାପିତ ହୋଇଛି |</string>
+    <string name="language">ଭାଷା</string>
+    <string name="never">କଦାପି ନୁହେଁ |</string>
+    <string name="just_now">ବର୍ତ୍ତମାନ</string>
+    <string name="newest">ସବୁଠୁ ନୂଆ</string>
+    <string name="next">ପରବର୍ତ୍ତୀ</string>
+    <string name="no_animation">କ anim ଣସି ଆନିମେସନ୍ ନାହିଁ |</string>
+    <string name="normal">ସାଧାରଣ</string>
+    <string name="oldest">ସବୁଠୁ ପୁରୁଣା</string>
+    <string name="open">ଖୋଲନ୍ତୁ |</string>
+    <string name="open_in_app">ଆପରେ ଖୋଲନ୍ତୁ |</string>
+    <string name="open_in_browser">ବ୍ରାଉଜରରେ ଖୋଲନ୍ତୁ |</string>
+    <string name="open_log">ଲଗ୍ ଖୋଲନ୍ତୁ |</string>
+    <string name="open_in_webview">WebViewରେ ଖୋଲନ୍ତୁ</string>
+    <string name="options">ବିକଳ୍ପଗୁଡ଼ିକ</string>
+    <string name="pause">ବିରାମ</string>
+    <string name="picture_saved">ଚିତ୍ର ସଞ୍ଚୟ କରାଗଲା</string>
+    <string name="pin">ପିନ୍ |</string>
+    <string name="pinned">ପିନ୍ ହୋଇଛି |</string>
+    <string name="preview">ପୂର୍ବାବଲୋକନ</string>
+    <string name="previous">ପୂର୍ବ</string>
+    <string name="remove">ଅପସାରଣ କରନ୍ତୁ |</string>
+    <string name="remove_from_">&lt;X id = "0" /&gt; ରୁ ହଟାନ୍ତୁ |</string>
+    <string name="reorder">ରେକର୍ଡ</string>
+    <string name="reset">ପୁନ et ସେଟ୍ କରନ୍ତୁ |</string>
+    <string name="restore">ପୁନରୁଦ୍ଧାର କରନ୍ତୁ |</string>
+    <string name="resume">ପୁନ ume କାର୍ଯ୍ୟ ଆରମ୍ଭ କରନ୍ତୁ |</string>
+    <string name="resume_progress_percent">&lt;X id = "0" /&gt; %% ପୁନ Res ଆରମ୍ଭ କରନ୍ତୁ |</string>
+    <string name="retry">ପୁନ ry ଚେଷ୍ଟା କରନ୍ତୁ |</string>
+    <string name="right">ଡାହାଣ</string>
+    <string name="rotation">ଘୂର୍ଣ୍ଣନ</string>
+    <string name="default_orientation">ଡିଫଲ୍ଟ ଆରିଏଣ୍ଟେସନ୍ |</string>
+    <string name="novel_default_orientation">ଡିଫଲ୍ଟ ଉପନ୍ୟାସ ଆଭିମୁଖ୍ୟ |</string>
+    <string name="orientation">ଓରିଏଣ୍ଟେସନ୍</string>
+    <string name="save">ସଞ୍ଚୟ କରନ୍ତୁ |</string>
+    <string name="save_search_title">ସଞ୍ଚିତ ସନ୍ଧାନଗୁଡିକ |</string>
+    <string name="save_search">ସାମ୍ପ୍ରତିକ ସନ୍ଧାନ ଜିଜ୍ଞାସା ସଞ୍ଚୟ କରନ୍ତୁ?</string>
+    <string name="save_search_hint">ମୋର ସନ୍ଧାନ ନାମ</string>
+    <string name="save_search_invalid_name">ଅବ val ଧ ସନ୍ଧାନ ନାମ |</string>
+    <string name="save_search_delete">ସଞ୍ଚିତ ସନ୍ଧାନ ଜିଜ୍ଞାସା ବିଲୋପ କରିବେ କି?</string>
+    <string name="save_search_delete_message">ଆପଣ ନିଶ୍ଚିତ କି ଆପଣ ଆପଣଙ୍କର ସଞ୍ଚିତ ସନ୍ଧାନ ଜିଜ୍ଞାସା ବିଲୋପ କରିବାକୁ ଚାହୁଁଛନ୍ତି: \ '&lt;x id = "0" /&gt; \'?</string>
+    <string name="search">ସନ୍ଧାନ କର |</string>
+    <string name="search_">&lt;X id = "0" /&gt; ସନ୍ଧାନ କରନ୍ତୁ |</string>
+    <string name="select_all">ସବୁ ଚୟନ କରନ୍ତୁ</string>
+    <string name="select_none">କିଛି ବାଛନ୍ତୁ ନାହିଁ |</string>
+    <string name="select_inverse">ଓଲଟା ଚୟନ କରନ୍ତୁ |</string>
+    <string name="selection">ଚୟନ</string>
+    <string name="share">ଅଂଶୀଦାର କରନ୍ତୁ |</string>
+    <string name="sort">ସଜାନ୍ତୁ</string>
+    <string name="sort_and_filter">ସର୍ଟ ଏବଂ ଫିଲ୍ଟର୍ |</string>
+    <string name="start">ଆରମ୍ଭ କରନ୍ତୁ |</string>
+    <string name="stop">ବନ୍ଦ କର |</string>
+    <string name="tag">ଟ୍ୟାଗ୍ କରନ୍ତୁ |</string>
+    <string name="tap_to_see_details">ବିବରଣୀ ଦେଖିବା ପାଇଁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
+    <string name="tap_to_learn_more">ଅଧିକ ଜାଣିବା ପାଇଁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
+    <string name="top">ଶୀର୍ଷ</string>
+    <string name="undo">ପୂର୍ବବତ୍</string>
+    <string name="unknown_error">ଅଜ୍ଞାତ ତ୍ରୁଟି |</string>
+    <string name="unpin">ଅନ୍ପିନ୍ |</string>
+    <string name="use_default">ଡିଫଲ୍ଟ ବ୍ୟବହାର କରନ୍ତୁ |</string>
+    <string name="view_all">ସମସ୍ତ ଦେଖନ୍ତୁ |</string>
+    <string name="view_chapters">ଅଧ୍ୟାୟଗୁଡିକ ଦେଖନ୍ତୁ |</string>
+    <string name="warning">ଚେତାବନୀ</string>
+    <string name="wifi">ୱାଇ-ଫାଇ</string>
+    <string name="webtoon">ୱେବଟୁନ୍ |</string>
+    <string name="internal_error">ଆଭ୍ୟନ୍ତରୀଣ ତ୍ରୁଟି: &lt;x id = "0" /&gt; |</string>
+    <string name="sfw">SFW</string>
+    <string name="nsfw">NSFW</string>
+    <string name="content_type">ବିଷୟବସ୍ତୁ ପ୍ରକାର |</string>
+    <string name="crash_screen_title">ଏକ ଅପ୍ରତ୍ୟାଶିତ ତ୍ରୁଟି ଘଟିଲା |</string>
+    <string name="crash_screen_description">&lt;x id = "0" /&gt; ଏକ ଅପ୍ରତ୍ୟାଶିତ ତ୍ରୁଟିରେ ଚାଲିଗଲା | ଆମେ ଆପଣଙ୍କୁ ଏହି ସନ୍ଦେଶକୁ ସ୍କ୍ରିନସଟ୍ କରିବା, କ୍ରାସ୍ ଲଗ୍ ପକାଇବା, ଏବଂ ତାପରେ ଏହାକୁ GitHub ଇସ୍ୟୁରେ ଅଂଶୀଦାର କରିବା ପାଇଁ ପରାମର୍ଶ ଦେଉ |</string>
+    <string name="crash_screen_restart_application">ପ୍ରୟୋଗକୁ ପୁନ Rest ଆରମ୍ଭ କରନ୍ତୁ |</string>
+    <string name="crash_screen_share_logs">କ୍ରାସ୍ ଲଗ୍ ଅଂଶୀଦାର କରନ୍ତୁ |</string>
+    <string name="refresh">ସତେଜ କରନ୍ତୁ |</string>
+    <string name="pref_category_eh">ଇ-ହେଣ୍ଟାଇ |</string>
+    <string name="pref_category_fork">ଫର୍କ ସେଟିଂସମୂହ |</string>
+    <string name="pref_category_mangadex">MangaDex</string>
+    <string name="pref_ehentai_summary">ଇ / ExHentai ଲଗଇନ୍, ଗ୍ୟାଲେରୀ ସିଙ୍କ୍ |</string>
+    <string name="pref_mangadex_summary">MangaDex ଲଗଇନ୍, ସିଙ୍କ ଅନୁସରଣ କରେ |</string>
+    <string name="ehentai_prefs_account_settings">ଇ-ହେଣ୍ଟାଇ ୱେବସାଇଟ୍ ଆକାଉଣ୍ଟ୍ ସେଟିଂସମୂହ |</string>
+    <string name="enable_exhentai">ExHentai ସକ୍ଷମ କରନ୍ତୁ |</string>
+    <string name="requires_login">ଲଗଇନ୍ ଆବଶ୍ୟକ କରେ |</string>
+    <string name="use_hentai_at_home">ହେଣ୍ଟାଇ @ ହୋମ୍ ନେଟୱାର୍କ ବ୍ୟବହାର କରନ୍ତୁ |</string>
+    <string name="use_hentai_at_home_summary">ଯଦି ଉପଲବ୍ଧ, ଆପଣ ହେଣ୍ଟାଇ @ ହୋମ ନେଟୱାର୍କ ମାଧ୍ୟମରେ ପ୍ରତିଛବି ଲୋଡ୍ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି? ଏହି ବିକଳ୍ପକୁ ଅକ୍ଷମ କରିବା ଦ୍ୱାରା ଆପଣ ଦେଖିବାରେ ସକ୍ଷମ ଥିବା ପୃଷ୍ଠାଗୁଡ଼ିକର ପରିମାଣ ହ୍ରାସ ପାଇବ \ n- ବିକଳ୍ପଗୁଡିକ: \ n- ଯେକ Any ଣସି ଗ୍ରାହକ (ସୁପାରିଶ) \ n- କେବଳ ଡିଫଲ୍ଟ ପୋର୍ଟ କ୍ଲାଏଣ୍ଟଗୁଡିକ (ମନ୍ଥର ହୋଇପାରେ।</string>
+    <string name="use_hentai_at_home_option_1">ଯେକ Any ଣସି ଗ୍ରାହକ (ପରାମର୍ଶିତ)</string>
+    <string name="use_hentai_at_home_option_2">କେବଳ ଡିଫଲ୍ଟ ପୋର୍ଟ କ୍ଲାଏଣ୍ଟ |</string>
+    <string name="show_japanese_titles">ସନ୍ଧାନ ଫଳାଫଳଗୁଡିକରେ ଜାପାନୀ ଟାଇଟଲ୍ ଦେଖାନ୍ତୁ |</string>
+    <string name="show_japanese_titles_option_1">ସନ୍ଧାନ ଫଳାଫଳଗୁଡିକରେ ସମ୍ପ୍ରତି ଜାପାନିଜ୍ ଟାଇଟଲ୍ ଦେଖାଉଛି | ଏହାକୁ ପରିବର୍ତ୍ତନ କରିବା ପରେ ଅଧ୍ୟାୟ କ୍ୟାଶେ ସଫା କରନ୍ତୁ (ଉନ୍ନତ ବିଭାଗରେ)</string>
+    <string name="show_japanese_titles_option_2">ବର୍ତ୍ତମାନ ସନ୍ଧାନ ଫଳାଫଳଗୁଡିକରେ ଇଂରାଜୀ / ରୋମାନାଇଜଡ୍ ଟାଇଟଲ୍ ଦେଖାଉଛି | ଏହାକୁ ପରିବର୍ତ୍ତନ କରିବା ପରେ ଅଧ୍ୟାୟ କ୍ୟାଶେ ସଫା କରନ୍ତୁ (ଉନ୍ନତ ବିଭାଗରେ)</string>
+    <string name="use_original_images">ମୂଳ ଚିତ୍ର ବ୍ୟବହାର କରନ୍ତୁ |</string>
+    <string name="use_original_images_on">ସମ୍ପ୍ରତି ମୂଳ ଚିତ୍ର ବ୍ୟବହାର କରୁଛି |</string>
+    <string name="use_original_images_off">ସମ୍ପ୍ରତି ପୁନ amp ସ୍ଥାପିତ ପ୍ରତିଛବିଗୁଡିକ ବ୍ୟବହାର କରୁଛି |</string>
+    <string name="watched_tags">ଦେଖାଯାଇଥିବା ଟ୍ୟାଗ୍ସ |</string>
+    <string name="watched_tags_summary">ତୁମର E / ExHentai ଦେଖାଯାଇଥିବା ଟ୍ୟାଗ୍ ପୃଷ୍ଠାକୁ ଏକ ୱେବ୍ ଭ୍ୟୁ ଖୋଲିବ |</string>
+    <string name="watched_tags_exh">ExHentai ଦେଖିଲା ଟ୍ୟାଗ୍ |</string>
+    <string name="tag_filtering_threshold">ଟ୍ୟାଗ୍ ଫିଲ୍ଟରିଂ ଥ୍ରେସହୋଲ୍ଡ |</string>
+    <string name="tag_filtering_threshhold_error">-9999 ରୁ 0 ମଧ୍ୟରେ ହେବା ଜରୁରୀ!</string>
+    <string name="tag_filtering_threshhold_summary">ଏକ ନକାରାତ୍ମକ ଓଜନ ସହିତ \ "ମୋ ଟ୍ୟାଗ୍ସ \" ଇ / ଏକ୍ସହେଣ୍ଟାଇ ପୃଷ୍ଠାରେ ସେଗୁଡ଼ିକୁ ଯୋଡି ଆପଣ ଫିଲ୍ଟର ଟ୍ୟାଗଗୁଡ଼ିକୁ ସଫ୍ଟ କରିପାରିବେ | ଯଦି ଏକ ଗ୍ୟାଲେରୀରେ ଟ୍ୟାଗ୍ ଥାଏ ଯାହା ଏହି ମୂଲ୍ୟଠାରୁ ଓଜନ ପର୍ଯ୍ୟନ୍ତ ଯୋଗ କରିଥାଏ, ଏହା ଦୃଶ୍ୟରୁ ଫିଲ୍ଟର୍ ହୋଇଥାଏ | ଏହି ସୀମା -9999 ରୁ 0 ମଧ୍ୟରେ ସେଟ୍ ହୋଇପାରିବ | ବର୍ତ୍ତମାନ: &lt;x id = "0" /&gt; |</string>
+    <string name="tag_watching_threshhold">ଟ୍ୟାଗ୍ ଦେଖିବା ସୀମା</string>
+    <string name="tag_watching_threshhold_error">0 ରୁ 9999 ମଧ୍ୟରେ ହେବା ଜରୁରୀ!</string>
+    <string name="tag_watching_threshhold_summary">ସମ୍ପ୍ରତି ଅପଲୋଡ୍ ହୋଇଥିବା ଗ୍ୟାଲେରୀଗୁଡିକ ଦେଖାଯାଇଥିବା ସ୍କ୍ରିନରେ ଅନ୍ତର୍ଭୂକ୍ତ ହେବ ଯଦି ଏହାର ସକାରାତ୍ମକ ଓଜନ ସହିତ ଅତି କମରେ ଗୋଟିଏ ଦେଖାଯାଇଥିବା ଟ୍ୟାଗ୍ ଥାଏ, ଏବଂ ଏହାର ଦେଖାଯାଇଥିବା ଟ୍ୟାଗଗୁଡ଼ିକରେ ଓଜନର ପରିମାଣ ଏହି ମୂଲ୍ୟ କିମ୍ବା ତା’ଠାରୁ ଅଧିକ ହୋଇଥାଏ | ଏହି ସୀମା 0 ରୁ 9999 ମଧ୍ୟରେ ସେଟ୍ ହୋଇପାରିବ | ବର୍ତ୍ତମାନ: &lt;x id = "0" /&gt; |</string>
+    <string name="language_filtering">ଭାଷା ଫିଲ୍ଟରିଂ |</string>
+    <string name="language_filtering_summary">ଯଦି ଆପଣ ଗ୍ୟାଲେରୀ ତାଲିକାରୁ ଏବଂ ସନ୍ଧାନରୁ ନିର୍ଦ୍ଦିଷ୍ଟ ଭାଷାରେ ଗ୍ୟାଲେରୀ ଲୁଚାଇବାକୁ ଚାହାଁନ୍ତି, ତେବେ ସେଗୁଡିକୁ ସଂଳାପରେ ବାଛନ୍ତୁ ଯାହା ପପ୍-ଅପ୍ ହେବ | \ n ଧ୍ୟାନ ଦିଅନ୍ତୁ ଯେ ଆପଣଙ୍କ ସନ୍ଧାନ ଜିଜ୍ଞାସାକୁ ଖାତିର ନକରି ମେଳ ଖାଉଥିବା ଗ୍ୟାଲେରୀ କେବେବି ଦେଖାଯିବ ନାହିଁ | \ nTldr checkmarked = ବାଦ ଦିଅନ୍ତୁ |</string>
+    <string name="frong_page_categories">ଆଗ ପୃଷ୍ଠା ବର୍ଗଗୁଡିକ |</string>
+    <string name="fromt_page_categories_summary">ପ୍ରଥମ ପୃଷ୍ଠାରେ ଏବଂ ସନ୍ଧାନରେ ଡିଫଲ୍ଟ ଭାବରେ କେଉଁ ବର୍ଗଗୁଡିକ ଦେଖାଇବାକୁ ଚାହୁଁଛନ୍ତି? ସେମାନେ ଏପର୍ଯ୍ୟନ୍ତ ସେମାନଙ୍କର ଫିଲ୍ଟର୍ ସକ୍ଷମ କରି ସକ୍ଷମ ହୋଇପାରିବେ |</string>
+    <string name="watched_list_default">ଦେଖାଯାଇଥିବା ତାଲିକା ଫିଲ୍ଟର ଡିଫଲ୍ଟ ରାଜ୍ୟ |</string>
+    <string name="watched_list_state_summary">ExHentai / E-Hentai ବ୍ରାଉଜିଂ କରିବା ସମୟରେ ଦେଖାଯାଇଥିବା ତାଲିକା ଫିଲ୍ଟରକୁ ଡିଫଲ୍ଟ ଭାବରେ ସକ୍ଷମ କରାଯିବା ଉଚିତ |</string>
+    <string name="eh_image_quality_summary">ଡାଉନଲୋଡ୍ ହୋଇଥିବା ପ୍ରତିଛବିଗୁଡ଼ିକର ଗୁଣ |</string>
+    <string name="eh_image_quality">ପ୍ରତିଛବି ଗୁଣ</string>
+    <string name="eh_image_quality_auto">ଅଟୋ |</string>
+    <string name="eh_image_quality_2400">2400x</string>
+    <string name="eh_image_quality_1600">1600x</string>
+    <string name="eh_image_quality_1280">1280x</string>
+    <string name="eh_image_quality_980">980x</string>
+    <string name="eh_image_quality_780">780x</string>
+    <string name="pref_enhanced_e_hentai_view">ଉନ୍ନତ E / ExHentai ବ୍ରାଉଜ୍ |</string>
+    <string name="pref_enhanced_e_hentai_view_summary">E / ExHentai ପାଇଁ ପ୍ରସ୍ତୁତ ବର୍ଦ୍ଧିତ ବ୍ରାଉଜ୍ ମେନୁକୁ ସକ୍ଷମ / ଅକ୍ଷମ କରନ୍ତୁ |</string>
+    <string name="favorites_sync">ଇ-ହେଣ୍ଟାଇ ପ୍ରିୟ ସିଙ୍କ୍ |</string>
+    <string name="disable_favorites_uploading">ପ୍ରିୟ ଅପଲୋଡ୍ ଅକ୍ଷମ କରନ୍ତୁ |</string>
+    <string name="disable_favorites_uploading_summary">ପସନ୍ଦଗୁଡିକ କେବଳ ExHentai ରୁ ଡାଉନଲୋଡ୍ ହୋଇଛି | ଆପରେ ପସନ୍ଦିତ ଯେକ Any ଣସି ପରିବର୍ତ୍ତନ ଅପଲୋଡ୍ ହେବ ନାହିଁ | ExHentai ରେ ମନଇଚ୍ଛା ହଜିଯିବାକୁ ରୋକିଥାଏ | ଧ୍ୟାନ ଦିଅନ୍ତୁ ଯେ ଅପସାରଣ ତଥାପି ଡାଉନଲୋଡ୍ ହେବ (ଯଦି ଆପଣ ExHentai ରେ ଏକ ପସନ୍ଦିତା ଅପସାରଣ କରନ୍ତି, ତେବେ ଏହା ଆପରେ ମଧ୍ୟ ଅପସାରିତ ହେବ) |</string>
+    <string name="show_favorite_sync_notes">ପ୍ରିୟ ସିଙ୍କ୍ ନୋଟ୍ ଦେଖାନ୍ତୁ |</string>
+    <string name="show_favorite_sync_notes_summary">ପ୍ରିୟ ସିଙ୍କ ବ feature ଶିଷ୍ଟ୍ୟ ସମ୍ବନ୍ଧରେ କିଛି ସୂଚନା ଦେଖାନ୍ତୁ |</string>
+    <string name="please_login">ଦୟାକରି ଲଗ୍ ଇନ୍ କରନ୍ତୁ!</string>
+    <string name="ignore_sync_errors">ଯେତେବେଳେ ସମ୍ଭବ ସିଙ୍କ ତ୍ରୁଟିଗୁଡ଼ିକୁ ଉପେକ୍ଷା କରନ୍ତୁ |</string>
+    <string name="ignore_sync_errors_summary">ସିଙ୍କ ପ୍ରକ୍ରିୟା ସମୟରେ ତ୍ରୁଟିର ସମ୍ମୁଖୀନ ହେବାବେଳେ ତୁରନ୍ତ ପରିତ୍ୟାଗ କରନ୍ତୁ ନାହିଁ | ସିଙ୍କ ସଂପୂର୍ଣ୍ଣ ହେବାପରେ ତ୍ରୁଟିଗୁଡ଼ିକ ପ୍ରଦର୍ଶିତ ହେବ | କେତେକ କ୍ଷେତ୍ରରେ ପ୍ରିୟଙ୍କା ନଷ୍ଟ ହୋଇପାରେ | ବଡ଼ ଲାଇବ୍ରେରୀଗୁଡ଼ିକୁ ସିଙ୍କ କରିବା ସମୟରେ ଉପଯୋଗୀ |</string>
+    <string name="force_sync_state_reset">ଫୋର୍ସ ସିଙ୍କ୍ ଷ୍ଟେଟ୍ ପୁନ et ସେଟ୍ କରନ୍ତୁ |</string>
+    <string name="force_sync_state_reset_summary">ପରବର୍ତ୍ତୀ ସିଙ୍କରେ ଏକ ପୂର୍ଣ୍ଣ ପୁନ yn ସନ୍ତୁଳନ କାର୍ଯ୍ୟ କରିଥାଏ | ଅପସାରଣ ସିଙ୍କ ହେବ ନାହିଁ | ଆପରେ ଥିବା ସମସ୍ତ ପସନ୍ଦଗୁଡିକ ExHentai ରେ ପୁନ - ଅପଲୋଡ୍ ହେବ ଏବଂ ExHentai ରେ ଥିବା ସମସ୍ତ ପସନ୍ଦଗୁଡିକ ଆପରେ ପୁନ-ଡାଉନଲୋଡ୍ ହେବ | ସିଙ୍କ ବାଧାପ୍ରାପ୍ତ ହେବା ପରେ ସିଙ୍କ ମରାମତି ପାଇଁ ଉପଯୋଗୀ |</string>
+    <string name="sync_state_reset">ରାଜ୍ୟ ପୁନ et ସେଟ୍ କରନ୍ତୁ |</string>
+    <string name="sync_favorites">EH ପସନ୍ଦଗୁଡିକ ସିଙ୍କ କରନ୍ତୁ |</string>
+    <string name="favorites_sync_error">ସିଙ୍କ୍ ତ୍ରୁଟି ପସନ୍ଦ କରେ |</string>
+    <string name="show_gallery">ଗ୍ୟାଲେରୀ ଦେଖାନ୍ତୁ |</string>
+    <string name="favorites_sync_bad_library_state">ଗ୍ୟାଲେରୀ କେବଳ ଗୋଟିଏ ବର୍ଗରେ ନହେବା ପର୍ଯ୍ୟନ୍ତ &lt;x id = "0" /&gt; ସିଙ୍କ ଆରମ୍ଭ ହେବ ନାହିଁ |</string>
+    <string name="favorites_syncing">ପ୍ରିୟ ସିଙ୍କ୍</string>
+    <string name="favorites_sync_error_string">ସିଙ୍କ ପ୍ରକ୍ରିୟା ସମୟରେ ଏକ ତ୍ରୁଟି ଘଟିଲା: &lt;x id = "0" /&gt; |</string>
+    <string name="favorites_sync_done_errors">ତ୍ରୁଟିଗୁଡିକ ସହିତ ପ୍ରିୟ ସିଙ୍କ ସଂପୂର୍ଣ୍ଣ |</string>
+    <string name="favorites_sync_done_errors_message">ସିଙ୍କ ପ୍ରକ୍ରିୟା ସମୟରେ ତ୍ରୁଟି ଘଟିଥିଲା ​​ଯାହାକୁ ଅଣଦେଖା କରାଯାଇଥିଲା: \ n &lt;x id = "0" /&gt; |</string>
+    <string name="favorites_sync_verifying_library">ସ୍ଥାନୀୟ ଲାଇବ୍ରେରୀ ଯାଞ୍ଚ କରୁଛି |</string>
+    <string name="favorites_sync_gallery_multiple_categories_error">ଗ୍ୟାଲେରୀ &lt;x id = "0" /&gt; ଏକାଧିକ ବର୍ଗରେ ଅଛି!</string>
+    <string name="favorites_sync_downloading">ସୁଦୂର ସର୍ଭରରୁ ପସନ୍ଦଗୁଡ଼ିକୁ ଡାଉନଲୋଡ୍ କରୁଛି |</string>
+    <string name="favorites_sync_failed_to_featch">ସୁଦୂର ସର୍ଭରରୁ ପସନ୍ଦ ଆଣିବାରେ ବିଫଳ!</string>
+    <string name="favorites_sync_could_not_fetch">ପସନ୍ଦଗୁଡିକ ଆଣିପାରିଲା ନାହିଁ!</string>
+    <string name="favorites_sync_calculating_remote_changes">ସୁଦୂର ପରିବର୍ତ୍ତନଗୁଡିକର ଗଣନା</string>
+    <string name="favorites_sync_calculating_local_changes">ସ୍ଥାନୀୟ ପରିବର୍ତ୍ତନଗୁଡିକ ଗଣନା କରୁଛି |</string>
+    <string name="favorites_sync_syncing_category_names">ବର୍ଗ ନାମଗୁଡିକ ଅଦ୍ୟତନ କରିବା |</string>
+    <string name="favorites_sync_cleaning_up">ସଫା କରିବା</string>
+    <string name="favorites_sync_complete">ସିଙ୍କ ସଂପୂର୍ଣ୍ଣ!</string>
+    <string name="favorites_sync_ignoring_exception">ବ୍ୟତିକ୍ରମକୁ ଅଣଦେଖା!</string>
+    <string name="favorites_sync_sync_error">ସିଙ୍କ୍ ତ୍ରୁଟି!</string>
+    <string name="favorites_sync_unknown_error">ଅଜ୍ଞାତ ତ୍ରୁଟି: &lt;x id = "0" /&gt; |</string>
+    <string name="favorites_sync_network_error">ନେଟୱର୍କ ତ୍ରୁଟି ସିଙ୍କ କରନ୍ତୁ!</string>
+    <string name="favorites_sync_removing_galleries">ସୁଦୂର ସର୍ଭରରୁ &lt;x id = "0" /&gt; ଗ୍ୟାଲେରୀ ଅପସାରଣ କରିବା |</string>
+    <string name="favorites_sync_unable_to_delete">ସୁଦୂର ସର୍ଭରରୁ ଗ୍ୟାଲେରୀ ବିଲୋପ କରିବାକୁ ଅସମର୍ଥ!</string>
+    <string name="favorites_sync_adding_to_remote">ଦୂର ସର୍ଭରରେ &lt;x id = "1" /&gt; ର ଗ୍ୟାଲେରୀ &lt;x id = "0" /&gt; ଯୋଡିବା |</string>
+    <string name="favorites_sync_unable_to_add_to_remote">ସୁଦୂର ସର୍ଭରରେ ଗ୍ୟାଲେରୀ ଯୋଡିବାରେ ଅସମର୍ଥ: \ '&lt;x id = "0" /&gt; \' (GID: &lt;x id = "1" /&gt;)!</string>
+    <string name="favorites_sync_remove_from_local">ସ୍ଥାନୀୟ ଲାଇବ୍ରେରୀରୁ &lt;x id = "1" /&gt; ର ଗ୍ୟାଲେରୀ &lt;x id = "0" /&gt; ଅପସାରଣ କରିବା |</string>
+    <string name="favorites_sync_add_to_local">ସ୍ଥାନୀୟ ଲାଇବ୍ରେରୀରେ &lt;x id = "1" /&gt; ର ଗ୍ୟାଲେରୀ &lt;x id = "0" /&gt; ଯୋଡିବା |</string>
+    <string name="favorites_sync_remote_not_exist">ରିମୋଟ ଗ୍ୟାଲେରୀ ବିଦ୍ୟମାନ ନାହିଁ, ଛାଡି: &lt;x id = "0" /&gt;!</string>
+    <string name="favorites_sync_failed_to_add_to_local">ସ୍ଥାନୀୟ ଡାଟାବେସରେ ଗ୍ୟାଲେରୀ ଯୋଡିବାରେ ବିଫଳ:</string>
+    <string name="favorites_sync_failed_to_add_to_local_error">\ '&lt;x id = "0" /&gt; \' &lt;x id = "1" /&gt; |</string>
+    <string name="favorites_sync_failed_to_add_to_local_unknown_type">\ '&lt;x id = "0" /&gt; \' (&lt;x id = "1" /&gt;) ଏକ ବ valid ଧ ଗ୍ୟାଲେରୀ ନୁହେଁ!</string>
+    <string name="favorites_sync_waiting_for_start">ସିଙ୍କ ଆରମ୍ଭ ହେବା ପାଇଁ ଅପେକ୍ଷା |</string>
+    <string name="favorites_sync_gallery_in_multiple_categories">ଗ୍ୟାଲେରୀ: &lt;x id = "0" /&gt; ଏକରୁ ଅଧିକ ବର୍ଗରେ ଅଛି (&lt;x id = "1" /&gt;)!</string>
+    <string name="favorites_sync_initializing">ସିଙ୍କ ଆରମ୍ଭ କରିବା |</string>
+    <string name="favorites_sync_processing_throttle">&lt;x id = "0" /&gt; \ n \ nSync ବର୍ତ୍ତମାନ ଥ୍ରଟଲିଂ କରୁଛି (ExHentai ରୁ ନିଷେଧ ନହେବା ପାଇଁ) ଏବଂ ଏହା ସମ୍ପୂର୍ଣ୍ଣ ହେବାକୁ ବହୁତ ସମୟ ଲାଗିପାରେ |</string>
+    <string name="favorites_sync_notes">ଗୁରୁତ୍ F ପୂର୍ଣ SYNC ଟିପ୍ପଣୀ |</string>
+    <string name="favorites_sync_notes_message">ଆପରେ ବର୍ଗ ନାମଗୁଡ଼ିକରେ ପରିବର୍ତ୍ତନଗୁଡ଼ିକ ହେଉଛି &lt;x id = "0" /&gt; NOT &lt;x id = "1" /&gt; ସିଙ୍କ୍ ହୋଇଛି! ଦୟାକରି &lt;x id = "2" /&gt; ExHentai ରେ ବର୍ଗ ନାମ ପରିବର୍ତ୍ତନ କରନ୍ତୁ &lt;x id = "3" /&gt; | ବର୍ଗର ନାମଗୁଡିକ ପ୍ରତ୍ୟେକ ସିଙ୍କ୍ ExHentai ସର୍ଭରରୁ କପି କରାଯିବ | &lt;x id = "4" /&gt; &lt;x id = "5" /&gt; 2 | ExHentai ରେ ପ୍ରିୟ ବର୍ଗଗୁଡିକ &lt;x id = "6" /&gt; ଆପରେ ଥିବା ପ୍ରଥମ 10 ବର୍ଗ &lt;x id = "7" /&gt; (\ 'ଡିଫଲ୍ଟ \' ବର୍ଗକୁ ବାଦ ଦେଇ) ଅନୁରୂପ ଅଟେ | &lt;x id = "8" /&gt; ଅନ୍ୟ ବର୍ଗର ଗ୍ୟାଲେରୀଗୁଡିକ &lt;x id = "9" /&gt; NOT &lt;x id = "10" /&gt; ସିଙ୍କ ହେବ! &lt;x id = "11" /&gt; &lt;x id = "12" /&gt; &lt;x id = "13" /&gt; 3 | &lt;x id = "14" /&gt; &lt;x id = "15" /&gt; SYNC ପ୍ରୋଗ୍ରାମରେ ଥିବାବେଳେ ଆପଣଙ୍କ ପାଖରେ ଏକ ସ୍ଥିର ଇଣ୍ଟରନେଟ୍ ସଂଯୋଗ ଅଛି କି ନାହିଁ ନିଶ୍ଚିତ କରନ୍ତୁ! id = "20" /&gt; &lt;x id = "21" /&gt; 4 | ପସନ୍ଦଗୁଡିକ ସିଙ୍କ କରୁଥିବାବେଳେ ଆପ୍ ଖୋଲା ରଖନ୍ତୁ | ଆଣ୍ଡ୍ରଏଡ୍ ଆପ୍ଗୁଡ଼ିକୁ ବନ୍ଦ କରିବ ଯାହା ବେଳେବେଳେ ପୃଷ୍ଠଭୂମିରେ ଥାଏ ଏବଂ ଆପ୍ ସିଙ୍କ୍ କରୁଥିବା ସମୟରେ ଏହା ଖରାପ ହୋଇପାରେ | &lt;x id = "22" /&gt; &lt;x id = "23" /&gt; 5 | &lt;x id = "24" /&gt; ଏକାଧିକ ବର୍ଗରେ ପସନ୍ଦଗୁଡିକ ରଖନ୍ତୁ ନାହିଁ &lt;x id = "25" /&gt; (ଆପ୍ ଏହାକୁ ସମର୍ଥନ କରେ) | ଏହା ସିଙ୍କ ଆଲଗୋରିଦମକୁ ବିଭ୍ରାନ୍ତ କରିପାରେ କାରଣ ExHentai କେବଳ ପ୍ରତ୍ୟେକ ପ୍ରିୟଙ୍କୁ ଗୋଟିଏ ବର୍ଗରେ ରହିବାକୁ ଅନୁମତି ଦେଇଥାଏ | &lt;x id = "26" /&gt; &lt;x id = "27" /&gt; ଏହି ସଂଳାପ କେବଳ ଥରେ ପପ୍-ଅପ୍ ହେବ | ଆପଣ \ 'ସେଟିଂସମୂହ&gt; ଇ-ହେଣ୍ଟାଇ&gt; ପ୍ରିୟ ସିଙ୍କ ନୋଟ୍ ଦେଖାନ୍ତୁ \' କୁ ଯାଇ ଏହି ନୋଟଗୁଡ଼ିକୁ ପୁନର୍ବାର ପ can ିପାରିବେ |</string>
+    <string name="favorites_sync_reset">ଆପଣ ନିଶ୍ଚିତ କି?</string>
+    <string name="favorites_sync_reset_message">ସିଙ୍କ ସ୍ଥିତିକୁ ପୁନ et ସେଟ୍ କରିବା ଦ୍ next ାରା ଆପଣଙ୍କର ପରବର୍ତ୍ତୀ ସିଙ୍କ୍ ଅତ୍ୟଧିକ ଧୀର ହୋଇପାରେ |</string>
+    <string name="favorites_sync_conformation_message">ଆପଣ ନିଶ୍ଚିତ କି ଆପଣ ଇ-ହେଣ୍ଟାଇ ସହିତ ଆପଣଙ୍କର ପସନ୍ଦଗୁଡିକ ସିଙ୍କ କରିବାକୁ ଚାହୁଁଛନ୍ତି?</string>
+    <string name="gallery_update_checker">ଗ୍ୟାଲେରୀ ଅଦ୍ୟତନ ଯାଞ୍ଚକାରୀ |</string>
+    <string name="auto_update_restrictions">ଅଟୋ ଅପଡେଟ୍ ପ୍ରତିବନ୍ଧକ |</string>
+    <string name="time_between_batches">ଅପଡେଟ୍ ବ୍ୟାଚ୍ ମଧ୍ୟରେ ସମୟ |</string>
+    <string name="time_between_batches_never">ଗ୍ୟାଲେରୀକୁ କେବେବି ଅପଡେଟ୍ କରନ୍ତୁ ନାହିଁ |</string>
+    <string name="time_between_batches_1_hour">1 ଘଣ୍ଟା |</string>
+    <string name="time_between_batches_2_hours">2 ଘଣ୍ଟା |</string>
+    <string name="time_between_batches_3_hours">3 ଘଣ୍ଟା |</string>
+    <string name="time_between_batches_6_hours">6 ଘଣ୍ଟା |</string>
+    <string name="time_between_batches_12_hours">12 ଘଣ୍ଟା |</string>
+    <string name="time_between_batches_24_hours">24 ଘଣ୍ଟା |</string>
+    <string name="time_between_batches_48_hours">48 ଘଣ୍ଟା |</string>
+    <string name="time_between_batches_summary_1">&lt;x id = "0" /&gt; ସମ୍ପ୍ରତି ଅଦ୍ୟତନ ପାଇଁ ଆପଣଙ୍କ ଲାଇବ୍ରେରୀରେ ଗ୍ୟାଲେରୀ ଯାଞ୍ଚ କରିବ ନାହିଁ |</string>
+    <string name="time_between_batches_summary_2">&lt;x id = "0" /&gt; ବ୍ୟାଚଗୁଡ଼ିକରେ ଗ୍ୟାଲେରୀ ଯାଞ୍ଚ / ଅଦ୍ୟତନ କରେ | ଏହାର ଅର୍ଥ ଏହା &lt;x id = "1" /&gt; ଘଣ୍ଟା (ଗୁଡିକ), &lt;x id = "2" /&gt; ଗ୍ୟାଲେରୀ ଯାଞ୍ଚ କରିବ, &lt;x id = "3" /&gt; ଘଣ୍ଟା (ଗୁଡିକ) ଅପେକ୍ଷା କରିବ, &lt;x id = "4" /&gt; ଇତ୍ୟାଦି ଯାଞ୍ଚ କରିବ…</string>
+    <string name="show_updater_statistics">ଅପଡେଟର୍ ପରିସଂଖ୍ୟାନ ଦେଖାନ୍ତୁ |</string>
+    <string name="gallery_updater_statistics_collection">ପରିସଂଖ୍ୟାନ ସଂଗ୍ରହ…</string>
+    <string name="gallery_updater_statistics">ଗ୍ୟାଲେରୀ ଅପଡେଟର୍ ପରିସଂଖ୍ୟାନ |</string>
+    <string name="gallery_updater_stats_text">ଅଦ୍ୟତନକାରୀ ଶେଷରେ &lt;x id = "0" /&gt; ଚଲାଇଲା, ଏବଂ ଯାଞ୍ଚ ପାଇଁ ପ୍ରସ୍ତୁତ ଥିବା &lt;x id = "2" /&gt; ଗ୍ୟାଲେରୀରୁ &lt;x id = "1" /&gt; ଯାଞ୍ଚ କଲା |</string>
+    <string name="gallery_updater_not_ran_yet">ଅପଡେଟର୍ ଏପର୍ଯ୍ୟନ୍ତ ଚାଲିନାହିଁ |</string>
+    <string name="gallery_updater_stats_time">\ n ଗ୍ୟାଲେରୀ ଯାହା ଶେଷରେ ଯାଞ୍ଚ କରାଯାଇଥିଲା: \ n- ଘଣ୍ଟା: &lt;x id = "0" /&gt; \ n- 6 ଘଣ୍ଟା: &lt;x id = "1" /&gt; \ n- 12 ଘଣ୍ଟା: &lt;x id = "2" /&gt; \ n- ଦିନ: &lt;x id = "3" /&gt; \ n- 2 ଦିନ: &lt;x id = "4" /&gt; \ n- ସପ୍ତାହ: &lt;x id \ " ବର୍ଷ: &lt;x id = "7" /&gt; |</string>
+    <string name="settings_profile_note">ସେଟିଂସମୂହ ପ୍ରୋଫାଇଲ୍ ନୋଟ୍ |</string>
+    <string name="settings_profile_note_message">ଆପ୍ କାର୍ଯ୍ୟଦକ୍ଷତାକୁ ଅପ୍ଟିମାଇଜ୍ କରିବା ପାଇଁ ଆପ୍ ବର୍ତ୍ତମାନ ଇ-ହେଣ୍ଟାଇ ଏବଂ ଏକ୍ସହେଣ୍ଟାଇରେ ଏକ ନୂତନ ସେଟିଙ୍ଗ୍ ପ୍ରୋଫାଇଲ୍ ଯୋଗ କରିବ | ଦୟାକରି ନିଶ୍ଚିତ କରନ୍ତୁ ଯେ ଆପଣଙ୍କର ଉଭୟ ସାଇଟରେ ତିନୋଟି ପ୍ରୋଫାଇଲ୍ ଅଛି। \ n \ n ଯଦି ଆପଣଙ୍କର ସେଟିଂସମୂହ ପ୍ରୋଫାଇଲ୍ କ’ଣ ଜାଣି ନାହାଁନ୍ତି, ତେବେ ଏହା ବୋଧହୁଏ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ ନୁହେଁ, କେବଳ \ 'ଓକେ \' ଦବାନ୍ତୁ |</string>
+    <string name="eh_settings_successfully_uploaded">ସେଟିଂସମୂହ ସଫଳତାର ସହିତ ଅପଲୋଡ୍ ହେଲା!</string>
+    <string name="eh_settings_configuration_failed">ବିନ୍ୟାସ ବିଫଳ ହେଲା!</string>
+    <string name="eh_settings_configuration_failed_message">ବିନ୍ୟାସ ପ୍ରକ୍ରିୟା ସମୟରେ ଏକ ତ୍ରୁଟି ଘଟିଲା: &lt;x id = "0" /&gt; |</string>
+    <string name="eh_settings_uploading_to_server">ସର୍ଭରରେ ସେଟିଂସମୂହ ଅପଲୋଡ୍ କରୁଛି |</string>
+    <string name="eh_settings_uploading_to_server_message">ଦୟାକରି ଅପେକ୍ଷା କରନ୍ତୁ, ଏହା କିଛି ସମୟ ନେଇପାରେ…</string>
+    <string name="eh_settings_out_of_slots_error">ଆପଣ &lt;x id = "0" /&gt; ରେ ପ୍ରୋଫାଇଲ୍ ସ୍ଲଟ୍ ବାହାରେ, ଦୟାକରି ଏକ ପ୍ରୋଫାଇଲ୍ ବିଲୋପ କରନ୍ତୁ!</string>
+    <string name="recheck_login_status">ଲଗଇନ୍ ସ୍ଥିତି ପୁନ Rec ଯାଞ୍ଚ କରନ୍ତୁ |</string>
+    <string name="alternative_login_page">ବିକଳ୍ପ ଲଗଇନ୍ ପୃଷ୍ଠା |</string>
+    <string name="skip_page_restyling">ପୃଷ୍ଠା ପୁନ y ଚାଳନକୁ ଛାଡ଼ିଦିଅ |</string>
+    <string name="custom_igneous_cookie">କଷ୍ଟମ୍ ଅଗ୍ରଗାମୀ କୁକି |</string>
+    <string name="custom_igneous_cookie_message">କିଛି ଉପଭୋକ୍ତା ExHentai କୁ ସାଧାରଣ ଉପାୟରେ ପ୍ରବେଶ କରିପାରିବେ ନାହିଁ, ଏବଂ ଏକ ନିର୍ଦ୍ଦିଷ୍ଟ ଅଗ୍ରଗାମୀ କୁକି ମୂଲ୍ୟରେ ପାସ୍ କରିବାକୁ ପଡିବ, ଏହି ବିକଳ୍ପ ସେହି ଉପଭୋକ୍ତାମାନଙ୍କ ପାଇଁ |</string>
+    <string name="refresh_igneous_cookie">ଅଗ୍ରଗାମୀ କୁକିଜକୁ ସତେଜ କରନ୍ତୁ |</string>
+    <string name="refresh_igneous_cookie_success">ଅବହେଳିତ କୁକି ସଫଳତାର ସହିତ ସତେଜ ହେଲା |</string>
+    <string name="refresh_igneous_cookie_failed">ଅଗ୍ରାହ୍ୟ କୁକିଜକୁ ସତେଜ କରିବାରେ ବିଫଳ | ନିଶ୍ଚିତ କରନ୍ତୁ ଯେ ଆପଣ ଇ-ହେଣ୍ଟାଇରେ ଲଗ୍ ଇନ୍ କରିଛନ୍ତି ଏବଂ ExHentai ପ୍ରବେଶ ଅଛି |</string>
+    <string name="developer_tools">ବିକାଶକାରୀ ଉପକରଣଗୁଡ଼ିକ |</string>
+    <string name="toggle_hentai_features">ଇଣ୍ଟିଗ୍ରେଟେଡ୍ ହେଣ୍ଟାଇ ବ features ଶିଷ୍ଟ୍ୟଗୁଡିକ ସକ୍ଷମ କରନ୍ତୁ |</string>
+    <string name="toggle_hentai_features_summary">ଏହା ଏକ ପରୀକ୍ଷାମୂଳକ ବ feature ଶିଷ୍ଟ୍ୟ ଯାହା ଟୋଗଲ୍ ହୋଇଗଲେ ସମସ୍ତ ହେଣ୍ଟାଇ ବ features ଶିଷ୍ଟ୍ୟକୁ ଅକ୍ଷମ କରିବ |</string>
+    <string name="toggle_delegated_sources">ପ୍ରତିନିଧିତ ଉତ୍ସଗୁଡିକ ସକ୍ଷମ କରନ୍ତୁ |</string>
+    <string name="toggle_delegated_sources_summary">ଯଦି ସେଗୁଡିକ ସଂସ୍ଥାପିତ ହୋଇଛି ତେବେ ନିମ୍ନଲିଖିତ ଉତ୍ସଗୁଡ଼ିକରେ &lt;x id = "0" /&gt; ଉନ୍ନତି ପ୍ରୟୋଗ କରନ୍ତୁ: &lt;x id = "1" /&gt;</string>
+    <string name="enable_source_blacklist">ଉତ୍ସ କଳା ତାଲିକା ସକ୍ଷମ କରନ୍ତୁ |</string>
+    <string name="enable_source_blacklist_summary">ବିସ୍ତୃତକରଣ / ଉତ୍ସଗୁଡିକ ଲୁଚାନ୍ତୁ ଯାହା &lt;x id = "0" /&gt; ସହିତ ଅସଙ୍ଗତ | ପରିବର୍ତ୍ତନ ପରେ ଫୋର୍ସ-ପୁନ rest ଆରମ୍ଭ କରନ୍ତୁ |</string>
+    <string name="eh_batch_add">ବ୍ୟାଚ୍ ଯୋଡନ୍ତୁ |</string>
+    <string name="eh_batch_add_description">ଉଦାହରଣ: \ n \ nhttp: //e-hentai.org/g/12345/1a2b3c4e \ nhttp: //g.e-hentai.org/g/67890/6f7g8 h9i \ nhttp: //exhentai.org/g/13579/1a3b5c7e \ nhttps: //exhentai.org/g/24680/2f4g6h8i \ n \ n E-H ପରିଦର୍ଶିତ ରପ୍ତାନି ହୋଇଥିବା ଡାଟା \ n କୁ ମଧ୍ୟ ସମର୍ଥନ କରେ |</string>
+    <string name="eh_batch_add_title">ଯୋଡିବାକୁ ଗ୍ୟାଲେରୀ ପ୍ରବେଶ କରନ୍ତୁ (ଏକ ନୂତନ ରେଖା ଦ୍ୱାରା ପୃଥକ):</string>
+    <string name="eh_batch_add_button">ଗ୍ୟାଲେରୀ ଯୋଡନ୍ତୁ |</string>
+    <string name="eh_batch_add_adding_galleries">ଗ୍ୟାଲେରୀ ଯୋଡିବା…</string>
+    <string name="eh_batch_add_finish">ସମାପ୍ତ</string>
+    <string name="batch_add_no_valid_galleries">ଯୋଡିବାକୁ କ No ଣସି ଗ୍ୟାଲେରୀ ନାହିଁ!</string>
+    <string name="batch_add_no_valid_galleries_message">ଯୋଡିବାକୁ ଆପଣ ଅତିକମରେ ଗୋଟିଏ ଗ୍ୟାଲେରୀ ନିର୍ଦ୍ଦିଷ୍ଟ କରିବା ଜରୁରୀ!</string>
+    <string name="batch_add">ବ୍ୟାଚ୍ ଆଡ୍ |</string>
+    <string name="batch_add_ok">[ଠିକ ଅଛି]</string>
+    <string name="batch_add_error">[ତ୍ରୁଟି]</string>
+    <string name="batch_add_summary">\ n ସଂକ୍ଷେପରେ: \ n ଯୋଡା ଯାଇଛି: &lt;x id = "0" /&gt; ଗ୍ୟାଲେରୀ (ଗୁଡିକ) \ n ବିଫଳ: &lt;x id = "1" /&gt; ଗ୍ୟାଲେରୀ (ଗୁଡିକ)</string>
+    <string name="batch_add_success_log_message">ଗ୍ୟାଲେରୀ ଯୋଡା ଯାଇଛି: &lt;x id = "0" /&gt; |</string>
+    <string name="batch_add_unknown_type_log_message">ଗ୍ୟାଲେରୀ ପାଇଁ ଅଜ୍ଞାତ ପ୍ରବେଶ ପ୍ରକାର: &lt;x id = "0" /&gt; |</string>
+    <string name="batch_add_unknown_source_log_message">ଗ୍ୟାଲେରୀ ପାଇଁ ଅଜ୍ଞାତ ଉତ୍ସ: &lt;x id = "0" /&gt; |</string>
+    <string name="batch_add_not_exist_log_message">ଗ୍ୟାଲେରୀ ବିଦ୍ୟମାନ ନାହିଁ: &lt;x id = "0" /&gt; |</string>
+    <string name="gallery_adder_importing_gallery">ଗ୍ୟାଲେରୀ ଆମଦାନି କରୁଛି (url: &lt;x id = "0" /&gt;, fav: &lt;x id = "1" /&gt;, forceSource: &lt;x id = "2" /&gt;)…</string>
+    <string name="gallery_adder_source_uri_must_match">ଉତ୍ସ URI ମ୍ୟାଚ୍ ଯାଞ୍ଚ ତ୍ରୁଟି!</string>
+    <string name="gallery_adder_uri_map_to_gallery_error">ଉତ୍ସ URI ମାନଚିତ୍ର-ରୁ-ଗ୍ୟାଲେରୀ ତ୍ରୁଟି!</string>
+    <string name="gallery_adder_uri_map_to_chapter_error">ଉତ୍ସ URI ମାନଚିତ୍ର-ରୁ-ଅଧ୍ୟାୟ ତ୍ରୁଟି!</string>
+    <string name="gallery_adder_uri_clean_error">ଉତ୍ସ URI ସଫା ତ୍ରୁଟି!</string>
+    <string name="gallery_adder_chapter_fetch_error">ଗ୍ୟାଲେରୀ ପାଇଁ ଅଧ୍ୟାୟ ଅଦ୍ୟତନ କରିବାରେ ବିଫଳ: &lt;x id = "0" /&gt;!</string>
+    <string name="gallery_adder_could_not_add_gallery">ଗ୍ୟାଲେରୀ ଯୋଡି ପାରିଲା ନାହିଁ (url: &lt;x id = "0" /&gt;)!</string>
+    <string name="gallery_adder_could_not_identify_chapter">ଅଧ୍ୟାୟ ଚିହ୍ନଟ କରିପାରିଲା ନାହିଁ (url: &lt;x id = "0" /&gt;)!</string>
+    <string name="launching_app">ଆପ୍ ଲଞ୍ଚ କରୁଛି…</string>
+    <string name="error_with_reason">ତ୍ରୁଟି: &lt;x id = "0" /&gt; |</string>
+    <string name="could_not_open_entry">ଏହି ଏଣ୍ଟ୍ରି ଖୋଲିପାରିଲା ନାହିଁ: \ n \ n &lt;x id = "0" /&gt; |</string>
+    <string name="loading_entry">ଏଣ୍ଟ୍ରି ଲୋଡିଂ…</string>
+    <string name="is_visible">ଦୃଶ୍ୟମାନ: &lt;x id = "0" /&gt; |</string>
+    <string name="language_translated">&lt;x id = "0" /&gt; TR |</string>
+    <string name="more_info">ଅଧିକ ସୂଚନା</string>
+    <string name="alt_title">Alt ଆଖ୍ୟା |</string>
+    <string name="token">ଟୋକେନ୍ |</string>
+    <string name="is_exhentai_gallery">ହେଉଛି Exhentai ଗ୍ୟାଲେରୀ |</string>
+    <string name="thumbnail_url">ଥମ୍ବନେଲ୍ url</string>
+    <string name="genre">ଶ re ଳୀ</string>
+    <string name="date_posted">ପୋଷ୍ଟ ହୋଇଥିବା ତାରିଖ</string>
+    <string name="page_count">ପୃଷ୍ଠା ଗଣନା |</string>
+    <string name="parent">ପିତାମାତା |</string>
+    <string name="visible">ଦୃଶ୍ୟମାନ |</string>
+    <string name="gallery_size">ଗ୍ୟାଲେରୀ ଆକାର |</string>
+    <string name="total_favorites">ସମୁଦାୟ ପସନ୍ଦ</string>
+    <string name="total_ratings">ମୋଟ ମୂଲ୍ୟାୟନ</string>
+    <string name="average_rating">ହାରାହାରି ମୂଲ୍ୟାୟନ</string>
+    <string name="aged">ବୃଦ୍ଧ</string>
+    <string name="last_update_check">ଶେଷ ଅଦ୍ୟତନ ଯାଞ୍ଚ |</string>
+    <string name="path">ପଥ</string>
+    <string name="characters">ଅକ୍ଷରଗୁଡ଼ିକ</string>
+    <string name="group">ଗୋଷ୍ଠୀ</string>
+    <string name="media_id">ମିଡିଆ id</string>
+    <string name="japanese_title">ଜାପାନିଜ୍ ଆଖ୍ୟା |</string>
+    <string name="english_title">ଇଂରାଜୀ ଆଖ୍ୟା |</string>
+    <string name="short_title">ସଂକ୍ଷିପ୍ତ ଆଖ୍ୟା |</string>
+    <string name="cover_image_file_type">ପ୍ରତିଛବି ଫାଇଲ୍ ପ୍ରକାରକୁ ଆଚ୍ଛାଦନ କରନ୍ତୁ |</string>
+    <string name="thumbnail_image_file_type">ଥମ୍ବନେଲ୍ ଇମେଜ୍ ଫାଇଲ୍ ପ୍ରକାର |</string>
+    <string name="uploader_capital">ଅପଲୋଡର୍ କ୍ୟାପିଟାଲାଇଜଡ୍ |</string>
+    <string name="uploader">ଅପଲୋଡର୍ |</string>
+    <string name="rating_string">ରେଟିଂ ଷ୍ଟ୍ରିଙ୍ଗ୍</string>
+    <string name="collection">ସଂଗ୍ରହ</string>
+    <string name="parodies">ପାରୋଡିଜ୍ |</string>
+    <string name="last_chapter_number">ଶେଷ ଅଧ୍ୟାୟ ସଂଖ୍ୟା |</string>
+    <string name="follow_status">ସ୍ଥିତି ଅନୁସରଣ କରନ୍ତୁ |</string>
+    <string name="anilist_id">ଅନିଲିଷ୍ଟ id</string>
+    <string name="kitsu_id">କିଟ୍ସୁ id</string>
+    <string name="mal_id">ମାଲ୍ id</string>
+    <string name="manga_updates_id">ମଙ୍ଗଳା id ଅପଡେଟ୍ କରେ |</string>
+    <string name="anime_planet_id">ଆନିମ ଗ୍ରହ id</string>
+    <string name="translated">ଅନୁବାଦିତ |</string>
+    <string name="filename">ଫାଇଲ୍ ନାମ</string>
+    <string name="file_extension">ଫାଇଲ୍ ଏକ୍ସଟେନ୍ସନ୍ |</string>
+    <string name="base_url">ଆଧାର url</string>
+    <string name="doujinshi">ଡୁଜିନ୍ସି</string>
+    <string name="artist_cg">କଳାକାର ସି.ଜି.</string>
+    <string name="game_cg">ଖେଳ CG</string>
+    <string name="western">ପାଶ୍ଚାତ୍ୟ |</string>
+    <string name="non_h">ଅଣ- H।</string>
+    <string name="image_set">ପ୍ରତିଛବି ସେଟ୍ |</string>
+    <string name="cosplay">କସପ୍ଲେ |</string>
+    <string name="asian_porn">ଏସୀୟ ପର୍ଣ୍ଣ |</string>
+    <string name="misc">ବିବିଧ</string>
+    <string name="artbook">ଆର୍ଟବୁକ୍ |</string>
+    <string name="video">ଭିଡିଓ</string>
+    <string name="rating10">ମାଷ୍ଟରପିସ୍ |</string>
+    <string name="rating9">ଆଶ୍ଚର୍ଯ୍ୟଜନକ |</string>
+    <string name="rating8">ଉତ୍ତମ</string>
+    <string name="rating7">ଭଲ</string>
+    <string name="rating6">ଠିକ ଅଛି |</string>
+    <string name="rating5">ମଧ୍ୟମ</string>
+    <string name="rating4">ଖରାପ</string>
+    <string name="rating3">ଭୟଙ୍କର</string>
+    <string name="rating2">ଯନ୍ତ୍ରଣାଦାୟକ |</string>
+    <string name="rating1">ଅସହ୍ୟ |</string>
+    <string name="rating0">ବିପର୍ଯ୍ୟୟ |</string>
+    <string name="no_rating">କ rating ଣସି ମୂଲ୍ୟାୟନ ନାହିଁ |</string>
+    <string name="eh_autoscroll">ଅଟୋସ୍କ୍ରୋଲ୍ |</string>
+    <string name="eh_retry_all">ସମସ୍ତ ଚେଷ୍ଟା କରନ୍ତୁ |</string>
+    <string name="eh_boost_page">ପୃଷ୍ଠା ବ ost ାନ୍ତୁ |</string>
+    <string name="eh_autoscroll_help">ଅଟୋସ୍କ୍ରୋଲ୍ ସାହାଯ୍ୟ |</string>
+    <string name="eh_autoscroll_help_message">ନିର୍ଦ୍ଦିଷ୍ଟ ବ୍ୟବଧାନରେ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ପରବର୍ତ୍ତୀ ପୃଷ୍ଠାକୁ ସ୍କ୍ରୋଲ୍ କରନ୍ତୁ | ବ୍ୟବଧାନ ସେକେଣ୍ଡରେ ନିର୍ଦ୍ଦିଷ୍ଟ ହୋଇଛି |</string>
+    <string name="eh_autoscroll_freq_invalid">ଅବ val ଧ ଫ୍ରିକ୍ୱେନ୍ସି |</string>
+    <string name="eh_retry_all_help">ସମସ୍ତ ସାହାଯ୍ୟ ଚେଷ୍ଟା କରନ୍ତୁ |</string>
+    <string name="eh_retry_all_help_message">ସମସ୍ତ ବିଫଳ ପୃଷ୍ଠାଗୁଡ଼ିକୁ ଡାଉନଲୋଡ୍ କ୍ରମରେ ପୁନ add- ଯୋଡନ୍ତୁ |</string>
+    <string name="eh_boost_page_help">ପୃଷ୍ଠା ସହାୟତା ବୃଦ୍ଧି କରନ୍ତୁ |</string>
+    <string name="eh_boost_page_help_message">ସାଧାରଣତ the ଡାଉନଲୋଡର୍ କେବଳ ଏକ ନିର୍ଦ୍ଦିଷ୍ଟ ପରିମାଣର ପୃଷ୍ଠାଗୁଡ଼ିକୁ ଏକ ସମୟରେ ଡାଉନଲୋଡ୍ କରିପାରିବ | ଏହାର ଅର୍ଥ ଆପଣ ଡାଉନଲୋଡ୍ କରିବାକୁ ଏକ ପୃଷ୍ଠାକୁ ଅପେକ୍ଷା କରିପାରିବେ କିନ୍ତୁ ଏହାର ମାଗଣା ଡାଉନଲୋଡ୍ ସ୍ଲଟ୍ ନହେବା ପର୍ଯ୍ୟନ୍ତ ଡାଉନଲୋଡ୍ ପୃଷ୍ଠା ଡାଉନଲୋଡ୍ କରିବା ଆରମ୍ଭ କରିବ ନାହିଁ | \ 'ବୁଷ୍ଟ ପୃଷ୍ଠା \' ଦବାଇବା ଦ୍ୱାରା ଡାଉନଲୋଡ୍ କୁ ସାମ୍ପ୍ରତିକ ପୃଷ୍ଠା ଡାଉନଲୋଡ୍ କରିବାକୁ ବାଧ୍ୟ କରିବ, ଏକ ଉପଲବ୍ଧ ସ୍ଲଟ୍ ଅଛି କି ନାହିଁ ତାହା ଉପରେ ଧ୍ୟାନ ନ ଦେଇ |</string>
+    <string name="eh_boost_page_invalid">ଏହି ପୃଷ୍ଠାକୁ ବୃଦ୍ଧି କରାଯାଇପାରିବ ନାହିଁ (ଅବ alid ଧ ପୃଷ୍ଠା)!</string>
+    <string name="eh_boost_page_errored">ପୃଷ୍ଠା ଲୋଡ୍ କରିବାରେ ବିଫଳ ହେଲା, ଏହା ବଦଳରେ ପୁନ ry ଚେଷ୍ଟା ବଟନ୍ ଦବାନ୍ତୁ!</string>
+    <string name="eh_boost_page_downloading">ଏହି ପୃଷ୍ଠା ପୂର୍ବରୁ ଡାଉନଲୋଡ୍ କରୁଛି!</string>
+    <string name="eh_boost_page_downloaded">ଏହି ପୃଷ୍ଠାଟି ଡାଉନଲୋଡ୍ ହୋଇସାରିଛି!</string>
+    <string name="eh_boost_boosted">ସାମ୍ପ୍ରତିକ ପୃଷ୍ଠା ବୃଦ୍ଧି!</string>
+    <string name="eh_boost_invalid_loader">ଏହି ପୃଷ୍ଠାକୁ ବୃଦ୍ଧି କରାଯାଇପାରିବ ନାହିଁ (ଅବ alid ଧ ପୃଷ୍ଠା ଲୋଡର)!</string>
+    <string name="merge">ମିଶ୍ରଣ କରନ୍ତୁ |</string>
+    <string name="merge_with_another_source">ଅନ୍ୟ ସହିତ ମିଶ୍ରଣ କରନ୍ତୁ |</string>
+    <string name="entry_merged">ପ୍ରବେଶ ମିଶ୍ରିତ!</string>
+    <string name="failed_merge">ଏଣ୍ଟ୍ରି ମିଶ୍ରଣ କରିବାରେ ବିଫଳ: &lt;x id = "0" /&gt; |</string>
+    <string name="merge_unknown_entry">ଅଜ୍ଞାତ ପ୍ରବେଶ ID: &lt;x id = "0" /&gt; |</string>
+    <string name="merged_already">ଏହି ଏଣ୍ଟ୍ରି ସାମ୍ପ୍ରତିକ ଏଣ୍ଟ୍ରି ସହିତ ମିଶ୍ରିତ ହୋଇସାରିଛି!</string>
+    <string name="merge_duplicate">ଏହି ମିଶ୍ରିତ ଏଣ୍ଟ୍ରି ହେଉଛି ଏକ ନକଲ!</string>
+    <string name="merge_settings">ସେଟିଙ୍ଗ୍ ମିଶ୍ରଣ କରନ୍ତୁ |</string>
+    <string name="fetch_chapter_updates">ଅଧ୍ୟାୟ ଅଦ୍ୟତନଗୁଡିକ ଆଣ |</string>
+    <string name="delete_merged_entry">ଆପଣ ନିଶ୍ଚିତ କି?</string>
+    <string name="delete_merged_entry_desc">ଏହା ମିଶ୍ରଣରୁ ଏଣ୍ଟ୍ରି ଅପସାରଣ କରିବ, ଏହାକୁ ବ୍ୟବହାର କରି ମିଶ୍ରିତ ଏଣ୍ଟ୍ରିରେ ପ୍ରୟୋଗ ହୋଇଥିବା କ sa ଣସି ସଞ୍ଚିତ ପରିବର୍ତ୍ତନ ମଧ୍ୟ ହରାଇବ |</string>
+    <string name="merged_references_invalid">ମିଶ୍ରିତ ରେଫରେନ୍ସ ଅବ alid ଧ |</string>
+    <string name="mangadex_sync_follows_to_library">ଆପଣଙ୍କ ଲାଇବ୍ରେରୀରେ MangaDex ଏଣ୍ଟ୍ରିଗୁଡିକ ସିଙ୍କ କରନ୍ତୁ |</string>
+    <string name="mangadex_sync_follows_to_library_summary">MangaDex ରୁ ଆପଣଙ୍କର ଲାଇବ୍ରେରୀକୁ ଏଣ୍ଟ୍ରିଗୁଡିକ ଟାଣନ୍ତୁ ଯଦି ସେଗୁଡିକ ପୂର୍ବରୁ ଯୋଗ ହୋଇନଥାଏ |</string>
+    <string name="mangadex_preffered_source">ପସନ୍ଦ MangaDex ଉତ୍ସ |</string>
+    <string name="mangadex_preffered_source_summary">ଆପଣଙ୍କର ମନୋନୀତ MangaDex ଉତ୍ସ ସେଟ୍ କରନ୍ତୁ, ଏହା ନିମ୍ନଲିଖିତ ପାଇଁ ବ୍ୟବହୃତ ହେବ ଏବଂ ଆପ୍ ଚାରିପାଖରେ ଅଧିକ ବ features ଶିଷ୍ଟ୍ୟଗୁଡିକ |</string>
+    <string name="mangadex_add_to_follows">MangaDex କୁ ଯୋଡନ୍ତୁ |</string>
+    <string name="mangadex_follows">MangaDex ଅନୁସରଣ କରେ |</string>
+    <string name="mangadex_push_favorites_to_mangadex">MangaDex କୁ ଲାଇବ୍ରେରୀ ଏଣ୍ଟ୍ରିଗୁଡିକ ସିଙ୍କ କରନ୍ତୁ |</string>
+    <string name="mangadex_push_favorites_to_mangadex_summary">ପ reading ଼ିବା ପରି MangaDex କୁ ଯେକ any ଣସି MdList ଟ୍ରାକ୍ ହୋଇଥିବା ଏଣ୍ଟ୍ରିଗୁଡ଼ିକୁ ସିଙ୍କ କରେ |</string>
+    <string name="source_eh" translatable="false">E-Hentai</string>
+    <string name="source_exh" translatable="false">ExHentai</string>
+    <string name="source_nhentai" translatable="false">NHentai</string>
+    <string name="source_mangadex" translatable="false">MangaDex</string>
+    <string name="source_merged" translatable="false">Merged Source</string>
+    <string name="searching_source">ସନ୍ଧାନ ଉତ୍ସ…</string>
+    <string name="could_not_find_entry">ଉତ୍ସରେ ଏଣ୍ଟ୍ରି ଖୋଜି ପାରିଲା ନାହିଁ!</string>
+    <string name="automatic_search_error">ସ୍ୱୟଂଚାଳିତ ସନ୍ଧାନ କରିବାରେ ତ୍ରୁଟି!</string>
+    <string name="saved_searches">ସଞ୍ଚିତ ସନ୍ଧାନଗୁଡିକ |</string>
+    <string name="save_search">ସାମ୍ପ୍ରତିକ ସନ୍ଧାନ ଜିଜ୍ଞାସା ସଞ୍ଚୟ କରନ୍ତୁ?</string>
+    <string name="save_search_hint">ମୋର ସନ୍ଧାନ ନାମ</string>
+    <string name="save_search_failed_to_load">ସଞ୍ଚିତ ସନ୍ଧାନ ଲୋଡ୍ କରିବାରେ ବିଫଳ!</string>
+    <string name="save_search_failed_to_load_message">ଆପଣଙ୍କର ସଞ୍ଚିତ ସନ୍ଧାନଗୁଡ଼ିକୁ ଲୋଡ୍ କରିବା ସମୟରେ ଏକ ତ୍ରୁଟି ଘଟିଗଲା |</string>
+    <string name="save_search_delete">ସଞ୍ଚିତ ସନ୍ଧାନ ଜିଜ୍ଞାସା ବିଲୋପ କରିବେ କି?</string>
+    <string name="save_search_delete_message">ଆପଣ ନିଶ୍ଚିତ କି ଆପଣ ଆପଣଙ୍କର ସଞ୍ଚିତ ସନ୍ଧାନ ଜିଜ୍ଞାସା ବିଲୋପ କରିବାକୁ ଚାହୁଁଛନ୍ତି: \ '&lt;x id = "0" /&gt; \'?</string>
+    <string name="save_search_invalid">ସଞ୍ଚିତ ସନ୍ଧାନ ଅବ alid ଧ, ଫିଲ୍ଟରଗୁଡ଼ିକ ପରିବର୍ତ୍ତନ ହୋଇଛି |</string>
+    <string name="save_search_invalid_name">ଅବ val ଧ ସନ୍ଧାନ ନାମ |</string>
+    <string name="no_saved_searches">ଏପର୍ଯ୍ୟନ୍ତ କ saved ଣସି ସଞ୍ଚିତ ସନ୍ଧାନ ନାହିଁ |</string>
+    <string name="source_has_no_filters">ଏହି ଉତ୍ସର କ fil ଣସି ଫିଲ୍ଟର୍ ନାହିଁ |</string>
+    <string name="sort_ascending">ଆରୋହଣକୁ ସର୍ଟ କରନ୍ତୁ |</string>
+    <string name="sort_descending">ତଳକୁ ଓହ୍ଲାନ୍ତୁ |</string>
+    <string name="include">ଅନ୍ତର୍ଭୂକ୍ତ କରନ୍ତୁ |</string>
+    <string name="exclude">ବାଦ ଦିଅନ୍ତୁ |</string>
+    <string name="page_previews">ପୃଷ୍ଠା ପୂର୍ବାବଲୋକନ |</string>
+    <string name="more_previews">ଅଧିକ ପୂର୍ବାବଲୋକନ |</string>
+    <string name="page_preview_go_to">ଯାଆନ୍ତୁ |</string>
+    <string name="humanize_fallback">କିଛି ସମୟ ପୂର୍ବରୁ</string>
+    <string name="action_ok">ଠିକ ଅଛି |</string>
+    <string name="action_cancel">ବାତିଲ୍ କରନ୍ତୁ |</string>
+    <string name="logout">ଲଗ୍ ଆଉଟ୍ କରନ୍ତୁ |</string>
+    <string name="chapter_error">ଅଧ୍ୟାୟ ତ୍ରୁଟି |</string>
+    <string name="label_sources">ଉତ୍ସ</string>
+    <string name="entry_found">ପ୍ରବେଶ ମିଳିଲା!</string>
+    <string name="connected_to_wifi">ୱାଇ-ଫାଇ ସହିତ ସଂଯୁକ୍ତ |</string>
+    <string name="front_page_categories">ଆଗ ପୃଷ୍ଠା ବର୍ଗଗୁଡିକ |</string>
+    <string name="front_page_categories_summary">ପ୍ରଥମ ପୃଷ୍ଠାରେ କେଉଁ ବର୍ଗଗୁଡିକ ଦେଖାଇବାକୁ ଚୟନ କରନ୍ତୁ |</string>
+    <string name="log_in_to_mangadex">MangaDex କୁ ଲଗ୍ ଇନ୍ କରନ୍ତୁ |</string>
+    <string name="mangadex_login_title">MangaDex ଲଗଇନ୍ |</string>
+    <string name="mangadex_logged_in">ଲଗ୍ ଇନ୍ ହୋଇଛି |</string>
+    <string name="mangadex_logged_out">ସଫଳତାର ସହିତ ଲଗ୍ ଆଉଟ୍ |</string>
+    <string name="mangadex_not_logged_in">MangaDex କୁ ଲଗ୍ ଇନ୍ ହୋଇନାହିଁ |</string>
+    <string name="mangadex_not_enabled">MangaDex ଉତ୍ସ ସକ୍ଷମ ନୁହେଁ |</string>
+    <string name="mangadex_sync_follows_complete">ସିଙ୍ଗା ହୋଇଥିବା &lt;x id = "0" /&gt; MangaDex ରୁ ଅନୁସରଣ କରେ |</string>
+    <string name="mangadex_push_started">MangaDex କୁ ଲାଇବ୍ରେରୀ ସିଙ୍କ୍ କରୁଛି…</string>
+    <string name="similar">&lt;X id = "0" /&gt; ସହିତ ସମାନ |</string>
+    <string name="similar_titles">ସମାନ ଆଖ୍ୟାଗୁଡିକ |</string>
+    <string name="community_recommendations">ସମ୍ପ୍ରଦାୟର ସୁପାରିଶ |</string>
+    <string name="rec_search">ସାଧାରଣ ସୁପାରିଶଗୁଡିକ ଖୋଜ |</string>
+    <string name="rec_hide_library_entries">ଆପଣଙ୍କ ଲାଇବ୍ରେରୀରେ ପୂର୍ବରୁ ଫଳାଫଳ ଲୁଚାନ୍ତୁ |</string>
+    <string name="rec_services_to_search">ଖୋଜିବା ପାଇଁ ସୁପାରିଶ ସେବା |</string>
+    <string name="rec_group_source">ଉତ୍ସ ସୁପାରିଶ |</string>
+    <string name="rec_group_tracker">ଟ୍ରାକର ସୁପାରିଶ |</string>
+    <string name="rec_common_recommendations">ସାଧାରଣ ସୁପାରିଶ |</string>
+    <string name="rec_search_short">ସୁପାରିଶଗୁଡିକ ଖୋଜ |</string>
+    <string name="rec_no_results">କ recommendations ଣସି ସୁପାରିଶ ମିଳିଲା ନାହିଁ |</string>
+    <string name="rec_error_title">ସନ୍ଧାନ ବିଫଳ ହେଲା |</string>
+    <string name="rec_error_string">ସନ୍ଧାନ ପ୍ରକ୍ରିୟା ସମୟରେ ଏକ ତ୍ରୁଟି ଘଟିଲା: &lt;x id = "0" /&gt; |</string>
+    <string name="rec_processing_state">&lt;X id = "1" /&gt; ର &lt;x id = "0" /&gt; ଏଣ୍ଟ୍ରି ପ୍ରକ୍ରିୟାକରଣ |</string>
+    <string name="rec_collecting">ସୁପାରିଶ ସଂଗ୍ରହ</string>
+    <string name="rec_initializing">ଆରମ୍ଭ କରିବା</string>
+    <string name="no_results">କ results ଣସି ଫଳାଫଳ ନାହିଁ |</string>
+    <string name="data_saver">ଡାଟା ସେଭର୍ |</string>
+    <string name="data_saver_off">ବନ୍ଦ</string>
+    <string name="data_saver_wsrv">wsrv.nl (ମାଗଣା CDN)</string>
+    <string name="data_saver_custom">କଷ୍ଟମ୍ ସର୍ଭର |</string>
+    <string name="data_saver_quality">ପ୍ରତିଛବି ଗୁଣ</string>
+    <string name="data_saver_quality_summary">ସାମ୍ପ୍ରତିକ: &lt;x id = "0" /&gt; %%</string>
+    <string name="data_saver_format">ଆଉଟପୁଟ୍ ଫର୍ମାଟ୍</string>
+    <string name="data_saver_server_url">ସର୍ଭର URL</string>
+    <string name="data_saver_api_key">API କି</string>
+    <string name="data_saver_max_width">ସର୍ବାଧିକ ମୋଟେଇ (0 = ସୀମା ନାହିଁ)</string>
+    <string name="data_saver_max_height">ସର୍ବାଧିକ ଉଚ୍ଚତା (0 = ସୀମା ନାହିଁ)</string>
+    <string name="data_saver_proxy">ପ୍ରକ୍ସି (କଷ୍ଟମ୍ ସର୍ଭର ମାଧ୍ୟମରେ wsrv.nl)</string>
+    <string name="data_saver_resize">ଆକାର ପରିବର୍ତ୍ତନ କରନ୍ତୁ |</string>
+    <string name="data_saver_fit_mode">ଫିଟ୍ ମୋଡ୍ |</string>
+    <string name="data_saver_fit_inside">ଭିତରେ</string>
+    <string name="data_saver_fit_outside">ବାହାରେ</string>
+    <string name="data_saver_fit_cover">ଆଚ୍ଛାଦନ କରନ୍ତୁ |</string>
+    <string name="data_saver_fit_contain">ଧାରଣ କରନ୍ତୁ |</string>
+    <string name="data_saver_fit_fill">ପୁରଣ କରନ୍ତୁ</string>
+    <string name="data_saver_fit_scale_down">ସ୍କେଲ ଡାଉନ୍ |</string>
+    <string name="data_saver_no_upscale">ଅପ୍ସାଲ୍କୁ ରୋକନ୍ତୁ |</string>
+    <string name="data_saver_no_upscale_summary">ଲକ୍ଷ୍ୟ ଆକାରଠାରୁ ଛୋଟ ଛୋଟ ପ୍ରତିଛବିଗୁଡିକ ବୃଦ୍ଧି କରନ୍ତୁ ନାହିଁ |</string>
+    <string name="data_saver_adjustments">ସଂଶୋଧନ</string>
+    <string name="data_saver_brightness">ଉଜ୍ଜ୍ୱଳତା |</string>
+    <string name="data_saver_brightness_summary">ସାମ୍ପ୍ରତିକ: &lt;x id = "0" /&gt; |</string>
+    <string name="data_saver_contrast">ବିପରୀତ</string>
+    <string name="data_saver_contrast_summary">ସାମ୍ପ୍ରତିକ: &lt;x id = "0" /&gt; |</string>
+    <string name="data_saver_saturation">ସାଚୁଚରେସନ୍</string>
+    <string name="data_saver_saturation_summary">ସାମ୍ପ୍ରତିକ: &lt;x id = "0" /&gt; |</string>
+    <string name="data_saver_sharpen">ତୀକ୍ଷ୍ଣ |</string>
+    <string name="data_saver_sharpen_summary">ସାମ୍ପ୍ରତିକ: &lt;x id = "0" /&gt; |</string>
+    <string name="data_saver_effects">ପ୍ରଭାବ</string>
+    <string name="data_saver_blur">ଅସ୍ପଷ୍ଟ |</string>
+    <string name="data_saver_blur_summary">ସାମ୍ପ୍ରତିକ: &lt;x id = "0" /&gt; |</string>
+    <string name="data_saver_filter">ଫିଲ୍ଟର୍ |</string>
+    <string name="data_saver_filter_none">କିଛି ନୁହେଁ |</string>
+    <string name="data_saver_filter_greyscale">ଗ୍ରେସ୍କେଲ୍ |</string>
+    <string name="data_saver_filter_sepia">ସେପିଆ |</string>
+    <string name="data_saver_filter_negate">ନକାରାତ୍ମକ</string>
+    <string name="data_saver_no_limit">କ limit ଣସି ସୀମା ନାହିଁ |</string>
+    <string name="data_saver_server">ସର୍ଭର |</string>
+    <string name="exhentai_login">ExHentai ଲଗଇନ୍ |</string>
+    <string name="rating_abysmal">ଅବକ୍ଷୟ |</string>
+    <string name="rating_terrible">ଭୟଙ୍କର</string>
+    <string name="rating_bad">ଖରାପ</string>
+    <string name="rating_poor">ଗରିବ</string>
+    <string name="rating_below_average">ହାରାହାରି ତଳେ |</string>
+    <string name="rating_average">ହାରାହାରି</string>
+    <string name="rating_above_average">ହାରାହାରି ଉପରେ |</string>
+    <string name="rating_good">ଭଲ</string>
+    <string name="rating_very_good">ବହୁତ ଭଲ</string>
+    <string name="rating_great">ଉତ୍ତମ</string>
+    <string name="rating_masterpiece">ମାଷ୍ଟରପିସ୍ |</string>
+    <string name="rating_none">କ rating ଣସି ମୂଲ୍ୟାୟନ ନାହିଁ |</string>
+    <string name="original">ମୂଳ</string>
+    <string name="rewrite">ପୁନ r ଲିଖନ କରନ୍ତୁ |</string>
+    <string name="source_not_found">ଉତ୍ସ ମିଳିଲା ନାହିଁ |</string>
+    <string name="no_follows_found">କ follows ଣସି ଅନୁସରଣ ମିଳିଲା ନାହିଁ |</string>
+    <string name="visibility_label">ଦୃଶ୍ୟମାନତା: &lt;x id = "0" /&gt; |</string>
+    <string name="page_count_format">&lt;x id = "0" /&gt; ପୃଷ୍ଠାଗୁଡ଼ିକ |</string>
+    <string name="favorites_label">ପସନ୍ଦଗୁଡିକ</string>
+    <string name="file_size_label">ଫାଇଲ୍ ଆକାର |</string>
+    <string name="page_count_label">ପୃଷ୍ଠା ଗଣନା |</string>
+    <string name="language_label">ଭାଷା</string>
+    <string name="page_preview_image">ପୃଷ୍ଠା ପୂର୍ବାବଲୋକନ &lt;x id = "0" /&gt; |</string>
+    <string name="view_all_recommendations">ସମସ୍ତ ସୁପାରିଶଗୁଡିକ ଦେଖନ୍ତୁ |</string>
+    <string name="opening_link">ଲିଙ୍କ୍ ଖୋଲିବା \ u2026 |</string>
+    <string name="intercept_opening_in_app">&lt;X id = "0" /&gt; ରେ ଖୋଲୁଛି |</string>
+    <string name="show_updater_statistics_summary">ଶେଷ ଅଦ୍ୟତନ ଯାଞ୍ଚରୁ ସମୟ ଏବଂ ଗଣନା ବିବରଣୀ ଦେଖନ୍ତୁ |</string>
+    <string name="auto_update_restrictions_summary">ସର୍ତ୍ତ ପୂରଣ ହେଲେ କେବଳ ଗ୍ୟାଲେରୀ ଅପଡେଟ୍ ଯାଞ୍ଚ ଚଲାନ୍ତୁ |</string>
+    <string name="mangadex_login_subtitle">ଆପଣଙ୍କର MangaDex ଅନୁସରଣ ଏବଂ ସ୍ଥିତି ପ reading ିବା ପାଇଁ ଲଗ୍ ଇନ୍ କରନ୍ତୁ |</string>
+    <string name="mangadex_sync_follows_subtitle">ଆପଣଙ୍କର MangaDex ସ୍ଥାନୀୟ ଲାଇବ୍ରେରୀରେ ଅନୁସରଣ କରନ୍ତୁ |</string>
+    <string name="mangadex_push_favorites_subtitle">ଆପଣଙ୍କର MangaDex ଅନୁସରଣ ତାଲିକାରେ ସ୍ଥାନୀୟ ଲାଇବ୍ରେରୀ ଏଣ୍ଟ୍ରିଗୁଡ଼ିକୁ ପୁସ୍ କରନ୍ତୁ |</string>
+    <string name="rec_source_mangaupdates_community">MangaUpdates ସମ୍ପ୍ରଦାୟ |</string>
+    <string name="rec_source_mangaupdates_similar">MangaUpdates ସମାନ |</string>
+    <string name="rec_source_mangadex_similar">MangaDex ସମାନ |</string>
+    <string name="novels">ଉପନ୍ୟାସ</string>
+    <string name="novel_reader">ଉପନ୍ୟାସ</string>
+    <string name="novelupdates">NovelUpdates</string>
+    <string name="novellist">NovelList</string>
+    <string name="tracker_novelupdates_login_help">NovelUpdates କୁ ଲଗ୍ଇନ୍ କରନ୍ତୁ, ତାପରେ ଲଗଇନ୍ ସଂପୂର୍ଣ୍ଣ କରିବାକୁ ✓ ବଟନ୍ ଟ୍ୟାପ୍ କରନ୍ତୁ |</string>
+    <string name="tracker_novellist_login_help">NovelList କୁ ଲଗ୍ଇନ୍ କରନ୍ତୁ, ତାପରେ ଲଗଇନ୍ ସଂପୂର୍ଣ୍ଣ କରିବାକୁ ✓ ବଟନ୍ ଟ୍ୟାପ୍ କରନ୍ତୁ |</string>
+    <string name="tracker_webview_login_help">ଲଗଇନ୍ କରନ୍ତୁ, ତାପରେ ସମ୍ପୂର୍ଣ୍ଣ କରିବାକୁ ✓ ବଟନ୍ ଟ୍ୟାପ୍ କରନ୍ତୁ |</string>
+    <string name="text_to_speech">ପାଠ୍ୟ-ରୁ-ବକ୍ତବ୍ୟ |</string>
+    <string name="start_tts_here">ଏଠାରୁ TTS ଆରମ୍ଭ କରନ୍ତୁ |</string>
+    <string name="auto_scroll">ଅଟୋ-ସ୍କ୍ରୋଲ୍ |</string>
+    <string name="stop_auto_scroll">ଅଟୋ-ସ୍କ୍ରୋଲ୍ ବନ୍ଦ କରନ୍ତୁ |</string>
+    <string name="scroll_to_top">ଶୀର୍ଷକୁ ସ୍କ୍ରୋଲ୍ କରନ୍ତୁ |</string>
+    <string name="novel_plugins">ଉପନ୍ୟାସ ପ୍ଲଗଇନ୍ |</string>
+    <string name="novel_font_size">ଫଣ୍ଟ ଆକାର |</string>
+    <string name="novel_font_family">ଫଣ୍ଟ ପରିବାର |</string>
+    <string name="novel_line_height">ରେଖା ଉଚ୍ଚତା |</string>
+    <string name="novel_text_align">ପାଠ୍ୟ ଶ୍ରେଣୀବଦ୍ଧତା |</string>
+    <string name="novel_padding">ପ୍ୟାଡିଂ |</string>
+    <string name="novel_reader_theme">ପାଠକ ଥିମ୍ |</string>
+    <string name="novel_theme_dark">ଅନ୍ଧାର</string>
+    <string name="novel_theme_light">ଆଲୋକ</string>
+    <string name="novel_theme_sepia">ସେପିଆ |</string>
+    <string name="novel_theme_amoled">AMOLED</string>
+    <string name="novel_theme_cool">ଥଣ୍ଡା</string>
+    <string name="novel_theme_app">ଆପ୍ ଥିମ୍ |</string>
+    <string name="novel_theme_black">କଳା</string>
+    <string name="font_serif">ସେରିଫ୍ |</string>
+    <string name="font_sans_serif">ସାନ୍ସ ସେରିଫ୍ |</string>
+    <string name="font_monospace">ମୋନୋସ୍ପେସ୍ |</string>
+    <string name="font_system_default">ସିଷ୍ଟମ୍ ଡିଫଲ୍ଟ |</string>
+    <string name="align_start">ଆରମ୍ଭ କରନ୍ତୁ |</string>
+    <string name="align_center">କେନ୍ଦ୍ର</string>
+    <string name="align_justify">ଯଥାର୍ଥତା |</string>
+    <string name="manga_reader">ମଙ୍ଗଳା ପାଠକ |</string>
+    <string name="manga_reader_settings_summary">ପୃଷ୍ଠା ଦର୍ଶକ, ଡବଲ୍ ଟ୍ୟାପ୍, ଫୁଲ୍ ସ୍କ୍ରିନ୍, ରଙ୍ଗ ଫିଲ୍ଟର୍ |</string>
+    <string name="novel_reader_settings_summary">ପାଠ୍ୟ ରେଣ୍ଡରିଂ, ଥିମ୍, TTS, କଷ୍ଟମ୍ CSS / JS |</string>
+    <string name="novel_use_original_fonts">ମୂଳ ଫଣ୍ଟ ବ୍ୟବହାର କରନ୍ତୁ |</string>
+    <string name="novel_use_original_fonts_summary">ଉତ୍ସ ୱେବସାଇଟରୁ ଫଣ୍ଟ ସଂରକ୍ଷଣ କରନ୍ତୁ |</string>
+    <string name="novel_text_align_left">ବାମ</string>
+    <string name="novel_text_align_center">କେନ୍ଦ୍ର</string>
+    <string name="novel_text_align_justify">ଯଥାର୍ଥତା |</string>
+    <string name="novel_formatting">ଫର୍ମାଟିଂ</string>
+    <string name="novel_hide_chapter_title">ଅଧ୍ୟାୟ ଆଖ୍ୟା ଲୁଚାନ୍ତୁ |</string>
+    <string name="novel_force_lowercase">ଫୋର୍ସ ଲୋୟର କେସ୍ |</string>
+    <string name="novel_auto_split_text">ଅଟୋ-ବିଭାଜନ ପାରାଗ୍ରାଫ୍ |</string>
+    <string name="novel_auto_split_text_summary">ବାକ୍ୟ ସୀମାରେ ଲମ୍ବା ପାରାଗ୍ରାଫ୍ ଭାଙ୍ଗନ୍ତୁ |</string>
+    <string name="novel_volume_keys_scroll">ଭଲ୍ୟୁମ୍ କି ସ୍କ୍ରୋଲ୍ କରନ୍ତୁ |</string>
+    <string name="novel_tap_to_scroll">ସ୍କ୍ରୋଲ୍ କରିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ |</string>
+    <string name="novel_swipe_navigation">ଅଧ୍ୟାୟ ପରିବର୍ତ୍ତନ କରିବାକୁ ସ୍ୱାଇପ୍ କରନ୍ତୁ |</string>
+    <string name="novel_text_selectable">ଚୟନ ଯୋଗ୍ୟ ପାଠ</string>
+    <string name="novel_show_progress_slider">ପ୍ରଗତି ସ୍ଲାଇଡର୍ ଦେଖାନ୍ତୁ |</string>
+    <string name="novel_progress_slider_position">ଅଗ୍ରଗତି ସ୍ଲାଇଡର୍ ସ୍ଥିତି |</string>
+    <string name="novel_progress_slider_position_top_left">ଉପର-ବାମ</string>
+    <string name="novel_progress_slider_position_top_center">ଶୀର୍ଷ-କେନ୍ଦ୍ର |</string>
+    <string name="novel_progress_slider_position_top_right">ଶୀର୍ଷ-ଡାହାଣ</string>
+    <string name="novel_progress_slider_position_center_left">କେନ୍ଦ୍ର-ବାମ</string>
+    <string name="novel_progress_slider_position_center_center">କେନ୍ଦ୍ର</string>
+    <string name="novel_progress_slider_position_center_right">କେନ୍ଦ୍ର-ଡାହାଣ |</string>
+    <string name="novel_progress_slider_position_bottom_left">ତଳ-ବାମ</string>
+    <string name="novel_progress_slider_position_bottom_center">ତଳ-କେନ୍ଦ୍ର |</string>
+    <string name="novel_progress_slider_position_bottom_right">ତଳ-ଡାହାଣ |</string>
+    <string name="novel_auto_scroll_speed">ଅଟୋ-ସ୍କ୍ରୋଲ୍ ଗତି |</string>
+    <string name="novel_double_tap_action">ଦୁଇଥର ଟ୍ୟାପ୍ କ୍ରିୟା |</string>
+    <string name="novel_long_tap_action">ଲଙ୍ଗ୍ ପ୍ରେସ୍ କ୍ରିୟା |</string>
+    <string name="novel_tap_actions_help">ଟ୍ୟାପ୍-ଟୁ-ସ୍କ୍ରୋଲ୍ ନାଭିଗେଟର୍ ଜୋନ୍ ବ୍ୟବହାର କରେ (ସ୍କ୍ରିନ୍ ର ଉପର / ତଳ); ଯେକ anywhere ଣସି ସ୍ଥାନରେ ଡବଲ୍ ଟ୍ୟାପ୍ ଏବଂ ଲଙ୍ଗ-ପ୍ରେସ୍ ଅଗ୍ନି ଏବଂ ଆପଣ ଉପରୋକ୍ତ କାର୍ଯ୍ୟକୁ ମାର୍ଗ ଦେଖାନ୍ତୁ |</string>
+    <string name="novel_tap_action_none">କିଛି ନୁହେଁ |</string>
+    <string name="novel_tap_action_toggle_menu">ମେନୁ ଟୋଗଲ୍ କରନ୍ତୁ |</string>
+    <string name="novel_tap_action_next_chapter">ପରବର୍ତ୍ତୀ ଅଧ୍ୟାୟ |</string>
+    <string name="novel_tap_action_previous_chapter">ପୂର୍ବ ଅଧ୍ୟାୟ</string>
+    <string name="novel_tap_action_scroll_down">ତଳକୁ ସ୍କ୍ରୋଲ୍ କରନ୍ତୁ |</string>
+    <string name="novel_tap_action_scroll_up">ସ୍କ୍ରୋଲ୍ ଅପ୍ କରନ୍ତୁ |</string>
+    <string name="novel_tap_action_toggle_auto_scroll">ଅଟୋ-ସ୍କ୍ରୋଲ୍ ଟୋଗଲ୍ କରନ୍ତୁ |</string>
+    <string name="novel_tap_action_start_tts">TTS ଆରମ୍ଭ କରନ୍ତୁ |</string>
+    <string name="novel_tap_action_stop_tts">TTS ବନ୍ଦ କରନ୍ତୁ |</string>
+    <string name="novel_tap_action_define_selected">ମନୋନୀତ ଶବ୍ଦକୁ ବ୍ୟାଖ୍ୟା କରନ୍ତୁ |</string>
+    <string name="novel_define">ବ୍ୟାଖ୍ୟା କରନ୍ତୁ |</string>
+    <string name="novel_define_no_handler">ପରିଭାଷା ପରିଚାଳନା କରିବାକୁ କ app ଣସି ଆପ୍ ସଂସ୍ଥାପିତ ହୋଇନାହିଁ |</string>
+    <string name="novel_translate">ଅନୁବାଦ କର |</string>
+    <string name="novel_translate_no_handler">ଅନୁବାଦ ପରିଚାଳନା କରିବାକୁ କ No ଣସି ଆପ୍ ସଂସ୍ଥାପିତ ହୋଇନାହିଁ |</string>
+    <string name="pref_category_translation">ଅନୁବାଦ</string>
+    <string name="novel_translation_tab">ଅନୁବାଦ</string>
+    <string name="pref_translation_enabled">ଅନୁବାଦ ସକ୍ଷମ କରନ୍ତୁ |</string>
+    <string name="pref_translation_enabled_summary">ଉପନ୍ୟାସ ଅଧ୍ୟାୟଗୁଡ଼ିକୁ ଅନୁବାଦ କରିବାକୁ ଅନୁମତି ଦିଅନ୍ତୁ |</string>
+    <string name="pref_translation_settings_summary">ଇଞ୍ଜିନ୍, ଭାଷା, କ୍ୟାଚ୍, ଏବଂ ପ୍ରଦାନକାରୀ ସେଟଅପ୍ ପରିଚାଳନା କରନ୍ତୁ |</string>
+    <string name="pref_translation_realtime">ପ reading ିବା ସମୟରେ ଅନୁବାଦ କର |</string>
+    <string name="pref_translation_realtime_summary">ଉପନ୍ୟାସ ପାଠକରେ ଅନୁବାଦିତ ଅଧ୍ୟାୟ ପାଠ୍ୟକୁ ଉପସ୍ଥାପନ କର |</string>
+    <string name="pref_translation_cache">କ୍ୟାଚ୍ ଅନୁବାଦଗୁଡିକ |</string>
+    <string name="pref_translation_cache_summary">ପୁନର୍ବାର API କୁ ଡାକିବା ପରିବର୍ତ୍ତେ ସ୍ଥାନୀୟ କ୍ୟାଶରୁ ଅନୁବାଦିତ ଅଧ୍ୟାୟଗୁଡିକ ସେବା କରନ୍ତୁ |</string>
+    <string name="pref_translation_smart_auto">ସ୍ମାର୍ଟ ଅଟୋ-ଅନୁବାଦ |</string>
+    <string name="pref_translation_smart_auto_summary">ଯେତେବେଳେ ଚିହ୍ନଟ ହୋଇଥିବା ଭାଷା ଲକ୍ଷ୍ୟ ସହିତ ମେଳ ହୁଏ ସେତେବେଳେ ଅନୁବାଦକୁ ଏଡ଼ାଇଦିଅ |</string>
+    <string name="pref_translation_mode">ଅନୁବାଦ ମୋଡ୍</string>
+    <string name="pref_translation_mode_summary">ସରଳ ହେଉଛି ଦ୍ରୁତ ପ୍ରଦାନକାରୀ ଅନୁବାଦ; ପ୍ରତି ସିରିଜ୍ କାନନ୍ ଏବଂ ଶବ୍ଦକୋଷ ସ୍ମୃତିର ଉନ୍ନତ ବ୍ୟବହାର |</string>
+    <string name="pref_translation_mode_simple">ସରଳ / ଦ୍ରୁତ</string>
+    <string name="pref_translation_mode_advanced">ଉନ୍ନତ ସ୍ମୃତି</string>
+    <string name="pref_translation_engine">ଅନୁବାଦ ଇଞ୍ଜିନ୍ |</string>
+    <string name="pref_translation_engine_offline_format">&lt;x id = "0" /&gt; (ଅଫଲାଇନ୍)</string>
+    <string name="pref_translation_source_language">ଉତ୍ସ ଭାଷା |</string>
+    <string name="pref_translation_target_language">ଲକ୍ଷ୍ୟ ଭାଷା |</string>
+    <string name="pref_translation_language_filter">ଉତ୍ସ ଭାଷା ଅନୁବାଦ କରନ୍ତୁ |</string>
+    <string name="pref_translation_language_filter_summary_all">ସମସ୍ତ ଉତ୍ସ ଭାଷା |</string>
+    <string name="pref_translation_all_source_languages">ସମସ୍ତ ଉତ୍ସ ଭାଷା |</string>
+    <string name="pref_translation_chunk_size">ଅନୁରୋଧ ଅନୁଯାୟୀ ପାରାଗ୍ରାଫ୍ |</string>
+    <string name="pref_translation_contextual_anchoring">ବିଷୟବସ୍ତୁ ଆଙ୍କରିଙ୍ଗ୍ |</string>
+    <string name="pref_translation_contextual_anchoring_summary">ପୂର୍ବ ଅନୁବାଦିତ ଅନୁଚ୍ଛେଦଗୁଡ଼ିକୁ LLM ଇଞ୍ଜିନକୁ ପ୍ରସଙ୍ଗ ଭାବରେ ପଠାନ୍ତୁ |</string>
+    <string name="pref_translation_contextual_paragraphs">ପ୍ରସଙ୍ଗ ପାରାଗ୍ରାଫ୍ |</string>
+    <string name="pref_translation_request_timeout">ସମୟ ସମାପ୍ତ କରିବାକୁ ଅନୁରୋଧ |</string>
+    <string name="pref_translation_openai_api_key">OpenAI API କି |</string>
+    <string name="pref_translation_openai_summary">OpenAI ଦ୍ୱାରା ବ୍ୟବହୃତ |</string>
+    <string name="pref_translation_openai_base_url">OpenAI- ସୁସଙ୍ଗତ URL |</string>
+    <string name="pref_translation_openai_model">OpenAI ମଡେଲ୍ |</string>
+    <string name="pref_translation_deepseek_api_key">DeepSeek API କି |</string>
+    <string name="pref_translation_gemini_api_key">ମିଥୁନ API କି</string>
+    <string name="pref_translation_gemini_model">ମିଥୁନ ମଡେଲ |</string>
+    <string name="pref_translation_nvidia_base_url">NVIDIA NIM ଆଧାର URL |</string>
+    <string name="pref_translation_nvidia_api_key">NVIDIA NIM API କି |</string>
+    <string name="pref_translation_nvidia_model">NVIDIA NIM ମଡେଲ୍ |</string>
+    <string name="pref_translation_ollama_url">ଓଲାମା ସର୍ଭର URL |</string>
+    <string name="pref_translation_ollama_model">ଓଲାମା ମଡେଲ୍ |</string>
+    <string name="pref_translation_libretranslate_url">LibreTranslate URL |</string>
+    <string name="pref_translation_libretranslate_api_key">LibreTranslate API କି |</string>
+    <string name="pref_translation_deepl_api_key">DeepL API କି |</string>
+    <string name="pref_translation_google_cloud_api_key">ଗୁଗୁଲ୍ କ୍ଲାଉଡ୍ API ଚାବି |</string>
+    <string name="pref_translation_systran_api_key">SYSTRAN API କି</string>
+    <string name="pref_translation_huggingface_api_key">ଆଲିଙ୍ଗନ ଚେହେରା API ଚାବି |</string>
+    <string name="pref_translation_custom_http_url">କଷ୍ଟମ୍ HTTP URL |</string>
+    <string name="pref_translation_custom_http_method">କଷ୍ଟମ୍ HTTP ପଦ୍ଧତି |</string>
+    <string name="pref_translation_http_method_post">ପୋଷ୍ଟ</string>
+    <string name="pref_translation_http_method_get">ପ୍ରାପ୍ତ କରନ୍ତୁ |</string>
+    <string name="pref_translation_custom_http_api_key">କଷ୍ଟମ୍ HTTP API କି |</string>
+    <string name="pref_translation_custom_http_headers">କଷ୍ଟମ୍ HTTP ହେଡର୍ |</string>
+    <string name="pref_translation_custom_http_headers_summary">ନାମ: ସେମିକଲନ୍ କିମ୍ବା ରେଖା ବ୍ରେକ୍ ଦ୍ୱାରା ପୃଥକ ମୂଲ୍ୟ ଯୁଗଳ |</string>
+    <string name="pref_translation_custom_http_request_template">କଷ୍ଟମ୍ HTTP ଅନୁରୋଧ ଟେମ୍ପଲେଟ୍ |</string>
+    <string name="pref_translation_custom_http_response_path">କଷ୍ଟମ୍ HTTP ପ୍ରତିକ୍ରିୟା ପଥ |</string>
+    <string name="translation_provider_setup">ପ୍ରଦାନକାରୀ ସେଟଅପ୍ |</string>
+    <string name="pref_translation_provider_configured">&lt;x id = "0" /&gt; ବିନ୍ୟାସିତ ହୋଇଛି |</string>
+    <string name="pref_translation_provider_not_configured">&lt;x id = "0" /&gt; ସେଟଅପ୍ ଆବଶ୍ୟକ କରେ |</string>
+    <string name="pref_translation_configure_provider">ପ୍ରଦାନକାରୀକୁ ବିନ୍ୟାସ କରନ୍ତୁ |</string>
+    <string name="pref_translation_configure_provider_title">&lt;X id = "0" /&gt; କୁ ବିନ୍ୟାସ କରନ୍ତୁ |</string>
+    <string name="pref_translation_provider_no_setup">&lt;x id = "0" /&gt; ହାୟାଇରେ ଏକ ଚାବି ବିନା ଚାଲିପାରିବ | ଯଦି ଏହା କାମ ବନ୍ଦ କରେ, ଏକ API ସମର୍ଥିତ କିମ୍ବା ସ୍ଥାନୀୟ ଇଞ୍ଜିନ୍ ବାଛନ୍ତୁ |</string>
+    <string name="pref_translation_provider_setup_saved">&lt;x id = "0" /&gt; ସେଟଅପ୍ ସଞ୍ଚୟ ହୋଇଛି |</string>
+    <string name="pref_translation_subscription_note">ChatGPT Plus / Pro ଏବଂ Google AI ସଦସ୍ୟତା ହାୟାଇକୁ API ପ୍ରବେଶ ପ୍ରଦାନ କରେ ନାହିଁ | ଏକ API କି, ଏକ OpenAI- ସୁସଙ୍ଗତ ଶେଷ ପଏଣ୍ଟ, କିମ୍ବା ଓଲାମା ପରି ଏକ ସ୍ଥାନୀୟ ଇଞ୍ଜିନ୍ ବ୍ୟବହାର କରନ୍ତୁ |</string>
+    <string name="pref_translation_apply_now">ସାମ୍ପ୍ରତିକ ଅଧ୍ୟାୟରେ ପ୍ରୟୋଗ କରନ୍ତୁ |</string>
+    <string name="chapter_translation_translate">ଅଧ୍ୟାୟ ଅନୁବାଦ କରନ୍ତୁ |</string>
+    <string name="chapter_translation_translating">ଅନୁବାଦ ଅଧ୍ୟାୟ</string>
+    <string name="chapter_translation_clear">ଅଧ୍ୟାୟ ଅନୁବାଦ ସଫା କରନ୍ତୁ |</string>
+    <string name="chapter_translation_saved">ଅଧ୍ୟାୟ ଅନୁବାଦ ହୋଇଛି |</string>
+    <string name="chapter_translation_cleared">ଅଧ୍ୟାୟ ଅନୁବାଦ ସଫା ହେଲା |</string>
+    <string name="chapter_translation_failed">ଅଧ୍ୟାୟ ଅନୁବାଦ କରିପାରିଲା ନାହିଁ |</string>
+    <string name="chapter_translation_unavailable">ଅଧ୍ୟାୟ ଅନୁବାଦ ଉପଲବ୍ଧ ନାହିଁ |</string>
+    <string name="advanced_translation_memory">ଅନୁବାଦ ସ୍ମୃତି</string>
+    <string name="advanced_translation_canon">ସିରିଜ୍ କାନନ୍ |</string>
+    <string name="advanced_translation_summary">ସାରାଂଶ</string>
+    <string name="advanced_translation_style_guide">ଷ୍ଟାଇଲ୍ ଗାଇଡ୍ |</string>
+    <string name="advanced_translation_glossary">ଶବ୍ଦକୋଷ</string>
+    <string name="advanced_translation_add_entity">ସଂସ୍ଥା ଯୋଡନ୍ତୁ |</string>
+    <string name="advanced_translation_no_entities">ଏପର୍ଯ୍ୟନ୍ତ କ gl ଣସି ଶବ୍ଦକୋଷ ପ୍ରବିଷ୍ଟ ନାହିଁ |</string>
+    <string name="advanced_translation_entity">ଶବ୍ଦକୋଷ ପ୍ରବେଶ</string>
+    <string name="advanced_translation_entity_name">ନାମ</string>
+    <string name="advanced_translation_original_name">ମୂଳ</string>
+    <string name="advanced_translation_translated_name">ଅନୁବାଦ</string>
+    <string name="advanced_translation_entity_type">ଟାଇପ୍ କରନ୍ତୁ |</string>
+    <string name="advanced_translation_gender">ଲିଙ୍ଗ</string>
+    <string name="advanced_translation_aliases">ଛଦ୍ମନାମ</string>
+    <string name="advanced_translation_description">ବର୍ଣ୍ଣନା</string>
+    <string name="advanced_translation_user_locked">ମୋର ସଂସ୍କରଣ ରଖ |</string>
+    <string name="advanced_translation_relationships">ସମ୍ପର୍କ</string>
+    <string name="advanced_translation_add_relationship">ସମ୍ପର୍କ ଯୋଡନ୍ତୁ |</string>
+    <string name="advanced_translation_no_relationships">ଏପର୍ଯ୍ୟନ୍ତ କ relationships ଣସି ସମ୍ପର୍କ ନାହିଁ |</string>
+    <string name="advanced_translation_relationship">ସମ୍ପର୍କ</string>
+    <string name="advanced_translation_relationship_from">ଠାରୁ</string>
+    <string name="advanced_translation_relationship_to">କୁ</string>
+    <string name="advanced_translation_relationship_type">ସମ୍ପର୍କ ପ୍ରକାର |</string>
+    <string name="advanced_translation_relationship_description">ସମ୍ପର୍କ ଟିପ୍ପଣୀ |</string>
+    <string name="advanced_translation_relationship_pair_format">&lt;x id = "0" /&gt; - &lt;x id = "1" /&gt; |</string>
+    <string name="advanced_translation_nudges">ନାଗସ୍ |</string>
+    <string name="advanced_translation_add_nudge">ନାଗ ଯୋଡନ୍ତୁ |</string>
+    <string name="advanced_translation_no_nudges">ଏପର୍ଯ୍ୟନ୍ତ କ active ଣସି ସକ୍ରିୟ ଅନୁବାଦ ନାଗ ନାହିଁ |</string>
+    <string name="advanced_translation_nudge">ନାଗ</string>
+    <string name="advanced_translation_nudge_scope">ପରିସର</string>
+    <string name="advanced_translation_nudge_instruction">ନିର୍ଦ୍ଦେଶ</string>
+    <string name="advanced_translation_nudge_active">ସକ୍ରିୟ |</string>
+    <string name="advanced_translation_events">ଘଟଣା</string>
+    <string name="advanced_translation_add_event">ଇଭେଣ୍ଟ ଯୋଡନ୍ତୁ |</string>
+    <string name="advanced_translation_no_events">ଏପର୍ଯ୍ୟନ୍ତ କ events ଣସି ଘଟଣା ନାହିଁ |</string>
+    <string name="advanced_translation_event">ଘଟଣା</string>
+    <string name="advanced_translation_event_title">ଆଖ୍ୟା</string>
+    <string name="advanced_translation_event_description">ବର୍ଣ୍ଣନା</string>
+    <string name="advanced_translation_event_sequence">କ୍ରମ |</string>
+    <string name="advanced_translation_relationship_count_format">&lt;x id = "0" /&gt; ସମ୍ପର୍କଗୁଡିକ |</string>
+    <string name="advanced_translation_event_count_format">&lt;x id = "0" /&gt; ଘଟଣା |</string>
+    <string name="pref_series_display_defaults">ସିରିଜ୍ ପ୍ରଦର୍ଶନ ଡିଫଲ୍ଟ |</string>
+    <string name="series_display_title">ଆଖ୍ୟା</string>
+    <string name="series_display_cover_banner">ଆଚ୍ଛାଦନ ଏବଂ ବ୍ୟାନର |</string>
+    <string name="series_display_authors">ଲେଖକମାନେ</string>
+    <string name="series_display_description">ବର୍ଣ୍ଣନା</string>
+    <string name="series_display_genres">ଧାରା</string>
+    <string name="series_display_aliases">ଛଦ୍ମନାମ</string>
+    <string name="series_display_characters">ଅକ୍ଷରଗୁଡ଼ିକ</string>
+    <string name="series_display_trackers">ଟ୍ରାକର୍ ମେଟାଡାଟା |</string>
+    <string name="series_display_quotes_translation">ଉଦ୍ଧୃତି ଏବଂ ଅନୁବାଦ</string>
+    <string name="series_display_extra_images">ଅତିରିକ୍ତ ପ୍ରତିଛବି |</string>
+    <string name="series_enrichment_more_count_format">&lt;x id = "0" /&gt; ଅଧିକ |</string>
+    <string name="series_details_show_more">ଅଧିକ ଦେଖାନ୍ତୁ |</string>
+    <string name="series_details_show_less">କମ୍ ଦେଖାନ୍ତୁ |</string>
+    <string name="series_details_show_more_content_description">ଅଧିକ ସିରିଜ୍ ସୂଚନା ଦେଖାନ୍ତୁ |</string>
+    <string name="series_details_show_less_content_description">କମ୍ ସିରିଜ୍ ସୂଚନା ଦେଖାନ୍ତୁ |</string>
+    <string name="series_details_hidden_sections_count_format">&lt;x id = "0" /&gt; ଲୁକ୍କାୟିତ ବିଭାଗଗୁଡିକ |</string>
+    <string name="series_metadata_summary_chip_format">&lt;x id = "0" /&gt;: &lt;x id = "1" /&gt; |</string>
+    <string name="series_metadata_character_count_format">&lt;x id = "0" /&gt; ବର୍ଣ୍ଣଗୁଡିକ |</string>
+    <string name="series_metadata_alias_count_format">&lt;x id = "0" /&gt; ଛଦ୍ମନାମ |</string>
+    <string name="series_metadata_genre_count_format">&lt;x id = "0" /&gt; ଧାରା |</string>
+    <string name="series_metadata_image_count_format">&lt;x id = "0" /&gt; ପ୍ରତିଛବିଗୁଡିକ |</string>
+    <string name="series_metadata_tracker_summary_count_format">&lt;x id = "0" /&gt; ଟ୍ରାକର୍ ସାରାଂଶଗୁଡିକ |</string>
+    <string name="series_metadata_extra_image_description_format">ଅତିରିକ୍ତ ପ୍ରତିଛବି &lt;x id = "0" /&gt; |</string>
+    <string name="series_translation_quote_count_format">&lt;x id = "0" /&gt; ଉଦ୍ଧୃତିଗୁଡିକ |</string>
+    <string name="series_translation_mode_status_format">ଧାରା: &lt;x id = "0" /&gt; |</string>
+    <string name="series_translation_entities_count_format">&lt;x id = "0" /&gt; ଶବ୍ଦକୋଷ ପ୍ରବିଷ୍ଟଗୁଡିକ |</string>
+    <string name="series_translation_nudges_count_format">&lt;x id = "0" /&gt; ନାଗସ୍ |</string>
+    <string name="series_metadata_sources">ମେଟାଡାଟା ଉତ୍ସ |</string>
+    <string name="series_metadata_sources_summary">କେଉଁ ଉତ୍ସ ପ୍ରତ୍ୟେକ ମାଙ୍ଗା ସୂଚନା କ୍ଷେତ୍ର ପ୍ରଦାନ କରେ ତାହା ବାଛନ୍ତୁ |</string>
+    <string name="series_metadata_visual_sources">ଭିଜୁଆଲ୍ ଉତ୍ସଗୁଡିକ |</string>
+    <string name="series_metadata_identity_sources">ପରିଚୟ ଉତ୍ସ |</string>
+    <string name="series_manual_info">ମାନୁଆଲ୍ ସୂଚନା</string>
+    <string name="series_metadata_cover">ଆଚ୍ଛାଦନ କରନ୍ତୁ |</string>
+    <string name="series_metadata_banner">ବ୍ୟାନର |</string>
+    <string name="series_metadata_source_source">ଉତ୍ସ</string>
+    <string name="series_metadata_source_user">ଉପଯୋଗକର୍ତ୍ତା |</string>
+    <string name="series_metadata_source_tracker">ଟ୍ରାକର୍</string>
+    <string name="series_metadata_source_provider_format">&lt;x id = "0" /&gt;: &lt;x id = "1" /&gt; |</string>
+    <string name="series_metadata_preview_format">&lt;x id = "0" /&gt; |
+&lt;x id = "1" /&gt; |
+&lt;x id = "2" /&gt; |</string>
+    <string name="series_metadata_updated_format">&lt;X id = "0" /&gt; ଅଦ୍ୟତନ କରାଯାଇଛି |</string>
+    <string name="series_metadata_no_preview">କ value ଣସି ମୂଲ୍ୟ ଉପଲବ୍ଧ ନାହିଁ |</string>
+    <string name="tracker_metadata_type_format">ପ୍ରକାର: &lt;x id = "0" /&gt; |</string>
+    <string name="tracker_metadata_start_date_format">ଆରମ୍ଭ: &lt;x id = "0" /&gt; |</string>
+    <string name="tracker_metadata_total_chapters_format">ଅଧ୍ୟାୟ: &lt;x id = "0" /&gt; |</string>
+    <string name="series_display_options">ବିକଳ୍ପଗୁଡିକ ପ୍ରଦର୍ଶନ କରନ୍ତୁ |</string>
+    <string name="series_display_options_summary">ଏହି କ୍ରମ ପାଇଁ କେଉଁ ସମୃଦ୍ଧ ବିଭାଗଗୁଡିକ ଦୃଶ୍ୟମାନ ହେଉଛି ବାଛନ୍ତୁ |</string>
+    <string name="series_display_reset_global">ଗ୍ଲୋବାଲ୍ ଡିଫଲ୍ଟରେ ପ୍ରଦର୍ଶନ ବିକଳ୍ପଗୁଡ଼ିକୁ ପୁନ Res ସେଟ୍ କରନ୍ତୁ |</string>
+    <string name="novel_web_search">ୱେବ୍ ସନ୍ଧାନ କରନ୍ତୁ |</string>
+    <string name="novel_web_search_no_handler">ୱେବ୍ ସନ୍ଧାନ ପରିଚାଳନା କରିବାକୁ କ app ଣସି ଆପ୍ ସଂସ୍ଥାପିତ ହୋଇନାହିଁ |</string>
+    <string name="novel_content">ବିଷୟବସ୍ତୁ</string>
+    <string name="novel_enable_epub_styles">EPUB ଶ yles ଳୀ ପ୍ରୟୋଗ କରନ୍ତୁ |</string>
+    <string name="novel_enable_epub_js">EPUB ଜାଭାସ୍କ୍ରିପ୍ଟ ଚଲାନ୍ତୁ |</string>
+    <string name="novel_enable_epub_js_summary">EPUB ଅଧ୍ୟାୟରେ ସନ୍ନିବେଶିତ ସ୍କ୍ରିପ୍ଟଗୁଡିକ ଚଲାନ୍ତୁ (ସୁରକ୍ଷା ପାଇଁ ବନ୍ଦ)</string>
+    <string name="novel_block_media">ମିଡିଆକୁ ଅବରୋଧ କରନ୍ତୁ |</string>
+    <string name="novel_block_media_summary">ଉଭୟ ପାଠକରେ ପ୍ରତିଛବି ଏବଂ ଏମ୍ବେଡ୍ ମିଡିଆକୁ ଅବରୋଧ କରନ୍ତୁ |</string>
+    <string name="novel_tts_speed">ବାଣୀ ହାର</string>
+    <string name="novel_tts_pitch">ବକ୍ତବ୍ୟ ପିଚ୍ |</string>
+    <string name="novel_tts_auto_next_chapter">ପରବର୍ତ୍ତୀ ଅଧ୍ୟାୟକୁ ଅଟୋ-ଜାରି ରଖନ୍ତୁ |</string>
+    <string name="novel_tts_tap_to_start">ସେଠାରେ TTS ଆରମ୍ଭ କରିବା ପାଇଁ ଏକ ଅନୁଚ୍ଛେଦ ଟ୍ୟାପ୍ କରନ୍ତୁ |</string>
+    <string name="novel_tts_enable_highlight">ସାମ୍ପ୍ରତିକ ଅନୁଚ୍ଛେଦକୁ ହାଇଲାଇଟ୍ କରନ୍ତୁ |</string>
+    <string name="novel_tts_keep_highlight_in_view">ଦୃଶ୍ୟରେ ହାଇଲାଇଟ୍ ରଖନ୍ତୁ |</string>
+    <string name="novel_tts_background_playback">ପୃଷ୍ଠଭୂମି ଖେଳିବା |</string>
+    <string name="novel_tts_background_playback_summary">ପାଠକ ବନ୍ଦ ଥିବାବେଳେ TTS ଜାରି ରଖନ୍ତୁ; ଏକ ସ୍ଥାୟୀ ବିଜ୍ଞପ୍ତି ଦେଖାଏ |</string>
+    <string name="novel_tts_more_in_reader">ପାଠକ ଭିତରେ ଅଧିକ TTS ବିକଳ୍ପଗୁଡ଼ିକ ଉପଲବ୍ଧ (ଲମ୍ୱା TTS ବଟନ୍) |</string>
+    <string name="controls">ନିୟନ୍ତ୍ରଣଗୁଡ଼ିକ |</string>
+    <string name="novel_text">ପାଠ</string>
+    <string name="novel_text_align_right">ଠିକ୍ |</string>
+    <string name="novel_paragraph_indent">ପାରାଗ୍ରାଫ୍ ଇଣ୍ଡେଣ୍ଟ୍ |</string>
+    <string name="novel_paragraph_spacing">ପାରାଗ୍ରାଫ୍ ବ୍ୟବଧାନ |</string>
+    <string name="novel_margin_left">ମାର୍ଜିନ୍ ବାମ (dp)</string>
+    <string name="novel_margin_right">ମାର୍ଜିନ୍ ଡାହାଣ (dp)</string>
+    <string name="novel_margin_top">ମାର୍ଜିନ୍ ଟପ୍ (dp)</string>
+    <string name="novel_margin_bottom">ମାର୍ଜିନ୍ ତଳ (dp)</string>
+    <string name="novel_auto_split_word_count">ଶବ୍ଦ ଗଣନା ପରେ ବିଭାଜନ କର |</string>
+    <string name="novel_font_default">ଡିଫଲ୍ଟ |</string>
+    <string name="novel_font_sans_serif">ସାନ୍ସ ସେରିଫ୍ |</string>
+    <string name="novel_font_serif">ସେରିଫ୍ |</string>
+    <string name="novel_font_monospace">ମୋନୋସ୍ପେସ୍ |</string>
+    <string name="novel_font_georgia">ଜର୍ଜିଆ</string>
+    <string name="novel_font_times">ଟାଇମ୍ସ |</string>
+    <string name="novel_font_arial">ଆରିଏଲ୍ |</string>
+    <string name="novel_theme_grey">ଧୂସର</string>
+    <string name="novel_theme_custom">କଷ୍ଟମ୍</string>
+    <string name="novel_chapter_title_display">ଅଧ୍ୟାୟ ଟାଇଟଲ୍ ପ୍ରଦର୍ଶନ |</string>
+    <string name="novel_chapter_title_name">ନାମ</string>
+    <string name="novel_chapter_title_number">ସଂଖ୍ୟା</string>
+    <string name="novel_chapter_title_both">ଉଭୟ</string>
+    <string name="novel_show_raw_html">କଞ୍ଚା HTML ଦେଖାନ୍ତୁ (ଡିବଗ୍)</string>
+    <string name="novel_font_color">ଫଣ୍ଟ ରଙ୍ଗ |</string>
+    <string name="novel_background_color">ପୃଷ୍ଠଭୂମି ରଙ୍ଗ |</string>
+    <string name="novel_custom_theme_colors">କଷ୍ଟମ୍ ଥିମ୍ ରଙ୍ଗ |</string>
+    <string name="novel_pick_color">ରଙ୍ଗ ବାଛନ୍ତୁ |</string>
+    <string name="novel_color_red">ଲାଲ୍ |</string>
+    <string name="novel_color_green">ସବୁଜ</string>
+    <string name="novel_color_blue">ନୀଳ</string>
+    <string name="novel_color_alpha">ଆଲଫା</string>
+    <string name="novel_scrollbar_section">ସ୍କ୍ରୋଲ୍ ବାର୍ |</string>
+    <string name="novel_vertical_scrollbar">ଭୂଲମ୍ବ ସ୍କ୍ରୋଲ୍ ବାର୍ |</string>
+    <string name="novel_scrollbar_position">ସ୍କ୍ରୋଲ୍ ବାର୍ ଅବସ୍ଥାନ |</string>
+    <string name="novel_scrollbar_position_right">ଠିକ୍ |</string>
+    <string name="novel_scrollbar_position_left">ବାମ</string>
+    <string name="novel_vertical_slider_size">ଭୂଲମ୍ବ ସ୍ଲାଇଡର୍ ଆକାର |</string>
+    <string name="novel_vertical_slider_half">ଅଧା</string>
+    <string name="novel_vertical_slider_full">ପୂର୍ଣ୍ଣ</string>
+    <string name="novel_tts_engine">TTS ଇଞ୍ଜିନ୍ |</string>
+    <string name="novel_tts_engine_default">ସିଷ୍ଟମ୍ ଡିଫଲ୍ଟ |</string>
+    <string name="novel_tts_open_settings">ଆଣ୍ଡ୍ରଏଡ୍ TTS ସେଟିଂସମୂହ ଖୋଲନ୍ତୁ |</string>
+    <string name="novel_tts_voice">TTS ସ୍ୱର |</string>
+    <string name="novel_tts_voice_default">ଡିଫଲ୍ଟ |</string>
+    <string name="novel_tts_highlight_style">ଶ style ଳୀକୁ ହାଇଲାଇଟ୍ କରନ୍ତୁ |</string>
+    <string name="novel_tts_highlight_background">ପୃଷ୍ଠଭୂମି</string>
+    <string name="novel_tts_highlight_underline">ଅଣ୍ଡରଲାଇନ୍ |</string>
+    <string name="novel_tts_highlight_outline">ବାହ୍ୟରେଖା</string>
+    <string name="novel_find_replace">ସନ୍ଧାନ ଏବଂ ବଦଳାନ୍ତୁ |</string>
+    <string name="novel_add_rule">ନିୟମ ଯୋଡନ୍ତୁ |</string>
+    <string name="novel_edit_rule">ନିୟମ ସଂପାଦନ କରନ୍ତୁ |</string>
+    <string name="novel_no_rules">କ rules ଣସି ନିୟମ ନାହିଁ | ଗୋଟିଏ ଯୋଡିବାକୁ + ଟ୍ୟାପ୍ କରନ୍ତୁ |</string>
+    <string name="novel_text_normalize_title">ୟୁନିକୋଡ୍ ସାଧାରଣକରଣ |</string>
+    <string name="novel_text_normalize_summary">ମାନଚିତ୍ରଗୁଡିକ ଷ୍ଟାଇଲାଇଜଡ୍ ଟେକ୍ସଟ୍ (𝒇𝓻𝓮𝓮 → ମାଗଣା, ｆｒｅｅ → ମାଗଣା) ଏବଂ ଅଦୃଶ୍ୟ ଯୋଗଦାନକାରୀମାନଙ୍କୁ ଷ୍ଟ୍ରିପ୍ କରେ ତେଣୁ ନିୟମଗୁଡ଼ିକ ଅବଫୁସ୍ ପ୍ରୋମୋ ସହିତ ମେଳ ହୁଏ |</string>
+    <string name="novel_text_aggressive_cleanup_title">ଆକ୍ରମଣାତ୍ମକ ପରିଷ୍କାରତା |</string>
+    <string name="novel_text_aggressive_cleanup_summary">ସମସ୍ତ ASCII ନଥିବା ବର୍ଣ୍ଣଗୁଡିକ ଅପସାରଣ କରେ | ଜାପାନିଜ / ଚାଇନିଜ୍ / କୋରିଆନ୍ ଉପନ୍ୟାସ ପାଇଁ OFF ଛାଡିଦିଅ |</string>
+    <string name="novel_rule_title">ଆଖ୍ୟା</string>
+    <string name="novel_rule_regex_pattern">ରେଜେକ୍ସ pattern ାଞ୍ଚା |</string>
+    <string name="novel_rule_find_text">ପାଠ ଖୋଜ |</string>
+    <string name="novel_rule_replace_with">ସହିତ ବଦଳାନ୍ତୁ |</string>
+    <string name="novel_rule_use_regex">ରେଜେକ୍ସ ବ୍ୟବହାର କରନ୍ତୁ |</string>
+    <string name="novel_rule_remove">(ଅପସାରଣ)</string>
+    <string name="novel_rule_kind_regex">regex</string>
+    <string name="novel_rule_kind_text">ପାଠ</string>
+    <string name="novel_rule_enabled">ସକ୍ଷମ</string>
+    <string name="novel_rule_disabled">ଅକ୍ଷମ</string>
+    <string name="novel_rule_test">ପରୀକ୍ଷା</string>
+    <string name="novel_rule_sample_input">ନମୁନା ଇନପୁଟ୍</string>
+    <string name="novel_rule_run_test">ପରୀକ୍ଷା ଚଲାନ୍ତୁ |</string>
+    <string name="novel_rule_pattern_empty">ନମୁନା ଖାଲି ଅଛି |</string>
+    <string name="novel_rule_invalid_regex">ଅବ val ଧ ରେଜେକ୍ସ |</string>
+    <string name="novel_rule_invalid_regex_format">ଅବ val ଧ ରେଜେକ୍ସ: &lt;x id = "0" /&gt; |</string>
+    <string name="novel_rule_output_format">ଆଉଟପୁଟ୍: &lt;x id = "0" /&gt; |</string>
+    <string name="novel_rule_error_format">ତ୍ରୁଟି: &lt;x id = "0" /&gt; |</string>
+    <string name="novel_quotes">ଉଦ୍ଧୃତି</string>
+    <string name="novel_quote_add">କୋଟ୍ ଯୋଡନ୍ତୁ |</string>
+    <string name="novel_quote_edit">କୋଟ୍ ସଂପାଦନ କରନ୍ତୁ |</string>
+    <string name="novel_quote_view">ଦର୍ଶନ କରନ୍ତୁ |</string>
+    <string name="novel_quote_delete_title">କୋଟ୍ ଡିଲିଟ୍ କରନ୍ତୁ |</string>
+    <string name="novel_quote_delete_confirm">ଆପଣ ନିଶ୍ଚିତ କି ଆପଣ ଏହି ଉଦ୍ଧୃତି ବିଲୋପ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
+    <string name="novel_quotes_empty">କ No ଣସି ଉଦ୍ଧୃତି ସଞ୍ଚୟ ହୋଇନାହିଁ | ଗୋଟିଏ ଯୋଡିବାକୁ ଏକ ଅଧ୍ୟାୟରେ ଲମ୍ବା ଦବାନ୍ତୁ |</string>
+    <string name="novel_quote_saved">ଉଦ୍ଧୃତ ସଞ୍ଚୟ ହୋଇଛି |</string>
+    <string name="novel_quote_no_selection">କ text ଣସି ପାଠ ଚୟନ ହୋଇନାହିଁ |</string>
+    <string name="novel_quote_displayed">ପ୍ରଦର୍ଶିତ |</string>
+    <string name="novel_quote_original">ମୂଳ</string>
+    <string name="novel_quote_original_saved">ମୂଳ ସଞ୍ଚୟ |</string>
+    <string name="novel_quote_original_format">ମୂଳ:
+"&lt;x id =" 0 "/&gt;"</string>
+    <string name="novel_quote_copy_format">"&lt;x id =" 0 "/&gt;" &lt;x id = "1" /&gt; |
+
+- &lt;x id = "2" /&gt;, &lt;x id = "3" /&gt; |</string>
+    <string name="action_copy">କପି କରନ୍ତୁ |</string>
+    <string name="action_close">ବନ୍ଦ</string>
+    <string name="novel_error_loading_chapter">ଅଧ୍ୟାୟ ଧାରଣ କରିବାରେ ତ୍ରୁଟି |</string>
+    <string name="novel_error_no_text">କ text ଣସି ପାଠ୍ୟ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ |</string>
+    <string name="novel_auto_scroll_start">ଅଟୋ-ସ୍କ୍ରୋଲ୍ ଆରମ୍ଭ କରନ୍ତୁ |</string>
+    <string name="novel_auto_scroll_stop">ଅଟୋ-ସ୍କ୍ରୋଲ୍ ବନ୍ଦ କରନ୍ତୁ |</string>
+    <string name="novel_brightness_value">ଉଜ୍ଜ୍ୱଳତା ମୂଲ୍ୟ</string>
+    <string name="novel_tts_tab">TTS</string>
+    <string name="novel_no_more_chapters">ଆଉ ଅଧ୍ୟାୟ ନାହିଁ |</string>
+    <string name="manga_next_update_">&lt;x id = "0" /&gt; |</string>
+    <string name="manga_interval_expected_update">ପ୍ରତ୍ୟେକ &lt;x id = "1" /&gt; ଯାଞ୍ଚ କରି ନୂତନ ଅଧ୍ୟାୟଗୁଡିକ &lt;x id = "0" /&gt; ପୂର୍ବାନୁମାନ କରାଯାଇଛି |</string>
+    <string name="manga_interval_expected_update_null">ଏହି ସିରିଜ୍ ସମାପ୍ତ ହୋଇଛି କିମ୍ବା ଏପର୍ଯ୍ୟନ୍ତ ଏକ ପୂର୍ବାନୁମାନିତ ରିଲିଜ୍ ତାରିଖ ନାହିଁ |</string>
+    <string name="manga_interval_expected_update_about">ପ୍ରାୟ &lt;x id = "0" /&gt; ବିଷୟରେ |</string>
+    <string name="manga_interval_expected_update_soon">ଶୀଘ୍ର</string>
+    <string name="manga_interval_custom_amount">ପୂର୍ବାନୁମାନ କରାଯାଇଥିବା ଅଦ୍ୟତନ ବ୍ୟବଧାନ |</string>
+    <string name="manga_interval_mode_automatic">ସ୍ୱୟଂଚାଳିତ |</string>
+    <string name="pref_library_update_smart_update">ସ୍ମାର୍ଟ ରିଲିଜ୍ ପୂର୍ବାନୁମାନ |</string>
+    <string name="pref_library_update_smart_update_summary">ଲାଇବ୍ରେରୀ ଅପଡେଟ୍, ମାଙ୍ଗା ବିବରଣୀ, ଏବଂ ଆଗାମୀ ପ୍ରକାଶନ ପାଇଁ ରିଲିଜ୍ ସମୟ ପୂର୍ବାନୁମାନ କରନ୍ତୁ |</string>
+    <string name="pref_update_only_in_release_period">ପରବର୍ତ୍ତୀ ପ୍ରକାଶନ ସମୟର ପୂର୍ବାନୁମାନ କରନ୍ତୁ |</string>
+    <string name="skipped_reason_not_in_release_period">ଏଡ଼ାଇ ଦିଆଗଲା କାରଣ ଏପର୍ଯ୍ୟନ୍ତ କ release ଣସି ରିଲିଜ୍ ଆଶା କରାଯାଇନଥିଲା |</string>
+    <string name="pref_smart_update_always_update_categories">ସର୍ବଦା ଏହି ବର୍ଗଗୁଡିକ ଅଦ୍ୟତନ କରନ୍ତୁ |</string>
+    <string name="always_updated_categories_">ସର୍ବଦା ଅଦ୍ୟତନ: &lt;x id = "0" /&gt; |</string>
+    <string name="action_sort_next_updated">ପରବର୍ତ୍ତୀ ଆଶାକରାଯାଇଥିବା ଅଦ୍ୟତନ |</string>
+    <string name="custom_update_interval">କଷ୍ଟମ୍ ଅପଡେଟ୍ ବ୍ୟବଧାନ |</string>
+    <string name="not_custom_update_interval">ସ୍ୱୟଂଚାଳିତ ଅଦ୍ୟତନ ବ୍ୟବଧାନ |</string>
+    <string name="label_upcoming">ଆଗାମୀ ପ୍ରକାଶନ |</string>
+    <string name="action_view_upcoming">ଆଗାମୀ ପ୍ରକାଶନ |</string>
+    <string name="upcoming_guide">ଆଗାମୀ ଗାଇଡ୍ |</string>
+    <string name="upcoming_calendar_next">ଆସନ୍ତା ମାସ</string>
+    <string name="upcoming_calendar_prev">ପୂର୍ବ ମାସ</string>
+    <string name="upcoming_empty">ଏପର୍ଯ୍ୟନ୍ତ କ pred ଣସି ପୂର୍ବାନୁମାନ କରାଯାଇ ନାହିଁ |</string>
+    <string name="upcoming_empty_month">ଏହି ମାସରେ କ pred ଣସି ପୂର୍ବାନୁମାନ କରାଯାଇ ନାହିଁ |</string>
+    <string name="upcoming_empty_smart_disabled">ସ୍ମାର୍ଟ ରିଲିଜ୍ ପୂର୍ବାନୁମାନ ବନ୍ଦ ଅଛି |</string>
+    <string name="upcoming_today">ଆଜି |</string>
+    <string name="upcoming_tomorrow">ଆସନ୍ତାକାଲି |</string>
+    <string name="upcoming_date_header">&lt;x id = "0" /&gt; |</string>
+    <string name="upcoming_month_title">&lt;x id = "0" /&gt; &lt;x id = "1" /&gt; |</string>
+    <string name="novel_continuous_scroll_section">କ୍ରମାଗତ ସ୍କ୍ରୋଲ୍ |</string>
+    <string name="novel_auto_load_next_at">ପରବର୍ତ୍ତୀ ଅଧ୍ୟାୟକୁ ଅଟୋ-ଲୋଡ୍ କରନ୍ତୁ |</string>
+    <string name="novel_keep_chapters_loaded">ଅଧ୍ୟାୟଗୁଡ଼ିକୁ ଧାରଣ କରନ୍ତୁ (0 = ଅସୀମିତ)</string>
+    <string name="novel_mark_read_threshold">ମାର୍କ ଅଧ୍ୟାୟ ପ read ଼ନ୍ତୁ |</string>
+    <string name="novel_mark_short_chapter_read">ପ read ାଯାଇଥିବା ପରି କ୍ଷୁଦ୍ର ଅଧ୍ୟାୟଗୁଡ଼ିକୁ ଚିହ୍ନିତ କର |</string>
+    <string name="novel_source_css_priority">ଉତ୍ସ / EPUB CSS କୁ ପ୍ରାଥମିକତା ଦିଅନ୍ତୁ |</string>
+    <string name="novel_tts_prev_paragraph">ପୂର୍ବ ଅନୁଚ୍ଛେଦ</string>
+    <string name="novel_tts_next_paragraph">ପରବର୍ତ୍ତୀ ଅନୁଚ୍ଛେଦ |</string>
+    <string name="novel_tts_stop">ବନ୍ଦ କର |</string>
+    <string name="novel_text_normalize">ପାଠ୍ୟକୁ ସାଧାରଣ କରନ୍ତୁ (ଷ୍ଟାଇଲ୍ ୟୁନିକୋଡ୍ ଠିକ୍ କରନ୍ତୁ)</string>
+    <string name="novel_text_aggressive_cleanup">ଆକ୍ରମଣାତ୍ମକ ବିଜ୍ଞାପନ ଏବଂ ଲିଙ୍କ୍ ଅପସାରଣ |</string>
+    <string name="novel_selection_open_external">ବ୍ରାଉଜରରେ ଖୋଲନ୍ତୁ |</string>
+    <string name="novel_statistics">ଉପନ୍ୟାସ ପରିସଂଖ୍ୟାନ |</string>
+    <string name="novels_in_library">ଲାଇବ୍ରେରୀରେ ଉପନ୍ୟାସ |</string>
+    <string name="novels_started">ଉପନ୍ୟାସ ଆରମ୍ଭ ହେଲା |</string>
+    <string name="novels_completed">ଉପନ୍ୟାସ ସମାପ୍ତ ହୋଇଛି |</string>
+    <string name="novel_chapters_read">ଅଧ୍ୟାୟଗୁଡ଼ିକ ପ read ଼ାଯାଏ |</string>
+    <string name="novel_total_read_duration">ପ Reading ିବା ସମୟ |</string>
+    <string name="novel_reading_streak">ସାମ୍ପ୍ରତିକ ଧାରା</string>
+    <string name="novel_longest_streak">ଦୀର୍ଘତମ ଧାରା |</string>
+    <string name="novel_average_chapters_per_day">ହାରାହାରି ଅଧ୍ୟାୟ / ଦିନ |</string>
+    <string name="novel_reading_days">ପଠନ ଦିନ |</string>
+    <string name="novel_words_read">ଶବ୍ଦ ପ read ଼ାଯାଏ |</string>
+    <string name="novel_most_read">ଅଧିକାଂଶ ପ novel ଼ୁଥିବା ଉପନ୍ୟାସ |</string>
+    <string name="novel_chapters_read_count">&lt;x id = "0" /&gt; ଅଧ୍ୟାୟଗୁଡ଼ିକ ପ read ଼ାଯାଏ |</string>
+    <string name="novel_day_count">&lt;x id = "0" /&gt; ଦିନ |</string>
+    <string name="novel_zero_days">0 ଦିନ</string>
+    <string name="novel_style_presets">ଷ୍ଟାଇଲ୍ ପ୍ରିସେଟ୍ |</string>
+    <string name="novel_save_style_preset">ପ୍ରିସେଟ୍ ଭାବରେ କରେଣ୍ଟ୍ ସେଭ୍ କରନ୍ତୁ |</string>
+    <string name="novel_rename_style_preset">ପୁନ et ନାମ ପରିବର୍ତ୍ତନ କରନ୍ତୁ |</string>
+    <string name="novel_style_preset_tap_to_apply">ଆବେଦନ କରିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ |</string>
+    <string name="novel_no_style_presets">ଏପର୍ଯ୍ୟନ୍ତ କ saved ଣସି ସ saved ୍ଚୟ ହୋଇନାହିଁ |</string>
+    <string name="novel_style_preset_name">ପୂର୍ବ ନାମ</string>
+    <string name="novel_style_preset_name_taken">ଏହି ନାମ ସହିତ ଏକ ପ୍ରିସେଟ୍ ପୂର୍ବରୁ ବିଦ୍ୟମାନ ଅଛି |</string>
 </resources>

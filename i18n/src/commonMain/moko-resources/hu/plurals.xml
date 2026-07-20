@@ -1,43 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <plurals name="extension_updates_available">
-        <item quantity="one">Egy új bővítményfrissítés érhető el%d bővítményfrissítés érhető el</item>
-        <item quantity="other"/>
-    </plurals>
-    <plurals name="category_plural">
-        <item quantity="one">%d kategória</item>
-        <item quantity="other">%d kategóriák</item>
+    <plurals name="remove_n_chapters">
+        <item quantity="one">Eltávolítasz %1$d letöltött fejezetet\?</item>
+        <item quantity="other">Eltávolítasz %1$d letöltött fejezeteket\?</item>
     </plurals>
     <plurals name="chapters_plural">
         <item quantity="one">%1$s fejezet</item>
         <item quantity="other">%1$s fejezetek</item>
     </plurals>
-    <plurals name="remove_n_chapters">
-        <item quantity="one">Eltávolítasz %1$d letöltött fejezetet\?</item>
-        <item quantity="other">Eltávolítasz %1$d letöltött fejezeteket\?</item>
-    </plurals>
-    <plurals name="restore_completed_message">
-        <item quantity="one">Befejezve %1$s alatt, %2$s hibával</item>
-        <item quantity="other">Befejezve %1$s alatt, %2$s hibával</item>
-    </plurals>
-    <plurals name="after_minutes">
-        <item quantity="one">1 perc után%1$s percek után</item>
-        <item quantity="other"/>
+    <plurals name="category_plural">
+        <item quantity="one">%d kategória</item>
+        <item quantity="other">%d kategóriák</item>
     </plurals>
     <plurals name="for_n_titles">
         <item quantity="one">%d-nak/nek%d-nak/nek</item>
-        <item quantity="other"/>
+        <item quantity="other" />
     </plurals>
     <plurals name="notification_and_n_more">
         <item quantity="one">és még %1$d fejezet</item>
         <item quantity="other">és még %1$d fejezet</item>
     </plurals>
-    <plurals name="next_unread_chapters">
-        <item quantity="one">Következő olvasatlan fejezet</item>
-        <item quantity="other">Következő %d olvasatlan fejezet</item>
+    <plurals name="_updates_pending">
+        <item quantity="one">%d frissítés függőben</item>
+        <item quantity="other">%d frissítés függőben</item>
+    </plurals>
+    <plurals name="extensions_updated_plural">
+        <item quantity="one">A bővítmény frissítve</item>
+        <item quantity="other">%d bővítmény frissítve</item>
+    </plurals>
+    <plurals name="extension_updates_available">
+        <item quantity="one">Egy új bővítményfrissítés érhető el%d bővítményfrissítés érhető el</item>
+        <item quantity="other" />
+    </plurals>
+    <plurals name="pages_plural">
+        <item quantity="one">%1$d oldal</item>
+        <item quantity="other">%1$d oldal</item>
     </plurals>
     <plurals name="missing_chapters_warning">
         <item quantity="one">%d fejezet kihagyása, hiányzik a forrás, vagy ki lett szűrve</item>
         <item quantity="other">%d fejezet kihagyása, hiányoznak a források, vagy ki lettek szűrve</item>
+    </plurals>
+    <plurals name="next_unread_chapters">
+        <item quantity="one">Következő olvasatlan fejezet</item>
+        <item quantity="other">Következő %d olvasatlan fejezet</item>
+    </plurals>
+    <plurals name="deleted_chapters">
+        <item quantity="one">Egy fejezet eltávolítva a forrásból:\n%2$s\nTörlés
+            letöltése?</item>
+        <item quantity="other">%1$s fejezet eltávolítva a forrásból:\n%2$s\n\nTörlés
+            letöltéseik?</item>
+    </plurals>
+    <plurals name="migrate_manga">
+        <item quantity="one">Áttelepíti a(z) %1$d%2$s sorozatot?</item>
+        <item quantity="other">Áttelepíti a(z) %1$d%2$s sorozatot?</item>
+    </plurals>
+    <plurals name="copy_manga">
+        <item quantity="one">Másolja a(z) %1$d%2$s sorozatot?</item>
+        <item quantity="other">Másolja a(z) %1$d%2$s sorozatot?</item>
+    </plurals>
+    <plurals name="manga_migrated">
+        <item quantity="one">%d sorozat migrálva</item>
+        <item quantity="other">%d sorozat migrálva</item>
+    </plurals>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Befejezve %1$s alatt, %2$s hibával</item>
+        <item quantity="other">Befejezve %1$s alatt, %2$s hibával</item>
+    </plurals>
+    <plurals name="cache_cleared">
+        <item quantity="one">A gyorsítótár törölve. %d fájl törölve</item>
+        <item quantity="other">A gyorsítótár törölve. %d fájl törölve</item>
+    </plurals>
+    <plurals name="cleanup_done">
+        <item quantity="one">A tisztítás megtörtént. %d mappa eltávolítva</item>
+        <item quantity="other">A tisztítás megtörtént. %d mappa eltávolítva</item>
+    </plurals>
+    <plurals name="_series_types">
+        <item quantity="other">%d sorozattípusok</item>
+    </plurals>
+    <plurals name="_sources">
+        <item quantity="other">%d forrás</item>
+    </plurals>
+    <plurals name="_statuses">
+        <item quantity="other">%d állapotok</item>
+    </plurals>
+    <plurals name="_languages">
+        <item quantity="other">%d nyelven</item>
+    </plurals>
+    <plurals name="after_minutes">
+        <item quantity="one">1 perc után%1$s percek után</item>
+        <item quantity="other" />
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">%1$d elem elrejtve</item>
+        <item quantity="other">%1$d elem elrejtve</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">%1$d elem elrejtése feloldva</item>
+        <item quantity="other">%1$d elem elrejtése feloldva</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">Kihagyva %d már olvasott fejezetet</item>
+        <item quantity="other">%d már olvasott fejezet kihagyva</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">%d szűrt fejezet kihagyva</item>
+        <item quantity="other">%d szűrt fejezet kihagyva</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">%d nap</item>
+        <item quantity="other">%d nap</item>
     </plurals>
 </resources>

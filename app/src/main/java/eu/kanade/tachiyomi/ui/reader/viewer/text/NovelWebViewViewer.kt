@@ -596,7 +596,7 @@ class NovelWebViewViewer(val activity: ReaderActivity) :
         }.apply {
             isFocusable = true
             isFocusableInTouchMode = true
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O_MR1) {
                 setTextClassifier(android.view.textclassifier.TextClassifier.NO_OP)
             }
             applyWebViewScrollbarSettings(this)

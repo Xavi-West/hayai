@@ -1,8 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <plurals name="remove_n_chapters">
+        <item quantity="one">&lt;X id = "0" /&gt; ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଅଧ୍ୟାୟକୁ ହଟାନ୍ତୁ?</item>
+        <item quantity="other">&lt;X id = "0" /&gt; ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଅଧ୍ୟାୟଗୁଡିକ ଅପସାରଣ କରନ୍ତୁ?</item>
+    </plurals>
+    <plurals name="chapters_plural">
+        <item quantity="one">&lt;x id = "0" /&gt; ଅଧ୍ୟାୟ |</item>
+        <item quantity="other">&lt;x id = "0" /&gt; ଅଧ୍ୟାୟ |</item>
+    </plurals>
+    <plurals name="category_plural">
+        <item quantity="one">&lt;x id = "0" /&gt; ବର୍ଗ |</item>
+        <item quantity="other">&lt;x id = "0" /&gt; ବର୍ଗଗୁଡିକ |</item>
+    </plurals>
+    <plurals name="for_n_titles">
+        <item quantity="one">&lt;X id = "0" /&gt; ଆଖ୍ୟା ପାଇଁ |</item>
+        <item quantity="other">&lt;X id = "0" /&gt; ଆଖ୍ୟାଗୁଡିକ ପାଇଁ |</item>
+    </plurals>
+    <plurals name="notification_and_n_more">
+        <item quantity="one">ଏବଂ &lt;x id = "0" /&gt; ଅଧିକ ଅଧ୍ୟାୟ |</item>
+        <item quantity="other">ଏବଂ &lt;x id = "0" /&gt; ଅଧିକ ଅଧ୍ୟାୟ |</item>
+    </plurals>
+    <plurals name="_updates_pending">
+        <item quantity="one">&lt;x id = "0" /&gt; ବିଚାରାଧୀନ ଅଦ୍ୟତନ |</item>
+        <item quantity="other">&lt;x id = "0" /&gt; ଅଦ୍ୟତନଗୁଡିକ ବିଚାରାଧୀନ ଅଛି |</item>
+    </plurals>
+    <plurals name="extensions_updated_plural">
+        <item quantity="one">ସମ୍ପ୍ରସାରଣ ଅଦ୍ୟତନ ହୋଇଛି |</item>
+        <item quantity="other">&lt;x id = "0" /&gt; ବିସ୍ତୃତକରଣ ଅଦ୍ୟତନ ହୋଇଛି |</item>
+    </plurals>
+    <plurals name="extension_updates_available">
+        <item quantity="one">ସମ୍ପ୍ରସାରଣ ଅଦ୍ୟତନ ଉପଲବ୍ଧ |</item>
+        <item quantity="other">&lt;x id = "0" /&gt; ବିସ୍ତୃତକରଣ ଅଦ୍ୟତନଗୁଡ଼ିକ ଉପଲବ୍ଧ |</item>
+    </plurals>
+    <plurals name="pages_plural">
+        <item quantity="one">&lt;x id = "0" /&gt; ପୃଷ୍ଠା |</item>
+        <item quantity="other">&lt;x id = "0" /&gt; ପୃଷ୍ଠାଗୁଡ଼ିକ |</item>
+    </plurals>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">&lt;X id = "0" /&gt; ଅଧ୍ୟାୟକୁ ଛାଡି, ଉତ୍ସ ଏହାକୁ ହରାଉଛି କିମ୍ବା ଏହା ଫିଲ୍ଟର୍ ହୋଇଯାଇଛି |</item>
+        <item quantity="other">&lt;X id = "0" /&gt; ଅଧ୍ୟାୟଗୁଡିକ ଛାଡି, ଉତ୍ସ ସେଗୁଡିକ ହରାଉଛି କିମ୍ବା ସେଗୁଡିକ ଫିଲ୍ଟର୍ ହୋଇଯାଇଛି |</item>
+    </plurals>
+    <plurals name="next_unread_chapters">
+        <item quantity="one">ପରବର୍ତ୍ତୀ ପ read ଼ା ଅଧ୍ୟାୟ |</item>
+        <item quantity="other">ପରବର୍ତ୍ତୀ &lt;x id = "0" /&gt; ପ read ି ନଥିବା ଅଧ୍ୟାୟ |</item>
+    </plurals>
+    <plurals name="deleted_chapters">
+        <item quantity="one">ଉତ୍ସରୁ ଏକ ଅଧ୍ୟାୟ ଅପସାରିତ ହୋଇଛି: \ n &lt;x id = "0" /&gt; \ n ବିଲୋପ କରନ୍ତୁ |
+            ଏହାର ଡାଉନଲୋଡ୍?</item>
+        <item quantity="other">&lt;x id = "0" /&gt; ଅଧ୍ୟାୟଗୁଡିକ ଉତ୍ସରୁ ଅପସାରିତ ହୋଇଛି: \ n &lt;x id = "1" /&gt; \ n \ n ବିଲୋପ କରନ୍ତୁ |
+            ସେମାନଙ୍କର ଡାଉନଲୋଡ୍?</item>
+    </plurals>
+    <plurals name="migrate_manga">
+        <item quantity="one">&lt;X id = "0" /&gt; &lt;x id = "1" /&gt; କ୍ରମକୁ ସ୍ଥାନାନ୍ତର କରନ୍ତୁ?</item>
+        <item quantity="other">&lt;X id = "0" /&gt; &lt;x id = "1" /&gt; କ୍ରମକୁ ସ୍ଥାନାନ୍ତର କରନ୍ତୁ?</item>
+    </plurals>
+    <plurals name="copy_manga">
+        <item quantity="one">&lt;X id = "0" /&gt; &lt;x id = "1" /&gt; କ୍ରମକୁ କପି କରନ୍ତୁ?</item>
+        <item quantity="other">&lt;X id = "0" /&gt; &lt;x id = "1" /&gt; କ୍ରମକୁ କପି କରନ୍ତୁ?</item>
+    </plurals>
+    <plurals name="manga_migrated">
+        <item quantity="one">&lt;x id = "0" /&gt; ସିରିଜ୍ ସ୍ଥାନାନ୍ତରିତ |</item>
+        <item quantity="other">&lt;x id = "0" /&gt; ସିରିଜ୍ ସ୍ଥାନାନ୍ତରିତ |</item>
+    </plurals>
     <plurals name="restore_completed_message">
         <item quantity="one">%2$sଟିଏ ତ୍ରୁଟି ସହ %1$sରେ କରାଗଲା</item>
         <item quantity="other">%2$sଟି ତ୍ରୁଟି ସହିତ %1$sରେ କରାଗଲା</item>
+    </plurals>
+    <plurals name="cache_cleared">
+        <item quantity="one">କ୍ୟାଚ୍ ସଫା ହେଲା | &lt;x id = "0" /&gt; ଫାଇଲ୍ ବିଲୋପ ହୋଇଯାଇଛି |</item>
+        <item quantity="other">କ୍ୟାଚ୍ ସଫା ହେଲା | &lt;x id = "0" /&gt; ଫାଇଲଗୁଡିକ ବିଲୋପ ହୋଇଯାଇଛି |</item>
+    </plurals>
+    <plurals name="cleanup_done">
+        <item quantity="one">ସଫେଇ କାର୍ଯ୍ୟ &lt;X id = "0" /&gt; ଫୋଲ୍ଡର ଅପସାରିତ ହୋଇଛି |</item>
+        <item quantity="other">ସଫେଇ କାର୍ଯ୍ୟ &lt;X id = "0" /&gt; ଫୋଲ୍ଡରଗୁଡିକ ଅପସାରିତ ହୋଇଛି |</item>
+    </plurals>
+    <plurals name="_series_types">
+        <item quantity="other">&lt;x id = "0" /&gt; କ୍ରମିକ ପ୍ରକାରଗୁଡିକ |</item>
+    </plurals>
+    <plurals name="_sources">
+        <item quantity="other">&lt;x id = "0" /&gt; ଉତ୍ସଗୁଡିକ |</item>
+    </plurals>
+    <plurals name="_statuses">
+        <item quantity="other">&lt;x id = "0" /&gt; ସ୍ଥିତି |</item>
+    </plurals>
+    <plurals name="_languages">
+        <item quantity="other">&lt;x id = "0" /&gt; ଭାଷା |</item>
+    </plurals>
+    <plurals name="after_minutes">
+        <item quantity="one">&lt;X id = "0" /&gt; ମିନିଟ୍ ପରେ |</item>
+        <item quantity="other">&lt;X id = "0" /&gt; ମିନିଟ୍ ପରେ |</item>
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">&lt;x id = "0" /&gt; ଆଇଟମ୍ ଲୁକ୍କାୟିତ |</item>
+        <item quantity="other">&lt;x id = "0" /&gt; ଆଇଟମ୍ ଲୁକ୍କାୟିତ |</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">&lt;x id = "0" /&gt; ଆଇଟମ୍ ଲୁକ୍କାୟିତ |</item>
+        <item quantity="other">&lt;x id = "0" /&gt; ଆଇଟମଗୁଡିକ ଲୁକ୍କାୟିତ |</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">&lt;X id = "0" /&gt; ପୂର୍ବରୁ ପ read ଼ାଯାଇଥିବା ଅଧ୍ୟାୟକୁ ଛାଡିଦେଲେ |</item>
+        <item quantity="other">&lt;X id = "0" /&gt; ପୂର୍ବରୁ ପ read ଼ାଯାଇଥିବା ଅଧ୍ୟାୟଗୁଡ଼ିକୁ ଛାଡିଦେଲେ |</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">&lt;X id = "0" /&gt; ଫିଲ୍ଟର୍ ଅଧ୍ୟାୟକୁ ଛାଡିଦେଲେ |</item>
+        <item quantity="other">&lt;X id = "0" /&gt; ଫିଲ୍ଟର୍ ଅଧ୍ୟାୟକୁ ଛାଡିଦେଲେ |</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">&lt;x id = "0" /&gt; ଦିନ |</item>
+        <item quantity="other">&lt;x id = "0" /&gt; ଦିନ |</item>
     </plurals>
 </resources>

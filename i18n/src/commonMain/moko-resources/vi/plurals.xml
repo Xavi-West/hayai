@@ -1,74 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <plurals name="extension_updates_available">
-        <item quantity="other">Có %d bản cập nhật của các tiện ích bổ sung</item>
-    </plurals>
-    <plurals name="category_plural">
-        <item quantity="other">%d danh mục</item>
-    </plurals>
     <plurals name="remove_n_chapters">
+        <item quantity="one">Xóa %1$d chương đã tải xuống?</item>
         <item quantity="other">Xóa %1$d chương đã tải\?</item>
     </plurals>
-    <plurals name="restore_completed_message">
-        <item quantity="other">Hoàn tất trong %1$s với %2$s lỗi</item>
+    <plurals name="chapters_plural">
+        <item quantity="one">%1$s chương</item>
+        <item quantity="other">%1$s chương</item>
     </plurals>
-    <plurals name="after_minutes">
-        <item quantity="other">Sau %1$s phút</item>
+    <plurals name="category_plural">
+        <item quantity="one">%d danh mục</item>
+        <item quantity="other">%d danh mục</item>
     </plurals>
-    <plurals name="cache_cleared">
-        <item quantity="other">Bộ nhớ đệm tạm đã được làm sạch. Tập tin %d đã được xoá</item>
+    <plurals name="for_n_titles">
+        <item quantity="one">Đối với tiêu đề %d</item>
+        <item quantity="other">Cho %d tiêu đề</item>
     </plurals>
-    <plurals name="cleanup_done">
-        <item quantity="other">Làm sạch xong. Đã xoá %d thư mục</item>
+    <plurals name="notification_and_n_more">
+        <item quantity="one">và %1$d chương khác</item>
+        <item quantity="other">và %1$d chương</item>
     </plurals>
-    <plurals name="manga_migrated">
-        <item quantity="other">Đã di chuyển %d truyện</item>
+    <plurals name="_updates_pending">
+        <item quantity="one">%d cập nhật đang chờ xử lý</item>
+        <item quantity="other">%d bản cập nhật đang chờ</item>
     </plurals>
-    <plurals name="copy_manga">
-        <item quantity="other">Sao chép %1$d%2$s \?</item>
+    <plurals name="extensions_updated_plural">
+        <item quantity="one">Đã cập nhật tiện ích mở rộng</item>
+        <item quantity="other">%d tiện ích mở rộng đã được cập nhật</item>
     </plurals>
-    <plurals name="migrate_manga">
-        <item quantity="other">Di chuyển %1$d%2$s \?</item>
+    <plurals name="extension_updates_available">
+        <item quantity="one">Đã có bản cập nhật tiện ích mở rộng</item>
+        <item quantity="other">Có %d bản cập nhật của các tiện ích bổ sung</item>
+    </plurals>
+    <plurals name="pages_plural">
+        <item quantity="one">trang %1$d</item>
+        <item quantity="other">%1$d trang</item>
+    </plurals>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">Bỏ qua chương %d, thiếu nguồn hoặc đã bị lọc ra</item>
+        <item quantity="other">Đã bỏ qua %d chương, vì nguồn đang bị thiếu hoặc đã bị lọc ra</item>
+    </plurals>
+    <plurals name="next_unread_chapters">
+        <item quantity="one">Chương chưa đọc tiếp theo</item>
+        <item quantity="other">%d chương chưa đọc tiếp</item>
     </plurals>
     <plurals name="deleted_chapters">
+        <item quantity="one">Một chương đã bị xóa khỏi nguồn:\n%2$s\nDelete
+            tải xuống của nó?</item>
         <item quantity="other">%1$s chương đã bị xoá khỏi nguồn:
 \n%2$s
 \nXoá những gì chúng dã tải\?</item>
     </plurals>
-    <plurals name="pages_plural">
-        <item quantity="other">%1$d trang</item>
+    <plurals name="migrate_manga">
+        <item quantity="one">Di chuyển chuỗi %1$d%2$s?</item>
+        <item quantity="other">Di chuyển %1$d%2$s \?</item>
     </plurals>
-    <plurals name="notification_and_n_more">
-        <item quantity="other">và %1$d chương</item>
+    <plurals name="copy_manga">
+        <item quantity="one">Sao chép loạt %1$d%2$s?</item>
+        <item quantity="other">Sao chép %1$d%2$s \?</item>
     </plurals>
-    <plurals name="for_n_titles">
-        <item quantity="other">Cho %d tiêu đề</item>
+    <plurals name="manga_migrated">
+        <item quantity="one">Đã di chuyển chuỗi %d</item>
+        <item quantity="other">Đã di chuyển %d truyện</item>
     </plurals>
-    <plurals name="chapters_plural">
-        <item quantity="other">%1$s chương</item>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Hoàn tất trong %1$s với lỗi %2$s</item>
+        <item quantity="other">Hoàn tất trong %1$s với %2$s lỗi</item>
     </plurals>
-    <plurals name="missing_chapters_warning">
-        <item quantity="other">Đã bỏ qua %d chương, vì nguồn đang bị thiếu hoặc đã bị lọc ra</item>
+    <plurals name="cache_cleared">
+        <item quantity="one">Đã xóa bộ nhớ đệm. Tệp %d đã bị xóa</item>
+        <item quantity="other">Bộ nhớ đệm tạm đã được làm sạch. Tập tin %d đã được xoá</item>
     </plurals>
-    <plurals name="extensions_updated_plural">
-        <item quantity="other">%d tiện ích mở rộng đã được cập nhật</item>
-    </plurals>
-    <plurals name="_updates_pending">
-        <item quantity="other">%d bản cập nhật đang chờ</item>
-    </plurals>
-    <plurals name="next_unread_chapters">
-        <item quantity="other">%d chương chưa đọc tiếp</item>
+    <plurals name="cleanup_done">
+        <item quantity="one">Dọn dẹp xong. Đã xóa thư mục %d</item>
+        <item quantity="other">Làm sạch xong. Đã xoá %d thư mục</item>
     </plurals>
     <plurals name="_series_types">
         <item quantity="other">%d loại loạt truyện</item>
     </plurals>
-    <plurals name="_languages">
-        <item quantity="other">%d ngôn ngữ</item>
+    <plurals name="_sources">
+        <item quantity="other">%d nguồn</item>
     </plurals>
     <plurals name="_statuses">
         <item quantity="other">%d trạng thái</item>
     </plurals>
-    <plurals name="_sources">
-        <item quantity="other">%d nguồn</item>
+    <plurals name="_languages">
+        <item quantity="other">%d ngôn ngữ</item>
+    </plurals>
+    <plurals name="after_minutes">
+        <item quantity="one">Sau %1$s phút</item>
+        <item quantity="other">Sau %1$s phút</item>
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">%1$d mục bị ẩn</item>
+        <item quantity="other">%1$d mục bị ẩn</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">%1$d mục đã được hiển thị</item>
+        <item quantity="other">%1$d mục được hiển thị</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">Đã bỏ qua %d chương đã đọc</item>
+        <item quantity="other">Đã bỏ qua %d chương đã đọc</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">Đã bỏ qua %d chương đã lọc</item>
+        <item quantity="other">Đã bỏ qua %d chương đã lọc</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">%d ngày</item>
+        <item quantity="other">%d ngày</item>
     </plurals>
 </resources>

@@ -5,8 +5,8 @@ import dev.icerock.moko.resources.StringResource
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.library.CustomMangaManager
 import eu.kanade.tachiyomi.domain.manga.models.Manga
+import eu.kanade.tachiyomi.util.system.withIOContext
 import eu.kanade.tachiyomi.util.system.toInt
-import kotlinx.coroutines.runBlocking
 import yokai.util.koin.injectLazy
 import yokai.domain.track.interactor.GetTrack
 import yokai.i18n.MR
@@ -46,31 +46,22 @@ object MigrationFlags {
         return flags.map { flag -> value and flag != 0 }
     }
 
-    fun getFlagsFromPositions(positions: Array<Boolean>, manga: Manga?): Int {
-        val flags = flags(manga)
-        return positions.foldIndexed(0) { index, accumulated, enabled ->
-            accumulated or (if (enabled) flags[index] else 0)
-        }
-    }
-
     fun getFlagsFromPositions(positions: Array<Boolean>): Int {
         return positions.foldIndexed(0) { index, accumulated, enabled ->
             accumulated or (enabled.toInt() shl index)
         }
     }
 
-    fun flags(manga: Manga?): Array<Int> {
-        val flags = arrayOf(CHAPTERS, CATEGORIES).toMutableList()
-        if (manga != null) {
-            if (runBlocking { getTrack.awaitAllByMangaId(manga.id) }.isNotEmpty()) {
-                flags.add(TRACK)
-            }
-
+    suspend fun options(manga: Manga): MigrationFlagOptions = withIOContext {
+        val availableFlags = buildList {
+            add(CHAPTERS)
+            add(CATEGORIES)
+            if (getTrack.awaitAllByMangaId(manga.id).isNotEmpty()) add(TRACK)
             if (coverCache.getCustomCoverFile(manga).exists() || customMangaManager.getManga(manga) != null) {
-                flags.add(CUSTOM_MANGA_INFO)
+                add(CUSTOM_MANGA_INFO)
             }
         }
-        return flags.toTypedArray()
+        MigrationFlagOptions(availableFlags)
     }
 
     private fun titleForFlag(flag: Int): StringResource {
@@ -83,7 +74,20 @@ object MigrationFlags {
         }
     }
 
-    fun titles(context: Context, manga: Manga?): Array<String> {
-        return flags(manga).map { context.getString(titleForFlag(it)) }.toTypedArray()
+    internal fun title(context: Context, flag: Int): String {
+        return context.getString(titleForFlag(flag))
+    }
+}
+
+class MigrationFlagOptions internal constructor(
+    private val availableFlags: List<Int>,
+) {
+    fun titles(context: Context): Array<String> =
+        availableFlags.map { MigrationFlags.title(context, it) }.toTypedArray()
+
+    fun getFlagsFromPositions(positions: Array<Boolean>): Int {
+        return positions.foldIndexed(0) { index, accumulated, enabled ->
+            accumulated or if (enabled) availableFlags.getOrElse(index) { 0 } else 0
+        }
     }
 }

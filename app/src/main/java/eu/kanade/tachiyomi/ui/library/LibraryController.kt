@@ -185,7 +185,7 @@ open class LibraryController(
         appBar.lockYPos = false
         appBar.hideBigView(useSmall = false)
         appBar.setToolbarModeBy(this)
-        refreshTabStrip()
+        refreshDisplayChrome()
         appBar.y = 0f
         appBar.updateAppBarAfterY(binding.libraryGridRecycler.recycler)
         setupToolbarMenu()
@@ -232,6 +232,11 @@ open class LibraryController(
         } else {
             appBar.clearTabs()
         }
+    }
+
+    private fun refreshDisplayChrome() {
+        refreshTabStrip()
+        showMiniBar()
     }
 
     // Idempotent: inflates the menu, attaches the modifier icon, and installs the query
@@ -376,6 +381,7 @@ open class LibraryController(
     private val selectedMangas = mutableSetOf<Manga>()
 
     private var mAdapter: LibraryCategoryAdapter? = null
+    private var libraryRecyclerPool: RecyclerView.RecycledViewPool? = null
     private val adapter: LibraryCategoryAdapter
         get() = mAdapter!!
 
@@ -512,6 +518,8 @@ open class LibraryController(
     private var staggeredObserver: ViewTreeObserver.OnGlobalLayoutListener? = null
     var isPoppingIn = false
     var tempItems: List<LibraryItem>? = null
+    private var rootUiActive = false
+    private var pendingInactiveLibraryUpdate: PendingLibraryUpdate? = null
 
     // Dynamically injected into the search bar, controls category visibility during search
     private var showAllCategoriesView: ImageView? = null
@@ -728,7 +736,10 @@ open class LibraryController(
      * is already TABBED, and is a no-op for the recyclers — so no caller can show-then-hide the
      * continuous recycler within a frame.
      */
-    private fun reconcileDisplaySurface(forceRebuild: Boolean = false) {
+    private fun reconcileDisplaySurface(
+        forceRebuild: Boolean = false,
+        refreshChrome: Boolean = true,
+    ) {
         if (!isControllerVisible) return
         val target = targetDisplaySurface
         // forceRebuild reapplies the tree even when the surface is unchanged — used by the
@@ -741,8 +752,7 @@ open class LibraryController(
             }
             currentDisplaySurface = target
         }
-        refreshTabStrip()
-        showMiniBar()
+        if (refreshChrome) refreshDisplayChrome()
     }
 
     /**
@@ -765,10 +775,14 @@ open class LibraryController(
         mAdapter?.setItems(emptyList())
 
         val adapter = pagerAdapter ?: LibraryPagerAdapter(this).also { pagerAdapter = it }
+        val categoriesChanged = adapter.categories.map { it.id } != visibleCats.map { it.id }
         adapter.categories = visibleCats
         if (binding.libraryPager.adapter !== adapter) {
             binding.libraryPager.adapter = adapter
-        } else {
+        } else if (!categoriesChanged) {
+            // A changed category set dispatches notifyDataSetChanged with POSITION_NONE;
+            // rebinding those old pages here would fully submit rows that ViewPager is about
+            // to destroy and recreate anyway.
             adapter.refreshAll()
         }
 
@@ -836,8 +850,8 @@ open class LibraryController(
     }
 
     fun pageRecyclerTopPadding(): Int {
-        val systemTop = appBar()?.rootWindowInsets
-            ?.getInsets(android.view.WindowInsets.Type.systemBars())?.top ?: 0
+        val systemTop = appBar()?.rootWindowInsetsCompat
+            ?.getInsets(WindowInsetsCompat.Type.systemBars())?.top ?: 0
         // fullAppBarHeight already accounts for the tab strip when [showActivityTabs] is true.
         val appBarHeight = fullAppBarHeight ?: (appBar()?.attrToolbarHeight ?: 0)
         return systemTop + appBarHeight
@@ -1079,14 +1093,16 @@ open class LibraryController(
         adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         setRecyclerLayout()
         binding.libraryGridRecycler.recycler.setHasFixedSize(true)
-        // Process-static pool so manga_grid_item holders are reused on every Library
-        // re-entry. Without it, root-nav back to Library re-inflates ~14 grid items
-        // each time (~18ms × 14 = 250ms/frame). Bumped per-type caps too — default 5
-        // is well under typical visible row counts.
-        binding.libraryGridRecycler.recycler.setRecycledViewPool(persistentLibraryPool)
-        persistentLibraryPool.setMaxRecycledViews(R.layout.manga_grid_item, 40)
-        persistentLibraryPool.setMaxRecycledViews(R.layout.manga_list_item, 40)
-        persistentLibraryPool.setMaxRecycledViews(R.layout.library_category_header_item, 8)
+        // Root tabs retain this view, so a view-lifetime pool survives ordinary tab swaps.
+        // Never share holders across view/controller recreation: LibraryHolder captures its
+        // adapter, listener and Activity-backed context in the constructor.
+        val recyclerPool = RecyclerView.RecycledViewPool().also {
+            it.setMaxRecycledViews(R.layout.manga_grid_item, 40)
+            it.setMaxRecycledViews(R.layout.manga_list_item, 40)
+            it.setMaxRecycledViews(R.layout.library_category_header_item, 8)
+        }
+        libraryRecyclerPool = recyclerPool
+        binding.libraryGridRecycler.recycler.setRecycledViewPool(recyclerPool)
         binding.libraryGridRecycler.recycler.adapter = adapter
 
         adapter.fastScroller = binding.fastScroller
@@ -1612,15 +1628,25 @@ open class LibraryController(
         when (type) {
             ControllerChangeType.PUSH_ENTER -> {
                 // Initial creation; selectTab follows up with onTabActivated → onSetupLocalChrome.
+                // FilteredLibraryController is pushed outside the root-tab host and therefore
+                // does not receive a root activation callback.
+                if (isSubClass) {
+                    rootUiActive = true
+                    presenter.setUiActive(true)
+                }
             }
             ControllerChangeType.POP_ENTER -> {
                 // Pop back from MangaDetails etc. Refresh library data, then re-wire the
                 // local chrome via onTabActivated.
+                rootUiActive = true
+                presenter.setUiActive(true)
                 presenter.updateLibrary()
                 isPoppingIn = true
                 onTabActivated()
             }
             ControllerChangeType.PUSH_EXIT, ControllerChangeType.POP_EXIT -> {
+                rootUiActive = false
+                presenter.setUiActive(false)
                 // Pushed-over: drop out of menu dispatch so our items don't stack on top of
                 // the pushed controller's. Each ported controller wires its own local
                 // appBar via onSetupLocalChrome; we don't touch chrome here.
@@ -1657,6 +1683,8 @@ open class LibraryController(
      * lifecycle because the controller view stays attached across swaps.
      */
     override fun onTabActivated() {
+        rootUiActive = true
+        presenter.setUiActive(true)
         if (!isBindingInitialized) return
         binding.filterBottomSheet.filterBottomSheet.isVisible = true
         binding.recyclerCover.isClickable = false
@@ -1666,11 +1694,17 @@ open class LibraryController(
             binding.libraryGridRecycler.recycler.manager.onRestoreInstanceState(staggeredBundle)
             staggeredBundle = null
         }
-        reconcileDisplaySurface()
+        // onSetupLocalChrome below owns the one tab-strip/mini-bar refresh for activation.
+        // Avoid doing it here and then immediately repeating the same TabLayout work.
+        reconcileDisplaySurface(refreshChrome = false)
         // BaseController.onChangeStarted fires onSetupLocalChrome on push/pop, but tab
         // swaps go through RootTabsController.selectTab → onTabActivated and bypass
         // Conductor's lifecycle. Wire chrome explicitly here.
         onSetupLocalChrome()
+        pendingInactiveLibraryUpdate?.let { pending ->
+            pendingInactiveLibraryUpdate = null
+            onNextLibraryUpdate(pending.items, pending.freshStart)
+        }
         // Drain a query handed off from another screen now that the menu/search bar exist.
         consumePendingLibrarySearch()
     }
@@ -1681,6 +1715,8 @@ open class LibraryController(
      * sets up its own appBar — nothing for us to undo.
      */
     override fun onTabDeactivated() {
+        rootUiActive = false
+        presenter.setUiActive(false)
         if (!isBindingInitialized) return
         saveStaggeredState()
         updateFilterSheetY()
@@ -1751,15 +1787,21 @@ open class LibraryController(
     }
 
     override fun onDestroyView(view: View) {
+        rootUiActive = false
+        presenter.setUiActive(false)
+        pendingInactiveLibraryUpdate = null
         destroyActionModeIfNeeded()
         if (isBindingInitialized) {
             binding.libraryGridRecycler.recycler.removeOnScrollListener(scrollListener)
+            binding.libraryGridRecycler.recycler.adapter = null
             binding.fastScroller.controller = null
             // appBar owns the pager listener installed via applyTabs and detaches it on
             // clearTabs / next applyTabs; no manual detach needed here.
             binding.libraryPager.adapter = null
         }
         pagerAdapter = null
+        libraryRecyclerPool?.clear()
+        libraryRecyclerPool = null
         displaySheet?.dismissSafely()
         displaySheet = null
         mAdapter = null
@@ -1775,6 +1817,10 @@ open class LibraryController(
     }
 
     open fun onNextLibraryUpdate(mangaMap: List<LibraryItem>, freshStart: Boolean = false) {
+        if (!rootUiActive) {
+            pendingInactiveLibraryUpdate = PendingLibraryUpdate(mangaMap, freshStart)
+            return
+        }
         if (isPoppingIn) {
             tempItems = mangaMap
             return
@@ -1956,6 +2002,11 @@ open class LibraryController(
             ),
         )
     }
+
+    private data class PendingLibraryUpdate(
+        val items: List<LibraryItem>,
+        val freshStart: Boolean,
+    )
 
     private fun showSlideAnimation() {
         isAnimatingHopper = true
@@ -2186,15 +2237,15 @@ open class LibraryController(
         return true
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onDestroyActionMode(mode: ActionMode?) {
         selectedMangas.clear()
         actionMode = null
         lastClickPosition = -1
         forEachLibraryAdapter { ad, _ ->
+            val changedPositions = (ad.selectedPositions + ad.getHeaderPositions()).distinct()
             ad.mode = SelectableAdapter.Mode.SINGLE
             ad.clearSelection()
-            ad.notifyDataSetChanged()
+            changedPositions.forEach(ad::notifyItemChanged)
             ad.isLongPressDragEnabled = canDrag()
         }
     }
@@ -2909,9 +2960,4 @@ open class LibraryController(
         }
     }
 
-    companion object {
-        // Shared across LibraryController lifetimes so manga_grid_item / header holders
-        // recycled on one entry are reused on the next. Survives controller destruction.
-        private val persistentLibraryPool = RecyclerView.RecycledViewPool()
-    }
 }

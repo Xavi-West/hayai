@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.ui.migration
 
-import yokai.util.koin.get
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -15,17 +14,18 @@ import eu.kanade.tachiyomi.ui.source.globalsearch.GlobalSearchCardAdapter
 import eu.kanade.tachiyomi.ui.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.util.view.searchToolbar
 import eu.kanade.tachiyomi.util.view.setOnQueryTextChangeListener
-import kotlinx.coroutines.runBlocking
+import yokai.util.koin.get
 import yokai.util.koin.injectLazy
-import yokai.domain.manga.interactor.GetManga
 
 class SearchController(
-    private var manga: Manga? = null,
+    private val originalTitle: String? = null,
+    private val originalSource: Long = NO_SOURCE,
     private var sources: List<CatalogueSource>? = null,
 ) : GlobalSearchController(
-    manga?.originalTitle,
+    originalTitle,
     bundle = bundleOf(
-        OLD_MANGA to manga?.id,
+        ORIGINAL_TITLE to originalTitle,
+        ORIGINAL_SOURCE to originalSource,
         SOURCES to sources?.map { it.id }?.toLongArray(),
     ),
 ),
@@ -38,19 +38,21 @@ class SearchController(
         setHasOptionsMenu(true)
     }
 
-    constructor(mangaId: Long, sources: LongArray) :
+    constructor(manga: Manga, sources: List<CatalogueSource>?) :
         this(
-            runBlocking { get<GetManga>().awaitById(mangaId) },
-            sources.map { get<SourceManager>().getOrStub(it) }.filterIsInstance<CatalogueSource>(),
+            originalTitle = manga.originalTitle,
+            originalSource = manga.source,
+            sources = sources,
         )
 
     @Suppress("unused")
     constructor(bundle: Bundle) : this(
-        bundle.getLong(OLD_MANGA),
-        bundle.getLongArray(SOURCES) ?: LongArray(0),
+        originalTitle = bundle.getString(ORIGINAL_TITLE),
+        originalSource = bundle.getLong(ORIGINAL_SOURCE, NO_SOURCE),
+        sources = restoreSources(bundle.getLongArray(SOURCES)),
     )
 
-    override val presenter = SearchPresenter(initialQuery, manga!!, sources = sources)
+    override val presenter = SearchPresenter(initialQuery, originalSource, sources = sources)
 
     override fun onMangaClick(manga: Manga) {
         if (targetController is MigrationListController) {
@@ -94,7 +96,19 @@ class SearchController(
     }
 
     companion object {
-        const val OLD_MANGA = "old_manga"
+        private const val ORIGINAL_TITLE = "original_title"
+        private const val ORIGINAL_SOURCE = "original_source"
         const val SOURCES = "sources"
+        private const val NO_SOURCE = -1L
+    }
+}
+
+private fun restoreSources(sourceIds: LongArray?): List<CatalogueSource> {
+    if (sourceIds == null) return emptyList()
+    val sourceManager = get<SourceManager>()
+    return buildList(sourceIds.size) {
+        for (sourceId in sourceIds) {
+            (sourceManager.get(sourceId) as? CatalogueSource)?.let(::add)
+        }
     }
 }

@@ -15,7 +15,6 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
-import androidx.work.WorkQuery
 import androidx.work.WorkerParameters
 import co.touchlab.kermit.Logger
 import coil3.imageLoader
@@ -39,6 +38,7 @@ import eu.kanade.tachiyomi.data.preference.MANGA_OUTSIDE_RELEASE_PERIOD
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
+import eu.kanade.tachiyomi.data.work.ActiveWorkTracker
 import eu.kanade.tachiyomi.domain.manga.models.Manga
 import eu.kanade.tachiyomi.extension.ExtensionUpdateJob
 import eu.kanade.tachiyomi.source.CatalogueSource
@@ -84,7 +84,6 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import yokai.util.koin.injectLazy
@@ -176,6 +175,9 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
         tryToSetForeground()
 
         instance = WeakReference(this)
+        if (tags.contains(WORK_NAME_MANUAL)) {
+            manualWork.tryTrack(id)
+        }
 
         val target = inputData.getString(KEY_TARGET)?.let { Target.valueOf(it) } ?: Target.CHAPTERS
 
@@ -217,6 +219,9 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
                     Result.failure()
                 }
             } finally {
+                if (tags.contains(WORK_NAME_MANUAL)) {
+                    manualWork.finish(id)
+                }
                 instance = null
                 sendUpdate(null)
                 notifier.cancelProgressNotification()
@@ -510,7 +515,7 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
         downloadManager.downloadChapters(manga, chapters, false)
     }
 
-    private fun filterMangaToUpdate(mangaToAdd: List<LibraryManga>): List<LibraryManga> {
+    private suspend fun filterMangaToUpdate(mangaToAdd: List<LibraryManga>): List<LibraryManga> {
         val restrictions = preferences.libraryUpdateMangaRestriction().get()
         val smartUpdateEnabled = preferences.smartUpdateEnabled().get()
         // Categories whose manga always update, bypassing the release-period skip.
@@ -523,7 +528,7 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
         val smartUpdateExcludedMangaIds = if (smartUpdateExcludedCategories.isEmpty()) {
             emptySet()
         } else {
-            runBlocking { getLibraryManga.await() }
+            getLibraryManga.await()
                 .filter { it.category in smartUpdateExcludedCategories }
                 .map { it.manga.id }
                 .toSet()
@@ -684,15 +689,19 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
     }
 
     private fun addMangaToQueue(categoryId: Int, manga: List<LibraryManga>) {
-        val mangas = filterMangaToUpdate(manga).sortedBy { it.manga.title }
-        categoryIds.add(categoryId)
-        addManga(mangas)
+        extraScope.launch {
+            val mangas = filterMangaToUpdate(manga).sortedBy { it.manga.title }
+            categoryIds.add(categoryId)
+            addManga(mangas)
+        }
     }
 
     private fun addCategory(categoryId: Int) {
-        val mangas = filterMangaToUpdate(runBlocking { getMangaToUpdate(categoryId) }).sortedBy { it.manga.title }
-        categoryIds.add(categoryId)
-        addManga(mangas)
+        extraScope.launch {
+            val mangas = filterMangaToUpdate(getMangaToUpdate(categoryId)).sortedBy { it.manga.title }
+            categoryIds.add(categoryId)
+            addManga(mangas)
+        }
     }
 
     private fun addManga(mangaToAdd: List<LibraryManga>) {
@@ -757,6 +766,7 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
         private const val KEY_MANGAS = "mangas"
 
         private var instance: WeakReference<LibraryUpdateJob>? = null
+        private val manualWork = ActiveWorkTracker()
 
         private var extraManga = emptyList<Long>()
 
@@ -813,10 +823,8 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
             }
         }
 
-        fun isRunning(context: Context): Boolean {
-            val list = WorkManager.getInstance(context).getWorkInfosByTag(TAG).get()
-            return list.any { it.state == WorkInfo.State.RUNNING }
-        }
+        fun isRunning(@Suppress("UNUSED_PARAMETER") context: Context): Boolean =
+            instance?.get() != null || manualWork.isActive
 
         fun categoryInQueue(id: Int?) = instance?.get()?.categoryIds?.contains(id) ?: false
 
@@ -839,7 +847,6 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
                 // Already running either as a scheduled or manual job
                 return false
             }
-
             val builder = Data.Builder()
             builder.putString(KEY_TARGET, target.name)
             category?.id?.let { id ->
@@ -849,7 +856,6 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
                         KEY_MANGAS,
                         mangaToUse.firstOrNull()?.manga?.id?.let { longArrayOf(it) } ?: longArrayOf(),
                     )
-                    extraManga = mangaToUse.subList(1, mangaToUse.size).mapNotNull { it.manga.id }
                 }
             }
             val inputData = builder.build()
@@ -858,27 +864,31 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
                 .addTag(WORK_NAME_MANUAL)
                 .setInputData(inputData)
                 .build()
-            WorkManager.getInstance(context)
-                .enqueueUniqueWork(WORK_NAME_MANUAL, ExistingWorkPolicy.KEEP, request)
+            if (!manualWork.tryTrack(request.id)) return false
+            extraManga = mangaToUse?.drop(1)?.mapNotNull { it.manga.id }.orEmpty()
+            try {
+                WorkManager.getInstance(context)
+                    .enqueueUniqueWork(WORK_NAME_MANUAL, ExistingWorkPolicy.KEEP, request)
+            } catch (error: Throwable) {
+                manualWork.finish(request.id)
+                throw error
+            }
 
             return true
         }
 
         fun stop(context: Context) {
             val wm = WorkManager.getInstance(context)
-            val workQuery = WorkQuery.Builder.fromTags(listOf(TAG))
-                .addStates(listOf(WorkInfo.State.RUNNING))
-                .build()
-            wm.getWorkInfos(workQuery).get()
-                // Should only return one work but just in case
-                .forEach {
-                    wm.cancelWorkById(it.id)
+            manualWork.clear()
+            wm.cancelUniqueWork(WORK_NAME_MANUAL)
 
-                    // Re-enqueue cancelled scheduled work
-                    if (it.tags.contains(WORK_NAME_AUTO)) {
-                        setupTask(context)
-                    }
-                }
+            val activeWorker = instance?.get() ?: return
+            wm.cancelWorkById(activeWorker.id)
+
+            // Re-enqueue cancelled scheduled work.
+            if (activeWorker.tags.contains(WORK_NAME_AUTO)) {
+                setupTask(context)
+            }
         }
     }
 }

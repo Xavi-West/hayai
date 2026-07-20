@@ -1,3 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <plurals name="remove_n_chapters">
+        <item quantity="one">%1$d ዝወረደ ምዕራፍ ምእላይ?</item>
+        <item quantity="other">%1$d ዝወረዱ ምዕራፋት ምእላይ?</item>
+    </plurals>
+    <plurals name="chapters_plural">
+        <item quantity="one">%1$s ምዕራፍ</item>
+        <item quantity="other">%1$s ምዕራፋት።</item>
+    </plurals>
+    <plurals name="category_plural">
+        <item quantity="one">%d ምድብ</item>
+        <item quantity="other">%d ምድባት</item>
+    </plurals>
+    <plurals name="for_n_titles">
+        <item quantity="one">ን %d ኣርእስቲ</item>
+        <item quantity="other">ን %d ኣርእስታት</item>
+    </plurals>
+    <plurals name="notification_and_n_more">
+        <item quantity="one">ከምኡውን %1$d ተወሳኺ ምዕራፍ</item>
+        <item quantity="other">ከምኡውን %1$d ተወሳኺ ምዕራፋት።</item>
+    </plurals>
+    <plurals name="_updates_pending">
+        <item quantity="one">%d ምዕባለ ኣብ ምጽባይ ይርከብ።</item>
+        <item quantity="other">%d ምዕባለታት ኣብ ምጽባይ ይርከብ።</item>
+    </plurals>
+    <plurals name="extensions_updated_plural">
+        <item quantity="one">ኤክስቴንሽን ተሓዲሱ</item>
+        <item quantity="other">%d መቐጸልታታት ተሓዲሱ</item>
+    </plurals>
+    <plurals name="extension_updates_available">
+        <item quantity="one">ናይ ኤክስቴንሽን ምዕባለ ኣሎ።</item>
+        <item quantity="other">%d ናይ መቐጸልታ ምዕባለታት ኣሎ።</item>
+    </plurals>
+    <plurals name="pages_plural">
+        <item quantity="one">%1$d ገጽ</item>
+        <item quantity="other">%1$d ገጻት።</item>
+    </plurals>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">%d ምዕራፍ ብምዝላል፡ ወይ እቲ ምንጪ ይጎድሎ ኣሎ ወይ ድማ ተጻሪዩ ኣሎ።</item>
+        <item quantity="other">%d ምዕራፋት ብምዝላል፡ ወይ እቲ ምንጪ ይጎድሎም ኣሎ ወይ ድማ ተጻሪዮም ኣለዉ።</item>
+    </plurals>
+    <plurals name="next_unread_chapters">
+        <item quantity="one">ዝቕጽል ዘይተነበበ ምዕራፍ</item>
+        <item quantity="other">ቀጺሉ %d ዘይተነበቡ ምዕራፋት።</item>
+    </plurals>
+    <plurals name="deleted_chapters">
+        <item quantity="one">ካብ ምንጪ ሓደ ምዕራፍ ተኣልዩ ኣሎ:\n%2$s\nDelete
+            ናቱ ምውራድ?</item>
+        <item quantity="other">%1$s ምዕራፋት ካብ ምንጪ ተኣልዮም ኣለዉ:\n%2$s\n\nDelete
+            ናቶም ዳውንሎድ?</item>
+    </plurals>
+    <plurals name="migrate_manga">
+        <item quantity="one">%1$d%2$s ተኸታታሊ ስደት?</item>
+        <item quantity="other">%1$d%2$s ተኸታታሊ ስደት?</item>
+    </plurals>
+    <plurals name="copy_manga">
+        <item quantity="one">%1$d%2$s ተኸታታሊ ቅዳሕ?</item>
+        <item quantity="other">%1$d%2$s ተኸታታሊ ቅዳሕ?</item>
+    </plurals>
+    <plurals name="manga_migrated">
+        <item quantity="one">%d ተኸታታሊ ተሰዲዱ</item>
+        <item quantity="other">%d ተኸታታሊ ተሰዲዱ</item>
+    </plurals>
+    <plurals name="restore_completed_message">
+        <item quantity="one">ኣብ %1$s ብ %2$s ጌጋ ተፈጺሙ</item>
+        <item quantity="other">ኣብ %1$s ብ %2$s ጌጋታት ተፈጺሙ</item>
+    </plurals>
+    <plurals name="cache_cleared">
+        <item quantity="one">ካሸ ተጸሪጉ። %d ፋይል ተደምሲሱ ኣሎ።</item>
+        <item quantity="other">ካሸ ተጸሪጉ። %d ፋይላት ተደምሲሶም ኣለዉ።</item>
+    </plurals>
+    <plurals name="cleanup_done">
+        <item quantity="one">ጽሬት ተገይሩ። %d ዝብል ኣቃፊራ ተኣልዩ።</item>
+        <item quantity="other">ጽሬት ተገይሩ። %d ዝበሃሉ ኣቃፊራታት ተኣልዮም</item>
+    </plurals>
+    <plurals name="_series_types">
+        <item quantity="other">%d ተኸታታሊ ዓይነታት</item>
+    </plurals>
+    <plurals name="_sources">
+        <item quantity="other">%d ምንጭታት</item>
+    </plurals>
+    <plurals name="_statuses">
+        <item quantity="other">%d ኩነታት</item>
+    </plurals>
+    <plurals name="_languages">
+        <item quantity="other">%d ቋንቋታት</item>
+    </plurals>
+    <plurals name="after_minutes">
+        <item quantity="one">ድሕሪ %1$s ደቒቕ</item>
+        <item quantity="other">ድሕሪ %1$s ደቓይቕ</item>
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">%1$d ኣቕሓ ተሓቢኡ</item>
+        <item quantity="other">%1$d ነገራት ተሓቢኦም ኣለዉ።</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">%1$d ኣቕሓ ዘይተሓብአ</item>
+        <item quantity="other">%1$d ነገራት ዘይተሓብኡ</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">%d ድሮ ዝተነበበ ምዕራፍ ዘሊሉ።</item>
+        <item quantity="other">%d ድሮ ዝተነበቡ ምዕራፋት ዘሊሉ።</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">%d ዝተጻረየ ምዕራፍ ዘሊሉ።</item>
+        <item quantity="other">%d ዝተጻረዩ ምዕራፋት ዘሊሉ።</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">%d መዓልቲ</item>
+        <item quantity="other">%d መዓልታት</item>
+    </plurals>
 </resources>

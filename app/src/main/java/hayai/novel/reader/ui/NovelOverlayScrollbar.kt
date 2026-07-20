@@ -37,6 +37,7 @@ class NovelOverlayScrollbar @JvmOverloads constructor(
         color = 0x66888888
         style = Paint.Style.FILL
     }
+    private val thumbBounds = RectF()
 
     private var progress: Float = 0f      // 0..1 — scroll position
     private var visibleFraction: Float = 1f  // 0..1 — viewport / content ratio (thumb size)
@@ -197,8 +198,9 @@ class NovelOverlayScrollbar @JvmOverloads constructor(
             }
         }
 
+        thumbBounds.set(xLeft, thumbTop, xRight, thumbTop + thumbHeight)
         canvas.drawRoundRect(
-            RectF(xLeft, thumbTop, xRight, thumbTop + thumbHeight),
+            thumbBounds,
             barWidthPx / 2f,
             barWidthPx / 2f,
             thumbPaint,

@@ -1,67 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <plurals name="restore_completed_message">
-        <item quantity="other">ใช้เวลาไป %1$s โดยมีข้อผิดพลาด %2$s รายการ</item>
-    </plurals>
-    <plurals name="category_plural">
-        <item quantity="other">%d หมวดหมู่</item>
-    </plurals>
-    <plurals name="extension_updates_available">
-        <item quantity="other">มีการอัปเดตส่วนขยาย %d รายการพร้อมใช้งาน</item>
-    </plurals>
-    <plurals name="missing_chapters_warning">
-        <item quantity="other">ข้ามตอนที่ %d อาจเป็นเพราะหายมาจากแหล่งที่มาหรือถูกกรองออก</item>
-    </plurals>
-    <plurals name="migrate_manga">
-        <item quantity="other">โยกย้าย %1$d%2$s เรื่อง\?</item>
-    </plurals>
-    <plurals name="copy_manga">
-        <item quantity="other">คัดลอก %1$d%2$s เรื่อง\?</item>
-    </plurals>
-    <plurals name="cleanup_done">
-        <item quantity="other">ล้างเสร็จสิ้น ลบออกไป %d โฟล์เดอร์</item>
-    </plurals>
     <plurals name="remove_n_chapters">
+        <item quantity="one">ลบ %1$d ตอนที่ดาวน์โหลดหรือไม่</item>
         <item quantity="other">ต้องการนำ %1$d ตอนที่ดาวน์โหลดไว้ออกหรือไม่\?</item>
     </plurals>
     <plurals name="chapters_plural">
+        <item quantity="one">%1$s บท</item>
         <item quantity="other">%1$s ตอน</item>
     </plurals>
-    <plurals name="manga_migrated">
-        <item quantity="other">%d เรื่องได้โยกย้ายแล้ว</item>
-    </plurals>
-    <plurals name="cache_cleared">
-        <item quantity="other">ล้างแคชแล้ว แฟ้ม %d รายการได้ถูกลบ</item>
-    </plurals>
-    <plurals name="after_minutes">
-        <item quantity="other">หลังจาก %1$s นาที</item>
+    <plurals name="category_plural">
+        <item quantity="one">%d หมวดหมู่</item>
+        <item quantity="other">%d หมวดหมู่</item>
     </plurals>
     <plurals name="for_n_titles">
+        <item quantity="one">สำหรับชื่อ %d</item>
         <item quantity="other">ของเรื่อง %d</item>
     </plurals>
     <plurals name="notification_and_n_more">
+        <item quantity="one">และอีก %1$d บทเพิ่มเติม</item>
         <item quantity="other">และอีก %1$d ตอน</item>
     </plurals>
     <plurals name="_updates_pending">
+        <item quantity="one">%d การอัปเดตอยู่ระหว่างดำเนินการ</item>
         <item quantity="other">อัปเดต %d รายการที่รอดำเนินการ</item>
     </plurals>
     <plurals name="extensions_updated_plural">
+        <item quantity="one">อัปเดตส่วนขยายแล้ว</item>
         <item quantity="other">อัปเดตแล้ว %d ส่วนขยาย</item>
     </plurals>
+    <plurals name="extension_updates_available">
+        <item quantity="one">มีการอัปเดตส่วนขยาย</item>
+        <item quantity="other">มีการอัปเดตส่วนขยาย %d รายการพร้อมใช้งาน</item>
+    </plurals>
     <plurals name="pages_plural">
+        <item quantity="one">%1$d หน้า</item>
         <item quantity="other">%1$d หน้า</item>
     </plurals>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">กำลังข้ามบท %d อาจเป็นเพราะแหล่งที่มาหายไปหรือถูกกรองออกแล้ว</item>
+        <item quantity="other">ข้ามตอนที่ %d อาจเป็นเพราะหายมาจากแหล่งที่มาหรือถูกกรองออก</item>
+    </plurals>
+    <plurals name="next_unread_chapters">
+        <item quantity="one">บทที่ยังไม่ได้อ่านถัดไป</item>
+        <item quantity="other">%d ตอนที่ยังไม่ได้อ่านถัดไป</item>
+    </plurals>
     <plurals name="deleted_chapters">
+        <item quantity="one">บทที่ถูกลบออกจากแหล่งที่มา:\n%2$s\nลบ
+            ดาวน์โหลดเหรอ?</item>
         <item quantity="other">%1$s ตอนได้ถูกนำออกจากแหล่งที่มาแล้ว:
 \n%2$s
 \n
 \nต้องการลบการดาวน์โหลด\?</item>
     </plurals>
-    <plurals name="next_unread_chapters">
-        <item quantity="other">%d ตอนที่ยังไม่ได้อ่านถัดไป</item>
+    <plurals name="migrate_manga">
+        <item quantity="one">ย้ายข้อมูลซีรีส์ %1$d%2$s หรือไม่</item>
+        <item quantity="other">โยกย้าย %1$d%2$s เรื่อง\?</item>
+    </plurals>
+    <plurals name="copy_manga">
+        <item quantity="one">คัดลอกซีรีส์ %1$d%2$s หรือไม่</item>
+        <item quantity="other">คัดลอก %1$d%2$s เรื่อง\?</item>
+    </plurals>
+    <plurals name="manga_migrated">
+        <item quantity="one">ย้ายข้อมูลซีรีส์ %d แล้ว</item>
+        <item quantity="other">%d เรื่องได้โยกย้ายแล้ว</item>
+    </plurals>
+    <plurals name="restore_completed_message">
+        <item quantity="one">เสร็จสิ้นใน %1$s โดยมีข้อผิดพลาด %2$s</item>
+        <item quantity="other">ใช้เวลาไป %1$s โดยมีข้อผิดพลาด %2$s รายการ</item>
+    </plurals>
+    <plurals name="cache_cleared">
+        <item quantity="one">ล้างแคชแล้ว ลบไฟล์ %d แล้ว</item>
+        <item quantity="other">ล้างแคชแล้ว แฟ้ม %d รายการได้ถูกลบ</item>
+    </plurals>
+    <plurals name="cleanup_done">
+        <item quantity="one">ทำความสะอาดเสร็จแล้ว ลบโฟลเดอร์ %d แล้ว</item>
+        <item quantity="other">ล้างเสร็จสิ้น ลบออกไป %d โฟล์เดอร์</item>
     </plurals>
     <plurals name="_series_types">
         <item quantity="other">%d ประเภทเรื่อง</item>
+    </plurals>
+    <plurals name="_sources">
+        <item quantity="other">%d แหล่งที่มา</item>
     </plurals>
     <plurals name="_statuses">
         <item quantity="other">%d สถานะ</item>
@@ -69,7 +88,28 @@
     <plurals name="_languages">
         <item quantity="other">%d ภาษา</item>
     </plurals>
-    <plurals name="_sources">
-        <item quantity="other">%d แหล่งที่มา</item>
+    <plurals name="after_minutes">
+        <item quantity="one">หลังจาก %1$s นาที</item>
+        <item quantity="other">หลังจาก %1$s นาที</item>
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">%1$d รายการถูกซ่อนอยู่</item>
+        <item quantity="other">%1$d รายการถูกซ่อนอยู่</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">%1$d รายการไม่ถูกซ่อน</item>
+        <item quantity="other">%1$d รายการไม่ถูกซ่อน</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">ข้าม %d บทที่อ่านแล้ว</item>
+        <item quantity="other">ข้าม %d บทที่อ่านแล้ว</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">ข้าม %d บทที่กรองแล้ว</item>
+        <item quantity="other">ข้าม %d บทที่กรองแล้ว</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">%d วัน</item>
+        <item quantity="other">%d วัน</item>
     </plurals>
 </resources>

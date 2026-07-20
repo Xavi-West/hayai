@@ -1,59 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <plurals name="remove_n_chapters">
+        <item quantity="one">ダウンロードした %1$d 章を削除しますか?</item>
         <item quantity="other">%1$d件のダウンロードした章を削除してもよろしいですか？</item>
     </plurals>
     <plurals name="chapters_plural">
+        <item quantity="one">%1$s 章</item>
         <item quantity="other">%1$s章</item>
     </plurals>
     <plurals name="category_plural">
+        <item quantity="one">%d カテゴリ</item>
         <item quantity="other">%d カテゴリー</item>
     </plurals>
     <plurals name="for_n_titles">
+        <item quantity="one">%d タイトルの場合</item>
         <item quantity="other">%d件のタイトル</item>
     </plurals>
     <plurals name="notification_and_n_more">
+        <item quantity="one">%1$d のさらなる章</item>
         <item quantity="other">とさらに%1$d章</item>
     </plurals>
     <plurals name="_updates_pending">
+        <item quantity="one">%d 更新が保留中です</item>
         <item quantity="other">%d件のアップデートが待機中</item>
     </plurals>
     <plurals name="extensions_updated_plural">
+        <item quantity="one">拡張機能が更新されました</item>
         <item quantity="other">%d件の拡張機能をアップデートしました</item>
     </plurals>
     <plurals name="extension_updates_available">
+        <item quantity="one">拡張機能のアップデートが利用可能</item>
         <item quantity="other">%d件の拡張機能の更新が利用可能</item>
     </plurals>
     <plurals name="pages_plural">
+        <item quantity="one">%1$d ページ</item>
         <item quantity="other">%1$dページ</item>
     </plurals>
     <plurals name="missing_chapters_warning">
+        <item quantity="one">Skipping %d chapter, either the source is missing it or it has been filtered out</item>
         <item quantity="other">ソースには存在しないか、フィルターによって排除されたため、%d章がスキップされました</item>
     </plurals>
     <plurals name="next_unread_chapters">
+        <item quantity="one">次の未読の章</item>
         <item quantity="other">次の未読の%d章</item>
     </plurals>
     <plurals name="deleted_chapters">
+        <item quantity="one">章がソースから削除されました:\n%2$s\n削除
+            そのダウンロードは？</item>
         <item quantity="other">第%1$s章はソースから消去されています:
 \n%2$s
 \nダウンロードを削除しますか？</item>
     </plurals>
     <plurals name="migrate_manga">
+        <item quantity="one">%1$d%2$s シリーズを移行しますか?</item>
         <item quantity="other">%1$d%2$sのシリーズを移行しますか？</item>
     </plurals>
     <plurals name="copy_manga">
+        <item quantity="one">%1$d%2$s シリーズをコピーしますか?</item>
         <item quantity="other">%1$d%2$sのシリーズをコピーしますか？</item>
     </plurals>
     <plurals name="manga_migrated">
+        <item quantity="one">%d シリーズが移行されました</item>
         <item quantity="other">%dのシリーズを移行しました</item>
     </plurals>
     <plurals name="restore_completed_message">
+        <item quantity="one">%1$s で %2$s エラーが発生しました</item>
         <item quantity="other">%1$sで完成済み　%2$s件のエラーが発生しました</item>
     </plurals>
     <plurals name="cache_cleared">
+        <item quantity="one">キャッシュがクリアされました。 %d ファイルが削除されました</item>
         <item quantity="other">キャッシュをクリアしました。%dファイルが削除されました</item>
     </plurals>
     <plurals name="cleanup_done">
+        <item quantity="one">Cleanup done. %d フォルダを削除しました</item>
         <item quantity="other">クリーンアップ完了。%dフォルダーが消去されました</item>
     </plurals>
     <plurals name="_series_types">
@@ -69,6 +88,27 @@
         <item quantity="other">%d件の言語</item>
     </plurals>
     <plurals name="after_minutes">
+        <item quantity="one">%1$s 分後</item>
         <item quantity="other">%1$s分後</item>
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">%1$d 項目が非表示になりました</item>
+        <item quantity="other">%1$d 個のアイテムが非表示になっています</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">%1$d アイテムの非表示が解除されました</item>
+        <item quantity="other">%1$d 個のアイテムが非表示になりました</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">既読の %d 章をスキップしました</item>
+        <item quantity="other">%d 件の既読の章をスキップしました</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">%d フィルタリングされた章をスキップしました</item>
+        <item quantity="other">%d 個のフィルターされた章をスキップしました</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">%d 日</item>
+        <item quantity="other">%d 日</item>
     </plurals>
 </resources>

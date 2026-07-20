@@ -1,3 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <plurals name="remove_n_chapters">
+        <item quantity="one">Татаж авсан %1$d бүлгийг устгах уу?</item>
+        <item quantity="other">Татаж авсан %1$d бүлгийг устгах уу?</item>
+    </plurals>
+    <plurals name="chapters_plural">
+        <item quantity="one">%1$s бүлэг</item>
+        <item quantity="other">%1$s бүлэг</item>
+    </plurals>
+    <plurals name="category_plural">
+        <item quantity="one">%d ангилал</item>
+        <item quantity="other">%d ангилал</item>
+    </plurals>
+    <plurals name="for_n_titles">
+        <item quantity="one">%d гарчгийн хувьд</item>
+        <item quantity="other">%d гарчгийн хувьд</item>
+    </plurals>
+    <plurals name="notification_and_n_more">
+        <item quantity="one">болон %1$d өөр бүлэг</item>
+        <item quantity="other">болон %1$d өөр бүлгүүд</item>
+    </plurals>
+    <plurals name="_updates_pending">
+        <item quantity="one">%d шинэчлэл хүлээгдэж байна</item>
+        <item quantity="other">%d шинэчлэл хүлээгдэж байна</item>
+    </plurals>
+    <plurals name="extensions_updated_plural">
+        <item quantity="one">Өргөтгөл шинэчлэгдсэн</item>
+        <item quantity="other">%d өргөтгөл шинэчлэгдсэн</item>
+    </plurals>
+    <plurals name="extension_updates_available">
+        <item quantity="one">Өргөтгөлийн шинэчлэлт боломжтой</item>
+        <item quantity="other">%d өргөтгөлийн шинэчлэлт боломжтой</item>
+    </plurals>
+    <plurals name="pages_plural">
+        <item quantity="one">%1$d хуудас</item>
+        <item quantity="other">%1$d хуудас</item>
+    </plurals>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">%d бүлгийг алгасаж байна, эсвэл эх сурвалж дутуу байна эсвэл шүүгдсэн байна</item>
+        <item quantity="other">%d бүлгийг алгасаж байгаа бол эх сурвалж нь дутуу байгаа эсвэл шүүгдсэн байна</item>
+    </plurals>
+    <plurals name="next_unread_chapters">
+        <item quantity="one">Дараагийн уншаагүй бүлэг</item>
+        <item quantity="other">Дараагийн %d уншаагүй бүлгүүд</item>
+    </plurals>
+    <plurals name="deleted_chapters">
+        <item quantity="one">Эх сурвалжаас нэг бүлэг хасагдсан:\n%2$s\nУстгах
+            татаж авах уу?</item>
+        <item quantity="other">%1$s бүлгийг эх сурвалжаас хассан:\n%2$s\n\nУстгах
+            тэдний татаж авсан зүйлс?</item>
+    </plurals>
+    <plurals name="migrate_manga">
+        <item quantity="one">%1$d%2$s цувралыг шилжүүлэх үү?</item>
+        <item quantity="other">%1$d%2$s цувралыг шилжүүлэх үү?</item>
+    </plurals>
+    <plurals name="copy_manga">
+        <item quantity="one">%1$d%2$s цувралыг хуулах уу?</item>
+        <item quantity="other">%1$d%2$s цувралыг хуулах уу?</item>
+    </plurals>
+    <plurals name="manga_migrated">
+        <item quantity="one">%d цуврал шилжсэн</item>
+        <item quantity="other">%d цуврал шилжсэн</item>
+    </plurals>
+    <plurals name="restore_completed_message">
+        <item quantity="one">%1$s-д %2$s алдаатай хийсэн</item>
+        <item quantity="other">%1$s-д %2$s алдаатай хийсэн</item>
+    </plurals>
+    <plurals name="cache_cleared">
+        <item quantity="one">Кэшийг цэвэрлэв. %d файл устсан</item>
+        <item quantity="other">Кэшийг цэвэрлэв. %d файл устгагдсан</item>
+    </plurals>
+    <plurals name="cleanup_done">
+        <item quantity="one">Цэвэрлэгээ хийгдсэн. %d фолдерыг устгасан</item>
+        <item quantity="other">Цэвэрлэгээ хийгдсэн. %d фолдерыг устгасан</item>
+    </plurals>
+    <plurals name="_series_types">
+        <item quantity="other">%d цувралын төрөл</item>
+    </plurals>
+    <plurals name="_sources">
+        <item quantity="other">%d эх сурвалж</item>
+    </plurals>
+    <plurals name="_statuses">
+        <item quantity="other">%d төлөв</item>
+    </plurals>
+    <plurals name="_languages">
+        <item quantity="other">%d хэл</item>
+    </plurals>
+    <plurals name="after_minutes">
+        <item quantity="one">%1$s минутын дараа</item>
+        <item quantity="other">%1$s минутын дараа</item>
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">%1$d зүйлийг нуусан</item>
+        <item quantity="other">%1$d зүйлийг нуусан</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">%1$d зүйлийг нуусан</item>
+        <item quantity="other">%1$d зүйлийг нуусан</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">%d аль хэдийн уншсан бүлгийг алгассан</item>
+        <item quantity="other">Аль хэдийн уншсан %d бүлгийг алгассан</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">%d шүүсэн бүлгийг алгассан</item>
+        <item quantity="other">%d шүүсэн бүлгийг алгассан</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">%d өдөр</item>
+        <item quantity="other">%d хоног</item>
+    </plurals>
 </resources>

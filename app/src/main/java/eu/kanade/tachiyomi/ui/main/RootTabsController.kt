@@ -2,13 +2,14 @@ package eu.kanade.tachiyomi.ui.main
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.animation.ValueAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewPropertyAnimator
 import android.widget.FrameLayout
 import androidx.core.view.isVisible
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
@@ -116,6 +117,12 @@ class RootTabsController : Controller() {
         outState.putInt(KEY_CURRENT_TAB, currentTabId)
     }
 
+    override fun onDestroyView(view: View) {
+        cancelSwapAnimations()
+        containers.clear()
+        super.onDestroyView(view)
+    }
+
     /**
      * Make [tabId] the visible tab. Lazy-creates the tab's child router and root
      * controller on first selection. Idempotent — no-op when already on [tabId].
@@ -155,60 +162,119 @@ class RootTabsController : Controller() {
         val incoming = childRouterFor(tabId)?.backstack?.lastOrNull()?.controller
         (incoming as? RootTabContent)?.onTabActivated()
 
-        animateSwap(outgoingContainer, target)
         (activity as? MainActivity)?.onActiveTabChanged(prev, tabId)
+        animateSwap(prev, outgoingContainer, target)
     }
 
     /**
-     * Cross-fade between two tab containers: incoming alpha 0→1, outgoing alpha 1→0,
-     * then outgoing visibility=GONE so its view tree drops out of measure/layout passes.
+     * Fade/slide the incoming tab over a stable outgoing tab, then mark the outgoing tab GONE
+     * so its view tree drops out of measure/layout passes.
      *
      * Honors [ReducedMotion.isEnabled] — snaps to the end state without an animator when
      * the user has opted into reduced motion (Appearance → Motion preference).
      *
      * Cancels any prior in-flight swap so rapid taps don't stack animators.
      */
-    private fun animateSwap(outgoing: FrameLayout?, incoming: FrameLayout) {
-        swapAnimator?.cancel()
-        swapAnimator = null
+    private fun animateSwap(previousTabId: Int, outgoing: FrameLayout?, incoming: FrameLayout) {
+        cancelSwapAnimations()
 
         if (ReducedMotion.isEnabled() || outgoing == null) {
             // No previous tab to fade out from (initial selection) or reduced motion — snap.
-            outgoing?.let {
-                it.alpha = 0f
-                it.isVisible = false
-            }
-            incoming.alpha = 1f
-            incoming.isVisible = true
+            settleSwap()
             return
         }
 
-        incoming.alpha = 0f
-        incoming.isVisible = true
-        // outgoing stays visible at alpha 1 until the fade-out completes.
-
-        val animator = ValueAnimator.ofFloat(0f, 1f).apply {
-            duration = TAB_SWAP_DURATION_MS
-            addUpdateListener { va ->
-                val t = va.animatedValue as Float
-                incoming.alpha = t
-                outgoing.alpha = 1f - t
+        containers.values.forEach { container ->
+            if (container !== outgoing && container !== incoming) {
+                container.isVisible = false
+                container.alpha = 0f
+                container.translationX = 0f
             }
-            addListener(object : AnimatorListenerAdapter() {
+        }
+
+        incoming.isVisible = true
+        outgoing.isVisible = true
+        incoming.bringToFront()
+
+        // Animate render properties through ViewPropertyAnimator so the RenderThread can
+        // drive the transition. The previous ValueAnimator ran a Kotlin callback on the UI
+        // thread every frame and invalidated two complete RecyclerView/Compose trees.
+        val direction = rootTabTransitionDirection(
+            previousIndex = TAB_IDS.indexOf(previousTabId),
+            currentIndex = TAB_IDS.indexOf(currentTabId),
+            isRtl = incoming.layoutDirection == View.LAYOUT_DIRECTION_RTL,
+        )
+        val travel = TAB_SWAP_TRANSLATION_DP * incoming.resources.displayMetrics.density
+        // Always establish a fresh start state. A rapid retap can make the destination one of
+        // the two containers from the cancelled transition; reusing its partial alpha/translation
+        // made the next motion start halfway through or appear to snap.
+        incoming.alpha = 0f
+        incoming.translationX = direction * travel
+
+        val generation = ++swapGeneration
+        activeOutgoing = outgoing
+        activeIncoming = incoming
+
+        // Keep the outgoing tree stable behind the incoming one. Animating alpha + translation
+        // on both full-screen containers promoted two RecyclerView/Compose hierarchies to large
+        // hardware layers at once. A one-way fade/slide has the same spatial continuity while
+        // cutting the transition's full-screen animation and layer work in half.
+        outgoing.alpha = 1f
+        outgoing.translationX = 0f
+        outgoingAnimator = null
+
+        incomingAnimator = incoming.animate()
+            .alpha(1f)
+            .translationX(0f)
+            .setDuration(TAB_SWAP_DURATION_MS)
+            .setInterpolator(tabSwapInterpolator)
+            .withLayer()
+            .setListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
-                    if (swapAnimator !== animation) return
-                    outgoing.alpha = 0f
-                    outgoing.isVisible = false
-                    incoming.alpha = 1f
-                    swapAnimator = null
+                    if (generation != swapGeneration) return
+                    settleSwap()
                 }
             })
-        }
-        swapAnimator = animator
-        animator.start()
+
+        outgoingAnimator?.start()
+        incomingAnimator?.start()
     }
 
-    private var swapAnimator: Animator? = null
+    private fun cancelSwapAnimations() {
+        ++swapGeneration
+        outgoingAnimator?.setListener(null)?.cancel()
+        incomingAnimator?.setListener(null)?.cancel()
+        activeOutgoing?.alpha = 1f
+        activeIncoming?.alpha = 1f
+        activeOutgoing?.translationX = 0f
+        activeIncoming?.translationX = 0f
+        outgoingAnimator = null
+        incomingAnimator = null
+        activeOutgoing = null
+        activeIncoming = null
+    }
+
+    private fun settleSwap() {
+        containers.forEach { (tabId, container) ->
+            val selected = tabId == currentTabId
+            container.animate().setListener(null).cancel()
+            container.alpha = if (selected) 1f else 0f
+            container.translationX = 0f
+            container.isVisible = selected
+        }
+        outgoingAnimator = null
+        incomingAnimator = null
+        activeOutgoing = null
+        activeIncoming = null
+        (activity as? MainActivity)?.onRootTabTransitionSettled()
+    }
+
+    private var swapGeneration = 0
+    private var outgoingAnimator: ViewPropertyAnimator? = null
+    private var incomingAnimator: ViewPropertyAnimator? = null
+    private var activeOutgoing: FrameLayout? = null
+    private var activeIncoming: FrameLayout? = null
+    private val tabSwapInterpolator = FastOutSlowInInterpolator()
 
     private fun childRouterFor(tabId: Int): Router? {
         val container = containers[tabId] ?: return null
@@ -281,7 +347,7 @@ class RootTabsController : Controller() {
          * [ReducedMotion] (snap-to-end) — see [animateSwap].
          */
         private const val TAB_SWAP_DURATION_MS = 250L
-
+        private const val TAB_SWAP_TRANSLATION_DP = 12f
         private const val KEY_CURRENT_TAB = "RootTabsController.currentTabId"
         // Stable container ids so Conductor's child router restores into the same FrameLayout
         // across config changes. Picked from the 0x7E_xx_xxxx custom-id range to avoid R clash.
@@ -290,4 +356,13 @@ class RootTabsController : Controller() {
         private const val CONTAINER_ID_BROWSE = 0x7E001003
         private val TAB_IDS = listOf(R.id.nav_library, R.id.nav_recents, R.id.nav_browse)
     }
+}
+
+internal fun rootTabTransitionDirection(
+    previousIndex: Int,
+    currentIndex: Int,
+    isRtl: Boolean,
+): Float {
+    val logicalDirection = if (currentIndex >= previousIndex) 1f else -1f
+    return if (isRtl) -logicalDirection else logicalDirection
 }

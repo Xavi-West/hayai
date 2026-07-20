@@ -150,6 +150,7 @@ open class BrowseSourceController(bundle: Bundle) :
     /** Current filter sheet — Compose + M3 Expressive */
     private var composeFilterSheet: eu.kanade.tachiyomi.ui.source.browse.compose.ComposeSourceFilterSheet? = null
     private var lastPosition: Int = -1
+    private var sourceUiInitialized = false
 
     // Basically a cache just so the filter sheet is shown faster
     var savedSearches = emptyList<SavedSearch>()
@@ -195,22 +196,44 @@ open class BrowseSourceController(bundle: Bundle) :
         adapter = FlexibleAdapter(null, this, false)
         setupRecycler(view)
 
-        if (!presenter.sourceIsInitialized) {
-            activity?.toast(MR.strings.source_not_installed)
-            if (activity is SearchActivity) {
-                activity?.finish()
-            } else {
-                router.popCurrentController()
+        when (presenter.sourceInitializationState) {
+            SourceInitializationState.LOADING -> {
+                binding.floatingBrowseBar.isVisible = false
+                binding.progress.isVisible = true
+                return
             }
-            return
+            SourceInitializationState.UNAVAILABLE -> {
+                onSourceUnavailable()
+                return
+            }
+            SourceInitializationState.READY -> finishSourceSetup()
         }
+    }
 
-        if (presenter.sourceFilters.isEmpty() && !presenter.source.supportsLatest) {
-            binding.floatingBrowseBar.isVisible = false
+    fun onSourceReady() {
+        if (!isAttached || view == null) return
+        finishSourceSetup()
+    }
+
+    fun onSourceUnavailable() {
+        if (!isAttached || view == null) return
+        activity?.toast(MR.strings.source_not_installed)
+        if (activity is SearchActivity) {
+            activity?.finish()
         } else {
-            binding.btnGroupFilter.isVisible = presenter.sourceFilters.isNotEmpty()
-            binding.btnGroupLatest.isVisible = presenter.source.supportsLatest
+            router.popCurrentController()
         }
+    }
+
+    private fun finishSourceSetup() {
+        if (sourceUiInitialized || !presenter.sourceIsInitialized) return
+        sourceUiInitialized = true
+
+        val hasFilters = presenter.sourceFilters.isNotEmpty()
+        val supportsLatest = presenter.source.supportsLatest
+        binding.floatingBrowseBar.isVisible = hasFilters || supportsLatest
+        binding.btnGroupFilter.isVisible = hasFilters
+        binding.btnGroupLatest.isVisible = supportsLatest
         val isFiltered = { !presenter.filtersMatchDefault() || presenter.query.isNotBlank() }
         binding.btnGroupPopular.setOnClickListener {
             if (presenter.useLatest || isFiltered()) {
@@ -243,6 +266,9 @@ open class BrowseSourceController(bundle: Bundle) :
     }
 
     override fun onDestroyView(view: View) {
+        sourceUiInitialized = false
+        recycler?.adapter = null
+        recycler?.recycledViewPool?.clear()
         adapter = null
         snack = null
         recycler = null
@@ -259,6 +285,7 @@ open class BrowseSourceController(bundle: Bundle) :
                 ?: (oldRecycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
             oldOffset = oldRecycler.layoutManager?.findViewByPosition(oldPosition)?.y?.minus(oldRecycler.paddingTop) ?: 0f
             oldRecycler.adapter = null
+            oldRecycler.recycledViewPool.clear()
 
             binding.catalogueView.removeView(oldRecycler)
         }

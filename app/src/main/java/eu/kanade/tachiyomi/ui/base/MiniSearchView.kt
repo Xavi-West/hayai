@@ -8,6 +8,7 @@ import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.appcompat.widget.SearchView
 import androidx.core.graphics.ColorUtils
@@ -27,7 +28,7 @@ class MiniSearchView @JvmOverloads constructor(context: Context, attrs: Attribut
     SearchView(context, attrs) {
 
     private var scope: CoroutineScope? = null
-    private val searchTextView: SearchAutoComplete? = findViewById(androidx.appcompat.R.id.search_src_text)
+    private val searchTextView: EditText? = findViewById(androidx.appcompat.R.id.search_src_text)
 
     init {
         searchTextView?.setTextAppearance(AR.style.TextAppearance_Material_Body1)

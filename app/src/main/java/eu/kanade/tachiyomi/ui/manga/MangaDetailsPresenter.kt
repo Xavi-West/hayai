@@ -140,6 +140,9 @@ class MangaDetailsPresenter(
 //    val currentManga get() = currentMangaInternal.asStateFlow()
 
     lateinit var manga: Manga
+    val mangaOrNull: Manga?
+        get() = if (::manga.isInitialized) manga else null
+
     fun isMangaLateInitInitialized() = ::manga.isInitialized
 
     private val customMangaManager: CustomMangaManager by injectLazy()
@@ -155,7 +158,18 @@ class MangaDetailsPresenter(
     var isLoading = false
     var scrollType = 0
 
-    private val loggedServices by lazy { get<TrackManager>().services.filter { it.isLogged } }
+    private val trackManager by lazy { get<TrackManager>() }
+    private val loggedServices
+        get() = trackManager.services.filter { it.isLogged }
+
+    private var trackSearchJob: Job? = null
+    private var downloadStatusJob: Job? = null
+    private var downloadProgressJob: Job? = null
+    private var downloadQueueJob: Job? = null
+    private var libraryUpdateJob: Job? = null
+    private var initialTracksJob: Job? = null
+    private var initialContentJob: Job? = null
+    private var trackingRefreshJob: Job? = null
     private var tracks = emptyList<Track>()
 
     var trackList: List<TrackItem> = emptyList()
@@ -165,6 +179,7 @@ class MangaDetailsPresenter(
 
     var allChapters: List<ChapterItem> = emptyList()
         private set
+    private var chapterItemsById: Map<Long?, List<ChapterItem>> = emptyMap()
 
     var allHistory: List<History> = emptyList()
         private set
@@ -215,25 +230,31 @@ class MangaDetailsPresenter(
     private fun finalizeOnCreate() {
         syncData()
 
-        presenterScope.launchUI {
+        downloadStatusJob?.cancel()
+        downloadStatusJob = presenterScope.launchUI {
             downloadManager.statusFlow()
                 .filter { it.manga.id == mangaId }
                 .catch { error -> Logger.e(error) }
                 .collect(::onStatusChange)
         }
-        presenterScope.launchUI {
+        downloadProgressJob?.cancel()
+        downloadProgressJob = presenterScope.launchUI {
             downloadManager.progressFlow()
                 .filter { it.manga.id == mangaId }
                 .catch { error -> Logger.e(error) }
                 .collect(::onQueueUpdate)
         }
-        presenterScope.launchIO {
+        downloadQueueJob?.cancel()
+        downloadQueueJob = presenterScope.launchIO {
             downloadManager.queueState.collectLatest(::onQueueUpdate)
         }
 
-        // Tracks default to emptyList(); fetch async so push isn't gated on DB.
-        presenterScope.launchIO {
-            tracks = getTrack.awaitAllByMangaId(mangaId)
+        // Tracks default to emptyList(); fetch async so push isn't gated on DB. Always rebuild
+        // the service rows when the DB read completes so a sheet opened during startup cannot
+        // retain an empty adapter snapshot.
+        initialTracksJob?.cancel()
+        initialTracksJob = presenterScope.launch {
+            fetchTracks()
         }
     }
 
@@ -243,14 +264,16 @@ class MangaDetailsPresenter(
     fun onCreateLate() {
         val controller = view ?: return
 
-        LibraryUpdateJob.updateFlow
+        libraryUpdateJob?.cancel()
+        libraryUpdateJob = LibraryUpdateJob.updateFlow
             .filter { it == mangaId }
             .onEach { onUpdateManga() }
             .launchIn(presenterScope)
 
         val fetchMangaNeeded = !manga.initialized
 
-        presenterScope.launch {
+        initialContentJob?.cancel()
+        initialContentJob = presenterScope.launch {
             isLoading = true
             withUIContext {
                 controller.updateHeader()
@@ -274,11 +297,20 @@ class MangaDetailsPresenter(
 
     fun fetchChapters(andTracking: Boolean = true) {
         presenterScope.launch {
-            getChapters()
-            if (andTracking) fetchTracks()
-            withUIContext { view?.updateChapters() }
-            getHistory()
+            refreshChapters(andTracking)
         }
+    }
+
+    /**
+     * Refreshes the complete chapter-derived UI state and returns only after the visible action
+     * state has been submitted. Callers reacting to an external Activity can await this instead
+     * of launching a second, unordered refresh.
+     */
+    internal suspend fun refreshChapters(andTracking: Boolean = true) {
+        getChapters()
+        if (andTracking) fetchTracks()
+        withUIContext { view?.updateChapters() }
+        getHistory()
     }
 
     fun setCurrentManga(manga: Manga?) {
@@ -301,11 +333,16 @@ class MangaDetailsPresenter(
     }
 
     private suspend fun getChapters(queue: List<Download> = downloadManager.queueState.value) {
-        val chapters = getChapter.awaitAll(mangaId, isScanlatorFiltered()).map { it.toModel() }
-        allChapters = if (!isScanlatorFiltered()) chapters else getChapter.awaitAll(mangaId, false).map { it.toModel() }
+        val downloadsByChapterId = queue.associateBy { it.chapter.id }
+        val chapters = getChapter.awaitAll(mangaId, isScanlatorFiltered()).map { it.toModel(downloadsByChapterId) }
+        allChapters = if (!isScanlatorFiltered()) {
+            chapters
+        } else {
+            getChapter.awaitAll(mangaId, false).map { it.toModel(downloadsByChapterId) }
+        }
 
         // Find downloaded chapters
-        setDownloadedChapters(chapters, queue)
+        setDownloadedChapters(chapters, downloadsByChapterId)
         annotateChapterTranslations(chapters)
         if (allChapters !== chapters) {
             annotateChapterTranslations(allChapters)
@@ -313,6 +350,7 @@ class MangaDetailsPresenter(
         allChapterScanlators = allChapters.mapNotNull { it.chapter.scanlator }.toSet()
 
         this.chapters = applyChapterFilters(chapters)
+        chapterItemsById = (this.chapters + allChapters).groupBy { it.id }
     }
 
     private suspend fun getHistory() {
@@ -324,13 +362,12 @@ class MangaDetailsPresenter(
      *
      * @param chapters the list of chapter from the database.
      */
-    private fun setDownloadedChapters(chapters: List<ChapterItem>, queue: List<Download>) {
+    private fun setDownloadedChapters(chapters: List<ChapterItem>, downloadsByChapterId: Map<Long?, Download>) {
         for (chapter in chapters) {
             if (downloadManager.isChapterDownloaded(chapter, manga)) {
                 chapter.status = Download.State.DOWNLOADED
-            } else if (queue.isNotEmpty()) {
-                chapter.status = queue.find { it.chapter.id == chapter.id }
-                    ?.status ?: Download.State.default
+            } else {
+                chapter.status = downloadsByChapterId[chapter.id]?.status ?: Download.State.default
             }
         }
     }
@@ -338,13 +375,13 @@ class MangaDetailsPresenter(
     /**
      * Converts a chapter from the database to an extended model, allowing to store new fields.
      */
-    private fun Chapter.toModel(): ChapterItem {
+    private fun Chapter.toModel(downloadsByChapterId: Map<Long?, Download>): ChapterItem {
         // Create the model object.
         val model = ChapterItem(this, manga)
         model.isLocked = isLockedFromSearch
 
         // Find an active download for this chapter.
-        val download = downloadManager.queueState.value.find { it.chapter.id == id }
+        val download = downloadsByChapterId[id]
 
         if (download != null) {
             // If there's an active download, assign it.
@@ -462,10 +499,19 @@ class MangaDetailsPresenter(
     }
 
     /**
-     * Returns the next unread chapter or null if everything is read.
+     * Returns the next unread chapter or null if everything is read. Reading is an action on
+     * the manga, not on the currently displayed subset, so persisted chapter filters must not
+     * change or remove its target.
      */
     fun getNextUnreadChapter(): ChapterItem? {
-        return chapterSort.getNextUnreadChapter(chapters)
+        return chapterSort.getNextUnreadChapter(allChapters, andFiltered = false)
+    }
+
+    internal fun getReadingButtonState(): MangaReadingButtonState? = getNextUnreadChapter()?.let {
+        MangaReadingButtonState(
+            chapterNumber = it.chapter_number.toDouble(),
+            hasProgress = it.last_page_read > 0,
+        )
     }
 
     fun anyRead(): Boolean = allChapters.any { it.read }
@@ -598,7 +644,7 @@ class MangaDetailsPresenter(
                     if (manga.shouldDownloadNewChapters(preferences) && manualFetch) {
                         downloadChapters(
                             added.sortedBy { it.chapter_number }
-                                .map { it.toModel() },
+                                .map { it.toModel(emptyMap()) },
                         )
                     }
                     view?.view?.context?.let { mangaShortcutManager.updateShortcuts(it) }
@@ -1109,17 +1155,21 @@ class MangaDetailsPresenter(
     fun isTracked(): Boolean =
         loggedServices.any { service -> tracks.any { it.sync_id == service.id } }
 
-    fun hasTrackers(): Boolean = loggedServices.isNotEmpty()
+    fun hasTrackers(): Boolean = availableTrackServices().isNotEmpty()
 
     // Tracking
-    private fun setTrackItems() {
+    private fun availableTrackServices(): List<TrackService> {
         // Filter by content type so manga only see manga trackers and novels only see novel trackers.
         val contentType = if (source.isNovelSource()) TrackContentType.NOVEL else TrackContentType.MANGA
-        trackList = loggedServices.filter { service ->
+        return loggedServices.filter { service ->
             if (contentType !in service.supportedContentTypes) return@filter false
             if (service !is EnhancedTrackService) return@filter true
             service.accept(source)
-        }.map { service ->
+        }
+    }
+
+    private fun setTrackItems() {
+        trackList = availableTrackServices().map { service ->
             TrackItem(tracks.find { it.sync_id == service.id }, service)
         }
     }
@@ -1132,7 +1182,8 @@ class MangaDetailsPresenter(
 
     fun refreshTracking(showOfflineSnack: Boolean = false, trackIndex: Int? = null) {
         if (view?.isNotOnline(showOfflineSnack) == false) {
-            presenterScope.launch {
+            trackingRefreshJob?.cancel()
+            trackingRefreshJob = presenterScope.launch {
                 val asyncList = (trackIndex?.let { listOf(trackList[it]) } ?: trackList.filter { it.track != null })
                     .map { item ->
                         async(Dispatchers.IO) {
@@ -1157,18 +1208,28 @@ class MangaDetailsPresenter(
         }
     }
 
-    fun trackSearch(query: String, service: TrackService) {
-        if (view?.isNotOnline() == false) {
-            presenterScope.launch(Dispatchers.IO) {
-                val results = try {
-                    service.search(query)
-                } catch (e: Exception) {
-                    withContext(Dispatchers.Main) { view?.trackSearchError(e) }
-                    return@launch
-                }
-                withContext(Dispatchers.Main) { view?.onTrackSearchResults(results) }
+    fun trackSearch(query: String, service: TrackService): Boolean {
+        val currentView = view ?: return false
+        if (currentView.isNotOnline(showSnackbar = false)) return false
+
+        trackSearchJob?.cancel()
+        trackSearchJob = presenterScope.launch(Dispatchers.IO) {
+            val results = try {
+                service.search(query)
+            } catch (_: CancellationException) {
+                return@launch
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) { view?.trackSearchError(e) }
+                return@launch
             }
+            withContext(Dispatchers.Main) { view?.onTrackSearchResults(results) }
         }
+        return true
+    }
+
+    fun cancelTrackSearch() {
+        trackSearchJob?.cancel()
+        trackSearchJob = null
     }
 
     fun registerTracking(item: Track?, service: TrackService) {
@@ -1288,16 +1349,47 @@ class MangaDetailsPresenter(
 
     override fun onStatusChange(download: Download) {
         super.onStatusChange(download)
-        chapters.find { it.id == download.chapter.id }?.status = download.status
+        chapterItemsById[download.chapter.id].orEmpty().forEach { it.status = download.status }
         onPageProgressUpdate(download)
     }
 
     private suspend fun onQueueUpdate(queue: List<Download>) = withIOContext {
-        getChapters(queue)
+        val downloadsByChapterId = queue.associateBy { it.chapter.id }
+        val changedStates = mutableListOf<ChapterDownloadState>()
+        chapterItemsById.forEach { (chapterId, items) ->
+            chapterId ?: return@forEach
+            val activeDownload = downloadsByChapterId[chapterId]
+            val previousStatus = items.firstOrNull()?.status
+            val previousDownload = items.firstOrNull()?.download
+            items.forEach { item ->
+                item.download = activeDownload
+                if (activeDownload != null) {
+                    item.status = activeDownload.status
+                } else if (item.status != Download.State.DOWNLOADED) {
+                    item.status = Download.State.default
+                }
+            }
+            val currentStatus = items.firstOrNull()?.status ?: Download.State.default
+            if (currentStatus != previousStatus || activeDownload !== previousDownload) {
+                changedStates += ChapterDownloadState(
+                    chapterId = chapterId,
+                    status = currentStatus,
+                    progress = activeDownload?.progress ?: 0,
+                )
+            }
+        }
         withUIContext {
-            view?.updateChapters()
+            changedStates.forEach { state ->
+                view?.updateChapterDownloadState(state.chapterId, state.status, state.progress)
+            }
         }
     }
+
+    private data class ChapterDownloadState(
+        val chapterId: Long,
+        val status: Download.State,
+        val progress: Int,
+    )
 
     override fun onQueueUpdate(download: Download) {
         // already handled by onStatusChange
@@ -1308,7 +1400,7 @@ class MangaDetailsPresenter(
     }
 
     override fun onPageProgressUpdate(download: Download) {
-        chapters.find { it.id == download.chapter.id }?.download = download
+        chapterItemsById[download.chapter.id].orEmpty().forEach { it.download = download }
         view?.updateChapterDownload(download)
     }
 

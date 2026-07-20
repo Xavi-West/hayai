@@ -41,6 +41,7 @@ import androidx.core.net.toFile
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsCompat.Type.systemBars
+import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePaddingRelative
@@ -162,14 +163,19 @@ import java.io.IOException
 import java.util.Locale
 import kotlin.math.max
 import kotlin.math.roundToInt
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withTimeoutOrNull
 import yokai.domain.manga.interactor.FetchInterval
 import yokai.domain.manga.models.cover
 import yokai.i18n.MR
 import yokai.presentation.core.Constants
 import yokai.util.lang.getString
 import android.R as AR
+
+internal fun shouldAnimateMangaDetailsPredictiveBack(
+    selectionMode: Boolean,
+    selectedChapterCount: Int,
+): Boolean = !selectionMode || selectedChapterCount == 0
 
 class MangaDetailsController :
     BaseCoroutineController<MangaDetailsControllerBinding, MangaDetailsPresenter>,
@@ -244,6 +250,7 @@ class MangaDetailsController :
     var refreshTracker: Int? = null
     private var chapterPopupMenu: Pair<Int, PopupMenu>? = null
     private var isPushing = true
+    private var activityResumeRefreshJob: Job? = null
 
     // Tablet Layout
     var isTablet = false
@@ -256,7 +263,6 @@ class MangaDetailsController :
 
     private var headerHeight = 0
     private var fullCoverActive = false
-    var returningFromReader = false
     private var floatingActionMode: android.view.ActionMode? = null
 
     // Bundle-restore: presenter.manga loads async, so onViewCreated can't touch it. We mark the
@@ -264,7 +270,7 @@ class MangaDetailsController :
     private var pendingMangaInitSetup = false
 
     override fun getTitle(): String? {
-        val selectedCount = selectedChapters().size
+        val selectedCount = selectedChapterCount()
         if (isSelectionMode && selectedCount > 0) {
             return selectedCount.toString()
         }
@@ -338,6 +344,8 @@ class MangaDetailsController :
         if (!pendingMangaInitSetup) return
         if (view == null) return
         pendingMangaInitSetup = false
+        adapter?.notifyItemChanged(0)
+        tabletAdapter?.notifyItemChanged(0)
         setPaletteColor()
         presenter.onCreateLate()
         if (isControllerVisible) setTitle()
@@ -846,11 +854,13 @@ class MangaDetailsController :
             presenter.isLockedFromSearch =
                 shouldLockIfNeeded && SecureActivityDelegate.shouldBeLocked()
             presenter.headerItem.isLocked = presenter.isLockedFromSearch
-            // Run the DB refresh + dependent calls off Main; ordering preserved by sequencing inside the launch.
-            viewScope.launch {
+            // Cancel/replace prevents repeated Activity resumes from racing list submissions and
+            // restoring an older read target after the newer one has already rendered.
+            activityResumeRefreshJob?.cancel()
+            activityResumeRefreshJob = viewScope.launch {
                 presenter.refreshMangaFromDb()
                 presenter.syncData()
-                presenter.fetchChapters(refreshTracker == null)
+                presenter.refreshChapters(refreshTracker == null)
                 if (refreshTracker != null) {
                     trackingBottomSheet?.refreshItem(refreshTracker ?: 0)
                     presenter.refreshTracking(trackIndex = refreshTracker)
@@ -867,20 +877,6 @@ class MangaDetailsController :
             searchView?.post {
                 setSearchViewListener(searchView)
             }
-        }
-    }
-
-    override fun onAttach(view: View) {
-        super.onAttach(view)
-        if (!returningFromReader) return
-        returningFromReader = false
-        // DB await off Main so reader-back transition isn't blocked for up to 1s.
-        viewScope.launch {
-            val chapters = withTimeoutOrNull(1000) { presenter.getChaptersNow() } ?: return@launch
-            tabletAdapter?.notifyItemChanged(0)
-            addMangaHeader()
-            adapter?.setChapters(chapters)
-            updateFab()
         }
     }
 
@@ -1009,6 +1005,15 @@ class MangaDetailsController :
         )
     }
 
+    fun updateChapterDownloadState(chapterId: Long, status: Download.State, progress: Int) {
+        (binding.recycler.findViewHolderForItemId(chapterId) as? ChapterHolder)?.notifyStatus(
+            status,
+            presenter.isLockedFromSearch,
+            progress,
+            true,
+        )
+    }
+
     private fun getHolder(chapter: Chapter): ChapterHolder? {
         return binding.recycler.findViewHolderForItemId(chapter.id!!) as? ChapterHolder
     }
@@ -1031,25 +1036,30 @@ class MangaDetailsController :
         // their place"). addMangaHeader is a no-op when the header is already present.
         addMangaHeader()
         adapter?.setChapters(presenter.chapters)
+        refreshReadingActions()
         updateMenuVisibility(activityBinding?.toolbar?.menu)
     }
 
     fun updateFab() {
         val context = view?.context ?: return
-        val nextChapter = presenter.getNextUnreadChapter()
-        binding.fab.isEnabled = nextChapter != null
-        if (nextChapter != null) {
-            binding.fab.text = context.getString(
-                if (nextChapter.last_page_read > 0) {
-                    MR.strings.resume
-                } else {
-                    MR.strings.start_reading
-                },
-            )
-        } else {
-            binding.fab.isVisible = false
+        val readingState = presenter.getReadingButtonState()
+        binding.fab.isEnabled = readingState != null
+        if (readingState != null) {
+            val decimalFormat = adapter?.decimalFormat ?: tabletAdapter?.decimalFormat
+            if (decimalFormat != null) {
+                binding.fab.text = context.getReadingButtonText(readingState, decimalFormat)
+            }
         }
+        // ExtendedFloatingActionButton owns its visibility animation state. Directly assigning
+        // isVisible here can strand it between hidden and shown during rapid chapter updates.
         syncReadingFabVisibility()
+    }
+
+    private fun refreshReadingActions() {
+        // Update the in-header fallback first so FAB visibility is computed from current state,
+        // not the previous bind's visibility.
+        getHeader()?.refreshReadingButton()
+        updateFab()
     }
 
     private fun syncReadingFabVisibility() {
@@ -1063,13 +1073,16 @@ class MangaDetailsController :
     }
 
     private fun shouldShowReadingFab(): Boolean {
-        if (isTablet || !binding.fab.isEnabled || isSelectionMode) return false
-        val headerBinding = getHeader()?.binding ?: return true
-        if (headerBinding.buttonGroupCompose.isVisible != true) return false
-
-        val bound = Rect()
-        binding.recycler.getHitRect(bound)
-        return !headerBinding.buttonGroupCompose.getLocalVisibleRect(bound)
+        val headerAction = getHeader()?.binding?.buttonGroupCompose
+        val headerActionVisible = headerAction?.isVisible == true
+        val headerActionInViewport = headerActionVisible && headerAction.getLocalVisibleRect(Rect())
+        return shouldShowMangaReadingFab(
+            isTablet = isTablet,
+            hasReadingTarget = binding.fab.isEnabled,
+            isSelectionMode = isSelectionMode,
+            headerActionVisible = headerActionVisible,
+            headerActionInViewport = headerActionInViewport,
+        )
     }
 
     fun updateChapters() {
@@ -1078,9 +1091,8 @@ class MangaDetailsController :
         tabletAdapter?.notifyItemChanged(0)
         addMangaHeader()
         adapter?.setChapters(presenter.chapters)
-        updateFab()
-        // Phone scrollable header binds once while chapters are empty; refresh the read button now.
-        getHeader()?.refreshReadingButton()
+        // Phone scrollable header binds once while chapters are empty; refresh both actions now.
+        refreshReadingActions()
         colorToolbar(binding.recycler.canScrollVertically(-1))
         updateMenuVisibility(activityBinding?.toolbar?.menu)
     }
@@ -1098,15 +1110,24 @@ class MangaDetailsController :
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun refreshAdapter() = adapter?.notifyDataSetChanged()
+    fun refreshAdapter() {
+        val chapterAdapter = adapter ?: return
+        // Display-mode changes only alter the text of bound chapter rows. Rebinding the entire
+        // chapter list is especially expensive for long-running series; off-screen rows will bind
+        // with the new mode naturally when recycled.
+        binding.recycler.children.forEach { child ->
+            binding.recycler.getChildAdapterPosition(child)
+                .takeIf { it != RecyclerView.NO_POSITION }
+                ?.let(chapterAdapter::notifyItemChanged)
+        }
+    }
 
     override fun onItemClick(view: View?, position: Int): Boolean {
         val chapterItem = (adapter?.getItem(position) as? ChapterItem) ?: return false
         val chapter = chapterItem.chapter
         // mihon-style multi-select: a tap toggles this chapter's selection (no range anchor).
         // Single source of truth: any selected chapter means taps toggle selection.
-        if (isSelectionMode || selectedChapters().isNotEmpty()) {
+        if (isSelectionMode || selectedChapterCount() > 0) {
             toggleChapterSelection(position)
             return false
         }
@@ -1288,7 +1309,6 @@ class MangaDetailsController :
                 } else {
                     longArrayOf()
                 }
-                returningFromReader = true
                 intent.putExtra(ReaderActivity.VISIBLE_CHAPTERS, chapterRange)
                 startActivity(intent, bundle)
             } else {
@@ -1348,7 +1368,7 @@ class MangaDetailsController :
 
     private fun updateMenuVisibility(menu: Menu?) {
         menu ?: return
-        val isSelecting = isSelectionMode && selectedChapters().isNotEmpty()
+        val isSelecting = isSelectionMode && selectedChapterCount() > 0
         menu.findItem(R.id.action_select_all)?.isVisible = isSelecting
         menu.findItem(R.id.action_select_inverse)?.isVisible = isSelecting
         if (isSelecting) {
@@ -2180,8 +2200,14 @@ class MangaDetailsController :
 
     //region Selection/action mode methods
     // Mihon parity: back cancels chapter multi-select before leaving the screen.
+    override fun shouldAnimatePredictiveBack(): Boolean {
+        // This back action clears selection instead of popping the controller. Starting the
+        // navigation preview here would leave the view at a partial-pop transform after commit.
+        return shouldAnimateMangaDetailsPredictiveBack(isSelectionMode, selectedChapterCount())
+    }
+
     override fun handleBack(): Boolean {
-        if (isSelectionMode && selectedChapters().isNotEmpty()) {
+        if (isSelectionMode && selectedChapterCount() > 0) {
             destroyActionModeIfNeeded()
             return true
         }
@@ -2357,7 +2383,7 @@ class MangaDetailsController :
         val nowSelected = !(adapter?.isSelected(position) ?: false)
         setChapterSelected(position, nowSelected)
         lastSelectionPosition = if (nowSelected) position else null
-        if (selectedChapters().isEmpty()) {
+        if (selectedChapterCount() == 0) {
             destroyActionModeIfNeeded()
         } else {
             refreshActionBar()
@@ -2370,16 +2396,14 @@ class MangaDetailsController :
         val alreadySelected = adapter.isSelected(position)
         if (selected == alreadySelected) return
         if (selected) adapter.addSelection(position) else adapter.removeSelection(position)
-        (binding.recycler.findViewHolderForAdapterPosition(position) as? BaseFlexibleViewHolder)
-            ?.itemView
-            ?.isActivated = selected
         val item = adapter.getItem(position) as? ChapterItem
-        (binding.recycler.findViewHolderForAdapterPosition(position) as? ChapterHolder)
-            ?.notifyStatus(
-                if (selected) Download.State.CHECKED else item?.status ?: Download.State.NOT_DOWNLOADED,
-                false,
-                item?.progress ?: 0,
-            )
+        val holder = binding.recycler.findViewHolderForAdapterPosition(position) as? ChapterHolder
+        holder?.itemView?.isActivated = selected
+        holder?.notifyStatus(
+            if (selected) Download.State.CHECKED else item?.status ?: Download.State.NOT_DOWNLOADED,
+            false,
+            item?.progress ?: 0,
+        )
     }
 
     private fun selectAllChapters() {
@@ -2397,7 +2421,7 @@ class MangaDetailsController :
             if (adapter.getItem(i) is ChapterItem) setChapterSelected(i, !adapter.isSelected(i))
         }
         lastSelectionPosition = null
-        if (selectedChapters().isEmpty()) {
+        if (selectedChapterCount() == 0) {
             destroyActionModeIfNeeded()
         } else {
             refreshActionBar()
@@ -2406,6 +2430,8 @@ class MangaDetailsController :
     }
 
     /** Selected chapters mapped from the adapter's current selection positions. */
+    private fun selectedChapterCount(): Int = adapter?.selectedItemCount ?: 0
+
     private fun selectedChapters(): List<ChapterItem> {
         val adapter = adapter ?: return emptyList()
         return adapter.selectedPositions.mapNotNull { adapter.getItem(it) as? ChapterItem }
@@ -2413,9 +2439,15 @@ class MangaDetailsController :
 
     /** Repaints visible chapter rows to their non-selected status (clears CHECKED highlight). */
     private fun refreshSelectionHighlights() {
-        presenter.chapters.forEach { chapter ->
-            val holder = binding.recycler.findViewHolderForItemId(chapter.id!!) as? ChapterHolder
-                ?: return@forEach
+        val adapter = adapter ?: return
+        // FlexibleAdapter already tracks attached/cached holders. Walking every chapter and doing
+        // a RecyclerView lookup for each made leaving selection O(total chapters), even though only
+        // bound rows can have stale pixels. Repaint that bounded set directly.
+        adapter.allBoundViewHolders.forEach { boundHolder ->
+            val holder = boundHolder as? ChapterHolder ?: return@forEach
+            val position = holder.flexibleAdapterPosition
+            if (position == RecyclerView.NO_POSITION) return@forEach
+            val chapter = adapter.getItem(position) as? ChapterItem ?: return@forEach
             holder.itemView.isActivated = false
             holder.notifyStatus(chapter.status, isLocked(), chapter.progress)
         }

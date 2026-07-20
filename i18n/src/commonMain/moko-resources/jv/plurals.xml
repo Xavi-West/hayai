@@ -1,11 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <plurals name="remove_n_chapters">
+        <item quantity="one">Mbusak %1$d bab sing diundhuh?</item>
+        <item quantity="other">Mbusak %1$d bab sing diundhuh?</item>
+    </plurals>
+    <plurals name="chapters_plural">
+        <item quantity="one">%1$s bab</item>
+        <item quantity="other">%1$s bab</item>
+    </plurals>
     <plurals name="category_plural">
+        <item quantity="one">%d kategori</item>
         <item quantity="other">%d kategori</item>
     </plurals>
-
+    <plurals name="for_n_titles">
+        <item quantity="one">Kanggo %d judhul</item>
+        <item quantity="other">Kanggo %d judhul</item>
+    </plurals>
+    <plurals name="notification_and_n_more">
+        <item quantity="one">lan %1$d bab liyane</item>
+        <item quantity="other">lan %1$d bab liyane</item>
+    </plurals>
+    <plurals name="_updates_pending">
+        <item quantity="one">%d nganyari ditundha</item>
+        <item quantity="other">%d nganyari ditundha</item>
+    </plurals>
+    <plurals name="extensions_updated_plural">
+        <item quantity="one">Ekstensi dianyari</item>
+        <item quantity="other">%d ekstensi dianyari</item>
+    </plurals>
+    <plurals name="extension_updates_available">
+        <item quantity="one">Nganyari ekstensi kasedhiya</item>
+        <item quantity="other">%d nganyari ekstensi kasedhiya</item>
+    </plurals>
+    <plurals name="pages_plural">
+        <item quantity="one">%1$d kaca</item>
+        <item quantity="other">%1$d kaca</item>
+    </plurals>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">Mlayu bab %d, sumbere ilang utawa wis disaring</item>
+        <item quantity="other">Mlayu %d bab, sumbere ilang utawa wis disaring</item>
+    </plurals>
+    <plurals name="next_unread_chapters">
+        <item quantity="one">Bab sabanjure sing durung diwaca</item>
+        <item quantity="other">Sabanjure %d bab sing durung diwaca</item>
+    </plurals>
+    <plurals name="deleted_chapters">
+        <item quantity="one">Bab wis dibusak saka sumber:\n%2$s\nBusak
+            download nya?</item>
+        <item quantity="other">%1$s bab wis dibusak saka sumber:\n%2$s\n\nBusak
+            sing diundhuh?</item>
+    </plurals>
+    <plurals name="migrate_manga">
+        <item quantity="one">Migrasi %1$d%2$s seri?</item>
+        <item quantity="other">Migrasi %1$d%2$s seri?</item>
+    </plurals>
+    <plurals name="copy_manga">
+        <item quantity="one">Salin seri %1$d%2$s?</item>
+        <item quantity="other">Salin seri %1$d%2$s?</item>
+    </plurals>
+    <plurals name="manga_migrated">
+        <item quantity="one">%d seri migrasi</item>
+        <item quantity="other">%d seri migrasi</item>
+    </plurals>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Rampung ing %1$s kanthi kesalahan %2$s</item>
+        <item quantity="other">Rampung ing %1$s kanthi %2$s kesalahan</item>
+    </plurals>
+    <plurals name="cache_cleared">
+        <item quantity="one">Cache dibusak. %d berkas wis dibusak</item>
+        <item quantity="other">Cache dibusak. %d file wis dibusak</item>
+    </plurals>
+    <plurals name="cleanup_done">
+        <item quantity="one">Reresik rampung. Dibusak folder %d</item>
+        <item quantity="other">Reresik rampung. Dibusak %d folder</item>
+    </plurals>
+    <plurals name="_series_types">
+        <item quantity="other">%d jinis seri</item>
+    </plurals>
+    <plurals name="_sources">
+        <item quantity="other">%d sumber</item>
+    </plurals>
+    <plurals name="_statuses">
+        <item quantity="other">%d status</item>
+    </plurals>
+    <plurals name="_languages">
+        <item quantity="other">%d basa</item>
+    </plurals>
     <plurals name="after_minutes">
+        <item quantity="one">Sawise %1$s menit</item>
         <item quantity="other">Sawise %1$s menit</item>
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">%1$d item sing didhelikake</item>
+        <item quantity="other">%1$d item sing didhelikake</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">%1$d item ora didhelikake</item>
+        <item quantity="other">%1$d item ora didhelikake</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">Dilewati %d bab sing wis diwaca</item>
+        <item quantity="other">Dilewati %d bab sing wis diwaca</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">Dilewati %d bab sing disaring</item>
+        <item quantity="other">Dilewati %d bab sing disaring</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">%d dina</item>
+        <item quantity="other">%d dina</item>
     </plurals>
 </resources>

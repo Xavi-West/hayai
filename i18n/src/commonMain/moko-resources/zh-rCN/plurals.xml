@@ -1,61 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <plurals name="extension_updates_available">
-        <item quantity="other">%d 个扩展插件可更新</item>
-    </plurals>
-    <plurals name="category_plural">
-        <item quantity="other">%d 个类别</item>
-    </plurals>
-    <plurals name="notification_and_n_more">
-        <item quantity="other">还有 %1$d 章</item>
-    </plurals>
-    <plurals name="for_n_titles">
-        <item quantity="other">共 %d 个漫画</item>
-    </plurals>
     <plurals name="remove_n_chapters">
+        <item quantity="one">删除%1$d下载的章节？</item>
         <item quantity="other">移除已下载的 %1$d 章？</item>
     </plurals>
-    <plurals name="deleted_chapters">
-        <item quantity="other">%1$s个章节在以下图源中已被删除：\n%2$s\n是否删除相应的下载内容？</item>
-    </plurals>
-    <plurals name="manga_migrated">
-        <item quantity="other">%d 漫画已迁移</item>
-    </plurals>
-    <plurals name="copy_manga">
-        <item quantity="other">复制 %1$d%2$s 漫画？</item>
-    </plurals>
-    <plurals name="migrate_manga">
-        <item quantity="other">迁移 %1$d%2$s 漫画？</item>
-    </plurals>
-    <plurals name="after_minutes">
-        <item quantity="other">在%1$s分钟之后</item>
-    </plurals>
-    <plurals name="cleanup_done">
-        <item quantity="other">清除完成，移除了 %d 个目录</item>
-    </plurals>
-    <plurals name="cache_cleared">
-        <item quantity="other">缓存已清除，%d 的文件已被删除</item>
-    </plurals>
-    <plurals name="restore_completed_message">
-        <item quantity="other">耗时 %1$s，出现 %2$s 个错误</item>
-    </plurals>
     <plurals name="chapters_plural">
+        <item quantity="one">%1$s 章节</item>
         <item quantity="other">%1$s 章</item>
     </plurals>
-    <plurals name="pages_plural">
-        <item quantity="other">%1$d页</item>
+    <plurals name="category_plural">
+        <item quantity="one">%d 类别</item>
+        <item quantity="other">%d 个类别</item>
+    </plurals>
+    <plurals name="for_n_titles">
+        <item quantity="one">对于 %d 标题</item>
+        <item quantity="other">共 %d 个漫画</item>
+    </plurals>
+    <plurals name="notification_and_n_more">
+        <item quantity="one">以及%1$d 更多章节</item>
+        <item quantity="other">还有 %1$d 章</item>
     </plurals>
     <plurals name="_updates_pending">
+        <item quantity="one">%d 更新待处理</item>
         <item quantity="other">%d 个待处理更新</item>
     </plurals>
     <plurals name="extensions_updated_plural">
+        <item quantity="one">扩展已更新</item>
         <item quantity="other">更新了 %d 个扩展</item>
     </plurals>
+    <plurals name="extension_updates_available">
+        <item quantity="one">扩展更新可用</item>
+        <item quantity="other">%d 个扩展插件可更新</item>
+    </plurals>
+    <plurals name="pages_plural">
+        <item quantity="one">%1$d 页面</item>
+        <item quantity="other">%1$d页</item>
+    </plurals>
     <plurals name="missing_chapters_warning">
+        <item quantity="one">正在跳过 %d 章节，来源可能丢失或已被过滤掉</item>
         <item quantity="other">跳过了 %d 章，可能是图源没有这些章节，或者被筛选规则排除了</item>
     </plurals>
     <plurals name="next_unread_chapters">
+        <item quantity="one">下一个未读章节</item>
         <item quantity="other">下 %d 个未读章节</item>
+    </plurals>
+    <plurals name="deleted_chapters">
+        <item quantity="one">已从源中删除一章:\n%2$s\n删除
+            它的下载？</item>
+        <item quantity="other">%1$s个章节在以下图源中已被删除：\n%2$s\n是否删除相应的下载内容？</item>
+    </plurals>
+    <plurals name="migrate_manga">
+        <item quantity="one">迁移 %1$d%2$s 系列吗？</item>
+        <item quantity="other">迁移 %1$d%2$s 漫画？</item>
+    </plurals>
+    <plurals name="copy_manga">
+        <item quantity="one">复制 %1$d%2$s 系列吗？</item>
+        <item quantity="other">复制 %1$d%2$s 漫画？</item>
+    </plurals>
+    <plurals name="manga_migrated">
+        <item quantity="one">%d 系列已迁移</item>
+        <item quantity="other">%d 漫画已迁移</item>
+    </plurals>
+    <plurals name="restore_completed_message">
+        <item quantity="one">已在 %1$s 中完成，但出现 %2$s 错误</item>
+        <item quantity="other">耗时 %1$s，出现 %2$s 个错误</item>
+    </plurals>
+    <plurals name="cache_cleared">
+        <item quantity="one">缓存已清除。 %d 文件已被删除</item>
+        <item quantity="other">缓存已清除，%d 的文件已被删除</item>
+    </plurals>
+    <plurals name="cleanup_done">
+        <item quantity="one">清理完毕。已删除 %d 文件夹</item>
+        <item quantity="other">清除完成，移除了 %d 个目录</item>
     </plurals>
     <plurals name="_series_types">
         <item quantity="other">%d 种连载类型</item>
@@ -68,5 +84,29 @@
     </plurals>
     <plurals name="_languages">
         <item quantity="other">%d 种语言</item>
+    </plurals>
+    <plurals name="after_minutes">
+        <item quantity="one">%1$s 分钟后</item>
+        <item quantity="other">在%1$s分钟之后</item>
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">%1$d 项目已隐藏</item>
+        <item quantity="other">%1$d 项目已隐藏</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">%1$d 项目已取消隐藏</item>
+        <item quantity="other">%1$d 项目已取消隐藏</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">已跳过 %d 已读章节</item>
+        <item quantity="other">跳过 %d 已读章节</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">跳过%d过滤的章节</item>
+        <item quantity="other">跳过%d过滤的章节</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">%d 天</item>
+        <item quantity="other">%d 天</item>
     </plurals>
 </resources>

@@ -64,7 +64,7 @@ class EditTextResetPreference @JvmOverloads constructor(
             )
             val inputMethodManager: InputMethodManager =
                 context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager.showSoftInput(textView, WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+            inputMethodManager.showSoftInput(textView, InputMethodManager.SHOW_IMPLICIT)
             // Place cursor at the end
             textView.setSelection(textView.text.length)
             this.setView(view)

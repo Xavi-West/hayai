@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.setting.controllers
 import yokai.util.koin.get
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.InsetDrawable
+import android.os.Build
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -37,6 +38,7 @@ import eu.kanade.tachiyomi.widget.preference.SwitchPreferenceCategory
 import hayai.novel.source.NovelSource
 // NOVEL <--
 import java.util.TreeMap
+import kotlin.math.roundToInt
 
 class SettingsSourcesController : SettingsLegacyController(), FloatingSearchInterface {
     init {
@@ -218,7 +220,14 @@ class SettingsSourcesController : SettingsLegacyController(), FloatingSearchInte
      * which come back as AdaptiveIconDrawable with the same safe-zone built in.
      */
     private fun withAdaptiveIconInset(drawable: Drawable?): Drawable? {
-        return drawable?.let { InsetDrawable(it, ADAPTIVE_ICON_SAFE_ZONE_INSET) }
+        return drawable?.let {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                InsetDrawable(it, ADAPTIVE_ICON_SAFE_ZONE_INSET)
+            } else {
+                val size = minOf(it.intrinsicWidth, it.intrinsicHeight).coerceAtLeast(0)
+                InsetDrawable(it, (size * ADAPTIVE_ICON_SAFE_ZONE_INSET).roundToInt())
+            }
+        }
     }
 
     /**

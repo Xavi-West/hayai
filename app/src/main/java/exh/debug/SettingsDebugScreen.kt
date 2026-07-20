@@ -41,6 +41,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.text.intl.Locale as ComposeLocale
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.navigationBars
@@ -123,6 +124,7 @@ class SettingsDebugScreen : Screen() {
         scope: CoroutineScope,
         onTogglesChanged: (ImmutableList<DebugToggle>) -> Unit,
     ) {
+        val locale = Locale.forLanguageTag(ComposeLocale.current.toLanguageTag())
         Box(Modifier.fillMaxSize()) {
             val reducedMotion = isReducedMotion
             var running by remember { mutableStateOf(false) }
@@ -171,8 +173,8 @@ class SettingsDebugScreen : Screen() {
                 items(toggles) { debugToggle ->
                     TextPreferenceWidget(
                         title = debugToggle.name.replace('_', ' ')
-                            .lowercase(Locale.getDefault())
-                            .capitalize(Locale.getDefault()),
+                            .lowercase(locale)
+                            .capitalize(locale),
                         subtitle = if (debugToggle.enabled != debugToggle.default) "MODIFIED" else null,
                         widget = {
                             Switch(

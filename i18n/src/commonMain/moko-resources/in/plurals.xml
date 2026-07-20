@@ -1,64 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <plurals name="extension_updates_available">
-        <item quantity="other">Terdapat %d perbaharuan ekstensi</item>
-    </plurals>
-    <plurals name="notification_and_n_more">
-        <item quantity="other">dan %1$d bab lain</item>
-    </plurals>
-    <plurals name="for_n_titles">
-        <item quantity="other">Untuk %d judul</item>
-    </plurals>
-    <plurals name="category_plural">
-        <item quantity="other">%d kategori</item>
-    </plurals>
     <plurals name="remove_n_chapters">
+        <item quantity="one">Hapus %1$d bab yang diunduh?</item>
         <item quantity="other">Hapus %1$d bab yang diunduh\?</item>
     </plurals>
-    <plurals name="restore_completed_message">
-        <item quantity="other">Selesai dalam %1$s dengan %2$s kesalahan</item>
-    </plurals>
     <plurals name="chapters_plural">
+        <item quantity="one">%1$s bab</item>
         <item quantity="other">%1$s bab</item>
     </plurals>
+    <plurals name="category_plural">
+        <item quantity="one">%d kategori</item>
+        <item quantity="other">%d kategori</item>
+    </plurals>
+    <plurals name="for_n_titles">
+        <item quantity="one">Untuk judul %d</item>
+        <item quantity="other">Untuk %d judul</item>
+    </plurals>
+    <plurals name="notification_and_n_more">
+        <item quantity="one">dan %1$d bab lagi</item>
+        <item quantity="other">dan %1$d bab lain</item>
+    </plurals>
+    <plurals name="_updates_pending">
+        <item quantity="one">%d pembaruan tertunda</item>
+        <item quantity="other">Pembaruan %d ditunda</item>
+    </plurals>
+    <plurals name="extensions_updated_plural">
+        <item quantity="one">Ekstensi diperbarui</item>
+        <item quantity="other">%d</item>
+    </plurals>
+    <plurals name="extension_updates_available">
+        <item quantity="one">Pembaruan ekstensi tersedia</item>
+        <item quantity="other">Terdapat %d perbaharuan ekstensi</item>
+    </plurals>
+    <plurals name="pages_plural">
+        <item quantity="one">%1$d halaman</item>
+        <item quantity="other">%1$d halaman</item>
+    </plurals>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">Melewatkan bab %d, mungkin sumbernya hilang atau sudah disaring</item>
+        <item quantity="other">Melewati %d bab, entah sumbernya hilang atau telah difilter</item>
+    </plurals>
+    <plurals name="next_unread_chapters">
+        <item quantity="one">Bab berikutnya yang belum dibaca</item>
+        <item quantity="other">Selanjutnya chapter %d yang belum dibaca</item>
+    </plurals>
     <plurals name="deleted_chapters">
+        <item quantity="one">Sebuah bab telah dihapus dari sumbernya:\n%2$s\nHapus
+            unduhannya?</item>
         <item quantity="other">%1$s bab telah dihapus dari sumber:
 \n%2$s
 \n
 \nHapus unduhan\?</item>
     </plurals>
-    <plurals name="manga_migrated">
-        <item quantity="other">%d manga dimigrasi</item>
-    </plurals>
-    <plurals name="copy_manga">
-        <item quantity="other">Salin manga %1$d%2$s\?</item>
-    </plurals>
-    <plurals name="cleanup_done">
-        <item quantity="other">Pembersihan selesai. %d folder telah dihapus</item>
-    </plurals>
-    <plurals name="cache_cleared">
-        <item quantity="other">Cache telah dibersihkan. %d berkas telah dihapus</item>
-    </plurals>
-    <plurals name="pages_plural">
-        <item quantity="other">%1$d halaman</item>
-    </plurals>
-    <plurals name="after_minutes">
-        <item quantity="other">Setelah %1$s menit</item>
-    </plurals>
     <plurals name="migrate_manga">
+        <item quantity="one">Migrasikan seri %1$d%2$s?</item>
         <item quantity="other">Migrasi %1$d%2$s manga\?</item>
     </plurals>
-    <plurals name="_updates_pending">
-        <item quantity="other">Pembaruan %d ditunda</item>
+    <plurals name="copy_manga">
+        <item quantity="one">Salin seri %1$d%2$s?</item>
+        <item quantity="other">Salin manga %1$d%2$s\?</item>
     </plurals>
-    <plurals name="extensions_updated_plural">
-        <item quantity="other">%d</item>
+    <plurals name="manga_migrated">
+        <item quantity="one">%d seri dimigrasikan</item>
+        <item quantity="other">%d manga dimigrasi</item>
     </plurals>
-    <plurals name="missing_chapters_warning">
-        <item quantity="other">Melewati %d bab, entah sumbernya hilang atau telah difilter</item>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Selesai di %1$s dengan kesalahan %2$s</item>
+        <item quantity="other">Selesai dalam %1$s dengan %2$s kesalahan</item>
     </plurals>
-    <plurals name="next_unread_chapters">
-        <item quantity="other">Selanjutnya chapter %d yang belum dibaca</item>
+    <plurals name="cache_cleared">
+        <item quantity="one">Tembolok dibersihkan. %d file telah dihapus</item>
+        <item quantity="other">Cache telah dibersihkan. %d berkas telah dihapus</item>
+    </plurals>
+    <plurals name="cleanup_done">
+        <item quantity="one">Pembersihan selesai. Menghapus folder %d</item>
+        <item quantity="other">Pembersihan selesai. %d folder telah dihapus</item>
     </plurals>
     <plurals name="_series_types">
         <item quantity="other">%d jenis seri</item>
@@ -71,5 +87,29 @@
     </plurals>
     <plurals name="_languages">
         <item quantity="other">%d bahasa</item>
+    </plurals>
+    <plurals name="after_minutes">
+        <item quantity="one">Setelah %1$s menit</item>
+        <item quantity="other">Setelah %1$s menit</item>
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">%1$d item disembunyikan</item>
+        <item quantity="other">%1$d item disembunyikan</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">%1$d item ditampilkan</item>
+        <item quantity="other">%1$d item tidak disembunyikan</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">Melewatkan %d bab yang sudah dibaca</item>
+        <item quantity="other">Melewatkan %d bab yang sudah dibaca</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">Melewatkan %d bab yang difilter</item>
+        <item quantity="other">Melewatkan %d bab yang difilter</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">%d hari</item>
+        <item quantity="other">%d hari</item>
     </plurals>
 </resources>

@@ -142,7 +142,6 @@ android {
             dimension = "default"
         }
         create("dev") {
-            androidResources.localeFilters.add("en")
             dimension = "default"
         }
     }
@@ -182,6 +181,7 @@ dependencies {
 
     // Android X libraries
     implementation(androidx.bundles.androidx)
+    implementation(androidx.profileinstaller)
 
     implementation(platform(libs.firebase))
 

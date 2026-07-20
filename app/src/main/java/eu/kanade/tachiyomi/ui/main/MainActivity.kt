@@ -1,8 +1,6 @@
 package eu.kanade.tachiyomi.ui.main
 
-import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.app.assist.AssistContent
@@ -149,13 +147,13 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.runBlocking
 import yokai.util.koin.injectLazy
 import yokai.core.migration.Migrator
 import yokai.domain.base.BasePreferences
 import yokai.domain.manga.interactor.GetLibraryManga
 import yokai.domain.recents.interactor.GetRecents
 import yokai.i18n.MR
+import yokai.presentation.theme.ReducedMotion
 import yokai.presentation.core.Constants
 import yokai.presentation.extension.repo.ExtensionRepoController
 import yokai.presentation.onboarding.OnboardingController
@@ -225,7 +223,7 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
     // exactly once by LibraryController.consumePendingLibrarySearch(), which clears it.
     var pendingLibrarySearch: String? = null
 
-    private var animationSet: AnimatorSet? = null
+    private var navAnimationGeneration = 0
     private val downloadManager: DownloadManager by injectLazy()
     private val mangaShortcutManager: MangaShortcutManager by injectLazy()
     private val extensionManager: ExtensionManager by injectLazy()
@@ -237,7 +235,7 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
 
     private val updateChecker by lazy { AppUpdateChecker() }
     private val isUpdaterEnabled = BuildConfig.INCLUDE_UPDATER
-    private var searchBarAnimation: ValueAnimator? = null
+    private var searchBarAnimationGeneration = 0
     private var searchTBLongClickSet = false
     private var overflowDialog: Dialog? = null
 
@@ -389,26 +387,23 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
             override fun handleOnBackStarted(backEvent: BackEventCompat) {
                 controllerHandlesBackPress = false
                 val controller by lazy { router.backstack.lastOrNull()?.controller }
-                if (!(
-                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-                        ViewCompat.getRootWindowInsets(window.decorView)
+                val predictiveBackHandler = controller as? BackHandlerControllerInterface
+                val imeOwnsBack = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                    ViewCompat.getRootWindowInsets(window.decorView)
                         ?.isVisible(WindowInsetsCompat.Type.ime()) == true
-                    ) &&
+                val searchOwnsBack = binding.searchToolbar.hasExpandedActionView() &&
+                    binding.cardFrame.isVisible && controller !is SearchControllerInterface
+                controllerHandlesBackPress = !imeOwnsBack &&
                     actionMode == null &&
-                    !(
-                        binding.searchToolbar.hasExpandedActionView() && binding.cardFrame.isVisible &&
-                            controller !is SearchControllerInterface
-                        )
-                ) {
-                    controllerHandlesBackPress = true
-                }
+                    !searchOwnsBack &&
+                    predictiveBackHandler?.shouldAnimatePredictiveBack() != false
                 if (controllerHandlesBackPress) {
                     startTime = SystemClock.uptimeMillis()
                     velocityTracker.clear()
                     val motionEvent = MotionEvent.obtain(startTime, startTime, MotionEvent.ACTION_DOWN, backEvent.touchX, backEvent.touchY, 0)
                     velocityTracker.addMovement(motionEvent)
                     motionEvent.recycle()
-                    (controller as? BackHandlerControllerInterface)?.handleOnBackStarted(backEvent)
+                    predictiveBackHandler?.handleOnBackStarted(backEvent)
                 }
             }
 
@@ -632,15 +627,7 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
                 if (!hasOnboarding) {
                     goToStartingTab()
                     if (!basePreferences.hasShownOnboarding().get()) {
-                        val hasLibraryManga = runBlocking { getLibraryManga.await().isNotEmpty() }
-                        if (hasLibraryManga) {
-                            basePreferences.hasShownOnboarding().set(true)
-                        } else {
-                            // Push onto topRouter (not router which forwards to active child
-                            // router) so onboarding occludes all tabs — otherwise the user could
-                            // tap another tab to bypass it.
-                            topRouter.pushController(OnboardingController().withFadeInTransaction())
-                        }
+                        resolveInitialOnboarding()
                     }
                 }
             }
@@ -752,10 +739,9 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
             extensionManager.getExtensionUpdates(true)
         }
 
-        // Pay the XML parse + classloader cost for the Browse cold path on an IO
-        // thread now, while the user is still looking at Library. First Browse tap
-        // then only pays the on-frame view construction.
-        eu.kanade.tachiyomi.ui.source.BrowseWarmup.primeAsync(resources)
+        // Pay root-tab XML parse + classloader cost on IO. View construction remains on main,
+        // but first Recents/Browse attach and delayed Library rows skip binary XML decoding.
+        eu.kanade.tachiyomi.ui.source.RootTabWarmup.primeAsync(resources)
 
         preferences.extensionUpdatesCount()
             .changesIn(lifecycleScope) {
@@ -800,6 +786,33 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
                             (router.backstack.lastOrNull()?.controller as? HingeSupportedController)?.updateForHinge()
                         }
                     }
+            }
+        }
+    }
+
+    /**
+     * Resolves first-run onboarding without holding the main thread behind a database read.
+     *
+     * The old startup path used `runBlocking` immediately after constructing the first root tab,
+     * which prevented that tab and the splash exit from drawing until the complete library query
+     * returned. The query now runs on IO and only the small navigation decision returns to Main.
+     */
+    private fun resolveInitialOnboarding() {
+        lifecycleScope.launchIO {
+            val hasLibraryManga = getLibraryManga.await().isNotEmpty()
+            withUIContext {
+                if (isFinishing || isDestroyed || basePreferences.hasShownOnboarding().get()) {
+                    return@withUIContext
+                }
+                if (hasLibraryManga) {
+                    basePreferences.hasShownOnboarding().set(true)
+                    return@withUIContext
+                }
+                if (topRouter.backstack.none { it.controller is OnboardingController }) {
+                    // Push onto topRouter (not router which forwards to the active child router)
+                    // so onboarding occludes every tab and cannot be bypassed by switching tabs.
+                    topRouter.pushController(OnboardingController().withFadeInTransaction())
+                }
             }
         }
     }
@@ -884,21 +897,34 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
             (showSearchAnyway || isAppBarVisible)
         ) {
             binding.appBar.background = null
-            searchBarAnimation?.cancel()
+            binding.cardFrame.animate().cancel()
             if (showSearchBar && !binding.cardFrame.isVisible) {
                 binding.cardFrame.alpha = 0f
                 binding.cardFrame.isVisible = true
             }
             val endValue = if (showSearchBar) 1f else 0f
-            val tA = ValueAnimator.ofFloat(binding.cardFrame.alpha, endValue)
-            tA.addUpdateListener { binding.cardFrame.alpha = it.animatedValue as Float }
-            tA.doOnEnd { binding.cardFrame.isVisible = showSearchBar }
-            tA.duration = (abs(binding.cardFrame.alpha - endValue) * 150).roundToLong()
-            searchBarAnimation = tA
-            tA.start()
+            if (ReducedMotion.isEnabled()) {
+                ++searchBarAnimationGeneration
+                binding.cardFrame.alpha = endValue
+                binding.cardFrame.isVisible = showSearchBar
+            } else {
+                val generation = ++searchBarAnimationGeneration
+                binding.cardFrame.animate()
+                    .alpha(endValue)
+                    .setDuration((abs(binding.cardFrame.alpha - endValue) * 150).roundToLong())
+                    .withLayer()
+                    .withEndAction {
+                        if (generation == searchBarAnimationGeneration) {
+                            binding.cardFrame.isVisible = showSearchBar
+                        }
+                    }
+                    .start()
+            }
         } else if (this::topRouter.isInitialized &&
             (!binding.appBar.useLargeToolbar || onSmallerController || !isAppBarVisible)
         ) {
+            ++searchBarAnimationGeneration
+            binding.cardFrame.animate().cancel()
             binding.cardFrame.alpha = 1f
             binding.cardFrame.isVisible = showSearchBar
         }
@@ -1565,17 +1591,24 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
                 if (binding.backShadow.isVisible && !isPush) {
                     val bA = ObjectAnimator.ofFloat(binding.backShadow, View.ALPHA, 0f)
                     from?.view?.let { view ->
+                        val edgeDirection = if (view.translationX < 0f) -1f else 1f
+                        binding.backShadow.scaleX = edgeDirection
                         bA.addUpdateListener {
-                            binding.backShadow.x = view.x - binding.backShadow.width
+                            binding.backShadow.x = if (edgeDirection > 0f) {
+                                view.x - binding.backShadow.width
+                            } else {
+                                view.x + view.width
+                            }
                             if (boundRouter.backstackSize == 1) {
-                                to?.view?.let { toView -> nav.x = toView.x }
+                                to?.view?.let { toView -> nav.translationX = toView.translationX }
                             }
                         }
                     }
                     bA.doOnEnd {
                         binding.backShadow.alpha = 0.25f
+                        binding.backShadow.scaleX = 1f
                         binding.backShadow.isVisible = false
-                        nav.x = 0f
+                        nav.translationX = 0f
                     }
                     bA.duration = 150
                     bA.interpolator = DecelerateInterpolator(backVelocity.takeIf { it != 0f } ?: 1f)
@@ -1663,12 +1696,29 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
     fun onActiveTabChanged(@Suppress("UNUSED_PARAMETER") fromTabId: Int, @Suppress("UNUSED_PARAMETER") toTabId: Int) {
         val active = activeRootController
         active?.view?.alpha = 1f
-        syncActivityViewWithController(active)
-        syncActivityAppBarVisibility(active)
-        setFloatingToolbar(canShowFloatingToolbar(active), changeBG = false)
-        // Rebuild the toolbar menu from scratch against the new active controller only —
-        // dormant tabs have setOptionsMenuHidden(true) so Conductor's menu dispatch skips
-        // them. Without invalidateOptionsMenu the prior tab's items would persist.
+        if (active is RootTabContent && active.router.backstackSize == 1) {
+            // Root tabs own their app bar and keep the bottom navigation visible. Avoid the
+            // full activity-global chrome/menu walk in the transition's first frame; it only
+            // mutates hidden views and previously delayed the first rendered animation frame.
+            reEnableBackPressedCallBack()
+            syncActivityAppBarVisibility(active)
+            ++navAnimationGeneration
+            nav.animate().cancel()
+            nav.alpha = 1f
+            nav.translationY = 0f
+            nav.isVisible = true
+        } else {
+            // A tab can preserve a pushed detail screen. Those still use the global app bar
+            // and may hide bottom navigation, so retain the complete synchronization path.
+            syncActivityViewWithController(active)
+            syncActivityAppBarVisibility(active)
+            setFloatingToolbar(canShowFloatingToolbar(active), changeBG = false)
+        }
+    }
+
+    /** Complete non-visual menu/title work after the root-tab motion has settled. */
+    fun onRootTabTransitionSettled() {
+        val active = activeRootController
         invalidateOptionsMenu()
         binding.searchToolbar.title = searchTitle
         (active as? BaseLegacyController<*>)?.setTitle()
@@ -1682,16 +1732,40 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
      * [BaseController.onChangeStarted] on every push/pop enter, by [onActiveTabChanged]
      * on every tab swap, and by the activity-level Conductor change listener.
      */
+    private var lastGlobalAppBarController: Controller? = null
+    private var lastGlobalAppBarVisibility: Boolean? = null
+
     fun syncActivityAppBarVisibility(active: Controller?) {
         val hostsOwn = (active as? BaseController)?.hostsOwnAppBar == true
         val composeRoute = active is eu.kanade.tachiyomi.ui.base.controller.BaseComposeController
+        val shouldShowGlobalAppBar = !(hostsOwn || composeRoute)
+        if (
+            active === lastGlobalAppBarController &&
+            lastGlobalAppBarVisibility == shouldShowGlobalAppBar &&
+            binding.appBar.isVisible == shouldShowGlobalAppBar
+        ) {
+            // BaseController and the activity's Conductor listener both observe the same
+            // enter event. Treat the second call as a no-op instead of clearing/rebuilding
+            // the global tabs/search/menu tree twice in one frame.
+            return
+        }
+        if (!shouldShowGlobalAppBar && !binding.appBar.isVisible) {
+            // Local-app-bar root tabs are persistent siblings. Once the global app bar is
+            // hidden, resetting all of its tabs/search/menu state on every root swap is pure
+            // measure/layout churn; it will be reset when a global-app-bar screen enters.
+            lastGlobalAppBarController = active
+            lastGlobalAppBarVisibility = false
+            return
+        }
         // Defensive reset of the shared activity-global appBar before the incoming
         // controller configures it. Without this, slots the outgoing controller left
         // populated (search pill, secondary tabs row, lifted menu, scroll offset) bleed
         // through to the next screen — manifesting as a floating search pill or phantom
         // tab-strip padding on manga details / settings / any deep-nested screen.
         binding.appBar.resetToBaseline()
-        binding.appBar.isVisible = !(hostsOwn || composeRoute)
+        binding.appBar.isVisible = shouldShowGlobalAppBar
+        lastGlobalAppBarController = active
+        lastGlobalAppBarVisibility = shouldShowGlobalAppBar
     }
 
     override fun onPreparePanel(featureId: Int, view: View?, menu: Menu): Boolean {
@@ -1926,7 +2000,7 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
             nav.alpha = 1f
         } else {
             val targetAlpha = if (hideBottomNav) 0f else 1f
-            // Skip the 150ms ValueAnimator entirely when nav alpha won't change. Common
+            // Skip the 150ms render-property animation entirely when nav alpha won't change. Common
             // path for root <-> root swaps (Library/Recents/Browse) where both keep the
             // bottom nav visible — the animation was 150ms of wasted per-frame invalidates.
             if (nav.alpha == targetAlpha) {
@@ -1937,13 +2011,11 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
                     binding.bottomView?.visibility ?: View.GONE
                 }
             } else {
-                animationSet?.cancel()
-                animationSet = AnimatorSet()
-                val alphaAnimation = ValueAnimator.ofFloat(nav.alpha, targetAlpha)
-                alphaAnimation.addUpdateListener { valueAnimator ->
-                    nav.alpha = valueAnimator.animatedValue as Float
-                }
-                alphaAnimation.doOnEnd {
+                ++navAnimationGeneration
+                nav.animate().cancel()
+                nav.isVisible = true
+                if (ReducedMotion.isEnabled()) {
+                    nav.alpha = targetAlpha
                     nav.isVisible = !hideBottomNav
                     binding.bottomView?.visibility =
                         if (hideBottomNav) {
@@ -1952,10 +2024,25 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
                             binding.bottomView?.visibility
                                 ?: View.GONE
                         }
+                } else {
+                    val generation = navAnimationGeneration
+                    nav.animate()
+                        .alpha(targetAlpha)
+                        .setDuration(150L)
+                        .withLayer()
+                        .withEndAction {
+                            if (generation != navAnimationGeneration) return@withEndAction
+                            nav.isVisible = !hideBottomNav
+                            binding.bottomView?.visibility =
+                                if (hideBottomNav) {
+                                    View.GONE
+                                } else {
+                                    binding.bottomView?.visibility
+                                        ?: View.GONE
+                                }
+                        }
+                        .start()
                 }
-                alphaAnimation.duration = 150
-                animationSet?.playTogether(alphaAnimation)
-                animationSet?.start()
             }
         }
     }

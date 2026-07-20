@@ -111,8 +111,9 @@ abstract class SettingsLegacyController : PreferenceController(), SettingsContro
             .apply {
                 duration = 500L
                 repeatCount = 2
+                repeatMode = ValueAnimator.REVERSE
                 addUpdateListener { animator -> view.setBackgroundColor(animator.animatedValue as Int) }
-                reverse()
+                start()
             }
     }
 

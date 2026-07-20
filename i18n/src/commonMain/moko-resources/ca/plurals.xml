@@ -1,28 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <plurals name="extension_updates_available">
-        <item quantity="one">Hi ha una actualització d’una extensió</item>
-        <item quantity="other">Hi ha actualitzacions de %d extensions</item>
-    </plurals>
     <plurals name="remove_n_chapters">
         <item quantity="one">Voleu eliminar %1$d capítol baixat\?</item>
         <item quantity="other">Voleu eliminar %1$d capítols baixats\?</item>
-    </plurals>
-    <plurals name="category_plural">
-        <item quantity="one">%d categoria</item>
-        <item quantity="other">%d categories</item>
-    </plurals>
-    <plurals name="restore_completed_message">
-        <item quantity="one">Fet en %1$s amb %2$s error</item>
-        <item quantity="other">Fet en %1$s amb %2$s errors</item>
     </plurals>
     <plurals name="chapters_plural">
         <item quantity="one">%1$s capítol</item>
         <item quantity="other">%1$s capítols</item>
     </plurals>
-    <plurals name="missing_chapters_warning">
-        <item quantity="one">S’ha omès %d capítol. És possible que manqui a la font o que hagi estat filtrat</item>
-        <item quantity="other">S’han omès %d capítols. És possible que manquin a la font o que hagin estat filtrats</item>
+    <plurals name="category_plural">
+        <item quantity="one">%d categoria</item>
+        <item quantity="other">%d categories</item>
     </plurals>
     <plurals name="for_n_titles">
         <item quantity="one">Per a %d títol</item>
@@ -32,13 +20,29 @@
         <item quantity="one">i %1$d capítol més</item>
         <item quantity="other">i %1$d capítols més</item>
     </plurals>
-    <plurals name="next_unread_chapters">
-        <item quantity="one">El següent capítol no llegit</item>
-        <item quantity="other">Els següents %d capítols no llegits</item>
+    <plurals name="_updates_pending">
+        <item quantity="one">%d actualització pendent</item>
+        <item quantity="other">%d actualitzacions pendents</item>
+    </plurals>
+    <plurals name="extensions_updated_plural">
+        <item quantity="one">Extensió actualitzada</item>
+        <item quantity="other">%d extensions actualitzades</item>
+    </plurals>
+    <plurals name="extension_updates_available">
+        <item quantity="one">Hi ha una actualització d’una extensió</item>
+        <item quantity="other">Hi ha actualitzacions de %d extensions</item>
     </plurals>
     <plurals name="pages_plural">
         <item quantity="one">%1$d pàgina</item>
         <item quantity="other">%1$d pàgines</item>
+    </plurals>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">S’ha omès %d capítol. És possible que manqui a la font o que hagi estat filtrat</item>
+        <item quantity="other">S’han omès %d capítols. És possible que manquin a la font o que hagin estat filtrats</item>
+    </plurals>
+    <plurals name="next_unread_chapters">
+        <item quantity="one">El següent capítol no llegit</item>
+        <item quantity="other">Els següents %d capítols no llegits</item>
     </plurals>
     <plurals name="deleted_chapters">
         <item quantity="one">S’ha suprimit un capítol d’aquesta font:
@@ -49,8 +53,64 @@
             \n
             \nVoleu eliminar-ne les baixades\?</item>
     </plurals>
+    <plurals name="migrate_manga">
+        <item quantity="one">Vols migrar la sèrie %1$d%2$s?</item>
+        <item quantity="other">Vols migrar la sèrie %1$d%2$s?</item>
+    </plurals>
+    <plurals name="copy_manga">
+        <item quantity="one">Voleu copiar la sèrie %1$d%2$s?</item>
+        <item quantity="other">Voleu copiar la sèrie %1$d%2$s?</item>
+    </plurals>
+    <plurals name="manga_migrated">
+        <item quantity="one">S'ha migrat la sèrie %d</item>
+        <item quantity="other">S'ha migrat la sèrie %d</item>
+    </plurals>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Fet en %1$s amb %2$s error</item>
+        <item quantity="other">Fet en %1$s amb %2$s errors</item>
+    </plurals>
+    <plurals name="cache_cleared">
+        <item quantity="one">S'ha esborrat la memòria cau. S'ha suprimit el fitxer %d</item>
+        <item quantity="other">S'ha esborrat la memòria cau. S'han suprimit %d fitxers</item>
+    </plurals>
+    <plurals name="cleanup_done">
+        <item quantity="one">Neteja feta. S'ha eliminat la carpeta %d</item>
+        <item quantity="other">Neteja feta. S'han eliminat %d carpetes</item>
+    </plurals>
+    <plurals name="_series_types">
+        <item quantity="other">%d tipus de sèrie</item>
+    </plurals>
+    <plurals name="_sources">
+        <item quantity="other">%d fonts</item>
+    </plurals>
+    <plurals name="_statuses">
+        <item quantity="other">%d estats</item>
+    </plurals>
+    <plurals name="_languages">
+        <item quantity="other">%d idiomes</item>
+    </plurals>
     <plurals name="after_minutes">
         <item quantity="one">Després d’%1$s minut</item>
         <item quantity="other">Després de %1$s minuts</item>
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">%1$d element amagat</item>
+        <item quantity="other">%1$d elements amagats</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">%1$d element no amagat</item>
+        <item quantity="other">%1$d elements es mostren</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">S'ha omès %d capítol ja llegit</item>
+        <item quantity="other">S'han omès %d capítols ja llegits</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">S'ha omès %d capítol filtrat</item>
+        <item quantity="other">S'han omès %d capítols filtrats</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">%d dia</item>
+        <item quantity="other">%d dies</item>
     </plurals>
 </resources>

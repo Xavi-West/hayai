@@ -1,38 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <plurals name="missing_chapters_warning">
-        <item quantity="one">Po kalon %d kapitull, ose i mungon burimi ose është filtruar</item>
-        <item quantity="other">Po kalon %d kapituj, ose i mungon burimi ose është filtruar</item>
+    <plurals name="remove_n_chapters">
+        <item quantity="one">Të hiqet kapitulli i shkarkuar %1$d?</item>
+        <item quantity="other">Të hiqen %1$d kapitujt e shkarkuar?</item>
     </plurals>
-
-    <plurals name="extension_updates_available">
-        <item quantity="one">Ofrohet përditësim i shtesës</item>
-        <item quantity="other">Ofrohen %d përditësime shtesë</item>
-    </plurals>
-
     <plurals name="chapters_plural">
         <item quantity="one">%1$s kapitull</item>
         <item quantity="other">%1$s kapituj</item>
     </plurals>
-
-    <plurals name="after_minutes">
-        <item quantity="one">Pas %1$s minutë</item>
-        <item quantity="other">Pas %1$s minutash</item>
+    <plurals name="category_plural">
+        <item quantity="one">%d kategori</item>
+        <item quantity="other">%d kategoritë</item>
     </plurals>
-
+    <plurals name="for_n_titles">
+        <item quantity="one">Për titullin %d</item>
+        <item quantity="other">Për titujt %d</item>
+    </plurals>
+    <plurals name="notification_and_n_more">
+        <item quantity="one">dhe %1$d më shumë kapitull</item>
+        <item quantity="other">dhe %1$d kapituj të tjerë</item>
+    </plurals>
+    <plurals name="_updates_pending">
+        <item quantity="one">%d përditësim në pritje</item>
+        <item quantity="other">%d përditësime në pritje</item>
+    </plurals>
+    <plurals name="extensions_updated_plural">
+        <item quantity="one">Shtesa u përditësua</item>
+        <item quantity="other">%d shtesat u përditësuan</item>
+    </plurals>
+    <plurals name="extension_updates_available">
+        <item quantity="one">Ofrohet përditësim i shtesës</item>
+        <item quantity="other">Ofrohen %d përditësime shtesë</item>
+    </plurals>
+    <plurals name="pages_plural">
+        <item quantity="one">%1$d faqe</item>
+        <item quantity="other">%1$d faqe</item>
+    </plurals>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">Po kalon %d kapitull, ose i mungon burimi ose është filtruar</item>
+        <item quantity="other">Po kalon %d kapituj, ose i mungon burimi ose është filtruar</item>
+    </plurals>
     <plurals name="next_unread_chapters">
         <item quantity="one">Kapitulli tjetër i palexuar</item>
         <item quantity="other">%d kapitujt e ardhshëm të palexuar</item>
     </plurals>
-
+    <plurals name="deleted_chapters">
+        <item quantity="one">Një kapitull është hequr nga burimi:\n%2$s\nFshi
+            shkarkimi i tij?</item>
+        <item quantity="other">%1$s kapitujt janë hequr nga burimi:\n%2$s\n\nFshi
+            shkarkimet e tyre?</item>
+    </plurals>
+    <plurals name="migrate_manga">
+        <item quantity="one">Të migrojnë seritë %1$d%2$s?</item>
+        <item quantity="other">Të migrojnë seritë %1$d%2$s?</item>
+    </plurals>
+    <plurals name="copy_manga">
+        <item quantity="one">Të kopjohet seria %1$d%2$s?</item>
+        <item quantity="other">Të kopjohet seria %1$d%2$s?</item>
+    </plurals>
+    <plurals name="manga_migrated">
+        <item quantity="one">Seritë %d migruan</item>
+        <item quantity="other">Seritë %d migruan</item>
+    </plurals>
     <plurals name="restore_completed_message">
         <item quantity="one">Përfunduar në %1$s me %2$s gabim</item>
         <item quantity="other">Përfunduar në %1$s me %2$s gabime</item>
     </plurals>
-
-    <plurals name="category_plural">
-        <item quantity="one">%d kategori</item>
-        <item quantity="other">%d kategoritë</item>
+    <plurals name="cache_cleared">
+        <item quantity="one">Memoria e fshehtë u pastrua. Skedari %d është fshirë</item>
+        <item quantity="other">Memoria e fshehtë u pastrua. %d skedarët janë fshirë</item>
+    </plurals>
+    <plurals name="cleanup_done">
+        <item quantity="one">Pastrimi u krye. Dosja %d u hoq</item>
+        <item quantity="other">Pastrimi u krye. Dosjet %d u hoqën</item>
+    </plurals>
+    <plurals name="_series_types">
+        <item quantity="other">Llojet e serive %d</item>
+    </plurals>
+    <plurals name="_sources">
+        <item quantity="other">%d burime</item>
+    </plurals>
+    <plurals name="_statuses">
+        <item quantity="other">%d statuse</item>
+    </plurals>
+    <plurals name="_languages">
+        <item quantity="other">%d gjuhë</item>
+    </plurals>
+    <plurals name="after_minutes">
+        <item quantity="one">Pas %1$s minutë</item>
+        <item quantity="other">Pas %1$s minutash</item>
+    </plurals>
+    <plurals name="recents_n_items_hidden">
+        <item quantity="one">%1$d artikulli u fsheh</item>
+        <item quantity="other">%1$d artikuj të fshehur</item>
+    </plurals>
+    <plurals name="recents_n_items_unhidden">
+        <item quantity="one">%1$d artikulli u pafshi</item>
+        <item quantity="other">%1$d artikuj u pafshihen</item>
+    </plurals>
+    <plurals name="skipped_read_chapters">
+        <item quantity="one">Kapitulli i kapërcyer %d i lexuar tashmë</item>
+        <item quantity="other">Kapërceu %d kapituj të lexuar tashmë</item>
+    </plurals>
+    <plurals name="skipped_filtered_chapters">
+        <item quantity="one">Kapitulli i filtruar i kapërcyer %d</item>
+        <item quantity="other">Kapërceu %d kapitujt e filtruar</item>
+    </plurals>
+    <plurals name="day_plural">
+        <item quantity="one">%d ditë</item>
+        <item quantity="other">%d ditë</item>
     </plurals>
 </resources>

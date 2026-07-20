@@ -16,7 +16,6 @@ import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.ui.base.presenter.BaseCoroutinePresenter
 import eu.kanade.tachiyomi.util.system.launchIO
 import eu.kanade.tachiyomi.util.system.launchNonCancellableIO
-import eu.kanade.tachiyomi.util.system.launchUI
 import eu.kanade.tachiyomi.util.system.withUIContext
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.asFlow
@@ -27,7 +26,6 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import yokai.util.koin.injectLazy
@@ -72,6 +70,12 @@ open class BrowseSourcePresenter(
     val sourceIsInitialized
         get() = this::source.isInitialized
 
+    @Volatile
+    var sourceInitializationState = SourceInitializationState.LOADING
+        private set
+
+    private var sourceInitializationStarted = false
+
     var filtersChanged = false
 
     val page: Int
@@ -110,33 +114,33 @@ open class BrowseSourcePresenter(
 
     override fun onCreate() {
         super.onCreate()
-        if (!::pager.isInitialized) {
-            // Cheap in-memory lookup first; only block if the source isn't registered yet.
-            source = (sourceManager.get(sourceId) as? CatalogueSource)
-                ?: runBlocking { sourceManager.awaitCatalogueSource(sourceId) }
-                ?: return
+        if (sourceInitializationStarted) return
+        sourceInitializationStarted = true
 
-            sourceFilters = source.getFilterList()
-
-            if (oldFilters.isEmpty()) {
-                for (i in sourceFilters) {
-                    if (i is Filter.Group<*>) {
-                        val subFilters = mutableListOf<Any?>()
-                        for (j in i.state) {
-                            subFilters.add((j as Filter<*>).state)
-                        }
-                        oldFilters.add(subFilters)
-                    } else {
-                        oldFilters.add(i.state)
-                    }
-                }
+        // Source/plugin restoration and extension-provided filter creation are not UI work.
+        // Keeping both off Main lets the destination controller inflate and draw its loading
+        // state while a cold plugin registry finishes loading.
+        presenterScope.launchIO {
+            val resolvedSource = (sourceManager.get(sourceId) as? CatalogueSource)
+                ?: sourceManager.awaitCatalogueSource(sourceId)
+            if (resolvedSource == null) {
+                sourceInitializationState = SourceInitializationState.UNAVAILABLE
+                withUIContext { view?.onSourceUnavailable() }
+                return@launchIO
             }
+
+            source = resolvedSource
+            sourceFilters = resolvedSource.getFilterList()
+            snapshotDefaultFilters()
             filtersChanged = false
+            sourceInitializationState = SourceInitializationState.READY
 
-            // Saved searches don't gate first paint; load off Main.
-            presenterScope.launchUI {
-                view?.savedSearches = loadSearches()
-            }
+            // Source readiness is enough to build the screen and start its first page. Saved
+            // searches are secondary content and must not extend the navigation critical path.
+            withUIContext { view?.onSourceReady() }
+
+            val savedSearches = loadSearches()
+            withUIContext { view?.savedSearches = savedSearches }
 
             getSavedSearch.subscribeAllBySourceId(sourceId)
                 .map { it.applyAllSave(source.getFilterList()) }
@@ -144,6 +148,17 @@ open class BrowseSourcePresenter(
                     withUIContext { view?.savedSearches = it }
                 }
                 .launchIn(presenterScope)
+        }
+    }
+
+    private fun snapshotDefaultFilters() {
+        if (oldFilters.isNotEmpty()) return
+        for (filter in sourceFilters) {
+            if (filter is Filter.Group<*>) {
+                oldFilters.add(filter.state.map { (it as Filter<*>).state })
+            } else {
+                oldFilters.add(filter.state)
+            }
         }
     }
 
@@ -368,4 +383,10 @@ open class BrowseSourcePresenter(
     suspend fun loadSearches(): List<SavedSearch> {
        return getSavedSearch.awaitAllBySourceId(sourceId).applyAllSave(source.getFilterList())
     }
+}
+
+enum class SourceInitializationState {
+    LOADING,
+    READY,
+    UNAVAILABLE,
 }
